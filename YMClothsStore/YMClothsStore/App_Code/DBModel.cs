@@ -18,6 +18,33 @@ namespace YMClothsStore.App_Code
 
     public class DBModel
     {
+
+        /**
+         * 查找员工信息
+         * 参数：员工id：staffId
+         * 返回值：成功返回员工信息，失败返回null
+         */
+        public Staff findStaffInformationById(string id)
+        {
+            Staff staff;
+
+            using (YMClothsStoreContext db = new YMClothsStoreContext())
+            {
+                try
+                {
+                    string sql = "select * from STAFF where STAFF_ID = " + id;
+                    staff = db.Database.SqlQuery<STAFF>(sql).FirstOrDefault();
+                    return staff;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+
+            return staff;
+        }
+
         /**
          * 添加新员工
          * 参数：新员工名字
@@ -35,7 +62,7 @@ namespace YMClothsStore.App_Code
             };
             
             //写入数据库
-            using (LFMSContext db = new LFMSContext())
+            using (YMClothsStoreContext db = new YMClothsStoreContext())
             {
                 try
                 {
@@ -51,6 +78,33 @@ namespace YMClothsStore.App_Code
 
 
             return newStaffId;
+        }
+
+        /**
+         * 更改员工信息
+         * 参数：员工id，姓名，电话，密码
+         * 返回值：成功返回true，失败返回false
+         */
+        public bool modifyPersonalInformation(Staff currentInfo)
+        {
+
+            using (YMClothsStoreContext db = new YMClothsStoreContext())
+            {
+                try
+                {
+                    Staff oldInfo = db.STAFF.Where(p => p.STAFF_ID == currentInfo.STAFF_ID).SingleOrDefault();
+                    oldInfo.staffName = currentInfo.staffName;
+                    oldInfo.staffPhone = currentInfo.staffPhone;
+                    oldInfo.password = currentInfo.password;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+            return false;
         }
     }
 }
