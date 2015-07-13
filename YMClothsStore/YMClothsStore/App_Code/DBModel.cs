@@ -5,9 +5,113 @@ using System.Web;
 //用来从数据库获取数据并封装
 namespace YMClothsStore.App_Code
 {
-    public class Staff
+    public class Item//1服装信息表
     {
-        public int staffId { get; set; }
+        public string itemId { get; set; }
+        public string itemName { get; set; }
+        public string itemSize { get; set; }
+        public string itemColor { get; set; }
+        public string itemImage { get; set; }
+        public int itemPrice { get; set; }
+        public DateTime itemDate { get; set; }
+    }
+
+    public class Shop//2门店信息表
+    {
+        public string shopId { get; set; }
+        public string shopAddress { get; set; }
+        public string shopPhone { get; set; }
+    }
+
+    public class Stock//3库存表
+    {
+        public string itemId { get; set; }
+        public string shopId { get; set; }
+        public int stockAmount { get; set; }
+        public int saleAmount { get; set; }
+        public int stockLimit { get; set; }
+        public int purchaseAmount { get; set; }
+    }
+
+    public class In//4入库登记表
+    {
+        public string inId { get; set; }
+        public string shopId { get; set; }
+        public string staffId { get; set; }
+        public DateTime inTime { get; set; }
+    }
+
+    public class InDetail//5入库明细表
+    {
+        public string inId { get; set; }
+        public string itemId { get; set; }
+        public int inAmount { get; set; }
+    }
+    
+    public class Out//6出库登记表
+    {
+        public string outId { get; set; }
+        public string shopId { get; set; }
+        public string outType { get; set; }
+        public string staffId { get; set; }
+    }
+
+    public class OutDetail//7出库明细表
+    {
+        public string outId { get; set; }
+        public string tiemId { get; set; }
+        public int outAmount { get; set; }
+    }
+
+    public class Order//8订单登记表
+    {
+        public string orderId { get; set; }
+        public string shopId { get; set; }
+        public int totalPrice { get; set; }
+        public DateTime orderTime { get; set; }
+    }
+
+    public class OrderDetail//9订单明细
+    {
+        public string orderId { get; set; }
+        public string itemId { get; set; }
+        public int itemAmount { get; set; }
+    }
+
+    public class Check//10盘点表
+    {
+        public string checkId { get; set; }
+        public string shopId { get; set; }
+        public string checkerId { get; set; }
+        public DateTime checkTime { get; set; }
+    }
+
+    public class CheckDetail//11盘点明细表
+    {
+        public string checkId { get; set; }
+        public string itemId { get; set; }
+        public int currentAmount { get; set; }
+    }
+
+    public class Apply//12申请表
+    {
+        public string applyId { get; set; }
+        public string outShop { get; set; }
+        public string inShop { get; set; }
+        public string state { get; set; }
+        public DateTime applyTime { get; set; }
+    }
+
+    public class ApplyDetail//13申请明细表
+    {
+        public string applyId { get; set; }
+        public string itemId { get; set; }
+        public int applyAmount { get; set; }
+    }
+
+    public class Staff//14员工信息表
+    {
+        public string staffId { get; set; }
         public string staffName { get; set; }
         public string staffGender { get; set; }
         public string staffPhone { get; set; }
@@ -16,41 +120,69 @@ namespace YMClothsStore.App_Code
         public string password { get; set; }
     }
 
+    public class Image//15产品图片表
+    {
+        public string imageId { get; set; }
+        public string imagePath { get; set; }
+    }
+
+    public class Address//16地址表
+    {
+        public string addressId { get; set; }
+        public string addressName { get; set; }
+        public float addressX { get; set; }
+        public float addressY { get; set; }
+    }
+
     public class DBModel
     {
         /**
          * 添加新员工
          * 参数：新员工名字
          * 返回值：成功返回员工id，失败返回0
-         * 初始密码12345678
          */
-        public int addStaff(string newStaffName)
+        public string addStaff(string newStaffName)
         {
-            int newStaffId;
+            string newStaffId = "00000000";//需要生成一个id，或者数据库设为自增
 
             Staff newStaff = new Staff
             {
                 staffName = newStaffName,
-                password = "12345678"
+                password = "12345678"//初始密码12345678
             };
             
             //写入数据库
-            using (LFMSContext db = new LFMSContext())
+            /* using (YMClothsContext db = new YMClothsContext())
             {
                 try
                 {
-                    db.QUESTION.Add(question);
+                    db.QUESTION.Add(newStaff);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("Unique");
+                    System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
-            }
+            } */
 
 
             return newStaffId;
         }
+
+        public bool deleteStaffById(string deletedStaffId)
+        {
+            bool deletdSucced = false;
+
+            //从数据库中查询要删除的员工
+            /* using (YMClothsCotext db = new YMClothsCotext())
+            {
+
+            } */
+
+            return deletdSucced;
+        }
+
+
     }
 }
