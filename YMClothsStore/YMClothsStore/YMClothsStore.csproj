@@ -112,21 +112,19 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="ModifyPersonalInformation.aspx.cs">
       <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ModifyPersonalInformation.aspx.designer.cs">
       <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
-=======
+    </Compile>
     <Compile Include="PersonnelChanges.aspx.cs">
       <DependentUpon>PersonnelChanges.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PersonnelChanges.aspx.designer.cs">
       <DependentUpon>PersonnelChanges.aspx</DependentUpon>
->>>>>>> 336638cd95d7989d3a22de1b74d1efb701510ac0
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
