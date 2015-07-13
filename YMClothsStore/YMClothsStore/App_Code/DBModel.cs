@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
+using System.Linq;
 using System.Web;
+using System.Collections;
 //用来从数据库获取数据并封装
 namespace YMClothsStore
 {
@@ -153,14 +154,13 @@ namespace YMClothsStore
         }   
 
         /**
-         * 查找员工信息
-         * 参数：员工id：staffId
-         * 返回值：成功返回员工信息，失败返回null
+         * 1.查询店铺员工信息
+         * 参数：店铺id：shopId
+         * 返回值：成功返回该店铺员工信息ArrayList，失败返回null
          */
-        public Staff findStaffInformationById(string id)
+        public ArrayList findStaffInformationById(string shopId)
         {
-            Staff staff = new Staff();
-
+            ArrayList staffs = null;
             /* using (YMClothsStoreContext db = new YMClothsStoreContext())
             {
                 try
@@ -176,10 +176,10 @@ namespace YMClothsStore
             }
             */
 
-            return staff;
+            return staffs;
         }
         /**
-         * 添加新员工
+         * 2.添加新员工
          * 参数：新员工名字
          * 返回值：成功返回员工id，失败返回0
          */
@@ -213,7 +213,7 @@ namespace YMClothsStore
         }
 
         /*
-         * 删除员工
+         * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
          */
@@ -232,7 +232,7 @@ namespace YMClothsStore
 
 
         /**
-         * 更改员工信息
+         * 4.更改员工信息
          * 参数：员工id，姓名，电话，密码
          * 返回值：成功返回true，失败返回false
          */
@@ -260,7 +260,7 @@ namespace YMClothsStore
         }
 
         /*
-         * 增加新门店
+         * 5.增加新门店
          * 参数：店长id，新门店地址，新门店电话
          * 返回值：门店id，失败返回"false"
          */
@@ -276,7 +276,7 @@ namespace YMClothsStore
         }
 
         /*
-         * 删除门店
+         * 6.删除门店
          * 参数：门店id
          * 返回值：bool
          */
@@ -292,7 +292,7 @@ namespace YMClothsStore
         }
 
         /*
-         * 修改门店信息
+         * 7.修改门店信息
          * 参数：门店id，新地址，新电话，不修改的值为null
          * 返回值：bool
          */

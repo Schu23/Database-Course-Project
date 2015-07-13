@@ -1,10 +1,10 @@
 #接口列表
 -----
 ##DBModel类
-####1.public Staff findStaffInformationById(string id)
-* 查找员工信息
-* 参数：员工id：staffId
-* 返回值：成功返回员工信息，失败返回null
+####1.public ArrayList findStaffInformationById(string shopId)
+* 查找店铺员工信息
+* 参数：店铺id：shopId
+* 返回值：成功返回该店铺所有员工信息ArrayList，失败返回null
  
 ####2.public string addStaff(string newStaffName)
 * 添加新员工
