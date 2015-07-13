@@ -70,11 +70,8 @@
     <Content Include="Error.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
-<<<<<<< HEAD
     <Content Include="ModifyPersonalInformation.aspx" />
-=======
     <Content Include="PersonnelChanges.aspx" />
->>>>>>> 336638cd95d7989d3a22de1b74d1efb701510ac0
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
