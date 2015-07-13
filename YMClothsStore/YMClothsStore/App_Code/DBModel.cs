@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Web;
 //用来从数据库获取数据并封装
 namespace YMClothsStore.App_Code
@@ -136,6 +136,47 @@ namespace YMClothsStore.App_Code
 
     public class DBModel
     {
+        // 单例
+       private static DBModel dbModel;
+        // 构造函数私有
+        private DBModel ()
+       { }
+     //构成单例子
+        public static DBModel sharedDBModel()
+        {
+         if(dbModel == null)
+         {
+             dbModel = new DBModel();
+         }
+         return dbModel;
+        }   
+
+        /**
+         * 查找员工信息
+         * 参数：员工id：staffId
+         * 返回值：成功返回员工信息，失败返回null
+         */
+        public Staff findStaffInformationById(string id)
+        {
+            Staff staff = new Staff();
+
+            /* using (YMClothsStoreContext db = new YMClothsStoreContext())
+            {
+                try
+                {
+                    string sql = "select * from STAFF where STAFF_ID = " + id;
+                    staff = db.Database.SqlQuery<STAFF>(sql).FirstOrDefault();
+                    return staff;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+            */
+
+            return staff;
+        }
         /**
          * 添加新员工
          * 参数：新员工名字
@@ -170,6 +211,11 @@ namespace YMClothsStore.App_Code
             return newStaffId;
         }
 
+        /*
+         * 删除员工
+         * 参数：员工id
+         * 返回值：成功返回true，失败或员工不存在返回false
+         */
         public bool deleteStaffById(string deletedStaffId)
         {
             bool deletdSucced = false;
@@ -184,5 +230,32 @@ namespace YMClothsStore.App_Code
         }
 
 
+        /**
+         * 更改员工信息
+         * 参数：员工id，姓名，电话，密码
+         * 返回值：成功返回true，失败返回false
+         */
+        public bool modifyPersonalInformation(Staff currentInfo)
+        {
+
+            /* using (YMClothsStoreContext db = new YMClothsStoreContext())
+            {
+                try
+                {
+                    Staff oldInfo = db.STAFF.Where(p => p.STAFF_ID == currentInfo.STAFF_ID).SingleOrDefault();
+                    oldInfo.staffName = currentInfo.staffName;
+                    oldInfo.staffPhone = currentInfo.staffPhone;
+                    oldInfo.password = currentInfo.password;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+             */
+            return false;
+        }
     }
 }
