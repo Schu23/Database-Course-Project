@@ -1,0 +1,1358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YMModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="addressId" />
+          </Key>
+          <Property Name="addressId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="addressName" Type="varchar2" MaxLength="40" />
+          <Property Name="addressX" Type="float" Precision="126" Scale="0" />
+          <Property Name="addressY" Type="float" Precision="126" Scale="0" />
+        </EntityType>
+        <EntityType Name="apply">
+          <Key>
+            <PropertyRef Name="applyId" />
+          </Key>
+          <Property Name="applyId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="outShop" Type="varchar2" MaxLength="40" />
+          <Property Name="inShop" Type="varchar2" MaxLength="40" />
+          <Property Name="state" Type="varchar2" MaxLength="20" />
+          <Property Name="applyTime" Type="date" />
+        </EntityType>
+        <EntityType Name="applyDetail">
+          <Key>
+            <PropertyRef Name="applyId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="applyId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="applyAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="check">
+          <Key>
+            <PropertyRef Name="checkId" />
+          </Key>
+          <Property Name="checkId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="checkerId" Type="varchar2" MaxLength="40" />
+          <Property Name="checkTime" Type="date" />
+        </EntityType>
+        <EntityType Name="checkDetail">
+          <Key>
+            <PropertyRef Name="checkId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="checkId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="currentAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="imageId" />
+          </Key>
+          <Property Name="imageId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="imagePath" Type="varchar2" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="in">
+          <Key>
+            <PropertyRef Name="inId" />
+          </Key>
+          <Property Name="inId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="staffId" Type="varchar2" MaxLength="40" />
+          <Property Name="inTime" Type="date" />
+        </EntityType>
+        <EntityType Name="inDetail">
+          <Key>
+            <PropertyRef Name="inId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="inId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="inAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemName" Type="varchar2" MaxLength="20" />
+          <Property Name="itemSize" Type="varchar2" MaxLength="5" />
+          <Property Name="itemColor" Type="varchar2" MaxLength="20" />
+          <Property Name="itemImage" Type="varchar2" MaxLength="40" />
+          <Property Name="itemPrice" Type="number" Precision="38" Scale="0" />
+          <Property Name="itemDate" Type="date" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="totalPrice" Type="number" Precision="38" Scale="0" />
+          <Property Name="orderTime" Type="date" />
+        </EntityType>
+        <EntityType Name="orderDetail">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="orderId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="out">
+          <Key>
+            <PropertyRef Name="outId" />
+          </Key>
+          <Property Name="outId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="outType" Type="varchar2" MaxLength="20" />
+          <Property Name="staffId" Type="varchar2" MaxLength="40" />
+          <Property Name="outTime" Type="date" />
+        </EntityType>
+        <EntityType Name="outDetail">
+          <Key>
+            <PropertyRef Name="outId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="outId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="outAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="shop">
+          <Key>
+            <PropertyRef Name="shopId" />
+          </Key>
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopAddress" Type="varchar2" MaxLength="40" />
+          <Property Name="shopPhone" Type="varchar2" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="staffName" Type="varchar2" MaxLength="10" />
+          <Property Name="staffGender" Type="varchar2" MaxLength="5" />
+          <Property Name="staffPhone" Type="varchar2" MaxLength="40" />
+          <Property Name="staffJob" Type="varchar2" MaxLength="20" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="password" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="stockAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="saleAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="stockLimit" Type="number" Precision="38" Scale="0" />
+          <Property Name="purchaseAmount" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <Association Name="apply_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="outShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="apply_ibfk_2">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="inShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="applyDetail_ibfk_1">
+          <End Role="apply" Type="Self.apply" Multiplicity="1" />
+          <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apply">
+              <PropertyRef Name="applyId" />
+            </Principal>
+            <Dependent Role="applyDetail">
+              <PropertyRef Name="applyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="applyDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="applyDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="check_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="check" Type="Self.check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="check">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="check_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="check" Type="Self.check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="check">
+              <PropertyRef Name="checkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="checkDetail_ibfk_1">
+          <End Role="check" Type="Self.check" Multiplicity="1" />
+          <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="check">
+              <PropertyRef Name="checkId" />
+            </Principal>
+            <Dependent Role="checkDetail">
+              <PropertyRef Name="checkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="checkDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="checkDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="in_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="in">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="in_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="in">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="inDetail_ibfk_1">
+          <End Role="in" Type="Self.in" Multiplicity="1" />
+          <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="in">
+              <PropertyRef Name="inId" />
+            </Principal>
+            <Dependent Role="inDetail">
+              <PropertyRef Name="inId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="inDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="inDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="item_ibfk_1">
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="image">
+              <PropertyRef Name="imageId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="itemImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ibfk_1">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderDetail">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="orderDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="out_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="out">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="out_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="out">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="outDetail_ibfk_1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="outDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="outDetail_ibfk_2">
+          <End Role="out" Type="Self.out" Multiplicity="1" />
+          <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="out">
+              <PropertyRef Name="outId" />
+            </Principal>
+            <Dependent Role="outDetail">
+              <PropertyRef Name="outId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="shop_ibfk_1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addressId" />
+            </Principal>
+            <Dependent Role="shop">
+              <PropertyRef Name="shopAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="staff_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="stock_ibfk_1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="stock_ibfk_2">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YMModelStoreContainer">
+          <EntitySet Name="address" EntityType="Self.address" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="apply" EntityType="Self.apply" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="applyDetail" EntityType="Self.applyDetail" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="check" EntityType="Self.check" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="checkDetail" EntityType="Self.checkDetail" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="image" EntityType="Self.image" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="in" EntityType="Self.in" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="inDetail" EntityType="Self.inDetail" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="orderDetail" EntityType="Self.orderDetail" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="out" EntityType="Self.out" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="outDetail" EntityType="Self.outDetail" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="shop" EntityType="Self.shop" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="staff" EntityType="Self.staff" Schema="TAC" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" Schema="TAC" store:Type="Tables" />
+          <AssociationSet Name="apply_ibfk_1" Association="Self.apply_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+          <AssociationSet Name="apply_ibfk_2" Association="Self.apply_ibfk_2">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+          <AssociationSet Name="applyDetail_ibfk_1" Association="Self.applyDetail_ibfk_1">
+            <End Role="apply" EntitySet="apply" />
+            <End Role="applyDetail" EntitySet="applyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="applyDetail_ibfk_2" Association="Self.applyDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="applyDetail" EntitySet="applyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="check_ibfk_1" Association="Self.check_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="check" EntitySet="check" />
+          </AssociationSet>
+          <AssociationSet Name="check_ibfk_2" Association="Self.check_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="check" EntitySet="check" />
+          </AssociationSet>
+          <AssociationSet Name="checkDetail_ibfk_1" Association="Self.checkDetail_ibfk_1">
+            <End Role="check" EntitySet="check" />
+            <End Role="checkDetail" EntitySet="checkDetail" />
+          </AssociationSet>
+          <AssociationSet Name="checkDetail_ibfk_2" Association="Self.checkDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="checkDetail" EntitySet="checkDetail" />
+          </AssociationSet>
+          <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="in" EntitySet="in" />
+          </AssociationSet>
+          <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="in" EntitySet="in" />
+          </AssociationSet>
+          <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
+            <End Role="in" EntitySet="in" />
+            <End Role="inDetail" EntitySet="inDetail" />
+          </AssociationSet>
+          <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="inDetail" EntitySet="inDetail" />
+          </AssociationSet>
+          <AssociationSet Name="item_ibfk_1" Association="Self.item_ibfk_1">
+            <End Role="image" EntitySet="image" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ibfk_1" Association="Self.orderDetail_ibfk_1">
+            <End Role="order" EntitySet="order" />
+            <End Role="orderDetail" EntitySet="orderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ibfk_2" Association="Self.orderDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="orderDetail" EntitySet="orderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="out" EntitySet="out" />
+          </AssociationSet>
+          <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="out" EntitySet="out" />
+          </AssociationSet>
+          <AssociationSet Name="outDetail_ibfk_1" Association="Self.outDetail_ibfk_1">
+            <End Role="item" EntitySet="item" />
+            <End Role="outDetail" EntitySet="outDetail" />
+          </AssociationSet>
+          <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
+            <End Role="out" EntitySet="out" />
+            <End Role="outDetail" EntitySet="outDetail" />
+          </AssociationSet>
+          <AssociationSet Name="shop_ibfk_1" Association="Self.shop_ibfk_1">
+            <End Role="address" EntitySet="address" />
+            <End Role="shop" EntitySet="shop" />
+          </AssociationSet>
+          <AssociationSet Name="staff_ibfk_1" Association="Self.staff_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="stock_ibfk_1" Association="Self.stock_ibfk_1">
+            <End Role="item" EntitySet="item" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+          <AssociationSet Name="stock_ibfk_2" Association="Self.stock_ibfk_2">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="addressId" />
+          </Key>
+          <Property Name="addressId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="addressName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="addressX" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="addressY" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="shop" Relationship="Self.shop_ibfk_1" FromRole="address" ToRole="shop" />
+        </EntityType>
+        <EntityType Name="apply">
+          <Key>
+            <PropertyRef Name="applyId" />
+          </Key>
+          <Property Name="applyId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="outShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="inShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="applyTime" Type="DateTime" />
+          <NavigationProperty Name="shop" Relationship="Self.apply_ibfk_1" FromRole="apply" ToRole="shop" />
+          <NavigationProperty Name="shop1" Relationship="Self.apply_ibfk_2" FromRole="apply" ToRole="shop" />
+          <NavigationProperty Name="applyDetail" Relationship="Self.applyDetail_ibfk_1" FromRole="apply" ToRole="applyDetail" />
+        </EntityType>
+        <EntityType Name="applyDetail">
+          <Key>
+            <PropertyRef Name="applyId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="applyId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="applyAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="apply" Relationship="Self.applyDetail_ibfk_1" FromRole="applyDetail" ToRole="apply" />
+          <NavigationProperty Name="item" Relationship="Self.applyDetail_ibfk_2" FromRole="applyDetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="check">
+          <Key>
+            <PropertyRef Name="checkId" />
+          </Key>
+          <Property Name="checkId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="checkerId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="checkTime" Type="DateTime" />
+          <NavigationProperty Name="shop" Relationship="Self.check_ibfk_1" FromRole="check" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.check_ibfk_2" FromRole="check" ToRole="staff" />
+          <NavigationProperty Name="checkDetail" Relationship="Self.checkDetail_ibfk_1" FromRole="check" ToRole="checkDetail" />
+        </EntityType>
+        <EntityType Name="checkDetail">
+          <Key>
+            <PropertyRef Name="checkId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="checkId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="currentAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="check" Relationship="Self.checkDetail_ibfk_1" FromRole="checkDetail" ToRole="check" />
+          <NavigationProperty Name="item" Relationship="Self.checkDetail_ibfk_2" FromRole="checkDetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="imageId" />
+          </Key>
+          <Property Name="imageId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagePath" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="item" Relationship="Self.item_ibfk_1" FromRole="image" ToRole="item" />
+        </EntityType>
+        <EntityType Name="in">
+          <Key>
+            <PropertyRef Name="inId" />
+          </Key>
+          <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="inTime" Type="DateTime" />
+          <NavigationProperty Name="shop" Relationship="Self.in_ibfk_1" FromRole="in" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.in_ibfk_2" FromRole="in" ToRole="staff" />
+          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_1" FromRole="in" ToRole="inDetail" />
+        </EntityType>
+        <EntityType Name="inDetail">
+          <Key>
+            <PropertyRef Name="inId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="in" Relationship="Self.inDetail_ibfk_1" FromRole="inDetail" ToRole="in" />
+          <NavigationProperty Name="item" Relationship="Self.inDetail_ibfk_2" FromRole="inDetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="itemSize" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="itemColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="itemImage" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="itemPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="itemDate" Type="DateTime" />
+          <NavigationProperty Name="applyDetail" Relationship="Self.applyDetail_ibfk_2" FromRole="item" ToRole="applyDetail" />
+          <NavigationProperty Name="checkDetail" Relationship="Self.checkDetail_ibfk_2" FromRole="item" ToRole="checkDetail" />
+          <NavigationProperty Name="image" Relationship="Self.item_ibfk_1" FromRole="item" ToRole="image" />
+          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_2" FromRole="item" ToRole="inDetail" />
+          <NavigationProperty Name="orderDetail" Relationship="Self.orderDetail_ibfk_2" FromRole="item" ToRole="orderDetail" />
+          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_1" FromRole="item" ToRole="outDetail" />
+          <NavigationProperty Name="stock" Relationship="Self.stock_ibfk_1" FromRole="item" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="orderTime" Type="DateTime" />
+          <NavigationProperty Name="shop" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="shop" />
+          <NavigationProperty Name="orderDetail" Relationship="Self.orderDetail_ibfk_1" FromRole="order" ToRole="orderDetail" />
+        </EntityType>
+        <EntityType Name="orderDetail">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="item" Relationship="Self.orderDetail_ibfk_2" FromRole="orderDetail" ToRole="item" />
+          <NavigationProperty Name="order" Relationship="Self.orderDetail_ibfk_1" FromRole="orderDetail" ToRole="order" />
+        </EntityType>
+        <EntityType Name="out">
+          <Key>
+            <PropertyRef Name="outId" />
+          </Key>
+          <Property Name="outId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="outType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="outTime" Type="DateTime" />
+          <NavigationProperty Name="shop" Relationship="Self.out_ibfk_1" FromRole="out" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.out_ibfk_2" FromRole="out" ToRole="staff" />
+          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_2" FromRole="out" ToRole="outDetail" />
+        </EntityType>
+        <EntityType Name="outDetail">
+          <Key>
+            <PropertyRef Name="outId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="outId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="outAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="item" Relationship="Self.outDetail_ibfk_1" FromRole="outDetail" ToRole="item" />
+          <NavigationProperty Name="out" Relationship="Self.outDetail_ibfk_2" FromRole="outDetail" ToRole="out" />
+        </EntityType>
+        <EntityType Name="shop">
+          <Key>
+            <PropertyRef Name="shopId" />
+          </Key>
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="shopPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.shop_ibfk_1" FromRole="shop" ToRole="address" />
+          <NavigationProperty Name="apply" Relationship="Self.apply_ibfk_1" FromRole="shop" ToRole="apply" />
+          <NavigationProperty Name="apply1" Relationship="Self.apply_ibfk_2" FromRole="shop" ToRole="apply" />
+          <NavigationProperty Name="check" Relationship="Self.check_ibfk_1" FromRole="shop" ToRole="check" />
+          <NavigationProperty Name="in" Relationship="Self.in_ibfk_1" FromRole="shop" ToRole="in" />
+          <NavigationProperty Name="order" Relationship="Self.order_ibfk_1" FromRole="shop" ToRole="order" />
+          <NavigationProperty Name="out" Relationship="Self.out_ibfk_1" FromRole="shop" ToRole="out" />
+          <NavigationProperty Name="staff" Relationship="Self.staff_ibfk_1" FromRole="shop" ToRole="staff" />
+          <NavigationProperty Name="stock" Relationship="Self.stock_ibfk_2" FromRole="shop" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="staffGender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="staffPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="staffJob" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="check" Relationship="Self.check_ibfk_2" FromRole="staff" ToRole="check" />
+          <NavigationProperty Name="in" Relationship="Self.in_ibfk_2" FromRole="staff" ToRole="in" />
+          <NavigationProperty Name="out" Relationship="Self.out_ibfk_2" FromRole="staff" ToRole="out" />
+          <NavigationProperty Name="shop" Relationship="Self.staff_ibfk_1" FromRole="staff" ToRole="shop" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="stockAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="saleAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="stockLimit" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="purchaseAmount" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="item" Relationship="Self.stock_ibfk_1" FromRole="stock" ToRole="item" />
+          <NavigationProperty Name="shop" Relationship="Self.stock_ibfk_2" FromRole="stock" ToRole="shop" />
+        </EntityType>
+        <Association Name="shop_ibfk_1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addressId" />
+            </Principal>
+            <Dependent Role="shop">
+              <PropertyRef Name="shopAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="apply_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="outShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="apply_ibfk_2">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="inShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="applyDetail_ibfk_1">
+          <End Role="apply" Type="Self.apply" Multiplicity="1" />
+          <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apply">
+              <PropertyRef Name="applyId" />
+            </Principal>
+            <Dependent Role="applyDetail">
+              <PropertyRef Name="applyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="applyDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="applyDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="check_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="check" Type="Self.check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="check">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="check_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="check" Type="Self.check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="check">
+              <PropertyRef Name="checkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="checkDetail_ibfk_1">
+          <End Role="check" Type="Self.check" Multiplicity="1" />
+          <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="check">
+              <PropertyRef Name="checkId" />
+            </Principal>
+            <Dependent Role="checkDetail">
+              <PropertyRef Name="checkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="checkDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="checkDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="item_ibfk_1">
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="image">
+              <PropertyRef Name="imageId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="itemImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="in_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="in">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="in_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="in">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="inDetail_ibfk_1">
+          <End Role="in" Type="Self.in" Multiplicity="1" />
+          <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="in">
+              <PropertyRef Name="inId" />
+            </Principal>
+            <Dependent Role="inDetail">
+              <PropertyRef Name="inId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="inDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="inDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ibfk_2">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="orderDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="outDetail_ibfk_1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="outDetail">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="stock_ibfk_1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ibfk_1">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderDetail">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="out_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="out">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="out_ibfk_2">
+          <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="out">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="outDetail_ibfk_2">
+          <End Role="out" Type="Self.out" Multiplicity="1" />
+          <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="out">
+              <PropertyRef Name="outId" />
+            </Principal>
+            <Dependent Role="outDetail">
+              <PropertyRef Name="outId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="staff_ibfk_1">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="stock_ibfk_2">
+          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shop">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="address" EntityType="Self.address" />
+          <EntitySet Name="apply" EntityType="Self.apply" />
+          <EntitySet Name="applyDetail" EntityType="Self.applyDetail" />
+          <EntitySet Name="check" EntityType="Self.check" />
+          <EntitySet Name="checkDetail" EntityType="Self.checkDetail" />
+          <EntitySet Name="image" EntityType="Self.image" />
+          <EntitySet Name="in" EntityType="Self.in" />
+          <EntitySet Name="inDetail" EntityType="Self.inDetail" />
+          <EntitySet Name="item" EntityType="Self.item" />
+          <EntitySet Name="order" EntityType="Self.order" />
+          <EntitySet Name="orderDetail" EntityType="Self.orderDetail" />
+          <EntitySet Name="out" EntityType="Self.out" />
+          <EntitySet Name="outDetail" EntityType="Self.outDetail" />
+          <EntitySet Name="shop" EntityType="Self.shop" />
+          <EntitySet Name="staff" EntityType="Self.staff" />
+          <EntitySet Name="stock" EntityType="Self.stock" />
+          <AssociationSet Name="shop_ibfk_1" Association="Self.shop_ibfk_1">
+            <End Role="address" EntitySet="address" />
+            <End Role="shop" EntitySet="shop" />
+          </AssociationSet>
+          <AssociationSet Name="apply_ibfk_1" Association="Self.apply_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+          <AssociationSet Name="apply_ibfk_2" Association="Self.apply_ibfk_2">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+          <AssociationSet Name="applyDetail_ibfk_1" Association="Self.applyDetail_ibfk_1">
+            <End Role="apply" EntitySet="apply" />
+            <End Role="applyDetail" EntitySet="applyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="applyDetail_ibfk_2" Association="Self.applyDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="applyDetail" EntitySet="applyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="check_ibfk_1" Association="Self.check_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="check" EntitySet="check" />
+          </AssociationSet>
+          <AssociationSet Name="check_ibfk_2" Association="Self.check_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="check" EntitySet="check" />
+          </AssociationSet>
+          <AssociationSet Name="checkDetail_ibfk_1" Association="Self.checkDetail_ibfk_1">
+            <End Role="check" EntitySet="check" />
+            <End Role="checkDetail" EntitySet="checkDetail" />
+          </AssociationSet>
+          <AssociationSet Name="checkDetail_ibfk_2" Association="Self.checkDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="checkDetail" EntitySet="checkDetail" />
+          </AssociationSet>
+          <AssociationSet Name="item_ibfk_1" Association="Self.item_ibfk_1">
+            <End Role="image" EntitySet="image" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="in" EntitySet="in" />
+          </AssociationSet>
+          <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="in" EntitySet="in" />
+          </AssociationSet>
+          <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
+            <End Role="in" EntitySet="in" />
+            <End Role="inDetail" EntitySet="inDetail" />
+          </AssociationSet>
+          <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="inDetail" EntitySet="inDetail" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ibfk_2" Association="Self.orderDetail_ibfk_2">
+            <End Role="item" EntitySet="item" />
+            <End Role="orderDetail" EntitySet="orderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="outDetail_ibfk_1" Association="Self.outDetail_ibfk_1">
+            <End Role="item" EntitySet="item" />
+            <End Role="outDetail" EntitySet="outDetail" />
+          </AssociationSet>
+          <AssociationSet Name="stock_ibfk_1" Association="Self.stock_ibfk_1">
+            <End Role="item" EntitySet="item" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+          <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ibfk_1" Association="Self.orderDetail_ibfk_1">
+            <End Role="order" EntitySet="order" />
+            <End Role="orderDetail" EntitySet="orderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="out" EntitySet="out" />
+          </AssociationSet>
+          <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="out" EntitySet="out" />
+          </AssociationSet>
+          <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
+            <End Role="out" EntitySet="out" />
+            <End Role="outDetail" EntitySet="outDetail" />
+          </AssociationSet>
+          <AssociationSet Name="staff_ibfk_1" Association="Self.staff_ibfk_1">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="stock_ibfk_2" Association="Self.stock_ibfk_2">
+            <End Role="shop" EntitySet="shop" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YMModelStoreContainer" CdmEntityContainer="YMEntities">
+          <EntitySetMapping Name="address">
+            <EntityTypeMapping TypeName="YMModel.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="addressId" ColumnName="addressId" />
+                <ScalarProperty Name="addressName" ColumnName="addressName" />
+                <ScalarProperty Name="addressX" ColumnName="addressX" />
+                <ScalarProperty Name="addressY" ColumnName="addressY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="apply">
+            <EntityTypeMapping TypeName="YMModel.apply">
+              <MappingFragment StoreEntitySet="apply">
+                <ScalarProperty Name="applyId" ColumnName="applyId" />
+                <ScalarProperty Name="outShop" ColumnName="outShop" />
+                <ScalarProperty Name="inShop" ColumnName="inShop" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="applyTime" ColumnName="applyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applyDetail">
+            <EntityTypeMapping TypeName="YMModel.applyDetail">
+              <MappingFragment StoreEntitySet="applyDetail">
+                <ScalarProperty Name="applyId" ColumnName="applyId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="applyAmount" ColumnName="applyAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="check">
+            <EntityTypeMapping TypeName="YMModel.check">
+              <MappingFragment StoreEntitySet="check">
+                <ScalarProperty Name="checkId" ColumnName="checkId" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="checkerId" ColumnName="checkerId" />
+                <ScalarProperty Name="checkTime" ColumnName="checkTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkDetail">
+            <EntityTypeMapping TypeName="YMModel.checkDetail">
+              <MappingFragment StoreEntitySet="checkDetail">
+                <ScalarProperty Name="checkId" ColumnName="checkId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="currentAmount" ColumnName="currentAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="image">
+            <EntityTypeMapping TypeName="YMModel.image">
+              <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="imageId" ColumnName="imageId" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="in">
+            <EntityTypeMapping TypeName="YMModel.in">
+              <MappingFragment StoreEntitySet="in">
+                <ScalarProperty Name="inId" ColumnName="inId" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="inTime" ColumnName="inTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inDetail">
+            <EntityTypeMapping TypeName="YMModel.inDetail">
+              <MappingFragment StoreEntitySet="inDetail">
+                <ScalarProperty Name="inId" ColumnName="inId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="inAmount" ColumnName="inAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item">
+            <EntityTypeMapping TypeName="YMModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="itemName" ColumnName="itemName" />
+                <ScalarProperty Name="itemSize" ColumnName="itemSize" />
+                <ScalarProperty Name="itemColor" ColumnName="itemColor" />
+                <ScalarProperty Name="itemImage" ColumnName="itemImage" />
+                <ScalarProperty Name="itemPrice" ColumnName="itemPrice" />
+                <ScalarProperty Name="itemDate" ColumnName="itemDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="YMModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="orderTime" ColumnName="orderTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderDetail">
+            <EntityTypeMapping TypeName="YMModel.orderDetail">
+              <MappingFragment StoreEntitySet="orderDetail">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="itemAmount" ColumnName="itemAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="out">
+            <EntityTypeMapping TypeName="YMModel.out">
+              <MappingFragment StoreEntitySet="out">
+                <ScalarProperty Name="outId" ColumnName="outId" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="outType" ColumnName="outType" />
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="outTime" ColumnName="outTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="outDetail">
+            <EntityTypeMapping TypeName="YMModel.outDetail">
+              <MappingFragment StoreEntitySet="outDetail">
+                <ScalarProperty Name="outId" ColumnName="outId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="outAmount" ColumnName="outAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shop">
+            <EntityTypeMapping TypeName="YMModel.shop">
+              <MappingFragment StoreEntitySet="shop">
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="shopAddress" ColumnName="shopAddress" />
+                <ScalarProperty Name="shopPhone" ColumnName="shopPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="staff">
+            <EntityTypeMapping TypeName="YMModel.staff">
+              <MappingFragment StoreEntitySet="staff">
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="staffName" ColumnName="staffName" />
+                <ScalarProperty Name="staffGender" ColumnName="staffGender" />
+                <ScalarProperty Name="staffPhone" ColumnName="staffPhone" />
+                <ScalarProperty Name="staffJob" ColumnName="staffJob" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="YMModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="stockAmount" ColumnName="stockAmount" />
+                <ScalarProperty Name="saleAmount" ColumnName="saleAmount" />
+                <ScalarProperty Name="stockLimit" ColumnName="stockLimit" />
+                <ScalarProperty Name="purchaseAmount" ColumnName="purchaseAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
