@@ -74,8 +74,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\DBModel.cs" />
-    <Content Include="App_Code\BundleConfig.cs" />
+    <Compile Include="App_Code\DBModel.cs" />
+    <Compile Include="App_Code\BundleConfig.cs" />
     <Compile Include="BranchChange.aspx.cs">
       <DependentUpon>BranchChange.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
