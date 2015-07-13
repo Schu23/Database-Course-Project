@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Collections;
 //用来从数据库获取数据并封装
-namespace YMClothsStore.App_Code
+namespace YMClothsStore
 {
     public class Item//1服装信息表
     {
