@@ -65,12 +65,42 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BranchChange.aspx" />
+    <Content Include="ChangeSelfInfo.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
+<<<<<<< HEAD
     <Content Include="ModifyPersonalInformation.aspx" />
+=======
+    <Content Include="PersonnelChanges.aspx" />
+>>>>>>> 336638cd95d7989d3a22de1b74d1efb701510ac0
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\DBModel.cs" />
+    <Content Include="App_Code\BundleConfig.cs" />
+    <Compile Include="BranchChange.aspx.cs">
+      <DependentUpon>BranchChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BranchChange.aspx.designer.cs">
+      <DependentUpon>BranchChange.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeSelfInfo.aspx.cs">
+      <DependentUpon>ChangeSelfInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeSelfInfo.aspx.designer.cs">
+      <DependentUpon>ChangeSelfInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -85,14 +115,29 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ModifyPersonalInformation.aspx.cs">
       <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ModifyPersonalInformation.aspx.designer.cs">
       <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
+=======
+    <Compile Include="PersonnelChanges.aspx.cs">
+      <DependentUpon>PersonnelChanges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonnelChanges.aspx.designer.cs">
+      <DependentUpon>PersonnelChanges.aspx</DependentUpon>
+>>>>>>> 336638cd95d7989d3a22de1b74d1efb701510ac0
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="font\" />
+    <Folder Include="images\" />
+    <Folder Include="scripts\" />
+    <Folder Include="stylesheets\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="YMClothsStore.Index" %>
-
+<!--登入后的首页-->
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
