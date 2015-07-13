@@ -18,6 +18,27 @@ namespace YMClothsStore.App_Code
 
     public class DBModel
     {
+        // 单例
+       private static DBModel dbModel;
+        // 构造函数私有
+        private DBModel ()
+       { }
+     //构成单例子
+        public static DBModel sharedDBModel()
+        {
+         if(dbModel == null)
+         {
+             dbModel = new DBModel();
+         }
+         return dbModel;
+        }
+        
+        
+        
+        
+        
+        
+        
         /**
          * 添加新员工
          * 参数：新员工名字

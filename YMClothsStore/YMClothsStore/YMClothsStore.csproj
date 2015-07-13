@@ -70,7 +70,6 @@
     <Content Include="Error.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="ModifyPersonalInformation.aspx" />
     <Content Include="PersonnelChanges.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -111,13 +110,6 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ModifyPersonalInformation.aspx.cs">
-      <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ModifyPersonalInformation.aspx.designer.cs">
-      <DependentUpon>ModifyPersonalInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="PersonnelChanges.aspx.cs">
       <DependentUpon>PersonnelChanges.aspx</DependentUpon>
