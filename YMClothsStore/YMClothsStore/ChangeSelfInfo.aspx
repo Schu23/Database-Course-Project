@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangeSelfInfo.aspx.cs" Inherits="YMClothsStore.ChangeSelfInfo" %>
-
+<!--修改个人信息界面-->
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
