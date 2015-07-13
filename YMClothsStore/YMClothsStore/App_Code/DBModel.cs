@@ -112,6 +112,7 @@ namespace YMClothsStore.App_Code
     public class Staff//14员工信息表
     {
         public string staffId { get; set; }
+        public string staffLogId { get; set;}
         public string staffName { get; set; }
         public string staffGender { get; set; }
         public string staffPhone { get; set; }
@@ -257,5 +258,51 @@ namespace YMClothsStore.App_Code
              */
             return false;
         }
+
+        /*
+         * 增加新门店
+         * 参数：店长id，新门店地址，新门店电话
+         * 返回值：门店id，失败返回"false"
+         */
+        public string addNewShop(string newShopManagerId, string newShopAddress, string newShopPhone) 
+        {
+            string isSecceed = "false";
+
+            /*
+             * 在Shop表中新加一条记录，并将对应店长shopId改为新门店
+             */
+
+            return isSecceed;
+        }
+
+        /*
+         * 删除门店
+         * 参数：门店id
+         * 返回值：bool
+         */
+        public bool deletdShop(string shopId)
+        {
+            bool isSucceed = false;
+
+            /*
+             * 根据shopId删除门店
+             */
+
+            return isSucceed;
+        }
+
+        /*
+         * 修改门店信息
+         * 参数：门店id，新地址，新电话，不修改的值为null
+         * 返回值：bool
+         */
+        public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+
     }
 }
