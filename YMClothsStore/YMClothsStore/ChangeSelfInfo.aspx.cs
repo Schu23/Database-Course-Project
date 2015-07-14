@@ -10,11 +10,12 @@ namespace YMClothsStore
     public partial class ChangeSelfInfo : System.Web.UI.Page
     {
         // TODO
-        protected Staff theStaff = DBModel.sharedDBModel().findStaffInformationById("null now");
+      //  protected Staff theStaff = DBModel.sharedDBModel().findStaffInformationById("null now");
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+       // 更新员工的信息
         protected void modifyEmployeesInfo()
         {
             // get new info from view 
@@ -39,5 +40,7 @@ namespace YMClothsStore
             DBModel.sharedDBModel().modifyPersonalInformation(updateStaff);
 
         }
+      //  找到该员工 
+      //  protected Staff theStaff = DBModel.sharedDBModel().
     }
 }
