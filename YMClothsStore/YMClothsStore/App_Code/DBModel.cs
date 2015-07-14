@@ -8,6 +8,7 @@ namespace YMClothsStore
 {
     public class Item//1服装信息表
     {
+
         public string itemId { get; set; }
         public string itemName { get; set; }
         public string itemSize { get; set; }
