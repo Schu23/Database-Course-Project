@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace YMClothsStore
 {
@@ -16,10 +17,9 @@ namespace YMClothsStore
 
 
         
-        protected void selectEmployee(object sender , EventArgs e)
-        {
 
-        }
+        //获取当前店里的员工列表
+        protected ArrayList  staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
 
 
 

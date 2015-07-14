@@ -8,6 +8,7 @@ namespace YMClothsStore
 {
     public class Item//1服装信息表
     {
+
         public string itemId { get; set; }
         public string itemName { get; set; }
         public string itemSize { get; set; }
@@ -312,6 +313,22 @@ namespace YMClothsStore
             return isSucceed;
         }
 
+        /*
+         * 8.根据ID查找
+         * 参数：门店id，新地址，新电话，不修改的值为null
+         * 返回值：bool
+         */
+        public Staff findStaffById(string id)
+        {
+            Staff staff;
+
+            using ()
+            {
+
+            }
+
+            return staff;
+        }
 
     }
 }
