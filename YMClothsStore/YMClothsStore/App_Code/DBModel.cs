@@ -228,5 +228,18 @@ namespace YMClothsStore
             return wantStaff;
         }
 
+        /**
+         * 9.员工登陆接口
+         * 参数：userName，password
+         * 返回值：bool
+         */
+        public bool loginWithStaffLoginNameAndPassword(string userName, string pass)
+        {
+            bool isUser = false;
+
+
+            return isUser;
+        }
+
     }
 }

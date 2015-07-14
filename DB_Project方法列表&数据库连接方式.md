@@ -55,4 +55,5 @@
 
 ####8.public staff findStaffById(string id)
 * 根据ID查找员工* 参数：员工id* 返回值：员工类staff
+####9.loginWithStaffLoginNameAndPassword(string userName, string pass)* 9.员工登陆接口* 参数：userName，password* 返回值：bool
 
