@@ -14,7 +14,8 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
-          staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
+          staffs = DBModel.sharedDBModel().findStaffInformationById("1423");
+          System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
         }
 
         // 添加新员工
