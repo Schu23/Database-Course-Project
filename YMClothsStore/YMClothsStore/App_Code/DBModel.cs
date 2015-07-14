@@ -182,23 +182,26 @@ namespace YMClothsStore
          * 2.添加新员工
          * 参数：新员工名字
          * 返回值：成功返回员工id，失败返回0
+         * 需要测试
          */
-        public string addStaff(string newStaffName)
+        public string addNewStaff(string newStaffName)
         {
-            string newStaffId = "00000000";//需要生成一个id，或者数据库设为自增
+            const string tempId = "";//根据一个算法产生ID
+            const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
 
             Staff newStaff = new Staff
             {
+                staffId = tempId;
                 staffName = newStaffName,
-                password = "12345678"//初始密码12345678
+                password = defaultPassword;
             };
             
             //写入数据库
-            /* using (YMClothsContext db = new YMClothsContext())
+            using (YMClothsContext db = new YMClothsContext())
             {
                 try
                 {
-                    db.QUESTION.Add(newStaff);
+                    db.staff.Add(newStaff);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -206,28 +209,34 @@ namespace YMClothsStore
                     System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
-            } */
+            }
 
 
-            return newStaffId;
+            return newStaff.staffId;
         }
 
         /*
          * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
+         * 未完成
          */
         public bool deleteStaffById(string deletedStaffId)
         {
-            bool deletdSucced = false;
+            bool deletdSucceed = false;
+            string queryDeletedStaffSql = "delete from staff where staff.staffId=" + deletedStaffId;
 
             //从数据库中查询要删除的员工
-            /* using (YMClothsCotext db = new YMClothsCotext())
+            using (YMClothsCotext db = new YMClothsCotext())
             {
+                try 
+                {
+                    //数据库删除员工
+                    //成功后将deletedSucceed赋值为true
+                }
+            }
 
-            } */
-
-            return deletdSucced;
+            return deletdSucceed;
         }
 
 
