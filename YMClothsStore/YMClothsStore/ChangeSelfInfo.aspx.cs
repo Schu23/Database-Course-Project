@@ -26,6 +26,7 @@ namespace YMClothsStore
             string employeeJob = Request.Form["EmployeeJob"];
             string employeeGender = Request.Form["EmployeeGender"];
             int employeeShopId =int.Parse(Request.Form["EmployeeShopId"]);
+
             Staff updateStaff = new Staff();
             // set new info 
             updateStaff.staffLogId = theStaff.staffLogId;

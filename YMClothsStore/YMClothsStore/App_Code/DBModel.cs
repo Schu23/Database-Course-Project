@@ -309,11 +309,16 @@ namespace YMClothsStore
          * 参数：门店id，新地址，新电话，不修改的值为null
          * 返回值：bool
          */
-        public Staff modifyShopInfo(string shopId, string newAddress, string newPhone)
+        public Staff findStaffById(string id)
         {
-            bool isSucceed = false;
+            Staff staff;
 
-            ;
+            using ()
+            {
+
+            }
+
+            return staff;
         }
 
     }
