@@ -55,9 +55,9 @@ namespace YMClothsStore
          * 参数：店铺id：shopId
          * 返回值：成功返回该店铺员工信息ArrayList，失败返回null
          */
-        public ArrayList findStaffInformationById(string shopId)
+        public staff[] findStaffInformationById(string shopId)
         {
-            ArrayList staffs = null;
+            staff[] staffs = { };
             /* using (YMClothsStoreContext db = new YMClothsStoreContext())
             {
                 try
@@ -231,6 +231,19 @@ namespace YMClothsStore
             }
 
             return null;
+        }
+
+        /**
+         * 9.员工登陆接口
+         * 参数：userName，password
+         * 返回值：bool
+         */
+        public staff loginWithStaffLoginNameAndPassword(string userName, string pass)
+        {
+            staff loginStaff = null;
+
+
+            return loginStaff;
         }
 
     }
