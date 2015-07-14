@@ -147,15 +147,12 @@ namespace YMClothsStore
         public bool modifyPersonalInformation(staff currentInfo)
         {
 
-            /* using (YMClothsStoreContext db = new YMClothsStoreContext())
+            using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
-                    Staff oldInfo = db.STAFF.Where(p => p.STAFF_ID == currentInfo.STAFF_ID).SingleOrDefault();
-                    oldInfo.staffName = currentInfo.staffName;
-                    oldInfo.staffPhone = currentInfo.staffPhone;
-                    oldInfo.password = currentInfo.password;
-                    db.SaveChanges();
+                    staff oldStaff = this.findStaffById(currentInfo.staffId);
+                    db.Database.SqlQuery<staff>("update staff set \"staffName\" = " + currentInfo.staffName + ", \"staffPhone\" = " + currentInfo.staffPhone + ", \"password\" = " + currentInfo.password + "where \"staffId\" = " + currentInfo.staffId);
                     return true;
                 }
                 catch (Exception ex)
@@ -163,7 +160,7 @@ namespace YMClothsStore
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
-             */
+
             return false;
         }
 
@@ -222,10 +219,18 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-
+                try
+                {
+                    wantStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffId\" = " + id).FirstOrDefault();
+                    return wantStaff;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
 
-            return wantStaff;
+            return null;
         }
 
     }
