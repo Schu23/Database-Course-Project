@@ -182,7 +182,7 @@ namespace YMClothsStore
         }
 
         /*
-         * 8.根据ID查找
+         * 8.根据ID查找员工
          * 参数：员工id
          * 返回值：员工类
          */
