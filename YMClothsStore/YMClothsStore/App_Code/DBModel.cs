@@ -21,7 +21,33 @@ namespace YMClothsStore
              dbModel = new DBModel();
          }
          return dbModel;
-        }   
+        }
+
+        /**
+         * 创建对应表的主键
+         * 参数：表名称
+         * 返回值：主键
+         */
+        public string createNewId(string tableName)
+        {
+            //id格式：数据库表名+"_"+ 行号 + "_" + 日期后六位
+            //例如：staff_1_000000
+            string newId = tableName + "_";
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                int countNum = db.Database.ExecuteSqlCommand("select count(*) from @p0", tableName);
+                newId += countNum;
+                newId = newId + "_";
+            }
+
+            DateTime currentTime = DateTime.Now;
+            string timeStr = currentTime.Ticks.ToString();
+            Console.WriteLine("time:" + timeStr);
+            timeStr = timeStr.Substring(timeStr.Length - 6, 6);
+            newId += timeStr;
+
+            return newId;
+        }
 
         /**
          * 1.查询店铺员工信息
@@ -94,7 +120,7 @@ namespace YMClothsStore
         public bool deleteStaffById(string deletedStaffId)
         {
             bool deletdSucceed = false;
-            string queryDeletedStaffSql = "delete from staff where staff.staffId=" + deletedStaffId;
+            string queryDeletedStaffSql = "delete from \"staff\" where staff.staffId=" + deletedStaffId;
 
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())

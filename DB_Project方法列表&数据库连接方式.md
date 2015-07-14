@@ -11,6 +11,11 @@
 
 ------
 #接口列表
+####public string createNewId(string tableName)
+* 创建对应表的主键
+* 参数：表名称
+* 返回值：主键
+
 ##DBModel类
 ####1.public ArrayList findStaffInformationById(string shopId)
 * 查找店铺员工信息
