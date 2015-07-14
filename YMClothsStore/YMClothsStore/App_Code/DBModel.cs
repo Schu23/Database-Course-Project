@@ -304,6 +304,17 @@ namespace YMClothsStore
             return isSucceed;
         }
 
+        /*
+         * 8.根据ID查找
+         * 参数：门店id，新地址，新电话，不修改的值为null
+         * 返回值：bool
+         */
+        public Staff modifyShopInfo(string shopId, string newAddress, string newPhone)
+        {
+            bool isSucceed = false;
+
+            ;
+        }
 
     }
 }
