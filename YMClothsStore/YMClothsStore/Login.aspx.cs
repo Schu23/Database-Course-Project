@@ -26,6 +26,7 @@ namespace YMClothsStore
             else
             {
                 // 小宇
+              staff theStaff =  DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
          /*     staff theStaff =   DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
               if(theStaff == null)
               {
