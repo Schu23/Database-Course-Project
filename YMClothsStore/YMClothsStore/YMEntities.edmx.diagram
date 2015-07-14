@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bd4fb149b1d4e7692b2c5abfee143e4" Name="Diagram1">
+        <EntityTypeShape EntityType="YMStore.address" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.apply" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.applyDetail" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.check" Width="1.5" PointX="7.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.checkDetail" Width="1.5" PointX="9.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.image" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.in" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.inDetail" Width="1.5" PointX="12.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.item" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.order" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.orderDetail" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.out" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.outDetail" Width="1.5" PointX="9.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.shop" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.staff" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YMStore.stock" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="YMStore.shop_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.apply_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.apply_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.applyDetail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.applyDetail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.check_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.check_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.checkDetail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.checkDetail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.image_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.in_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.in_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.inDetail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.inDetail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.orderDetail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.outDetail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.stock_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.order_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.orderDetail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.out_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.out_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.outDetail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.staff_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.stock_ibfk_2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,12 +12,10 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // 这里应该返回这个店里的所有员工的列表
+            string freshmanName = "testname";
+
+            DBModel.sharedDBModel().addNewStaff(freshmanName);
         }
-
-
-        
-
         //获取当前店里的员工列表
         protected ArrayList  staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
 
@@ -27,7 +25,8 @@ namespace YMClothsStore
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-            DBModel.sharedDBModel().addStaff(freshmanName);
+
+            DBModel.sharedDBModel().addNewStaff(freshmanName);
         }
 
         // 开除员工

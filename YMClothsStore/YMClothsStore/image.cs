@@ -14,14 +14,9 @@ namespace YMClothsStore
     
     public partial class image
     {
-        public image()
-        {
-            this.item = new HashSet<item>();
-        }
-    
-        public string imageId { get; set; }
+        public string itemId { get; set; }
         public string imagePath { get; set; }
     
-        public virtual ICollection<item> item { get; set; }
+        public virtual item item { get; set; }
     }
 }

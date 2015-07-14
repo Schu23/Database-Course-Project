@@ -6,137 +6,6 @@ using System.Collections;
 //用来从数据库获取数据并封装
 namespace YMClothsStore
 {
-    public class Item//1服装信息表
-    {
-
-        public string itemId { get; set; }
-        public string itemName { get; set; }
-        public string itemSize { get; set; }
-        public string itemColor { get; set; }
-        public string itemImage { get; set; }
-        public int itemPrice { get; set; }
-        public DateTime itemDate { get; set; }
-    }
-
-    public class Shop//2门店信息表
-    {
-        public string shopId { get; set; }
-        public string shopAddress { get; set; }
-        public string shopPhone { get; set; }
-    }
-
-    public class Stock//3库存表
-    {
-        public string itemId { get; set; }
-        public string shopId { get; set; }
-        public int stockAmount { get; set; }
-        public int saleAmount { get; set; }
-        public int stockLimit { get; set; }
-        public int purchaseAmount { get; set; }
-    }
-
-    public class In//4入库登记表
-    {
-        public string inId { get; set; }
-        public string shopId { get; set; }
-        public string staffId { get; set; }
-        public DateTime inTime { get; set; }
-    }
-
-    public class InDetail//5入库明细表
-    {
-        public string inId { get; set; }
-        public string itemId { get; set; }
-        public int inAmount { get; set; }
-    }
-    
-    public class Out//6出库登记表
-    {
-        public string outId { get; set; }
-        public string shopId { get; set; }
-        public string outType { get; set; }
-        public string staffId { get; set; }
-    }
-
-    public class OutDetail//7出库明细表
-    {
-        public string outId { get; set; }
-        public string tiemId { get; set; }
-        public int outAmount { get; set; }
-    }
-
-    public class Order//8订单登记表
-    {
-        public string orderId { get; set; }
-        public string shopId { get; set; }
-        public int totalPrice { get; set; }
-        public DateTime orderTime { get; set; }
-    }
-
-    public class OrderDetail//9订单明细
-    {
-        public string orderId { get; set; }
-        public string itemId { get; set; }
-        public int itemAmount { get; set; }
-    }
-
-    public class Check//10盘点表
-    {
-        public string checkId { get; set; }
-        public string shopId { get; set; }
-        public string checkerId { get; set; }
-        public DateTime checkTime { get; set; }
-    }
-
-    public class CheckDetail//11盘点明细表
-    {
-        public string checkId { get; set; }
-        public string itemId { get; set; }
-        public int currentAmount { get; set; }
-    }
-
-    public class Apply//12申请表
-    {
-        public string applyId { get; set; }
-        public string outShop { get; set; }
-        public string inShop { get; set; }
-        public string state { get; set; }
-        public DateTime applyTime { get; set; }
-    }
-
-    public class ApplyDetail//13申请明细表
-    {
-        public string applyId { get; set; }
-        public string itemId { get; set; }
-        public int applyAmount { get; set; }
-    }
-
-    public class Staff//14员工信息表
-    {
-        public string staffId { get; set; }
-        public string staffLogId { get; set;}
-        public string staffName { get; set; }
-        public string staffGender { get; set; }
-        public string staffPhone { get; set; }
-        public string staffJob { get; set; }
-        public int shopId { get; set; }
-        public string password { get; set; }
-    }
-
-    public class Image//15产品图片表
-    {
-        public string imageId { get; set; }
-        public string imagePath { get; set; }
-    }
-
-    public class Address//16地址表
-    {
-        public string addressId { get; set; }
-        public string addressName { get; set; }
-        public float addressX { get; set; }
-        public float addressY { get; set; }
-    }
-
     public class DBModel
     {
         // 单例
@@ -187,18 +56,18 @@ namespace YMClothsStore
          */
         public string addNewStaff(string newStaffName)
         {
-            const string tempId = "";//根据一个算法产生ID
+            const string tempId = "00000000";//根据一个算法产生ID
             const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
 
-            Staff newStaff = new Staff
+            staff newStaff = new staff
             {
-                staffId = tempId;
+                staffId = tempId,
                 staffName = newStaffName,
-                password = defaultPassword;
+                password = defaultPassword
             };
             
             //写入数据库
-            using (YMClothsContext db = new YMClothsContext())
+            using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
@@ -228,13 +97,12 @@ namespace YMClothsStore
             string queryDeletedStaffSql = "delete from staff where staff.staffId=" + deletedStaffId;
 
             //从数据库中查询要删除的员工
-            using (YMClothsCotext db = new YMClothsCotext())
+            using (YMDBEntities db = new YMDBEntities())
             {
-                try 
-                {
-                    //数据库删除员工
-                    //成功后将deletedSucceed赋值为true
-                }
+                
+                //数据库删除员工
+                //成功后将deletedSucceed赋值为true
+                
             }
 
             return deletdSucceed;
@@ -246,7 +114,7 @@ namespace YMClothsStore
          * 参数：员工id，姓名，电话，密码
          * 返回值：成功返回true，失败返回false
          */
-        public bool modifyPersonalInformation(Staff currentInfo)
+        public bool modifyPersonalInformation(staff currentInfo)
         {
 
             /* using (YMClothsStoreContext db = new YMClothsStoreContext())
@@ -315,19 +183,19 @@ namespace YMClothsStore
 
         /*
          * 8.根据ID查找
-         * 参数：门店id，新地址，新电话，不修改的值为null
-         * 返回值：bool
+         * 参数：员工id
+         * 返回值：员工类
          */
-        public Staff findStaffById(string id)
+        public staff findStaffById(string id)
         {
-            Staff staff;
+            staff wantStaff = null;
 
-            using ()
+            using (YMDBEntities db = new YMDBEntities())
             {
 
             }
 
-            return staff;
+            return wantStaff;
         }
 
     }

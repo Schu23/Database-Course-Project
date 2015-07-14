@@ -25,8 +25,9 @@ namespace YMClothsStore
         public string staffName { get; set; }
         public string staffGender { get; set; }
         public string staffPhone { get; set; }
-        public string staffJob { get; set; }
+        public Nullable<decimal> staffJob { get; set; }
         public string shopId { get; set; }
+        public string staffLoginName { get; set; }
         public string password { get; set; }
     
         public virtual ICollection<check> check { get; set; }

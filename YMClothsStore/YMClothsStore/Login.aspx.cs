@@ -26,7 +26,7 @@ namespace YMClothsStore
             else
             {
                 // 小宇
-             Staff theStaff =   DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
+        /*     Staff theStaff =   DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
               if(theStaff == null)
               {
                   Session["errorMessage"] = "用户名和密码错误";
@@ -36,8 +36,8 @@ namespace YMClothsStore
               {
                   Session["Staff"] = theStaff;
                   Response.Redirect("Index.aspx");
-              }
-            }    
+              }*/
+            }  
         }
         protected void rememberMe(object sender, EventArgs e)
         {
