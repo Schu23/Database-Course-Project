@@ -41,6 +41,6 @@ namespace YMClothsStore
 
         }
       //  找到该员工 
-      //  protected Staff theStaff = DBModel.sharedDBModel().
+        protected Staff theStaff = DBModel.sharedDBModel().find
     }
 }
