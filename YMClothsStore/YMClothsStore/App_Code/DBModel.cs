@@ -21,7 +21,34 @@ namespace YMClothsStore
              dbModel = new DBModel();
          }
          return dbModel;
-        }   
+        }
+
+        /**
+         * 创建对应表的主键
+         * 参数：表名称
+         * 返回值：主键
+         * 需要测试
+         */
+        public string createNewId(string tableName)
+        {
+            //id格式：数据库表名+"_"+ 行号 + "_" + 日期后六位
+            //例如：staff_1_000000
+            string newId = tableName + "_";
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                int countNum = db.Database.ExecuteSqlCommand("select count(*) from @p0", tableName);
+                newId += countNum;
+                newId = newId + "_";
+            }
+
+            DateTime currentTime = DateTime.Now;
+            string timeStr = currentTime.Ticks.ToString();
+            Console.WriteLine("time:" + timeStr);
+            timeStr = timeStr.Substring(timeStr.Length - 6, 6);
+            newId += timeStr;
+
+            return newId;
+        }
 
         /**
          * 1.查询店铺员工信息
@@ -56,12 +83,12 @@ namespace YMClothsStore
          */
         public string addNewStaff(string newStaffName)
         {
-            const string tempId = "00000000";//根据一个算法产生ID
+            string newId = createNewId("staff");//根据一个算法产生ID
             const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
 
             staff newStaff = new staff
             {
-                staffId = tempId,
+                staffId = newId,
                 staffName = newStaffName,
                 password = defaultPassword
             };
@@ -89,12 +116,11 @@ namespace YMClothsStore
          * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
-         * 未完成
+         * 需要测试
          */
         public bool deleteStaffById(string deletedStaffId)
         {
             bool deletdSucceed = false;
-            string queryDeletedStaffSql = "delete from staff where staff.staffId=" + deletedStaffId;
 
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())
@@ -102,7 +128,11 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                
+                int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
+                if (temp == 1)
+                {
+                    deletdSucceed = true;
+                } 
             }
 
             return deletdSucceed;
@@ -196,6 +226,19 @@ namespace YMClothsStore
             }
 
             return wantStaff;
+        }
+
+        /**
+         * 9.员工登陆接口
+         * 参数：userName，password
+         * 返回值：bool
+         */
+        public bool loginWithStaffLoginNameAndPassword(string userName, string pass)
+        {
+            bool isUser = false;
+
+
+            return isUser;
         }
 
     }

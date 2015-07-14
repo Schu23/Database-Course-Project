@@ -11,6 +11,11 @@
 
 ------
 #接口列表
+####public string createNewId(string tableName)
+* 创建对应表的主键
+* 参数：表名称
+* 返回值：主键
+
 ##DBModel类
 ####1.public ArrayList findStaffInformationById(string shopId)
 * 查找店铺员工信息
@@ -50,4 +55,5 @@
 
 ####8.public staff findStaffById(string id)
 * 根据ID查找员工* 参数：员工id* 返回值：员工类staff
+####9.loginWithStaffLoginNameAndPassword(string userName, string pass)* 9.员工登陆接口* 参数：userName，password* 返回值：bool
 
