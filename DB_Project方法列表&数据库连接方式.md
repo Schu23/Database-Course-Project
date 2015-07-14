@@ -1,5 +1,15 @@
+#数据库连接方式
+1. 安装ODT.exe(问安老板要)
+2. Visual Studio 2013 -> 工具 -> 连接到数据库
+3. 用户名：tac
+4. 口令：wzywman(王泽宇我们爱你)
+5. 连接类型：EZ
+6. 数据库主机名：安老板电脑IP地址
+7. 端口号：1521
+8. 数据库服务名：fowafolo
+
+------
 #接口列表
------
 ##DBModel类
 ####1.public ArrayList findStaffInformationById(string shopId)
 * 查找店铺员工信息
