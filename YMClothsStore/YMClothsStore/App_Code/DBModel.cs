@@ -27,6 +27,7 @@ namespace YMClothsStore
          * 创建对应表的主键
          * 参数：表名称
          * 返回值：主键
+         * 需要测试
          */
         public string createNewId(string tableName)
         {
@@ -82,12 +83,12 @@ namespace YMClothsStore
          */
         public string addNewStaff(string newStaffName)
         {
-            const string tempId = "00000000";//根据一个算法产生ID
+            string newId = createNewId("staff");//根据一个算法产生ID
             const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
 
             staff newStaff = new staff
             {
-                staffId = tempId,
+                staffId = newId,
                 staffName = newStaffName,
                 password = defaultPassword
             };
@@ -115,12 +116,11 @@ namespace YMClothsStore
          * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
-         * 未完成
+         * 需要测试
          */
         public bool deleteStaffById(string deletedStaffId)
         {
             bool deletdSucceed = false;
-            string queryDeletedStaffSql = "delete from \"staff\" where staff.staffId=" + deletedStaffId;
 
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())
@@ -128,7 +128,11 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                
+                int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
+                if (temp == 1)
+                {
+                    deletdSucceed = true;
+                } 
             }
 
             return deletdSucceed;
