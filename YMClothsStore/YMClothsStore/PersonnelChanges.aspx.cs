@@ -10,14 +10,12 @@ namespace YMClothsStore
 {
     public partial class PersonnelChanges : System.Web.UI.Page
     {
+        protected staff[]  staffs;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+          //获取当前店里的员工列表
+          staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
         }
-        //获取当前店里的员工列表
-        protected ArrayList  staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
-
-
 
         // 添加新员工
         protected void addEmployee(object sender , EventArgs e)

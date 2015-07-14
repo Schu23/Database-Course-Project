@@ -71,12 +71,14 @@
     <Content Include="Bootstrap\bootstrap.min.css" />
     <Content Include="Bootstrap\bootstrap.min.js" />
     <Content Include="Bootstrap\npm.js" />
+    <Content Include="BossIndex.aspx" />
     <Content Include="font\glyphicons-halflings-regular.svg" />
     <Content Include="images\avatar.jpg" />
     <Content Include="images\back-1.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
+    <Content Include="ManagerIndex.aspx" />
     <Content Include="packages.config" />
     <Content Include="font\glyphicons-halflings-regular.eot" />
     <Content Include="font\glyphicons-halflings-regular.ttf" />
@@ -94,6 +96,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YMEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="stylesheets\staffInfo.css" />
     <Content Include="YMEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>YMEntities.edmx</DependentUpon>
@@ -132,6 +135,13 @@
     </Compile>
     <Compile Include="App_Code\DBModel.cs" />
     <Compile Include="App_Code\BundleConfig.cs" />
+    <Compile Include="BossIndex.aspx.cs">
+      <DependentUpon>BossIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BossIndex.aspx.designer.cs">
+      <DependentUpon>BossIndex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BranchChange.aspx.cs">
       <DependentUpon>BranchChange.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,6 +195,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerIndex.aspx.cs">
+      <DependentUpon>ManagerIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerIndex.aspx.designer.cs">
+      <DependentUpon>ManagerIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="order.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
