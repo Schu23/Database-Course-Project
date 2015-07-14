@@ -47,3 +47,7 @@
 * 修改门店信息
 * 参数：门店id，新地址，新电话，不修改的值为null
 * 返回值：bool
+
+####8.public staff findStaffById(string id)
+* 根据ID查找员工* 参数：员工id* 返回值：员工类staff
+
