@@ -16,7 +16,7 @@ namespace YMClothsStore
 
         }
        // 更新员工的信息
-        protected void modifyEmployeesInfo()
+        protected void modifyEmployeesInfo(object sendr , EventArgs e)
         {
             // get new info from view 
             string employeeId = Request.Form["EmployeeId"];
@@ -28,7 +28,7 @@ namespace YMClothsStore
             int employeeShopId =int.Parse(Request.Form["EmployeeShopId"]);
             Staff updateStaff = new Staff();
             // set new info 
-            updateStaff.staffLogId = theStaff.staffLogId;
+    /*        updateStaff.staffLogId = theStaff.staffLogId;
             updateStaff.staffId =  theStaff.staffId;
             updateStaff.staffName = employeeName;
             updateStaff.staffPhone = employeePhone;
@@ -38,9 +38,10 @@ namespace YMClothsStore
             updateStaff.shopId = employeeShopId;
             // update database 
             DBModel.sharedDBModel().modifyPersonalInformation(updateStaff);
-
+*/
         }
+
       //  找到该员工 
-        protected Staff theStaff = DBModel.sharedDBModel().find
+        protected Staff theStaff = DBModel.sharedDBModel().findStaffById("staff id");
     }
 }

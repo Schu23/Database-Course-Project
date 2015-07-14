@@ -20,9 +20,11 @@ namespace YMClothsStore
         {
            username = Request.Form["username"];
            pwd = Request.Form["password"];
-           bool loginStatus = DBModel.GetInstance().checkUser(username, pwd);
+
            System.Diagnostics.Debug.WriteLine(username);
            System.Diagnostics.Debug.WriteLine(pwd);
+          // 登录调用数据库
+           
         }
         protected void rememberMe(object sender, EventArgs e)
         {
@@ -35,6 +37,11 @@ namespace YMClothsStore
             cookie.HttpOnly = true; // cookie not available in javascript.
             Response.Cookies.Add(cookie);
    * */
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

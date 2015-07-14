@@ -1,0 +1,58 @@
+body{
+	margin-top: 70px;
+	background-color: #fff;
+	font-family: Microsoft YaHei;
+}
+
+.logo-responsive{
+	width: 25px;
+	height: 25px;
+}
+
+@media(min-width: 768px){
+	.container-fluid{
+		width: 80%;
+	}
+	.container{
+		width: 80%;
+	}
+	.caption .container{
+		width: 90%;
+		margin-top:10px;
+		margin-left: 30px;
+	}
+}
+
+/*custom check style*/
+
+.check-wrong{
+	font-size: 20px;
+	color: red;
+	margin-top: 2px;
+	margin-left: -20px;
+}
+
+.check-ok{
+	font-size: 20px;
+	color: green;
+	margin-top: 2px;
+	margin-left: -20px;
+}
+
+.pwd-weak,
+.pwd-strong,
+.pwd-middle,
+.pwd-too-short{
+	margin-top: 5px;
+	margin-left: -20px;
+}
+.pwd-too-short,
+.pwd-weak{
+	color: red;
+}
+.pwd-middle{
+	color:orange;
+}
+.pwd-strong{
+	color:green;
+}

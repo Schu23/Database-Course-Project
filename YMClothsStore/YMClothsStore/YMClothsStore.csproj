@@ -67,6 +67,19 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Bootstrap\bootstrap-theme.css" />
+    <Content Include="Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Bootstrap\bootstrap.css" />
+    <Content Include="Bootstrap\bootstrap.js" />
+    <Content Include="Bootstrap\bootstrap.min.css" />
+    <Content Include="Bootstrap\bootstrap.min.js" />
+    <Content Include="Bootstrap\npm.js" />
+    <Content Include="font\glyphicons-halflings-regular.svg" />
+    <Content Include="images\avatar.jpg" />
+    <Content Include="images\back-1.jpg" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="JQuery\jquery-1.10.2.js" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -81,6 +94,12 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="font\glyphicons-halflings-regular.eot" />
+    <Content Include="font\glyphicons-halflings-regular.ttf" />
+    <Content Include="font\glyphicons-halflings-regular.woff" />
+    <Content Include="font\glyphicons-halflings-regular.woff2" />
+    <Content Include="Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Bootstrap\bootstrap.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -95,6 +114,9 @@
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PersonnelChanges.aspx" />
+    <Content Include="scripts\settings.js" />
+    <Content Include="stylesheets\settings.css" />
+    <Content Include="stylesheets\signin.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +158,7 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="form.cs" />
     <Compile Include="image.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -207,12 +230,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="font\" />
-    <Folder Include="images\" />
-    <Folder Include="scripts\" />
-    <Folder Include="stylesheets\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

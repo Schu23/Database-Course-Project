@@ -13,5 +13,21 @@ namespace YMClothsStore
         {
 
         }
+        // 新增分店 
+        protected void addNewBrach (object sender, EventArgs e)
+        {
+            string managerID = Request.Form["managerId"];
+            string branchAddress = Request.Form["BrachAddress"];
+            string shopPhone = Request.Form["ShopPhone"];
+            DBModel.sharedDBModel().addNewShop(managerID, branchAddress, shopPhone);
+        }
+        //删除分店
+        protected void deleteBranch (object sender , EventArgs e)
+        {
+            string deleteShopId = Request.Form["DeleteId"];
+            DBModel.sharedDBModel().deletdShop("ddd");
+
+        }
+     // protected void m
     }
 }
