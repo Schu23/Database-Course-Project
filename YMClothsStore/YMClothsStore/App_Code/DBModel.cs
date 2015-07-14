@@ -237,13 +237,33 @@ namespace YMClothsStore
          * 9.员工登陆接口
          * 参数：userName，password
          * 返回值：bool
+         * 未测试
          */
         public staff loginWithStaffLoginNameAndPassword(string userName, string pass)
         {
             staff loginStaff = null;
 
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                try
+                {
+                    loginStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffLoginName\" = " + userName).FirstOrDefault();
+                    if (loginStaff.password == pass)
+                    {
+                        return loginStaff;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
+                }
+            }
 
-            return loginStaff;
         }
 
     }
