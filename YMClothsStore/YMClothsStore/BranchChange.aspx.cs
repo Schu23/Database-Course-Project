@@ -16,10 +16,21 @@ namespace YMClothsStore
         // 新增分店 
         protected void addNewBrach (object sender, EventArgs e)
         {
+
             string managerID = Request.Form["managerId"];
             string branchAddress = Request.Form["BrachAddress"];
             string shopPhone = Request.Form["ShopPhone"];
-            DBModel.sharedDBModel().addNewShop(managerID, branchAddress, shopPhone);
+            if(DBModel.sharedDBModel().addNewShop(managerID, branchAddress, shopPhone).Equals("false"))
+            {
+                System.Diagnostics.Debug.WriteLine("新建分店失败");
+                Session["errorMessage"] = "新建分店失败";
+                Session["returnURL"] = "BranchChange.aspx";
+                Response.Redirect("Error.aspx");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("add new branch success");
+            }
         }
         //删除分店
         protected void deleteBranch (object sender , EventArgs e)
