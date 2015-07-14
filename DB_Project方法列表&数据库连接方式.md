@@ -17,10 +17,10 @@
 * 返回值：主键
 
 ##DBModel类
-####1.public ArrayList findStaffInformationById(string shopId)
+####1.public staff[] findStaffInformationById(string shopId)
 * 查找店铺员工信息
 * 参数：店铺id：shopId
-* 返回值：成功返回该店铺所有员工信息ArrayList，失败返回null
+* 返回值：成功返回该店铺所有员工数组，失败返回空数组
  
 ####2.public string addStaff(string newStaffName)
 * 添加新员工
