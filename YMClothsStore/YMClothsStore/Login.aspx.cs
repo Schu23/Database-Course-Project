@@ -9,22 +9,35 @@ namespace YMClothsStore
 {
     public partial class Login : System.Web.UI.Page
     {
-        protected string username;
-        protected string pwd;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
         protected void loginSubmit(object sender, EventArgs e)
         {
-           username = Request.Form["username"];
-           pwd = Request.Form["password"];
-
-           System.Diagnostics.Debug.WriteLine(username);
-           System.Diagnostics.Debug.WriteLine(pwd);
-          // 登录调用数据库
-           
+         string  username = Request.Form["username"];
+         string  pwd = Request.Form["password"];
+         System.Diagnostics.Debug.WriteLine("Debug : username:"+username+"password:"+pwd);
+            if(username.Equals("") || pwd.Equals(""))
+            {
+                Session["errorMessage"] = "用户名和密码不能为空";
+                Response.Redirect("Error.aspx");
+            }
+            else
+            {
+                // 小宇
+             Staff theStaff =   DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
+              if(theStaff == null)
+              {
+                  Session["errorMessage"] = "用户名和密码错误";
+                  Response.Redirect("Error.aspx");
+              }
+                else
+              {
+                  Session["Staff"] = theStaff;
+                  Response.Redirect("Index.aspx");
+              }
+            }    
         }
         protected void rememberMe(object sender, EventArgs e)
         {
@@ -37,11 +50,6 @@ namespace YMClothsStore
             cookie.HttpOnly = true; // cookie not available in javascript.
             Response.Cookies.Add(cookie);
    * */
-        }
-
-        protected void Unnamed_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

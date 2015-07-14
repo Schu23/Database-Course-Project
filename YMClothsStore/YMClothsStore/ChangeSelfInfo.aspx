@@ -100,7 +100,7 @@
                         </div>
                       </div>
                         <!--send here -->
-                        <asp:Button Text="提交" runat="server" class="btn btn-primary" Onclick="modifyEmployeesInfo"/>
+                        <asp:Button Text="提交" runat="server" class="btn btn-primary" Onclick="modifyEmployeePhone"/>
                   
                     </form>
                   </div>
