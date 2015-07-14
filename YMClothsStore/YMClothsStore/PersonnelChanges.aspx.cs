@@ -12,9 +12,7 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string freshmanName = "testname";
 
-            DBModel.sharedDBModel().addNewStaff(freshmanName);
         }
         //获取当前店里的员工列表
         protected ArrayList  staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
@@ -25,15 +23,35 @@ namespace YMClothsStore
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-
-            DBModel.sharedDBModel().addNewStaff(freshmanName);
+            if(DBModel.sharedDBModel().addNewStaff(freshmanName) != "0")
+            {
+                System.Diagnostics.Debug.WriteLine("add new staff success");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("add new staff failed");
+                Session["errorMessage"] = "添加新员工失败";
+                Session["returnURL"] = "PersonnelChanges.aspx";
+                Response.Redirect("Error.aspx");
+            }
         }
 
         // 开除员工
         protected void fireEmployee(object sender , EventArgs e)
         {
            string fireId = Request.Form["fireEmployeeId"];
-           DBModel.sharedDBModel().deleteStaffById(fireId);
+
+           if( DBModel.sharedDBModel().deleteStaffById(fireId))
+           {
+               System.Diagnostics.Debug.WriteLine("Fire employee success");
+           }
+           else
+           {
+               System.Diagnostics.Debug.WriteLine("Fire employee failed");
+               Session["errorMessage"] = "开除员工失败，请检查连接和自己的权限";
+               Session["returnURL"] = "PersonnelChanges.aspx";
+               Response.Redirect("Error.aspx");
+           }
         }
     }
 }
