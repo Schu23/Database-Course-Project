@@ -101,6 +101,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\staffInfo.css" />

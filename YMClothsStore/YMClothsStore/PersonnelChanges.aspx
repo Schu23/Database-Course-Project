@@ -140,7 +140,7 @@
         <form runat="server" method="get" >
         <table class="table table-striped">
           <thead>
-            <tr>
+            <tr id="table-title">
               <th>员工编号</th>
               <th>姓名</th>
               <th>性别</th>
@@ -149,7 +149,7 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody id="table-body">
               <%foreach (var staff in staffs){%>
             <tr>
               <td id="staffId"><%:staff.staffId %></td>
@@ -194,7 +194,7 @@
     <!-- 分页导航 -->
     <nav class="text-center">
       <ul class="pagination">
-        <li>
+        <!--<li>
           <a href="#" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -208,7 +208,7 @@
           <a href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
-        </li>
+        </li>-->
       </ul>
     </nav>
     <footer class="footer">

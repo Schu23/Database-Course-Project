@@ -13,6 +13,7 @@ namespace YMClothsStore
         {
 
         }
+        
         // 新增分店 
         protected void addNewBrach (object sender, EventArgs e)
         {
