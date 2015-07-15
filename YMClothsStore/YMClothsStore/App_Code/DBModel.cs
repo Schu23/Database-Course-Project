@@ -34,7 +34,7 @@ namespace YMClothsStore
             //id格式：数据库表名+"_"+ 行号 + "_" + 日期后六位
             //例如：staff_1_000000
             string newId = tableName + "_";
-            using (YMDBEntities db = new YMDBEntities())
+            /*using (YMDBEntities db = new YMDBEntities())
             {
                 int countNum;
                 switch (tableName)
@@ -52,7 +52,7 @@ namespace YMClothsStore
                 countNum++;
                 newId += countNum;
                 newId = newId + "_";
-            }
+            }*/
 
             DateTime currentTime = DateTime.Now;
             string timeStr = currentTime.Ticks.ToString();
