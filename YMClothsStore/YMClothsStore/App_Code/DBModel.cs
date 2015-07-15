@@ -350,6 +350,7 @@ namespace YMClothsStore
         public order[] getAllOrderInfo(string staffId)
         {
             order[] orders = { };
+            System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
 
             //ArrayList test = new ArrayList();
             //order[] test2 = (order[])test.ToArray();
@@ -357,12 +358,24 @@ namespace YMClothsStore
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
+                ArrayList orderList = new ArrayList();
                 //先根据staffId查到员工所属店铺
-                foreach (var i in db.staff.Where(p => p.staffId == staffId))
+                string targetShopId = db.staff.Where(p => p.staffId == staffId).FirstOrDefault().shopId;
+
+                foreach (var i in db.order.Where(p => p.shopId == targetShopId))
                 {
-                    
+                    order newTargetOrder = new order
+                    {
+                        orderId = i.orderId,
+                        shopId = i.shopId,
+                        totalPrice = i.totalPrice,
+                        orderTime = i.orderTime
+                    };
+
+                    orderList.Add(newTargetOrder);
                 }
-                
+
+                orders = (order[])orderList.ToArray();                
             }
 
             return orders;
