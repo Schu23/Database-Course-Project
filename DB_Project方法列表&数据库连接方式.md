@@ -155,10 +155,11 @@
 * 参数：无（根据当前月查询）
 * 返回：商品数组（数量5）
 
-####28.public float[] getEverySumOfThisMonth()[未完成]
+####28.public order[] getEverySumOfThisMonth()[未完成]
 * 员工页面显示这个月每日销售总价（？需要每个月都传么？No）
 * 参数：无
-* 返回：本月每日销售价格的集合
+* 返回：本月每日订单的集合
+* 备注：通过此集合可以拿到每天的订单总价格
 
 ####29.public item[] getAllItemsOfThisShop(string staffId)[未完成]
 * 员工查询商品信息
