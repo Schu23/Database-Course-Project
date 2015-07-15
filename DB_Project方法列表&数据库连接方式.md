@@ -74,7 +74,7 @@
 * 参数：店铺的ID
 * 返回：获取到的shop
 
-####12.public staff[] getStaffWithStaffName(string staffName)[未完成]
+####12.public staff[] getStaffWithStaffName(string staffName)[未测试]
 * 使用模糊查询,通过员工姓名查找员工
 * 参数：员工名字的全部或一部分
 * 符合条件的员工数组
@@ -129,10 +129,6 @@
 * 员工查看总库库存
 * 参数：无
 * 返回：原木衣橱所有的库存信息
-
-
-
-
 
 
 
