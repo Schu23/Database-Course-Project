@@ -1,25 +1,25 @@
 
 // 手机号修改－验证手机号是否输入正确
-function phoneInput(event){
-	var isMobile=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //手机号码验证规则
+function isPhone(event) {
+    var isMobile = /^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //手机号码验证规则
     if (!isMobile.test(event.target.value)) {
-    	$("#newphone-check").replaceWith('<label class="check-wrong" id="newphone-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
-    	return false;
-    }else{
-    	$("#newphone-check").replaceWith('<label class="check-ok" id="newphone-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
-    	return true;
+        $("#newphone-check").replaceWith('<label class="check-wrong" id="newphone-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
+        return false;
+    } else {
+        $("#newphone-check").replaceWith('<label class="check-ok" id="newphone-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
+        return true;
     };
 }
 
 // 手机号修改－验证重复输入是否正确
-function conphoneInput(event){
-	var mobile = $("#id-newphone").val(); //获取第一次输入的手机号
+function confirmPhone(event) {
+    var mobile = $("#id-newphone").val(); //获取第一次输入的手机号
     if (mobile != event.target.value) {
-    	$("#conphone-check").replaceWith('<label class="check-wrong" id="conphone-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
-    	return false;
-    }else{
-    	$("#conphone-check").replaceWith('<label class="check-ok" id="conphone-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
-    	return true;
+        $("#conphone-check").replaceWith('<label class="check-wrong" id="conphone-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
+        return false;
+    } else {
+        $("#conphone-check").replaceWith('<label class="check-ok" id="conphone-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
+        return true;
     };
 }
 
@@ -44,19 +44,18 @@ function pwdChange(v) {
     return num;
 }
 
-function isPassword(event)   
-{   
+function isPassword(event) {
     var pwd = event.target.value;
     var num = pwdChange(pwd);
-    if (pwd.length<6) {
+    if (pwd.length < 6) {
         $("#newpwd-check").replaceWith('<label class="pwd-too-short" id="newpwd-check">密码需超过6字符</label>');
         return false;
-    }else{
-        if(num==0||num==1){
+    } else {
+        if (num == 0 || num == 1) {
             $("#newpwd-check").replaceWith('<label class="pwd-weak" id="newpwd-check">弱</label>');
-        }else if(num==2){
+        } else if (num == 2) {
             $("#newpwd-check").replaceWith('<label class="pwd-middle" id="newpwd-check">中</label>');
-        }else{
+        } else {
             $("#newpwd-check").replaceWith('<label class="pwd-strong" id="newpwd-check">强</label>');
         }
         return true;
@@ -64,16 +63,41 @@ function isPassword(event)
 }
 
 // 重复输入新密码验证
-function confirmPassword(event)
-{
+function confirmPassword(event) {
     var newpwd = $("#id-newpwd").val(); //获取第一次输入的手机号
     var conpwd = event.target.value;
     if (conpwd != newpwd) {
         $("#conpwd-check").replaceWith('<label class="check-wrong" id="conpwd-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
         return false;
         // return false;
-    }else{
+    } else {
         $("#conpwd-check").replaceWith('<label class="check-ok" id="conpwd-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
+        return true;
+    }
+}
+
+// 验证邮箱
+function isEmail(event) {
+    //var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
+    var email = event.target.value;
+    if (email.length < 6) {
+        $("#newemail-check").replaceWith('<label class="check-wrong" id="newemail-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
+        return false;
+    } else {
+        $("#newemail-check").replaceWith('<label class="check-ok" id="newemail-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
+        return true;
+    }
+}
+
+function confirmEmail(event) {
+    var newemail = $("#id-newemail").val(); //获取第一次输入的手机号
+    var conemail = event.target.value;
+    if (conemail != newemail) {
+        $("#conemail-check").replaceWith('<label class="check-wrong" id="conemail-check"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></label>');
+        return false;
+        // return false;
+    } else {
+        $("#conemail-check").replaceWith('<label class="check-ok" id="conemail-check"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>');
         return true;
     }
 }
