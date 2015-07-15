@@ -522,7 +522,7 @@ namespace YMClothsStore
         /**
          * 21.员工查看某商品在系统的库存
          * 参数：货物Id
-         * 返回值：系统中的某件商品的所有库存(未测)
+         * 返回值：系统中的某件商品的所有库存(通过测试)
          */
         public stock[] getItemStockInSystem(string itemId)
         {
@@ -538,7 +538,7 @@ namespace YMClothsStore
 
         /**
          * 22.员工查看总库库存
-         * 返回值：原木衣橱总库库存信息数组(未测)
+         * 返回值：原木衣橱总库库存信息数组(通过测试)
          */
         public stock[] getSystemStockInfo()
         {
@@ -556,7 +556,7 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表(未测)
+         * 返回：一个新添加的入库登记表(通过测试)
          */
         public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
@@ -660,32 +660,89 @@ namespace YMClothsStore
          * 参数：无（根据当前月查询）
          * 返回：商品数组（数量5）
          */
-        public item[] topFiveItems()
+        public string[,] topFiveItems()
         {
-            item[] items = { };
+            string[,] returnItems = new string[5, 3];
+            stock[] allItems = { };
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                //string sql = "select * from \"orderDetail\"";
+                //allItems = db.Database.SqlQuery<stock>(sql).ToArray();
 
-            return items;
+                //默认为升序
+                allItems = db.stock.OrderBy(p => p.saleAmount).ToArray();
+                item[] nameItem = { };
+                foreach (var i in allItems)
+                {
+                    nameItem = db.item.Where(p => p.itemId == i.itemId).ToArray();
+                }
+
+                image[] imageItem = { };
+                foreach (var j in allItems)
+                {
+                    imageItem = db.image.Where(p => p.itemId == j.itemId).ToArray();
+                }
+                if (allItems.Length < 6)
+                {
+                    for (int i = 0; i < allItems.Length; i++)
+                    {
+                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
+                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
+                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
+                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
+                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
+                    }
+                }
+            }
+            return returnItems;
         }
 
         /**
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
-         * 返回：本月每日销售价格的集合
+         * 返回：本月每日销售订单的集合
          */
-        public float[] getEverySumOfThisMonth()
+        public order[] getEverySumOfThisMonth()
         {
-            float[] floats = { };
-
-            return floats;
+            DateTime now = DateTime.Now;
+            int currentMonth = now.Month;
+            int currentYear = now.Year;
+            DateTime currentDate =  now.Date;
+            string currentDateStr = currentYear.ToString() + currentMonth.ToString() + currentDate.ToString();
+            DateTime currentDateTime = Convert.ToDateTime(currentDateStr);
+            order[] allOrders = { };
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                allOrders = db.order.Where(p => p.orderTime >= currentDateTime).ToArray();
+            }
+            return allOrders;
         }
 
         /**
          * 29.员工查询商品信息
          * 参数：员工Id
-         * 返回：本店所有商品信息的集合
+         * 返回：本店所有商品信息的集合(未测)
          */
         public item[] getAllItemsOfThisShop(string staffId) {
             item[] items = { };
+
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                stock[] currentStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                for (int i = 0; i < currentStock.Length; i++)
+                {
+                    items[i] = db.item.Where(p => p.itemId == currentStock[i].itemId).FirstOrDefault();
+                }
+            }
 
             return items;
         }
@@ -693,11 +750,16 @@ namespace YMClothsStore
         /**
          * 30.通过商品Id查询商品详细信息(查完库存调用此接口显示某商品详细信息)
          * 参数：商品Id
-         * 返回：本店某一个商品
+         * 返回：本店某一个商品(未测)
          */
         public item getItemByItemId(string itemId)
         {
             item newItem = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newItem = db.item.Where(p => p.itemId == itemId).FirstOrDefault();
+            }
 
             return newItem;
         }
@@ -706,24 +768,51 @@ namespace YMClothsStore
          * 31.通过商品名查找商品
          * 参数：商品Name
          * 返回：本店某一个商品
-         * 备注：模糊搜索
+         * 备注：模糊搜索(未测)
          */
-        public item getItemByItemName(string itemName)
+        public item[] getItemByItemName(string itemName)
         {
-            item newItem = null;
+            item[] items = { };
 
-            return newItem;
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string sql = "select * from \"item\" where \"itemName\" like '%" + itemName + "%'";
+                items = db.Database.SqlQuery<item>(sql).ToArray();
+            }
+
+            return items;
         }
 
         /**
          * 32.店长进行盘点(最终目的是检查是否有人偷东西)
          * 参数：员工Id
          * 返回：最近现在各个商品集合（包括名称和）
-         * 备注：其实可以通过库存方法来获取
+         * 备注：其实可以通过库存方法来获取(未测)
          */
-        public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)
+        public checkDetail[] getCheckDetailInfoWithStaffId(string currentCheckId, string staffId)
         {
             checkDetail[] checks = { };
+
+            currentCheckId = createNewId("checkDetail");
+
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                stock[] itemStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                checkDetail[] currentCheckDetail = { };
+                for (int i = 0; i < itemStock.Length; i++)
+                {
+                    currentCheckDetail[i] = new checkDetail
+                    {
+                        itemId = itemStock[i].itemId,
+                        checkId = currentCheckId,
+                        currentAmount = itemStock[i].stockAmount,
+                    };
+                    db.checkDetail.Add(currentCheckDetail[i]);
+                }
+                db.SaveChanges();
+            }
 
             return checks;
         }
@@ -731,12 +820,23 @@ namespace YMClothsStore
         /**
          * 33.店长更改订单信息
          * 参数：要修改的Order的Id,店长的Id
-         * 返回：返回修改过的Order实例
+         * 返回：返回修改过的Order实例(未测)
          */
-        public order modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId)
+        public orderDetail modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId, string currentItemId, int currentItemAmount)
         {
-            order newOrder = null;
+            orderDetail newOrder = null;
 
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                order currentOrder = db.order.Where(p => p.orderId == originOrderId).FirstOrDefault();
+                newOrder = db.orderDetail.Where(p => p.itemId == currentItemId & p.orderId == originOrderId).FirstOrDefault();
+                item currentItem = db.item.Where(p => p.itemId == newOrder.itemId).FirstOrDefault();
+                decimal itemPrice = currentItem.itemPrice;
+                decimal oldItemAmount = newOrder.itemAmount;
+                newOrder.itemAmount = currentItemAmount;
+                currentOrder.totalPrice = currentOrder.totalPrice - itemPrice * oldItemAmount + itemPrice * currentItemAmount;
+                db.SaveChanges();
+            }
             return newOrder;
         }
 
@@ -744,11 +844,28 @@ namespace YMClothsStore
          * 34.店长申请从总库补货
          * 参数：店长的Id
          * 返回：新建的补货申请表
-         * 备注：申请表的状态默认同意状态
+         * 备注：申请表的状态默认同意状态(未测)
          */
         public apply addApplyFromSystem(string staffId)
         {
             apply newApply = null;
+
+            string newId = createNewId("apply");
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newApply = new apply
+                {
+                    applyId = newId,
+                    outShop = "SYSTEM",
+                    inShop = shopId,
+                    state = "ok",
+                    applyTime = DateTime.Now,
+                };
+                db.apply.Add(newApply);
+                db.SaveChanges();
+            }
 
             return newApply;
         }
@@ -756,11 +873,31 @@ namespace YMClothsStore
         /**
          * 35.店长为申请添加条目(补货)
          * 参数：申请表Id，货物Id和货物数量
-         * 返回：是否成功添加了申请表细节
+         * 返回：是否成功添加了申请表细节(未测)
          */
-        public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string applyId,string itemId, int itemAmount) 
+        public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
         {
             bool isSucceed = false;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                applyDetail tem = db.applyDetail.Where(p => p.applyId == currentApplyId & p.itemId == currentApplyId).FirstOrDefault();
+                if (tem == null)
+                {
+                    applyDetail newApplyDetail = new applyDetail
+                    {
+                        applyId = currentApplyId,
+                        itemId = currentItemId,
+                        applyAmount = currentItemAmount,
+                    };
+                    db.applyDetail.Add(newApplyDetail);
+                }
+                else
+                {
+                    tem.applyAmount = tem.applyAmount + currentItemAmount;
+                }
+                db.SaveChanges();
+            }
 
             return isSucceed;
         }
@@ -769,23 +906,78 @@ namespace YMClothsStore
          * 36.店长申请从其他店面调货
          * 参数：店长的Id，对方店面的Id
          * 返回：新建的调货申请表
-         * 备注：申请表的状态需要设置为申请状态
+         * 备注：申请表的状态需要设置为申请状态(未测)
          */
         public apply addApplyFromOtherShop(string staffId, string otherShopId)
         {
-            apply newAppley = null;
+            apply newApply = null;
 
-            return newAppley;
+            string shopId = getShopIdByStaffId(staffId);
+            string newId = createNewId("apply");
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newApply = new apply
+                {
+                    applyId = newId,
+                    outShop = otherShopId,
+                    inShop = shopId,
+                    state = "ok",
+                    applyTime = DateTime.Now,
+                };
+                db.apply.Add(newApply);
+                db.SaveChanges();
+            }
+
+            return newApply;
         }
 
         /**
          * 37.店长为申请添加条目(调货)
          * 参数：申请表Id，货物Id和货物数量
-         * 返回：是否成功添加了申请表细节
+         * 返回：是否成功添加了申请表细节(未测)
          */
-        public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string applyId,string itemId, int itemAmount) 
+        public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
         {
             bool isSucceed = false;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply outShop = db.apply.Where(p => p.applyId == currentApplyId).FirstOrDefault();
+                stock itemStock = db.stock.Where(p => p.shopId == outShop.outShop & p.itemId == currentItemId).FirstOrDefault();
+                decimal realAmount = itemStock.stockAmount;
+                if (currentItemAmount > realAmount)
+                {
+                    return false;
+                }
+                else
+                {
+                    applyDetail tem = db.applyDetail.Where(p => p.applyId == currentApplyId & p.itemId == currentApplyId).FirstOrDefault();
+
+                    if (tem == null)
+                    {
+                        applyDetail newApplyDetail = new applyDetail
+                        {
+                            applyId = currentApplyId,
+                            itemId = currentItemId,
+                            applyAmount = currentItemAmount,
+                        };
+                        db.applyDetail.Add(newApplyDetail);
+                    }
+                    else
+                    {
+                        if (tem.applyAmount + currentItemAmount > realAmount)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            tem.applyAmount = tem.applyAmount + currentItemAmount;
+                        }
+                    }
+                    db.SaveChanges();
+                }
+            }
 
             return isSucceed;
         }
@@ -793,11 +985,28 @@ namespace YMClothsStore
         /**
          * 38.店长对其他店的申请进行审批
          * 参数：店长Id，是否同意bool值
-         * 返回：审批是否成功的bool值
+         * 返回：审批是否成功的bool值(未测)
          */
-        public bool dealWithApplyFromOtherShop(string staffId, bool dealFlag)
+        public bool dealWithApplyFromOtherShop(string currentApplyId, string staffId, bool dealFlag)
         {
             bool isAgree = true;
+
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply currentApply = db.apply.Where(p => p.applyId == currentApplyId & p.outShop == shopId).FirstOrDefault();
+                if(dealFlag == true)
+                {
+                    currentApply.state = "pass";
+                }
+                else
+                {
+                    currentApply.state = "not_pass";
+                    isAgree = false;
+                }
+                db.SaveChanges();
+            }
 
             return isAgree;
         }
@@ -805,11 +1014,29 @@ namespace YMClothsStore
         /**
          * 39.Boss增加商品
          * 参数：新增商品的名字、尺寸、颜色、价格
-         * 返回：商品实例
+         * 返回：商品实例(未测)
          */
-        public item addItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)
+        public item addItemByBoss(string currentItemName, string currentItemSize, string currenttemColor, float currentItemPrice)
         {
             item newItem = null;
+
+            string newId = createNewId("item");
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newItem = new item
+                {
+                    itemName = currentItemName,
+                    itemSize = currentItemSize,
+                    itemPrice = (decimal)currentItemPrice,
+                    itemColor = currenttemColor,
+                    itemDate = DateTime.Now,
+                    itemId = newId,
+                    itemStatus = 1,
+                };
+                db.item.Add(newItem);
+                db.SaveChanges();
+            }
 
             return newItem;
         }
@@ -818,11 +1045,22 @@ namespace YMClothsStore
         /**
          * 40.Boss增加商品的图片信息
          * 参数：需要增加的商品的Id，图片的地址（或者编号）
-         * 返回：图片实例
+         * 返回：图片实例(未测)
          */
-        public image addImageToItem(string itemId, string imagePath)
+        public image addImageToItem(string currentItemId, string currentImagePath)
         {
             image newImage = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newImage = new image
+                {
+                    imagePath = currentImagePath,
+                    itemId = currentItemId,
+                };
+                db.image.Add(newImage);
+                db.SaveChanges();
+            }
 
             return newImage;
         }
@@ -830,11 +1068,21 @@ namespace YMClothsStore
         /**
          * 41.Boss修改商品信息
          * 参数：修改后的商品的名字、尺寸、颜色、价格
-         * 返回：商品实例
+         * 返回：商品实例(未测)
          */
-        public item modifyItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)
+        public item modifyItemByBoss(string currentItemId, string currentItemName, string currentItemSize, string currentItemColor, float currentItemPrice)
         {
             item newItem = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                newItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
+                newItem.itemName = currentItemName;
+                newItem.itemSize = currentItemSize;
+                newItem.itemColor = currentItemColor;
+                newItem.itemPrice = (decimal)currentItemPrice;
+                db.SaveChanges();
+            }
 
             return newItem;
         }
@@ -842,25 +1090,59 @@ namespace YMClothsStore
         /**
          * 42.Boss修改商品状态
          * 参数：商品Id，商品的新状态
-         * 返回：是否修改成功
+         * 返回：是否修改成功(未测)
          */
-        public bool modifyStatusOfItem(string itemId, int newStatus)
+        public bool modifyStatusOfItem(string currentItemId, int newStatus)
         {
             bool isSucceed = false;
 
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                item currentItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
+                currentItem.itemStatus = newStatus;
+                db.SaveChanges();
+                isSucceed = true;
+            }
             return isSucceed;
         }
 
         /**
          * 43.Boss指派店长
          * 参数：商店Id，新店长的Id
-         * 返回：新店长的实例
+         * 返回：新店长的实例(未测)
          */
-        public staff assignManagerToShop(string shopId, string managerId)
+        public staff assignManagerToShop(string currentStaffName, string currentStaffPassword, string currentShopId, string currentGender, string currentStaffLoginName)
         {
             staff newStaff = null;
 
+            string newId = createNewId("staff");//根据一个算法产生ID
+
+            newStaff = new staff
+            {
+                staffId = newId,
+                shopId = currentShopId,
+                staffName = currentStaffName,
+                password = currentStaffPassword,
+                staffGender = currentGender,
+                staffLoginName = currentStaffLoginName,
+                staffJob = 1,
+            };
+
+            //写入数据库
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                try
+                {
+                    db.staff.Add(newStaff);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
             return newStaff;
+
         }
 
         /**
@@ -897,11 +1179,18 @@ namespace YMClothsStore
         /**
          * 45.根据员工查看该店调货纪录
          * 参数：staffId
-         * 返回值：调货记录数组
+         * 返回值：调货记录数组(未测)
          */
         public apply[] checkAllApplyByStaffId(string staffId)
         {
             apply[] applys = { };
+
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                applys = db.apply.Where(p => p.outShop == shopId | p.inShop == shopId).ToArray();
+            }
 
             return applys;
         }

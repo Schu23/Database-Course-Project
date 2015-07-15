@@ -120,17 +120,17 @@
 * 参数：员工Id,商品Id
 * 返回：员工所在商店的某件商品的库存
 
-####21.public stock getItemStockInSystem(string itemId)[未完成]
+####21.public stock getItemStockInSystem(string itemId)[通过测试]
 * 员工查看某商品在系统的库存
 * 参数：货物Id
 * 返回：系统中的某件商品的库存
 
-####22.public stock[] getSystemStockInfo()[未完成]
+####22.public stock[] getSystemStockInfo()[通过测试]
 * 员工查看总库库存
 * 参数：无
 * 返回：原木衣橱所有的库存信息
 
-####23.public inBase addNewIn(string staffId)[未完成]
+####23.public inBase addNewIn(string staffId)[通过测试]
 * 员工新建入库登记表
 * 参数：员工Id
 * 返回：一个新添加的入库登记表
@@ -150,15 +150,16 @@
 * 参数：货物Id，货物数量
 * 返回：是否成功出库
 
-####27.public item[] topFiveItems()[未完成]
+####27.public string[,] topFiveItems()[未完成]
 * 员工页面显示最近五件最热商品
 * 参数：无（根据当前月查询）
 * 返回：商品数组（数量5）
 
-####28.public float[] getEverySumOfThisMonth()[未完成]
+####28.public order[] getEverySumOfThisMonth()[未完成]
 * 员工页面显示这个月每日销售总价（？需要每个月都传么？No）
 * 参数：无
-* 返回：本月每日销售价格的集合
+* 返回：本月每日订单的集合
+* 备注：通过此集合可以拿到每天的订单总价格
 
 ####29.public item[] getAllItemsOfThisShop(string staffId)[未完成]
 * 员工查询商品信息
