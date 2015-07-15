@@ -343,7 +343,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 13.员工查看自己店铺的订单信息
+         * 13.员工查看自己店铺的订单信息(未测)
          * 参数：员工id
          * 返回值：order[]
          */
@@ -351,9 +351,6 @@ namespace YMClothsStore
         {
             order[] orders = { };
             System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
-
-            //ArrayList test = new ArrayList();
-            //order[] test2 = (order[])test.ToArray();
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
@@ -384,7 +381,7 @@ namespace YMClothsStore
         /**
          * 14.员工查看某个订单的普通信息
          * 参数：订单id
-         * 返回值：订单实例(未测)
+         * 返回值：订单实例(测试通过)
          */
         public order getOrderInfoByOrderId(string orderId)
         {

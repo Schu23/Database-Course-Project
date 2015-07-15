@@ -84,7 +84,7 @@
 * 参数：员工Id
 * 返回：所有的订单的数组
 
-####14.public order getOrderInfoByOrderId(string orderId)[未完成]
+####14.public order getOrderInfoByOrderId(string orderId)[已完成]
 * 员工查看某个订单普通信息
 * 参数：订单Id
 * 返回：订单实例
