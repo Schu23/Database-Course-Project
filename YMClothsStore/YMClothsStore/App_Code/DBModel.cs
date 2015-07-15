@@ -144,8 +144,11 @@ namespace YMClothsStore
             {
                 try
                 {
-                    staff oldStaff = this.findStaffById(currentInfo.staffId);
-                    db.Database.SqlQuery<staff>("update staff set \"staffName\" = " + currentInfo.staffName + ", \"staffPhone\" = " + currentInfo.staffPhone + ", \"password\" = " + currentInfo.password + "where \"staffId\" = " + currentInfo.staffId);
+                    staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
+                    oldStaff.staffName = currentInfo.staffName;
+                    oldStaff.password = currentInfo.password;
+                    oldStaff.staffPhone = currentInfo.staffPhone;
+                    db.SaveChanges();
                     return true;
                 }
                 catch (Exception ex)
@@ -214,7 +217,7 @@ namespace YMClothsStore
             {
                 try
                 {
-                    wantStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffId\" = " + id).FirstOrDefault();
+                    wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
                     return wantStaff;
                 }
                 catch (Exception ex)

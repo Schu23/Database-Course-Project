@@ -11,10 +11,11 @@ namespace YMClothsStore
     {
         // TODO
         //  找到该员工 
-        protected staff theStaff = DBModel.sharedDBModel().findStaffById("dd");
+        protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            theStaff = DBModel.sharedDBModel().findStaffById("123");
+            System.Diagnostics.Debug.WriteLine(theStaff.staffId);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
