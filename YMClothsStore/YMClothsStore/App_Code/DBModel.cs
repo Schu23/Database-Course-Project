@@ -61,16 +61,7 @@ namespace YMClothsStore
             staff[] staffs = { };
             using (YMDBEntities db = new YMDBEntities())
             {
-                try
-                {
-                    //string sql = "select * from \"staff\" where \"shopId\" = '" + shopId + "'";
-                    //staffs = db.Database.SqlQuery<staff>(sql).ToArray();
-                    staffs = db.staff.Where(p => p.shopId == shopId).ToArray();
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
-                }
+                staffs = db.staff.Where(p => p.shopId == shopId).ToArray();
             }
 
             return staffs;
@@ -132,8 +123,6 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                //int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
-                //db.Database.SqlQuery<staff>("delete from \"staff\" where \"staffId\" = '" + deletedStaffId + "'");
                 db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
                 db.SaveChanges();
                 deletdSucceed = true;

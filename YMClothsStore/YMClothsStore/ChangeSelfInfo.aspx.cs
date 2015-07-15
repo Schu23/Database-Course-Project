@@ -14,7 +14,7 @@ namespace YMClothsStore
         protected staff theStaff = DBModel.sharedDBModel().findStaffById("Convert.ToString(S)");
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
