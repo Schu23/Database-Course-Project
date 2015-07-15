@@ -350,13 +350,32 @@ namespace YMClothsStore
         public order[] getAllOrderInfo(string staffId)
         {
             order[] orders = { };
+            System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
+
+            //ArrayList test = new ArrayList();
+            //order[] test2 = (order[])test.ToArray();
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
+                ArrayList orderList = new ArrayList();
                 //先根据staffId查到员工所属店铺
-                staff currentShopStaff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
-                
+                string targetShopId = db.staff.Where(p => p.staffId == staffId).FirstOrDefault().shopId;
+
+                foreach (var i in db.order.Where(p => p.shopId == targetShopId))
+                {
+                    order newTargetOrder = new order
+                    {
+                        orderId = i.orderId,
+                        shopId = i.shopId,
+                        totalPrice = i.totalPrice,
+                        orderTime = i.orderTime
+                    };
+
+                    orderList.Add(newTargetOrder);
+                }
+
+                orders = (order[])orderList.ToArray();                
             }
 
             return orders;
@@ -855,7 +874,25 @@ namespace YMClothsStore
          */
         public address addNewAddress(string addressName, string addressDetail)
         {
-            address newAddress = null;
+            address newAddress = new address
+            {
+                addressId = createNewId("address"),
+                addressName = addressName,
+                addressDetail = addressDetail,
+            };
+            //写入数据库
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                try
+                {
+                    db.address.Add(newAddress);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
 
             return newAddress;
         }

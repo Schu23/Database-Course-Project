@@ -178,7 +178,8 @@
                         你确定要移除员工<%: staff.staffName %>吗？
                       </div>
                       <div class="modal-footer">  
-                         <input type="hidden" name="fireEmployeeId" value="<%:staff.staffId %>" />
+                   
+                          <Label Text="text" style="display:none;"> <%:Session["fireEmployeeId"] = staff.staffId %> </Label>   
                          <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee" />
                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>          
                       </div>

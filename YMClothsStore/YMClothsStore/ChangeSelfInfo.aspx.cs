@@ -14,7 +14,8 @@ namespace YMClothsStore
         protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            theStaff = (staff)Session["Staff"];
+            System.Diagnostics.Debug.WriteLine("staff id " + theStaff.staffId);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
