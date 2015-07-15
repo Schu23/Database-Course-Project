@@ -481,9 +481,279 @@ namespace YMClothsStore
          * 参数：员工Id
          * 返回：一个新添加的入库登记表
          */
-        /*public in addNewIn(string staffId){
+        public inBase addNewIn(string staffId){
+            inBase newInBase = null;
 
-        }*/
+            return newInBase;
+        }
 
+        /**
+         * 24.员工为新建的入库登记表填写详细信息
+         * 参数：商品Id,商品数量Amount
+         * 返回：是否成功入库
+         */
+        public bool addInDetailToInWithItemIdAndItemAmount(string itemId, int itemAmount)
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 25.员工新建出库登记表
+         * 参数：员工Id,出库类型
+         * 返回：员工新建一个出库登记表
+         */
+        public outBase addNewOut(string staffId,string outType)
+        {
+            outBase newOutBase = null;
+
+            return newOutBase;
+        }
+
+        /**
+         * 26.员工为新建的出库登记表添加详细信息
+         * 参数：货物Id，货物数量
+         * 返回：是否成功出库
+         */
+        public bool addOutDetailToOutWithItemIdAndItemAmount(string itemId, int itemAmount)
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 27.员工页面显示最近五件最热商品
+         * 参数：无（根据当前月查询）
+         * 返回：商品数组（数量5）
+         */
+        public item[] topFiveItems()
+        {
+            item[] items = { };
+
+            return items;
+        }
+
+        /**
+         * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
+         * 参数：无
+         * 返回：本月每日销售价格的集合
+         */
+        public float[] getEverySumOfThisMonth()
+        {
+            float[] floats = { };
+
+            return floats;
+        }
+
+        /**
+         * 29.员工查询商品信息
+         * 参数：员工Id
+         * 返回：本店所有商品信息的集合
+         */
+        public item[] getAllItemsOfThisShop(string staffId) {
+            item[] items = { };
+
+            return items;
+        }
+
+        /**
+         * 30.通过商品Id查询商品详细信息(查完库存调用此接口显示某商品详细信息)
+         * 参数：商品Id
+         * 返回：本店某一个商品
+         */
+        public item getItemByItemId(string itemId)
+        {
+            item newItem = null;
+
+            return newItem;
+        }
+
+        /**
+         * 31.通过商品名查找商品
+         * 参数：商品Name
+         * 返回：本店某一个商品
+         * 备注：模糊搜索
+         */
+        public item getItemByItemName(string itemName)
+        {
+            item newItem = null;
+
+            return newItem;
+        }
+
+        /**
+         * 32.店长进行盘点(最终目的是检查是否有人偷东西)
+         * 参数：员工Id
+         * 返回：最近现在各个商品集合（包括名称和）
+         * 备注：其实可以通过库存方法来获取
+         */
+        public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)
+        {
+            checkDetail[] checks = { };
+
+            return checks;
+        }
+
+        /**
+         * 33.店长更改订单信息
+         * 参数：要修改的Order的Id,店长的Id
+         * 返回：返回修改过的Order实例
+         */
+        public order modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId)
+        {
+            order newOrder = null;
+
+            return newOrder;
+        }
+
+        /**
+         * 34.店长申请从总库补货
+         * 参数：店长的Id
+         * 返回：新建的补货申请表
+         * 备注：申请表的状态默认同意状态
+         */
+        public apply addApplyFromSystem(string staffId)
+        {
+            apply newApply = null;
+
+            return newApply;
+        }
+
+        /**
+         * 35.店长为申请添加条目(补货)
+         * 参数：申请表Id，货物Id和货物数量
+         * 返回：是否成功添加了申请表细节
+         */
+        public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string applyId,string itemId, int itemAmount) 
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 36.店长申请从其他店面调货
+         * 参数：店长的Id，对方店面的Id
+         * 返回：新建的调货申请表
+         * 备注：申请表的状态需要设置为申请状态
+         */
+        public apply addApplyFromOtherShop(string staffId, string otherShopId)
+        {
+            apply newAppley = null;
+
+            return newAppley;
+        }
+
+        /**
+         * 37.店长为申请添加条目(调货)
+         * 参数：申请表Id，货物Id和货物数量
+         * 返回：是否成功添加了申请表细节
+         */
+        public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string applyId,string itemId, int itemAmount) 
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 38.店长对其他店的申请进行审批
+         * 参数：店长Id，是否同意bool值
+         * 返回：审批是否成功的bool值
+         */
+        public bool dealWithApplyFromOtherShop(string staffId, bool dealFlag)
+        {
+            bool isAgree = true;
+
+            return isAgree;
+        }
+
+        /**
+         * 39.Boss增加商品
+         * 参数：新增商品的名字、尺寸、颜色、价格
+         * 返回：商品实例
+         */
+        public item addItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)
+        {
+            item newItem = null;
+
+            return newItem;
+        }
+
+
+        /**
+         * 40.Boss增加商品的图片信息
+         * 参数：需要增加的商品的Id，图片的地址（或者编号）
+         * 返回：图片实例
+         */
+        public image addImageToItem(string itemId, string imagePath)
+        {
+            image newImage = null;
+
+            return newImage;
+        }
+
+        /**
+         * 41.Boss修改商品信息
+         * 参数：修改后的商品的名字、尺寸、颜色、价格
+         * 返回：商品实例
+         */
+        public item modifyItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)
+        {
+            item newItem = null;
+
+            return newItem;
+        }
+
+        /**
+         * 42.Boss修改商品状态
+         * 参数：商品Id，商品的新状态
+         * 返回：是否修改成功
+         */
+        public bool modifyStatusOfItem(string itemId, int newStatus)
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 43.Boss指派店长
+         * 参数：商店Id，新店长的Id
+         * 返回：新店长的实例
+         */
+        public staff assignManagerToShop(string shopId, string managerId)
+        {
+            staff newStaff = null;
+
+            return newStaff;
+        }
+
+        /**
+         * 44.Boss新增地址信息
+         * 参数：地址名称，详细地址
+         * 返回：新的地址的实例
+         */
+        public address addNewAddress(string addressName, string addressDetail)
+        {
+            address newAddress = null;
+
+            return newAddress;
+        }
+
+        /**
+         * 45.根据员工查看该店调货纪录
+         * 参数：staffId
+         * 返回值：调货记录数组
+         */
+        public apply[] checkAllApplyByStaffId(string staffId)
+        {
+            apply[] applys = { };
+
+            return applys;
+        }
+        
     }
 }
