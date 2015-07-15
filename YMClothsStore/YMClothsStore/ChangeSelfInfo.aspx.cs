@@ -14,7 +14,8 @@ namespace YMClothsStore
         protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+              theStaff = DBModel.sharedDBModel().findStaffById("staff_0001");
+              System.Diagnostics.Debug.WriteLine("staff id " + theStaff.staffId);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
@@ -49,9 +50,12 @@ namespace YMClothsStore
         //更改员工的密码
         protected void modifyEmployeePwd (object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("debug:LL start it !");
             string oldPwd = Request.Form["oldpwd"];
             string newPwd = Request.Form["newpwd"];
             string conPwd = Request.Form["conpwd"];
+            System.Diagnostics.Debug.WriteLine("debug:LL"+oldPwd);
+            System.Diagnostics.Debug.WriteLine(theStaff.password);
             if(theStaff.password.Equals(oldPwd))
             {
                if(newPwd.Equals(conPwd))
@@ -64,7 +68,7 @@ namespace YMClothsStore
                    }
                    else
                    {
-                       Session["errorMessage"] = "修改失败，请检查网络";
+                       Session["errorMessage"] = "网络问题";
                        Session["returnURL"] = "ChangeSelfInfo.aspx";
                        Response.Redirect("Error.aspx");
                    }

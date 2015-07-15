@@ -34,7 +34,7 @@
         </div>
       </nav>
     </div>
-
+     <form  runat="server"  class="col-sm-12" accept-charset="UTF-8" novalidate>
     <div class="container">
       <legend>账号设置</legend>
       <div class="row">
@@ -62,7 +62,7 @@
                         <p>联系方式：<%: theStaff.staffPhone %></p>
                       </div>
                       <div class="col-md-6">
-                        <h3>所在分店信息</h3><br/>
+                        <h3>所在分店信息</h3></br>
                         <p>编号：<%:theStaff.shopId %></p>
                         <p>地址：淮海路666号</p>
                         <p>门店电话：(021)68738726</p>
@@ -76,7 +76,7 @@
               <div class="thumbnail">
                 <div class="caption">
                   <div class="container">
-                    <form class="col-sm-12" accept-charset="UTF-8" runat="server">
+      
                       <div class="form-group">
                         <label for="id-newphone" class="control-label">新的手机号</label>
                         <div class="row">
@@ -102,7 +102,7 @@
                         <!--send here -->
                         <asp:Button Text="提交" runat="server" class="btn btn-primary" Onclick="modifyEmployeePhone"/>
                   
-                    </form>
+           
                   </div>
                 </div>  
               </div>
@@ -111,7 +111,7 @@
               <div class="thumbnail">
                 <div class="caption">
                   <div class="container">
-                    <form class="col-sm-12" accept-charset="UTF-8">
+                  
                       <div class="form-group">
                         <label for="id-oldpwd" class="control-label">当前密码</label>
                         <div class="row">
@@ -145,8 +145,8 @@
                           </div>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-primary" id="pwdSubmit">提交</button>
-                    </form>
+                      <asp:Button Text="提交" runat="server" CssClass="btn btn-primary" OnClick="modifyEmployeePwd" />
+       
                   </div>
                 </div>  
               </div>
@@ -156,6 +156,7 @@
       </div>
 
     </div>
+     </form>
     <!-- Bootstrap core JavaScript -->
     
     <script src="Bootstrap/bootstrap.min.js"></script>

@@ -29,7 +29,8 @@ namespace YMClothsStore
         public string itemName { get; set; }
         public string itemSize { get; set; }
         public string itemColor { get; set; }
-        public Nullable<decimal> itemPrice { get; set; }
+        public decimal itemStatus { get; set; }
+        public decimal itemPrice { get; set; }
         public Nullable<System.DateTime> itemDate { get; set; }
     
         public virtual ICollection<applyDetail> applyDetail { get; set; }

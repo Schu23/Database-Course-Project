@@ -10,7 +10,8 @@
             <PropertyRef Name="addressId" />
           </Key>
           <Property Name="addressId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="addressName" Type="varchar2" MaxLength="40" />
+          <Property Name="addressName" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="addressDetail" Type="varchar2" MaxLength="120" Nullable="false" />
           <Property Name="addressX" Type="float" Precision="40" Scale="0" />
           <Property Name="addressY" Type="float" Precision="40" Scale="0" />
         </EntityType>
@@ -19,9 +20,9 @@
             <PropertyRef Name="applyId" />
           </Key>
           <Property Name="applyId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="outShop" Type="varchar2" MaxLength="40" />
-          <Property Name="inShop" Type="varchar2" MaxLength="40" />
-          <Property Name="state" Type="varchar2" MaxLength="20" />
+          <Property Name="outShop" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="inShop" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="state" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="applyTime" Type="date" />
         </EntityType>
         <EntityType Name="applyDetail">
@@ -31,14 +32,14 @@
           </Key>
           <Property Name="applyId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="applyAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="applyAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="check">
           <Key>
             <PropertyRef Name="checkId" />
           </Key>
           <Property Name="checkId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="checkerId" Type="varchar2" MaxLength="40" />
           <Property Name="checkTime" Type="date" />
         </EntityType>
@@ -49,7 +50,7 @@
           </Key>
           <Property Name="checkId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="currentAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="currentAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="image">
           <Key>
@@ -64,7 +65,7 @@
             <PropertyRef Name="inId" />
           </Key>
           <Property Name="inId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="shopId" Type="varchar2" MaxLength="40" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="staffId" Type="varchar2" MaxLength="40" />
           <Property Name="inTime" Type="date" />
         </EntityType>
@@ -75,17 +76,18 @@
           </Key>
           <Property Name="inId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="inAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="inAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="item">
           <Key>
             <PropertyRef Name="itemId" />
           </Key>
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="itemName" Type="varchar2" MaxLength="20" />
-          <Property Name="itemSize" Type="varchar2" MaxLength="5" />
-          <Property Name="itemColor" Type="varchar2" MaxLength="20" />
-          <Property Name="itemPrice" Type="float" Precision="40" Scale="0" />
+          <Property Name="itemName" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="itemSize" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="itemColor" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="itemStatus" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="itemPrice" Type="float" Precision="40" Scale="0" Nullable="false" />
           <Property Name="itemDate" Type="date" />
         </EntityType>
         <EntityType Name="order">
@@ -93,8 +95,8 @@
             <PropertyRef Name="orderId" />
           </Key>
           <Property Name="orderId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="shopId" Type="varchar2" MaxLength="40" />
-          <Property Name="totalPrice" Type="number" Precision="38" Scale="0" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="totalPrice" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="orderTime" Type="date" />
         </EntityType>
         <EntityType Name="orderDetail">
@@ -104,15 +106,15 @@
           </Key>
           <Property Name="orderId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="itemAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="itemAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="out">
           <Key>
             <PropertyRef Name="outId" />
           </Key>
           <Property Name="outId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="shopId" Type="varchar2" MaxLength="40" />
-          <Property Name="outType" Type="varchar2" MaxLength="20" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="outType" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="staffId" Type="varchar2" MaxLength="40" />
           <Property Name="outTime" Type="date" />
         </EntityType>
@@ -123,14 +125,15 @@
           </Key>
           <Property Name="outId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="outAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="outAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="shop">
           <Key>
             <PropertyRef Name="shopId" />
           </Key>
           <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="shopAddress" Type="varchar2" MaxLength="40" />
+          <Property Name="shopAddress" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="shopStatus" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="shopPhone" Type="varchar2" MaxLength="40" />
         </EntityType>
         <EntityType Name="staff">
@@ -138,13 +141,13 @@
             <PropertyRef Name="staffId" />
           </Key>
           <Property Name="staffId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="staffName" Type="varchar2" MaxLength="10" />
-          <Property Name="staffGender" Type="varchar2" MaxLength="5" />
+          <Property Name="staffName" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="staffGender" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="staffPhone" Type="varchar2" MaxLength="40" />
           <Property Name="staffJob" Type="number" Precision="38" Scale="0" />
-          <Property Name="shopId" Type="varchar2" MaxLength="40" />
-          <Property Name="staffLoginName" Type="varchar2" MaxLength="40" />
-          <Property Name="password" Type="varchar2" MaxLength="20" />
+          <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="staffLoginName" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="password" Type="varchar2" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="stock">
           <Key>
@@ -153,13 +156,13 @@
           </Key>
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="stockAmount" Type="number" Precision="38" Scale="0" />
-          <Property Name="saleAmount" Type="number" Precision="38" Scale="0" />
-          <Property Name="stockLimit" Type="number" Precision="38" Scale="0" />
-          <Property Name="purchaseAmount" Type="number" Precision="38" Scale="0" />
+          <Property Name="stockAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="saleAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="stockLimit" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="purchaseAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="apply_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -171,7 +174,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="apply_ibfk_2">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -207,7 +210,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="check_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -267,7 +270,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="in_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="in" Type="Self.in" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -315,7 +318,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="order_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -351,7 +354,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="out_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="out" Type="Self.out" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -399,7 +402,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="shop_ibfk_1">
-          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="address" Type="Self.address" Multiplicity="1" />
           <End Role="shop" Type="Self.shop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="address">
@@ -411,7 +414,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="staff_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="staff" Type="Self.staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -570,7 +573,8 @@
             <PropertyRef Name="addressId" />
           </Key>
           <Property Name="addressId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="addressName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="addressName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="addressDetail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="addressX" Type="Decimal" Precision="13" Scale="0" />
           <Property Name="addressY" Type="Decimal" Precision="13" Scale="0" />
           <NavigationProperty Name="shop" Relationship="Self.shop_ibfk_1" FromRole="address" ToRole="shop" />
@@ -580,9 +584,9 @@
             <PropertyRef Name="applyId" />
           </Key>
           <Property Name="applyId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="outShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="inShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="outShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="applyTime" Type="DateTime" />
           <NavigationProperty Name="shop" Relationship="Self.apply_ibfk_1" FromRole="apply" ToRole="shop" />
           <NavigationProperty Name="shop1" Relationship="Self.apply_ibfk_2" FromRole="apply" ToRole="shop" />
@@ -595,7 +599,7 @@
           </Key>
           <Property Name="applyId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="applyAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="applyAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="apply" Relationship="Self.applyDetail_ibfk_1" FromRole="applyDetail" ToRole="apply" />
           <NavigationProperty Name="item" Relationship="Self.applyDetail_ibfk_2" FromRole="applyDetail" ToRole="item" />
         </EntityType>
@@ -604,7 +608,7 @@
             <PropertyRef Name="checkId" />
           </Key>
           <Property Name="checkId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="checkerId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="checkTime" Type="DateTime" />
           <NavigationProperty Name="shop" Relationship="Self.check_ibfk_1" FromRole="check" ToRole="shop" />
@@ -618,7 +622,7 @@
           </Key>
           <Property Name="checkId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="currentAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="currentAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="check" Relationship="Self.checkDetail_ibfk_1" FromRole="checkDetail" ToRole="check" />
           <NavigationProperty Name="item" Relationship="Self.checkDetail_ibfk_2" FromRole="checkDetail" ToRole="item" />
         </EntityType>
@@ -636,7 +640,7 @@
             <PropertyRef Name="inId" />
           </Key>
           <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="inTime" Type="DateTime" />
           <NavigationProperty Name="shop" Relationship="Self.in_ibfk_1" FromRole="in" ToRole="shop" />
@@ -650,7 +654,7 @@
           </Key>
           <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="inAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="inAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="in" Relationship="Self.inDetail_ibfk_1" FromRole="inDetail" ToRole="in" />
           <NavigationProperty Name="item" Relationship="Self.inDetail_ibfk_2" FromRole="inDetail" ToRole="item" />
         </EntityType>
@@ -659,10 +663,11 @@
             <PropertyRef Name="itemId" />
           </Key>
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="itemName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="itemSize" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="itemColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="itemPrice" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="itemName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemSize" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemStatus" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="itemPrice" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
           <Property Name="itemDate" Type="DateTime" />
           <NavigationProperty Name="applyDetail" Relationship="Self.applyDetail_ibfk_2" FromRole="item" ToRole="applyDetail" />
           <NavigationProperty Name="checkDetail" Relationship="Self.checkDetail_ibfk_2" FromRole="item" ToRole="checkDetail" />
@@ -677,8 +682,8 @@
             <PropertyRef Name="orderId" />
           </Key>
           <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="totalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="orderTime" Type="DateTime" />
           <NavigationProperty Name="shop" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="shop" />
           <NavigationProperty Name="orderDetail" Relationship="Self.orderDetail_ibfk_1" FromRole="order" ToRole="orderDetail" />
@@ -690,7 +695,7 @@
           </Key>
           <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="itemAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="itemAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="item" Relationship="Self.orderDetail_ibfk_2" FromRole="orderDetail" ToRole="item" />
           <NavigationProperty Name="order" Relationship="Self.orderDetail_ibfk_1" FromRole="orderDetail" ToRole="order" />
         </EntityType>
@@ -699,8 +704,8 @@
             <PropertyRef Name="outId" />
           </Key>
           <Property Name="outId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="outType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="outType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="outTime" Type="DateTime" />
           <NavigationProperty Name="shop" Relationship="Self.out_ibfk_1" FromRole="out" ToRole="shop" />
@@ -714,7 +719,7 @@
           </Key>
           <Property Name="outId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="outAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="outAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="item" Relationship="Self.outDetail_ibfk_1" FromRole="outDetail" ToRole="item" />
           <NavigationProperty Name="out" Relationship="Self.outDetail_ibfk_2" FromRole="outDetail" ToRole="out" />
         </EntityType>
@@ -723,7 +728,8 @@
             <PropertyRef Name="shopId" />
           </Key>
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shopAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="shopAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shopStatus" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="shopPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="address" Relationship="Self.shop_ibfk_1" FromRole="shop" ToRole="address" />
           <NavigationProperty Name="apply" Relationship="Self.apply_ibfk_1" FromRole="shop" ToRole="apply" />
@@ -740,13 +746,13 @@
             <PropertyRef Name="staffId" />
           </Key>
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="staffName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="staffGender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="staffName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffGender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="staffJob" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="staffLoginName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staffLoginName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="check" Relationship="Self.check_ibfk_2" FromRole="staff" ToRole="check" />
           <NavigationProperty Name="in" Relationship="Self.in_ibfk_2" FromRole="staff" ToRole="in" />
           <NavigationProperty Name="out" Relationship="Self.out_ibfk_2" FromRole="staff" ToRole="out" />
@@ -759,15 +765,15 @@
           </Key>
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="stockAmount" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="saleAmount" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="stockLimit" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="purchaseAmount" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="stockAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="saleAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="stockLimit" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="purchaseAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="item" Relationship="Self.stock_ibfk_1" FromRole="stock" ToRole="item" />
           <NavigationProperty Name="shop" Relationship="Self.stock_ibfk_2" FromRole="stock" ToRole="shop" />
         </EntityType>
         <Association Name="shop_ibfk_1">
-          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="address" Type="Self.address" Multiplicity="1" />
           <End Role="shop" Type="Self.shop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="address">
@@ -779,7 +785,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="apply_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -791,7 +797,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="apply_ibfk_2">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -827,7 +833,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="check_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -887,7 +893,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="in_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="in" Type="Self.in" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -971,7 +977,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="order_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -995,7 +1001,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="out_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="out" Type="Self.out" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -1031,7 +1037,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="staff_ibfk_1">
-          <End Role="shop" Type="Self.shop" Multiplicity="0..1" />
+          <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="staff" Type="Self.staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
@@ -1179,6 +1185,7 @@
               <MappingFragment StoreEntitySet="address">
                 <ScalarProperty Name="addressId" ColumnName="addressId" />
                 <ScalarProperty Name="addressName" ColumnName="addressName" />
+                <ScalarProperty Name="addressDetail" ColumnName="addressDetail" />
                 <ScalarProperty Name="addressX" ColumnName="addressX" />
                 <ScalarProperty Name="addressY" ColumnName="addressY" />
               </MappingFragment>
@@ -1257,6 +1264,7 @@
                 <ScalarProperty Name="itemName" ColumnName="itemName" />
                 <ScalarProperty Name="itemSize" ColumnName="itemSize" />
                 <ScalarProperty Name="itemColor" ColumnName="itemColor" />
+                <ScalarProperty Name="itemStatus" ColumnName="itemStatus" />
                 <ScalarProperty Name="itemPrice" ColumnName="itemPrice" />
                 <ScalarProperty Name="itemDate" ColumnName="itemDate" />
               </MappingFragment>
@@ -1306,6 +1314,7 @@
               <MappingFragment StoreEntitySet="shop">
                 <ScalarProperty Name="shopId" ColumnName="shopId" />
                 <ScalarProperty Name="shopAddress" ColumnName="shopAddress" />
+                <ScalarProperty Name="shopStatus" ColumnName="shopStatus" />
                 <ScalarProperty Name="shopPhone" ColumnName="shopPhone" />
               </MappingFragment>
             </EntityTypeMapping>
