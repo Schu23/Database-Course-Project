@@ -660,16 +660,48 @@ namespace YMClothsStore
          * 参数：无（根据当前月查询）
          * 返回：商品数组（数量5）
          */
-        public item[] topFiveItems()
+        public string[,] topFiveItems()
         {
-            item[] items = { };
-
+            string[,] returnItems = new string[5, 3];
+            stock[] allItems = { };
             using (YMDBEntities db = new YMDBEntities())
             {
+                //string sql = "select * from \"orderDetail\"";
+                //allItems = db.Database.SqlQuery<stock>(sql).ToArray();
 
+                //默认为升序
+                allItems = db.stock.OrderBy(p => p.saleAmount).ToArray();
+                item[] nameItem = { };
+                foreach (var i in allItems)
+                {
+                    nameItem = db.item.Where(p => p.itemId == i.itemId).ToArray();
+                }
+
+                image[] imageItem = { };
+                foreach (var j in allItems)
+                {
+                    imageItem = db.image.Where(p => p.itemId == j.itemId).ToArray();
+                }
+                if (allItems.Length < 6)
+                {
+                    for (int i = 0; i < allItems.Length; i++)
+                    {
+                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
+                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
+                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
+                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
+                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
+                    }
+                }
             }
-
-            return items;
+            return returnItems;
         }
 
         /**
