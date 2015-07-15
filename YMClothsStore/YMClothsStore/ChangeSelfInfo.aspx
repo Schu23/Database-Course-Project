@@ -70,7 +70,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li class="text-center"><a href="#">修改个人信息</a></li>
-                  <li class="text-center"><a href="~/Login.aspx">退出</a></li>
+                  <li class="text-center"><a runat="server" href="~/Login.aspx">退出</a></li>
                 </ul>
               </li>
             </ul>
@@ -110,8 +110,8 @@
                       <div class="col-md-6">
                         <h3>所在分店信息</h3></br>
                         <p>编号：<%:theStaff.shopId %></p>
-                        <p>地址：淮海路666号</p>
-                        <p>门店电话：(021)68738726</p>
+                        <p>地址：<%:hisShop.shopAddress %></p>
+                        <p>门店电话：<%:hisShop.shopPhone %></p>
                       </div>
                     </div>
                   </div>

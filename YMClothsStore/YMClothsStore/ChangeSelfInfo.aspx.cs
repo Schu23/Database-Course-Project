@@ -12,10 +12,12 @@ namespace YMClothsStore
         // TODO
         //  找到该员工 
         protected staff theStaff;
+        protected shop hisShop;
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
             System.Diagnostics.Debug.WriteLine("staff id " + theStaff.staffId);
+            hisShop = DBModel.sharedDBModel().findShopByShopId(theStaff.shopId);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
