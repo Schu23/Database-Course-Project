@@ -57,7 +57,17 @@ namespace YMClothsStore
                if(newPwd.Equals(conPwd))
                {
                    theStaff.password = newPwd;
-                   DBModel.sharedDBModel().modifyPersonalInformation(theStaff);
+                   if (DBModel.sharedDBModel().modifyPersonalInformation(theStaff))
+                   {
+
+                       Response.Redirect("ChangeSelfInfo.aspx");
+                   }
+                   else
+                   {
+                       Session["errorMessage"] = "修改失败，请检查网络";
+                       Session["returnURL"] = "ChangeSelfInfo.aspx";
+                       Response.Redirect("Error.aspx");
+                   }
                }
                else
                {

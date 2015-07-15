@@ -145,6 +145,7 @@ namespace YMClothsStore
                 try
                 {
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
+                    System.Diagnostics.Debug.WriteLine(oldStaff.password);
                     oldStaff.staffName = currentInfo.staffName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
@@ -237,15 +238,11 @@ namespace YMClothsStore
         public staff loginWithStaffLoginNameAndPassword(string userName, string pass)
         {
             staff loginStaff = null;
-            System.Diagnostics.Debug.WriteLine("dbtest" + userName + pass);
             using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
-                                     //           string sql = "select * from \"staff\" where \"staffloginname\" = " + '" + userName + "'";
-                  //  loginStaff = db.Database.SqlQuery<staff>(sql).FirstOrDefault();
-                 //   System.Diagnostics.Debug.WriteLine("sql test :    " + loginStaff.staffName);
-                    loginStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffLoginName\" = '" + userName +"'").FirstOrDefault();
+                    loginStaff = db.staff.Where(p => p.staffName == userName).FirstOrDefault();
                     if (loginStaff.password.Equals(pass))
                     {
                         return loginStaff;
@@ -261,9 +258,6 @@ namespace YMClothsStore
                     return null;
                 }
 
-                //loginStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffLoginName\" = 'wzyddg'").FirstOrDefault();
-                //System.Diagnostics.Debug.WriteLine("sql test :    " + loginStaff.staffName);
-                //return loginStaff;
             }
 
         }
