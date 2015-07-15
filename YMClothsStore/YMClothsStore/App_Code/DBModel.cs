@@ -707,13 +707,22 @@ namespace YMClothsStore
         /**
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
-         * 返回：本月每日销售价格的集合
+         * 返回：本月每日销售订单的集合
          */
-        public float[] getEverySumOfThisMonth()
+        public order[] getEverySumOfThisMonth()
         {
-            float[] floats = { };
-
-            return floats;
+            DateTime now = DateTime.Now;
+            int currentMonth = now.Month;
+            int currentYear = now.Year;
+            DateTime currentDate =  now.Date;
+            string currentDateStr = currentYear.ToString() + currentMonth.ToString() + currentDate.ToString();
+            DateTime currentDateTime = Convert.ToDateTime(currentDateStr);
+            order[] allOrders = { };
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                allOrders = db.order.Where(p => p.orderTime >= currentDateTime).ToArray();
+            }
+            return allOrders;
         }
 
         /**
