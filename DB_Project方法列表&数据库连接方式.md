@@ -110,12 +110,12 @@
 * 返回：成功或者失败：成功返回true,失败返回false
 * 注意：不要重复添加某一条商品的信息
 
-####19.public stock getShopStockInfoByStaffId(string staffId)[未完成]
+####19.public stock getShopStockInfoByStaffId(string staffId)[通过测试]
 * 员工查看本店库存
 * 参数：员工Id
 * 返回：员工所在商店的所有库存信息
 
-####20.public stock getItemStockInThisShop(string staffId,string itemId)[未完成]
+####20.public stock getItemStockInThisShop(string staffId,string itemId)[通过测试]
 * 员工查看某商品在本店的库存
 * 参数：员工Id,商品Id
 * 返回：员工所在商店的某件商品的库存

@@ -132,7 +132,7 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
+                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
                 db.SaveChanges();
                 deletdSucceed = true;
             }
@@ -486,7 +486,7 @@ namespace YMClothsStore
         /**
          * 19.员工查看本店库存
          * 参数：员工Id
-         * 返回值：员工所在商店的所有库存信息(未测)
+         * 返回值：员工所在商店的所有库存信息(通过测试)
          */
         public stock[] getShopStockInfoByStaffId(string staffId)
         {
@@ -504,7 +504,7 @@ namespace YMClothsStore
         /**
          * 20.员工查看某商品在本店的库存
          * 参数：员工Id, 商品Id
-         * 返回：员工所在商店的某件商品的库存(未测)
+         * 返回：员工所在商店的某件商品的库存(通过测试)
          */
         public stock getItemStockInThisShop(string staffId, string itemId)
         {
