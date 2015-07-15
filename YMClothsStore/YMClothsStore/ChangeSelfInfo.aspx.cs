@@ -91,8 +91,8 @@ namespace YMClothsStore
         protected void modifyEmployeeEmail(object sender , EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("debug:LL start it !");
-            string newEmail = Request.Form["newmail"];
-            string conEmial = Request.Form["conmail"];
+            string newEmail = Request.Form["newemail"];
+            string conEmial = Request.Form["conemail"];
             System.Diagnostics.Debug.WriteLine("debug here :" + newEmail + conEmial);
            if(newEmail.Equals(conEmial))
            {
@@ -100,6 +100,7 @@ namespace YMClothsStore
                System.Diagnostics.Debug.WriteLine("test email:"+newEmail);
                 if (DBModel.sharedDBModel().modifyPersonalInformation(theStaff))
                 {
+                    System.Diagnostics.Debug.WriteLine("test mailin loop :" + theStaff.staffLoginName);
                     Response.Redirect("ChangeSelfInfo.aspx");
                 }
                 else

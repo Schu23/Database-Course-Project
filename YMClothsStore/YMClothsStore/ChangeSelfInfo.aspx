@@ -70,7 +70,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li class="text-center"><a href="#">修改个人信息</a></li>
-                  <li class="text-center"><a href="#">退出</a></li>
+                  <li class="text-center"><a href="~/Login.aspx">退出</a></li>
                 </ul>
               </li>
             </ul>
@@ -182,7 +182,7 @@
                         </div>
                       </div>
                       <!--TODO HERE  staff login name -->
-                      <asp:Button Text="提交" CssClass="btn btn-primary" runat="server"  />
+                      <asp:Button Text="提交" CssClass="btn btn-primary" runat="server" OnClick="modifyEmployeeEmail"  />
                   </div>
                 </div>  
               </div>
