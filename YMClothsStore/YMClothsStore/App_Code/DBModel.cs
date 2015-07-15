@@ -9,18 +9,18 @@ namespace YMClothsStore
     public class DBModel
     {
         // 单例
-       private static DBModel dbModel;
+        private static DBModel dbModel;
         // 构造函数私有
-        private DBModel ()
-       { }
-     //构成单例子
+        private DBModel()
+        { }
+        //构成单例子
         public static DBModel sharedDBModel()
         {
-         if(dbModel == null)
-         {
-             dbModel = new DBModel();
-         }
-         return dbModel;
+            if (dbModel == null)
+            {
+                dbModel = new DBModel();
+            }
+            return dbModel;
         }
 
         /**
@@ -87,7 +87,7 @@ namespace YMClothsStore
                 staffJob = 1,
                 staffGender = "male",
             };
-            
+
             //写入数据库
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -98,7 +98,6 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
@@ -120,7 +119,7 @@ namespace YMClothsStore
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())
             {
-                
+
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
                 db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
@@ -166,7 +165,7 @@ namespace YMClothsStore
          * 参数：店长id，新门店地址，新门店电话
          * 返回值：门店id，失败返回"false"
          */
-        public string addNewShop(string newShopAddress, string newShopPhone) 
+        public string addNewShop(string newShopAddress, string newShopPhone)
         {
             string isSecceed = "新建门店失败";
             shop newShop = new shop
@@ -182,11 +181,9 @@ namespace YMClothsStore
                 {
                     db.shop.Add(newShop);
                     db.SaveChanges();
-                    System.Diagnostics.Debug.WriteLine("添加门店成功！");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加门店异常！");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
@@ -208,7 +205,6 @@ namespace YMClothsStore
                 db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
                 db.SaveChanges();
                 isSucceed = true;
-                System.Diagnostics.Debug.WriteLine("删除门店成功！");
             }
             return isSucceed;
         }
@@ -221,19 +217,18 @@ namespace YMClothsStore
         public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
         {
             bool isSucceed = false;
-            using(YMDBEntities db = new YMDBEntities())
+            using (YMDBEntities db = new YMDBEntities())
             {
-                 try
-                 {
-                     shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
-                     System.Diagnostics.Debug.WriteLine("修改门店信息成功!");
-                  }
-                catch(Exception ex)
-                 {
-                     System.Diagnostics.Debug.WriteLine(ex.Message);
-                 }
+                try
+                {
+                    shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
-           
+
             return isSucceed;
         }
 
@@ -312,12 +307,12 @@ namespace YMClothsStore
             staff[] staffs = { };
             using (YMDBEntities db = new YMDBEntities())
             {
-                string sql = "select * from \"staff\" where \"staffName\" like '%" + name +"%'";
+                string sql = "select * from \"staff\" where \"staffName\" like '%" + name + "%'";
                 staffs = db.Database.SqlQuery<staff>(sql).ToArray();
             }
 
             return staffs;
         }
+
     }
-﻿
 }
