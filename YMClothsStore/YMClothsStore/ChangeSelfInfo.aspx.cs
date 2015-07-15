@@ -94,6 +94,29 @@ namespace YMClothsStore
             string newEmail = Request.Form["newmail"];
             string conEmial = Request.Form["conmail"];
             System.Diagnostics.Debug.WriteLine("debug here :" + newEmail + conEmial);
+           if(newEmail.Equals(conEmial))
+           {
+               theStaff.staffLoginName = newEmail;
+               System.Diagnostics.Debug.WriteLine("test email:"+newEmail);
+                if (DBModel.sharedDBModel().modifyPersonalInformation(theStaff))
+                {
+                    Response.Redirect("ChangeSelfInfo.aspx");
+                }
+                else
+                {
+                    Session["errorMessage"] = "网络问题";
+                    Session["returnURL"] = "ChangeSelfInfo.aspx";
+                    Response.Redirect("Error.aspx");
+                }
+           }
+           else
+           {
+               Session["errorMessage"] = "确认登录名不同";
+               Session["returnURL"] = "ChangeSelfInfo.aspx";
+               Response.Redirect("Error.aspx");
+           }
+
+
 
         }
     }

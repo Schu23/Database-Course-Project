@@ -278,7 +278,7 @@ namespace YMClothsStore
             {
                 try
                 {
-                    loginStaff = db.staff.Where(p => p.staffName == userName).FirstOrDefault();
+                    loginStaff = db.staff.Where(p => p.staffLoginName == userName).FirstOrDefault();
                     if (loginStaff.password.Equals(pass))
                     {
                         return loginStaff;
