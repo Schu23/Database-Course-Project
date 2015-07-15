@@ -15,7 +15,7 @@ namespace YMClothsStore
         {
           //获取当前店里的员工列表
           //now it is hard code ！！！！！
-          staffs = DBModel.sharedDBModel().findStaffsByShopId("121");
+            staffs = DBModel.sharedDBModel().findStaffsByShopId("shop_1436970733");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
              
         }
@@ -24,9 +24,15 @@ namespace YMClothsStore
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-            /*if (!DBModel.sharedDBModel().addNewStaff(freshmanName).Equals("0"))
+            string freshmanPassword = Request.Form["freshmanPwd"];
+            string freshmanShop = Request.Form["freshmanShop"];
+            int freshmanJob = int.Parse(Request.Form["freshmanJob"]);
+            string freshmanGender = Request.Form["freshmanGender"];
+           if (DBModel.sharedDBModel().addNewStaff(freshmanName,freshmanPassword,freshmanShop,freshmanJob,freshmanGender) !=null)
             {
                 System.Diagnostics.Debug.WriteLine("add new staff success");
+                //调回到当前界面
+               Response.Redirect("PersonnelChanges.aspx");
             }
             else
             {
@@ -34,17 +40,20 @@ namespace YMClothsStore
                 Session["errorMessage"] = "添加新员工失败";
                 Session["returnURL"] = "PersonnelChanges.aspx";
                 Response.Redirect("Error.aspx");
-            }*/
+            }
         }
 
         // 开除员工
         protected void fireEmployee(object sender , EventArgs e)
         {
-           string fireId = Request.Form["fireEmployeeId"];
-
+           string fireId = Convert.ToString(Session["fireEmployeeId"]);
+           Session.Remove("fireEmployeeId");
+           System.Diagnostics.Debug.WriteLine("debug: fire the man id :"+fireId);
            if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
            {
                System.Diagnostics.Debug.WriteLine("Fire employee success");
+               //重定向到当前页面
+               Response.Redirect("PersonnelChanges.aspx");
            }
            else
            {

@@ -14,7 +14,7 @@ namespace YMClothsStore
         protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-            theStaff = DBModel.sharedDBModel().findStaffByStaffId("staff_0001");
+            theStaff = (staff)Session["Staff"];
             System.Diagnostics.Debug.WriteLine("staff id " + theStaff.staffId);
         }
        // 更新员工的电话号码
