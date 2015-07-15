@@ -302,12 +302,12 @@ namespace YMClothsStore
          * 参数：新地址名称或代号，新地址详细信息（街道等）
          * 返回值：address实例
          */
-        public address addAddressInfo(string newAddressName, string newAddressDetail)
+        /*public address addAddressInfo(string newAddressName, string newAddressDetail)
         {
             address newAddress = null;
 
             return newAddress;
-        }
+        }*/
 
         /**
          * 11.根据shopId查找shop
@@ -750,6 +750,7 @@ namespace YMClothsStore
          * 44.Boss新增地址信息
          * 参数：地址名称，详细地址
          * 返回：新的地址的实例
+         * 完成测试
          */
         public address addNewAddress(string addressName, string addressDetail)
         {

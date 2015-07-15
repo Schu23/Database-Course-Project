@@ -64,7 +64,7 @@
 * 参数：userName，password
 * 返回值：bool
 
-####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[未完成]
+####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[删除]
 * 添加新的地址以供选择
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例
