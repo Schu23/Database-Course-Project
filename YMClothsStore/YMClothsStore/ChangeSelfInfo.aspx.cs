@@ -50,15 +50,28 @@ namespace YMClothsStore
         //更改员工的密码
         protected void modifyEmployeePwd (object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("debug:LL start it !");
             string oldPwd = Request.Form["oldpwd"];
             string newPwd = Request.Form["newpwd"];
             string conPwd = Request.Form["conpwd"];
+            System.Diagnostics.Debug.WriteLine("debug:LL"+oldPwd);
+            System.Diagnostics.Debug.WriteLine(theStaff.password);
             if(theStaff.password.Equals(oldPwd))
             {
                if(newPwd.Equals(conPwd))
                {
                    theStaff.password = newPwd;
-                   DBModel.sharedDBModel().modifyPersonalInformation(theStaff);
+                   if (DBModel.sharedDBModel().modifyPersonalInformation(theStaff))
+                   {
+
+                       Response.Redirect("ChangeSelfInfo.aspx");
+                   }
+                   else
+                   {
+                       Session["errorMessage"] = "网络问题";
+                       Session["returnURL"] = "ChangeSelfInfo.aspx";
+                       Response.Redirect("Error.aspx");
+                   }
                }
                else
                {
