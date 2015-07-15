@@ -109,11 +109,11 @@
     <Content Include="scripts\staff_index.js" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\staffInfo.css" />
+    <Content Include="stylesheets\staff_index.css" />
     <EntityDeploy Include="YMEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YMEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="stylesheets\staff_index.css" />
     <Content Include="YMEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>YMEntities.edmx</DependentUpon>
@@ -190,7 +190,7 @@
     <Compile Include="image.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="in.cs">
+    <Compile Include="inBase.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="inDetail.cs">
@@ -226,7 +226,7 @@
     <Compile Include="orderDetail.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="out.cs">
+    <Compile Include="outBase.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="outDetail.cs">
