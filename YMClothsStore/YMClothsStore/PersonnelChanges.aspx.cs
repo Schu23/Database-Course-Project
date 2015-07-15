@@ -11,11 +11,14 @@ namespace YMClothsStore
     public partial class PersonnelChanges : System.Web.UI.Page
     {
         protected staff[]  staffs;
+        protected string fireId;
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
           //now it is hard code ！！！！！
-            staffs = DBModel.sharedDBModel().findStaffsByShopId("shop_1436970752");
+           // string fireId = Request.QueryString["fire"];
+          //  System.Diagnostics.Debug.WriteLine("debug: fire the man id :" + fireId);
+          staffs = DBModel.sharedDBModel().findStaffsByShopId("shop_1436970752");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
              
         }
@@ -46,10 +49,12 @@ namespace YMClothsStore
         // 开除员工
         protected void fireEmployee(object sender , EventArgs e)
         {
-           string fireId = Convert.ToString(Session["fireEmployeeId"]);
-           Session.Remove("fireEmployeeId");
+        
+           //string fireId = (string)Session["fire"];  
+            string fireId = Request.QueryString["fire"];
            System.Diagnostics.Debug.WriteLine("debug: fire the man id :"+fireId);
-           if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
+           Session.Remove("fire");
+  /*         if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
            {
                System.Diagnostics.Debug.WriteLine("Fire employee success");
                //重定向到当前页面
@@ -62,6 +67,9 @@ namespace YMClothsStore
                Session["returnURL"] = "PersonnelChanges.aspx";
                Response.Redirect("Error.aspx");
            }
+
+*/
+           Response.Redirect("PersonnelChanges.aspx");
         }
     }
 }

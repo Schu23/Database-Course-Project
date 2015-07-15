@@ -37,3 +37,9 @@ $(function(){
         showPage($(this).attr('pagenum'));
     })
 });
+
+$('#my_modal').on('show.bs.modal', function (e) {
+    var btn = $(e.relatedTarget);
+    var id = btn.data('id');
+    $("#staff_name").html(id);
+})

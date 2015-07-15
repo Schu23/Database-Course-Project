@@ -162,12 +162,20 @@
               <td><%: staff.staffGender %></td>
               <td><%: staff.staffPhone %></td>
               <td>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#<%:staff.staffId %>">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#my_modal" id ="<%:staff.staffId %>">
                   移除
                 </button>
-                <!-- Modal -->
+                
+              </td>
+            </tr>
+              <% } %>
+
+          </tbody>
+ 
+        </table>
+            <!-- Modal -->
                  
-                <div class="modal fade" id="<%:staff.staffId %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -175,11 +183,11 @@
                         <h4 class="modal-title" id="myModalLabel">移除员工</h4>
                       </div>
                       <div class="modal-body">
-                        你确定要移除员工<%: staff.staffName %>吗？
+                        你确定要移除员工<label id="staff_name"></label>吗？
                       </div>
                       <div class="modal-footer">  
-                   
-                          <Label Text="text" style="display:none;"> <%:Session["fireEmployeeId"] = staff.staffId %> </Label>   
+                          <a runat="server" href="http://localhost:51682/PersonnelChanges.aspx?fire=<%:staff.staffId%>">content</a>
+                 
                          <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee" />
                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>          
                       </div>
@@ -187,12 +195,6 @@
                   </div>
                 </div>
              <!--modal-->
-              </td>
-            </tr>
-              <% } %>
-          </tbody>
- 
-        </table>
           </form>   
       </div>
     </div>
