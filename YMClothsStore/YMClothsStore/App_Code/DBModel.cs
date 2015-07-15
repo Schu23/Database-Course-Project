@@ -110,7 +110,6 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
@@ -190,11 +189,9 @@ namespace YMClothsStore
                 {
                     db.shop.Add(newShop);
                     db.SaveChanges();
-                    System.Diagnostics.Debug.WriteLine("添加门店成功");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加门店异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
@@ -216,7 +213,6 @@ namespace YMClothsStore
                 db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
                 db.SaveChanges();
                 isSucceed = true;
-                System.Diagnostics.Debug.WriteLine("删除门店成功");
             }
             return isSucceed;
         }
@@ -234,7 +230,6 @@ namespace YMClothsStore
                  try
                  {
                      shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
-                     System.Diagnostics.Debug.WriteLine("修改门店信息成功");
                   }
                 catch(Exception ex)
                  {
@@ -339,7 +334,7 @@ namespace YMClothsStore
             staff[] staffs = { };
             using (YMDBEntities db = new YMDBEntities())
             {
-                string sql = "select * from \"staff\" where \"staffName\" like '%" + name + "%'";
+                string sql = "select * from \"staff\" where \"staffName\" like '%" + staffName + "%'";
                 staffs = db.Database.SqlQuery<staff>(sql).ToArray();
             }
 
