@@ -237,7 +237,6 @@ namespace YMClothsStore
          * 9.员工登陆接口
          * 参数：userName，password
          * 返回值：bool
-         * 未测试
          */
         public staff loginWithStaffLoginNameAndPassword(string userName, string pass)
         {
