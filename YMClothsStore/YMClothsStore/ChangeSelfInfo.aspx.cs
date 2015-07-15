@@ -11,7 +11,7 @@ namespace YMClothsStore
     {
         // TODO
         //  找到该员工 
-        protected staff theStaff = DBModel.sharedDBModel().findStaffById("Convert.ToString(S)");
+        protected staff theStaff = DBModel.sharedDBModel().findStaffById("dd");
         protected void Page_Load(object sender, EventArgs e)
         {
 
