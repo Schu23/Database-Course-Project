@@ -158,8 +158,8 @@
 ####28.public order[] getEverySumOfThisMonth()[未完成]
 * 员工页面显示这个月每日销售总价（？需要每个月都传么？No）
 * 参数：无
-* 返回：本月每日订单的集合
-* 备注：通过此集合可以拿到每天的订单总价格
+* 返回：本月每日销售总价的集合
+* 备注：不太确定返回值类型是float[]还是decimal[]，有待测试
 
 ####29.public item[] getAllItemsOfThisShop(string staffId)[未完成]
 * 员工查询商品信息

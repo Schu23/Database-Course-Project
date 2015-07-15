@@ -707,22 +707,83 @@ namespace YMClothsStore
         /**
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
-         * 返回：本月每日销售订单的集合
+         * 返回：本月每日销售总价的集合
+         * 备注：不太确定返回值类型是float还是decimal
          */
-        public order[] getEverySumOfThisMonth()
+        public decimal[] getEverySumOfThisMonth()
         {
-            DateTime now = DateTime.Now;
-            int currentMonth = now.Month;
-            int currentYear = now.Year;
-            DateTime currentDate =  now.Date;
-            string currentDateStr = currentYear.ToString() + currentMonth.ToString() + currentDate.ToString();
-            DateTime currentDateTime = Convert.ToDateTime(currentDateStr);
-            order[] allOrders = { };
-            using(YMDBEntities db = new YMDBEntities())
+            //dictionary<datetime,float> returnorders = new dictionary<datetime,float>();
+            //datetime now = datetime.now;
+            //int currentmonth = now.month;
+            //int currentyear = now.year;
+            //datetime currentdate =  now.date;
+            //string currentdatestr = currentyear.tostring() + currentmonth.tostring() + currentdate.tostring();
+            //datetime currentdatetime = convert.todatetime(currentdatestr);
+            //order[] allorders = { };
+            //using(ymdbentities db = new ymdbentities())
+            //{
+            //    allorders = db.order.where(p => p.ordertime >= currentdatetime).toarray();
+            //    for (int i = 0; i < allorders.length; i++)
+            //{
+            //    if (currentmonth == 1 || currentmonth == 3 || currentmonth == 5 || currentmonth == 7 || currentmonth == 8 || currentmonth == 10 || currentmonth == 12)
+            //    {
+            //        for (int i = 0; i < 31; i++)
+            //        {
+            //            if(db.order.where(p=>p.ordertime == allorders[i].ordertime))
+            //        }
+            //    }
+            //    else if (currentmonth == 4 || currentmonth == 6 || currentmonth == 9 || currentmonth == 11)
+            //    {
+            //        for (int i = 0; i < 30; i++)
+            //        {
+
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if ((currentyear % 4 == 0 && currentyear %100 != 0)||currentyear%400 == 0)
+            //        {
+            //            for (int i = 0; i < 29; i++)
+            //            {
+
+            //            }
+            //        }else
+            //        {
+            //            for (int i = 0; i < 28; i++)
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //}
+                
+            //}
+
+            decimal[] returnOrders = new decimal[30];
+            using (YMDBEntities db = new YMDBEntities())
             {
-                allOrders = db.order.Where(p => p.orderTime >= currentDateTime).ToArray();
+                for (int i = 0; i < 30; i++)
+                {
+                    DateTime d = DateTime.Now;
+                    DateTime tempDate = d.AddDays(0 - i);
+                    order[] tempOrderArray = db.order.Where(p => p.orderTime == tempDate).ToArray();
+                    if (tempOrderArray.Length == 0)
+                    {
+                        returnOrders[i] = 0;
+                    }
+                    else
+                    {
+                        //这个类型不太确定
+                        decimal tempSumPrice = 0;
+                        for (int j = 0; j < tempOrderArray.Length; j++)
+                        {
+                            tempSumPrice += tempOrderArray[j].totalPrice;
+                        }
+                        returnOrders[i] = tempSumPrice;
+                    }
+                }
             }
-            return allOrders;
+            return returnOrders;
         }
 
         /**
