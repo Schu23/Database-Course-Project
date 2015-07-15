@@ -297,10 +297,26 @@ namespace YMClothsStore
          * 10.增加地址接口
          * 参数：
          */
-        //public address addAddressInfo(string newAddressName, string newAddressDetail)
-        //{
-        //    address newAddressInfo = 
-        //}
+        public address addAddressInfo(string newAddressName, string newAddressDetail)
+        {
+            return null;
+        }
 
+        /**
+         * 11.根据员工姓名查找员工信息(支持部分查询)
+         * 参数：员工姓名
+         * 返回值：员工staff数组
+         */
+        public staff[] findStaffsByName(string name)
+        {
+            staff[] staffs = { };
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string sql = "select * from \"staff\" where \"staffName\" like '%" + name +"%'";
+                staffs = db.Database.SqlQuery<staff>(sql).ToArray();
+            }
+
+            return staffs;
+        }
     }
 }
