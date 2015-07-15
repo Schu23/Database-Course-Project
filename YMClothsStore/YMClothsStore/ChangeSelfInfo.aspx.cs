@@ -12,10 +12,12 @@ namespace YMClothsStore
         // TODO
         //  找到该员工 
         protected staff theStaff;
+        protected shop hisShop;
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
             System.Diagnostics.Debug.WriteLine("staff id " + theStaff.staffId);
+            hisShop = DBModel.sharedDBModel().findShopByShopId(theStaff.shopId);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
@@ -91,9 +93,33 @@ namespace YMClothsStore
         protected void modifyEmployeeEmail(object sender , EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("debug:LL start it !");
-            string newEmail = Request.Form["newmail"];
-            string conEmial = Request.Form["conmail"];
+            string newEmail = Request.Form["newemail"];
+            string conEmial = Request.Form["conemail"];
             System.Diagnostics.Debug.WriteLine("debug here :" + newEmail + conEmial);
+           if(newEmail.Equals(conEmial))
+           {
+               theStaff.staffLoginName = newEmail;
+               System.Diagnostics.Debug.WriteLine("test email:"+newEmail);
+                if (DBModel.sharedDBModel().modifyPersonalInformation(theStaff))
+                {
+                    System.Diagnostics.Debug.WriteLine("test mailin loop :" + theStaff.staffLoginName);
+                    Response.Redirect("ChangeSelfInfo.aspx");
+                }
+                else
+                {
+                    Session["errorMessage"] = "网络问题";
+                    Session["returnURL"] = "ChangeSelfInfo.aspx";
+                    Response.Redirect("Error.aspx");
+                }
+           }
+           else
+           {
+               Session["errorMessage"] = "确认登录名不同";
+               Session["returnURL"] = "ChangeSelfInfo.aspx";
+               Response.Redirect("Error.aspx");
+           }
+
+
 
         }
     }

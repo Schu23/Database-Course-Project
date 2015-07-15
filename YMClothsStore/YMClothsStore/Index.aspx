@@ -103,15 +103,8 @@
                     <td id="staffId">23980012398001</td>
                     <td>2015-07-14 21:58</td>
                     <td>666.66元</td>
-                    <td>
-                      <button type="button" class="btn btn-success btn-sm">
-                        修改
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_orderId">
-                        删除
-                      </button>
+                 
+
                       <!-- Modal -->
                       <div class="modal fade" id="delete_orderId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">

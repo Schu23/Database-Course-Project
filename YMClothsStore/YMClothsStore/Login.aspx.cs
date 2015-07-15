@@ -39,9 +39,9 @@ namespace YMClothsStore
               {
                   Session["Staff"] = theStaff;
                   System.Diagnostics.Debug.WriteLine("success !" + "usr job :" + theStaff.staffJob);
-                  if(theStaff.staffJob.Equals("1")) 
+                  if(theStaff.staffJob ==  1) 
                       Response.Redirect("ManagerIndex.aspx");
-                  if (theStaff.staffJob.Equals("0"))
+                  if (theStaff.staffJob == 0)
                       Response.Redirect("BossIndex.aspx");
                  else
                       Response.Redirect("Index.aspx");

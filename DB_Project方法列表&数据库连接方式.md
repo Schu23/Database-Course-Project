@@ -64,7 +64,7 @@
 * 参数：userName，password
 * 返回值：bool
 
-####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[未完成]
+####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[删除]
 * 添加新的地址以供选择
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例
@@ -84,17 +84,17 @@
 * 参数：员工Id
 * 返回：所有的订单的数组
 
-####14.public order getOrderInfoByOrderId(string orderId)[未完成]
+####14.public order getOrderInfoByOrderId(string orderId)[已完成]
 * 员工查看某个订单普通信息
 * 参数：订单Id
 * 返回：订单实例
 
-####15.public orderDetail[] getOrderDetailInfoByOrderId(string orderId)[未完成]
+####15.public orderDetail[] getOrderDetailInfoByOrderId(string orderId)[通过测试]
 * 查看订单的详细信息
 * 参数：订单Id
 * 返回：员工所在商店的某件商品的详情数组
 
-####16.public string getShopIdByStaffId(string staffId)[未完成]
+####16.public string getShopIdByStaffId(string staffId)[通过测试]
 * 通过员工Id获取所在Shop的Id(供其他方法调用)
 * 参数：员工Id
 * 返回：员工所在商店的Id
@@ -110,27 +110,27 @@
 * 返回：成功或者失败：成功返回true,失败返回false
 * 注意：不要重复添加某一条商品的信息
 
-####19.public stock getShopStockInfoByStaffId(string staffId)[未完成]
+####19.public stock getShopStockInfoByStaffId(string staffId)[通过测试]
 * 员工查看本店库存
 * 参数：员工Id
 * 返回：员工所在商店的所有库存信息
 
-####20.public stock getItemStockInThisShop(string staffId,string itemId)[未完成]
+####20.public stock getItemStockInThisShop(string staffId,string itemId)[通过测试]
 * 员工查看某商品在本店的库存
 * 参数：员工Id,商品Id
 * 返回：员工所在商店的某件商品的库存
 
-####21.public stock getItemStockInSystem(string itemId)[未完成]
+####21.public stock getItemStockInSystem(string itemId)[通过测试]
 * 员工查看某商品在系统的库存
 * 参数：货物Id
 * 返回：系统中的某件商品的库存
 
-####22.public stock[] getSystemStockInfo()[未完成]
+####22.public stock[] getSystemStockInfo()[通过测试]
 * 员工查看总库库存
 * 参数：无
 * 返回：原木衣橱所有的库存信息
 
-####23.public inBase addNewIn(string staffId)[未完成]
+####23.public inBase addNewIn(string staffId)[通过测试]
 * 员工新建入库登记表
 * 参数：员工Id
 * 返回：一个新添加的入库登记表

@@ -132,7 +132,7 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
+                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
                 db.SaveChanges();
                 deletdSucceed = true;
             }
@@ -155,7 +155,7 @@ namespace YMClothsStore
                 {
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
                     System.Diagnostics.Debug.WriteLine(oldStaff.password);
-                    oldStaff.staffName = currentInfo.staffName;
+                    oldStaff.staffLoginName = currentInfo.staffLoginName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
                     db.SaveChanges();
@@ -278,7 +278,7 @@ namespace YMClothsStore
             {
                 try
                 {
-                    loginStaff = db.staff.Where(p => p.staffName == userName).FirstOrDefault();
+                    loginStaff = db.staff.Where(p => p.staffLoginName == userName).FirstOrDefault();
                     if (loginStaff.password.Equals(pass))
                     {
                         return loginStaff;
@@ -302,12 +302,12 @@ namespace YMClothsStore
          * 参数：新地址名称或代号，新地址详细信息（街道等）
          * 返回值：address实例
          */
-        public address addAddressInfo(string newAddressName, string newAddressDetail)
+        /*public address addAddressInfo(string newAddressName, string newAddressDetail)
         {
             address newAddress = null;
 
             return newAddress;
-        }
+        }*/
 
         /**
          * 11.根据shopId查找shop
@@ -343,7 +343,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 13.员工查看自己店铺的订单信息
+         * 13.员工查看自己店铺的订单信息(未测)
          * 参数：员工id
          * 返回值：order[]
          */
@@ -351,9 +351,6 @@ namespace YMClothsStore
         {
             order[] orders = { };
             System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
-
-            //ArrayList test = new ArrayList();
-            //order[] test2 = (order[])test.ToArray();
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
@@ -384,7 +381,7 @@ namespace YMClothsStore
         /**
          * 14.员工查看某个订单的普通信息
          * 参数：订单id
-         * 返回值：订单实例(未测)
+         * 返回值：订单实例(测试通过)
          */
         public order getOrderInfoByOrderId(string orderId)
         {
@@ -401,7 +398,7 @@ namespace YMClothsStore
         /**
          * 15.员工查看订单的详细信息
          * 参数：订单Id
-         * 返回值：员工所在商店的某件商品的订单详情数组（未测）
+         * 返回值：员工所在商店的某件商品的订单详情数组（通过测试）
          */
         public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
         {
@@ -418,7 +415,7 @@ namespace YMClothsStore
         /**
          * 16.通过员工id获取所在shop的id
          * 参数：员工Id
-         * 返回值：员工所在shop的id（未测）
+         * 返回值：员工所在shop的id（通过测试）
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
@@ -426,8 +423,7 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                staff targetStaff = db.staff.Where(p => p.staffId == targetShopId).FirstOrDefault();
-                targetShopId = targetStaff.shopId;
+                targetShopId = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault().shopId;
             }
 
             return targetShopId;
@@ -436,7 +432,7 @@ namespace YMClothsStore
         /**
          * 17.员工增加订单记录
          * 参数：staffId, 这次订单的详细信息数组
-         * 返回值：本次订单（未测）
+         * 返回值：本次订单（需要修改stock）
          */
         public order addOrderInfo(string staffId)
         {
@@ -462,7 +458,7 @@ namespace YMClothsStore
          * 18.员工在订单中添加一条订单详细信息
          * 参数：订单Id,货物Id,货物数量
          * 返回：成功返回true,失败返回false
-         * 注意：不要重复添加某一条商品的信息（未测）
+         * 注意：不要重复添加某一条商品的信息（需要修改stock）
          */
         public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string newOrderId, string newItemId, int newItemAmount)
         {
@@ -490,7 +486,7 @@ namespace YMClothsStore
         /**
          * 19.员工查看本店库存
          * 参数：员工Id
-         * 返回值：员工所在商店的所有库存信息(未测)
+         * 返回值：员工所在商店的所有库存信息(通过测试)
          */
         public stock[] getShopStockInfoByStaffId(string staffId)
         {
@@ -508,7 +504,7 @@ namespace YMClothsStore
         /**
          * 20.员工查看某商品在本店的库存
          * 参数：员工Id, 商品Id
-         * 返回：员工所在商店的某件商品的库存(未测)
+         * 返回：员工所在商店的某件商品的库存(通过测试)
          */
         public stock getItemStockInThisShop(string staffId, string itemId)
         {
@@ -526,7 +522,7 @@ namespace YMClothsStore
         /**
          * 21.员工查看某商品在系统的库存
          * 参数：货物Id
-         * 返回值：系统中的某件商品的所有库存(未测)
+         * 返回值：系统中的某件商品的所有库存(通过测试)
          */
         public stock[] getItemStockInSystem(string itemId)
         {
@@ -542,7 +538,7 @@ namespace YMClothsStore
 
         /**
          * 22.员工查看总库库存
-         * 返回值：原木衣橱总库库存信息数组(未测)
+         * 返回值：原木衣橱总库库存信息数组(通过测试)
          */
         public stock[] getSystemStockInfo()
         {
@@ -560,7 +556,7 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表(未测)
+         * 返回：一个新添加的入库登记表(通过测试)
          */
         public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
@@ -1022,6 +1018,7 @@ namespace YMClothsStore
          * 44.Boss新增地址信息
          * 参数：地址名称，详细地址
          * 返回：新的地址的实例
+         * 完成测试
          */
         public address addNewAddress(string addressName, string addressDetail)
         {
