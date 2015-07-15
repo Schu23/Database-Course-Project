@@ -337,9 +337,11 @@ namespace YMClothsStore
         {
 
             staff[] staffs = { };
-
-
-
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string sql = "select * from \"staff\" where \"staffName\" like '%" + name + "%'";
+                staffs = db.Database.SqlQuery<staff>(sql).ToArray();
+            }
 
             return staffs;
         }
@@ -467,5 +469,15 @@ namespace YMClothsStore
 
             return currentSystemStock;
         }
+
+        /**
+         * 23.员工新建入库登记表
+         * 参数：员工Id
+         * 返回：一个新添加的入库登记表
+         */
+        /*public in addNewIn(string staffId){
+
+        }*/
+
     }
 }
