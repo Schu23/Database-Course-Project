@@ -14,7 +14,8 @@ namespace YMClothsStore
         protected staff theStaff = DBModel.sharedDBModel().findStaffById("dd");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            shop target = DBModel.sharedDBModel().findShopByShopId("121");
+            System.Diagnostics.Debug.WriteLine("shop:" + target.shopAddress);
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)

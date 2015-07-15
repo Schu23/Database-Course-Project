@@ -36,7 +36,20 @@ namespace YMClothsStore
             string newId = tableName + "_";
             using (YMDBEntities db = new YMDBEntities())
             {
-                int countNum = db.Database.ExecuteSqlCommand("select count(*) from \"" + tableName + "\"");
+                int countNum;
+                switch (tableName)
+                {
+                    case "staff":
+                        countNum = db.staff.Count();
+                        break;
+                    case "shop":
+                        countNum = db.shop.Count();
+                        break;
+                    default:
+                        countNum = -2;
+                        break;
+                }
+                countNum++;
                 newId += countNum;
                 newId = newId + "_";
             }
@@ -54,7 +67,6 @@ namespace YMClothsStore
          * 1.查询店铺员工信息
          * 参数：店铺id：shopId
          * 返回值：成功返回该店铺员工信息Array，失败返回null
-         * 需要测试
          */
         public staff[] findStaffInformationById(string shopId)
         {
@@ -70,22 +82,20 @@ namespace YMClothsStore
          * 2.添加新员工
          * 参数：新员工名字
          * 返回值：成功返回员工id，失败返回0
-         * 需要测试
          */
-        public staff addNewStaff(string newStaffName)
+        public staff addNewStaff(string newStaffName, string newStaffPassword, string newShopId, int newStaffJob, string newGender)
         {
-            string newId = "1234567890";// createNewId("staff");//根据一个算法产生ID
-            const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
+            string newId = createNewId("staff");//根据一个算法产生ID
 
             staff newStaff = new staff
             {
                 staffId = newId,
                 staffName = newStaffName,
-                password = defaultPassword,
+                password = newStaffPassword,
                 staffLoginName = newStaffName,
-                shopId = "121",
-                staffJob = 1,
-                staffGender = "male",
+                shopId = newShopId,
+                staffJob = newStaffJob,
+                staffGender = newGender,
             };
             
             //写入数据库
@@ -111,7 +121,7 @@ namespace YMClothsStore
          * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
-         * 需要测试
+         * bug
          */
         public bool deleteStaffById(string deletedStaffId)
         {
@@ -123,7 +133,7 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
+                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
                 db.SaveChanges();
                 deletdSucceed = true;
             }
@@ -240,9 +250,6 @@ namespace YMClothsStore
             {
                 try
                 {
-                                     //           string sql = "select * from \"staff\" where \"staffloginname\" = " + '" + userName + "'";
-                  //  loginStaff = db.Database.SqlQuery<staff>(sql).FirstOrDefault();
-                 //   System.Diagnostics.Debug.WriteLine("sql test :    " + loginStaff.staffName);
                     loginStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffLoginName\" = '" + userName +"'").FirstOrDefault();
                     if (loginStaff.password.Equals(pass))
                     {
@@ -258,13 +265,23 @@ namespace YMClothsStore
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                     return null;
                 }
-
-                //loginStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffLoginName\" = 'wzyddg'").FirstOrDefault();
-                //System.Diagnostics.Debug.WriteLine("sql test :    " + loginStaff.staffName);
-                //return loginStaff;
             }
 
         }
 
+        /**
+         * 根据shopId查找shop
+         * 参数：shopId
+         * 返回值：staff
+         */
+        public shop findShopByShopId(string targetShopId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                shop targetShop = db.shop.Where(p => p.shopId == targetShopId).FirstOrDefault();
+                return targetShop;
+            }
+
+        }
     }
 }

@@ -11,23 +11,23 @@
 
 ------
 #接口列表
-####public string createNewId(string tableName)
+####public string createNewId(string tableName)[√]
 * 创建对应表的主键
 * 参数：表名称
 * 返回值：主键
 
 ##DBModel类
-####1.public staff[] findStaffInformationById(string shopId)
+####1.public staff[] findStaffInformationById(string shopId)[√]
 * 查找店铺员工信息
 * 参数：店铺id：shopId
 * 返回值：成功返回该店铺所有员工数组，失败返回空数组
  
-####2.public string addStaff(string newStaffName)
+####2.public staff addNewStaff(string newStaffName, string newStaffPassword, string newShopId, int newStaffJob, string newGender)[参数列表已修改]
 * 添加新员工
-* 参数：新员工名字
+* 参数：新员工名字，密码，shopID，工作，性别
 * 返回值：成功返回员工id，失败返回0
 
-####3.public bool deleteStaffById(string deletedStaffId)
+####3.public bool deleteStaffById(string deletedStaffId)[√]
 * 删除员工
 * 参数：员工id
 * 返回值：成功返回true，失败或员工不存在返回false
@@ -56,4 +56,4 @@
 ####8.public staff findStaffById(string id)
 * 根据ID查找员工* 参数：员工id* 返回值：员工类staff
 ####9.loginWithStaffLoginNameAndPassword(string userName, string pass)* 9.员工登陆接口* 参数：userName，password* 返回值：bool
-
+####10.public shop findShopByShopId(string targetShopId)* 根据shopId查找shop* 参数：shopId* 返回值：staff
