@@ -21,6 +21,7 @@ namespace YMClothsStore
     
         public string addressId { get; set; }
         public string addressName { get; set; }
+        public string addressDetail { get; set; }
         public Nullable<decimal> addressX { get; set; }
         public Nullable<decimal> addressY { get; set; }
     

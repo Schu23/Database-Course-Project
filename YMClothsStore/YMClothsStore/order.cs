@@ -21,7 +21,7 @@ namespace YMClothsStore
     
         public string orderId { get; set; }
         public string shopId { get; set; }
-        public Nullable<decimal> totalPrice { get; set; }
+        public decimal totalPrice { get; set; }
         public Nullable<System.DateTime> orderTime { get; set; }
     
         public virtual shop shop { get; set; }
