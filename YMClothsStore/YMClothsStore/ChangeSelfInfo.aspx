@@ -52,18 +52,18 @@
               <div class="thumbnail">
                 <div class="caption">
                   <div class="container">
-                    <legend>刘旭东</legend>
+                    <legend><%:theStaff.staffName %></legend>
                     <div class="row">
                       <div class="col-md-6">
                         <h3>个人信息</h3><br/>
-                        <p>编号：007</p>
-                        <p>职位：分店店长</p>
-                        <p>所在门店：淮海路分店</p>
-                        <p>联系方式：12345678901</p>
+                        <p>编号：<%:theStaff.staffId %></p>
+                        <p>职位：<%: theStaff.staffJob %></p>
+                        <p>所在门店：<%: theStaff.shopId %></p>
+                        <p>联系方式：<%: theStaff.staffPhone %></p>
                       </div>
                       <div class="col-md-6">
-                        <h3>所在分店信息</h3></br>
-                        <p>编号：001</p>
+                        <h3>所在分店信息</h3><br/>
+                        <p>编号：<%:theStaff.shopId %></p>
                         <p>地址：淮海路666号</p>
                         <p>门店电话：(021)68738726</p>
                       </div>

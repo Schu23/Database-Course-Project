@@ -11,17 +11,17 @@ namespace YMClothsStore
     {
         // TODO
         //  找到该员工 
-        protected staff theStaff = DBModel.sharedDBModel().findStaffById("dd");
+        protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-            shop target = DBModel.sharedDBModel().findShopByShopId("121");
-            System.Diagnostics.Debug.WriteLine("shop:" + target.shopAddress);
+            
         }
        // 更新员工的电话号码
         protected void modifyEmployeePhone(object sender , EventArgs e)
         {
             string employeePhone = Request.Form["newphone"];
             string conPhone = Request.Form["conPhone"];
+            System.Diagnostics.Debug.WriteLine("phone :" + employeePhone);
             if (employeePhone.Equals(conPhone))
             {
                 theStaff.staffPhone = employeePhone;
