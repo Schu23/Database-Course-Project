@@ -351,11 +351,17 @@ namespace YMClothsStore
         {
             order[] orders = { };
 
+            //ArrayList test = new ArrayList();
+            //order[] test2 = (order[])test.ToArray();
+
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
                 //先根据staffId查到员工所属店铺
-                staff currentShopStaff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
+                foreach (var i in db.staff.Where(p => p.staffId == staffId))
+                {
+                    
+                }
                 
             }
 
@@ -734,7 +740,25 @@ namespace YMClothsStore
          */
         public address addNewAddress(string addressName, string addressDetail)
         {
-            address newAddress = null;
+            address newAddress = new address
+            {
+                addressId = createNewId("address"),
+                addressName = addressName,
+                addressDetail = addressDetail,
+            };
+            //写入数据库
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                try
+                {
+                    db.address.Add(newAddress);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
 
             return newAddress;
         }
