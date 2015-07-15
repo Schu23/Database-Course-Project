@@ -20,8 +20,7 @@ namespace YMClothsStore
             string managerID = Request.Form["managerId"];
             string branchAddress = Request.Form["BrachAddress"];
             string shopPhone = Request.Form["ShopPhone"];
-            // 接口已经改过！   安老板注意 
-            if(DBModel.sharedDBModel().addNewShop(branchAddress, shopPhone).Equals("false"))
+            if(DBModel.sharedDBModel().addNewShop(managerID, branchAddress, shopPhone).Equals("false"))
             {
                 System.Diagnostics.Debug.WriteLine("新建分店失败");
                 Session["errorMessage"] = "新建分店失败";
