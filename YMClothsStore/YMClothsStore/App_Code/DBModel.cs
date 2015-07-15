@@ -162,13 +162,29 @@ namespace YMClothsStore
          * 参数：店长id，新门店地址，新门店电话
          * 返回值：门店id，失败返回"false"
          */
-        public string addNewShop(string newShopManagerId, string newShopAddress, string newShopPhone) 
+        public string addNewShop(string newShopAddress, string newShopPhone) 
         {
-            string isSecceed = "false";
-
-            /*
-             * 在Shop表中新加一条记录，并将对应店长shopId改为新门店
-             */
+            string isSecceed = "新建门店失败";
+            shop newShop = new shop
+            {
+                shopAddress = newShopAddress,
+                shopPhone = newShopPhone,
+                shopId = createNewId("shop"),   //需要设计一个算法给出shop的id
+            };
+            //写入数据库
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                try
+                {
+                    db.shop.Add(newShop);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("添加门店异常！");
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
 
             return isSecceed;
         }
