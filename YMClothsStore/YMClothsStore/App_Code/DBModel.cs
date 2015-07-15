@@ -36,7 +36,7 @@ namespace YMClothsStore
             string newId = tableName + "_";
             using (YMDBEntities db = new YMDBEntities())
             {
-                int countNum = db.Database.ExecuteSqlCommand("select count(*) from @p0", tableName);
+                int countNum = db.Database.ExecuteSqlCommand("select count(*) from \"" + tableName + "\"");
                 newId += countNum;
                 newId = newId + "_";
             }
@@ -53,25 +53,25 @@ namespace YMClothsStore
         /**
          * 1.查询店铺员工信息
          * 参数：店铺id：shopId
-         * 返回值：成功返回该店铺员工信息ArrayList，失败返回null
+         * 返回值：成功返回该店铺员工信息Array，失败返回null
+         * 需要测试
          */
         public staff[] findStaffInformationById(string shopId)
         {
             staff[] staffs = { };
-            /* using (YMClothsStoreContext db = new YMClothsStoreContext())
+            using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
-                    string sql = "select * from STAFF where STAFF_ID = " + id;
-                    staff = db.Database.SqlQuery<STAFF>(sql).FirstOrDefault();
-                    return staff;
+                    //string sql = "select * from \"staff\" where \"shopId\" = '" + shopId + "'";
+                    //staffs = db.Database.SqlQuery<staff>(sql).ToArray();
+                    staffs = db.staff.Where(p => p.shopId == shopId).ToArray();
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
-            */
 
             return staffs;
         }
@@ -81,16 +81,20 @@ namespace YMClothsStore
          * 返回值：成功返回员工id，失败返回0
          * 需要测试
          */
-        public string addNewStaff(string newStaffName)
+        public staff addNewStaff(string newStaffName)
         {
-            string newId = createNewId("staff");//根据一个算法产生ID
+            string newId = "1234567890";// createNewId("staff");//根据一个算法产生ID
             const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
 
             staff newStaff = new staff
             {
                 staffId = newId,
                 staffName = newStaffName,
-                password = defaultPassword
+                password = defaultPassword,
+                staffLoginName = newStaffName,
+                shopId = "121",
+                staffJob = 1,
+                staffGender = "male",
             };
             
             //写入数据库
@@ -109,7 +113,7 @@ namespace YMClothsStore
             }
 
 
-            return newStaff.staffId;
+            return newStaff;
         }
 
         /*
@@ -128,11 +132,10 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
-                int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
-                if (temp == 1)
-                {
-                    deletdSucceed = true;
-                } 
+                //int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
+                //db.Database.SqlQuery<staff>("delete from \"staff\" where \"staffId\" = '" + deletedStaffId + "'");
+                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
+                deletdSucceed = true;
             }
 
             return deletdSucceed;
