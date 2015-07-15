@@ -16,7 +16,7 @@ namespace YMClothsStore
     {
         public string inId { get; set; }
         public string itemId { get; set; }
-        public Nullable<decimal> inAmount { get; set; }
+        public decimal inAmount { get; set; }
     
         public virtual @in @in { get; set; }
         public virtual item item { get; set; }

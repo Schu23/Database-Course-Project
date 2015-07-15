@@ -28,6 +28,7 @@ namespace YMClothsStore
     
         public string shopId { get; set; }
         public string shopAddress { get; set; }
+        public decimal shopStatus { get; set; }
         public string shopPhone { get; set; }
     
         public virtual address address { get; set; }
