@@ -31,8 +31,8 @@ namespace YMClothsStore
          */
         public string createNewId(string tableName)
         {
-            //id格式：数据库表名+"_"+ 行号 + "_" + 日期后六位
-            //例如：staff_1_000000
+            //id格式：数据库表名 + "_" + 日期后六位
+            //例如：staff_000000
             string newId = tableName + "_";
             /*using (YMDBEntities db = new YMDBEntities())
             {
@@ -278,7 +278,7 @@ namespace YMClothsStore
             {
                 try
                 {
-                    loginStaff = db.staff.Where(p => p.staffLoginName == userName).FirstOrDefault();
+                    loginStaff = db.staff.Where(p => p.staffName == userName).FirstOrDefault();
                     if (loginStaff.password.Equals(pass))
                     {
                         return loginStaff;
@@ -302,12 +302,12 @@ namespace YMClothsStore
          * 参数：新地址名称或代号，新地址详细信息（街道等）
          * 返回值：address实例
          */
-        public address addAddressInfo(string newAddressName, string newAddressDetail)
+        /*public address addAddressInfo(string newAddressName, string newAddressDetail)
         {
             address newAddress = null;
 
             return newAddress;
-        }
+        }*/
 
         /**
          * 11.根据shopId查找shop
@@ -343,7 +343,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 13.员工查看自己店铺的订单信息
+         * 13.员工查看自己店铺的订单信息(未测)
          * 参数：员工id
          * 返回值：order[]
          */
@@ -351,9 +351,6 @@ namespace YMClothsStore
         {
             order[] orders = { };
             System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
-
-            //ArrayList test = new ArrayList();
-            //order[] test2 = (order[])test.ToArray();
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
@@ -384,23 +381,33 @@ namespace YMClothsStore
         /**
          * 14.员工查看某个订单的普通信息
          * 参数：订单id
-         * 返回值：订单实例
+         * 返回值：订单实例(测试通过)
          */
         public order getOrderInfoByOrderId(string orderId)
         {
             order targetOrder = null;
 
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                targetOrder = db.order.Where(p => p.orderId == orderId).FirstOrDefault();
+            }
             return targetOrder;
         }
 
         /**
          * 15.员工查看订单的详细信息
          * 参数：订单Id
-         * 返回值：员工所在商店的某件商品的订单详情数组
+         * 返回值：员工所在商店的某件商品的订单详情数组（未测）
          */
         public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
         {
             orderDetail[] currentOrderDetails = { };
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                currentOrderDetails = db.orderDetail.Where(p => p.orderId == orderId).ToArray();
+            }
 
             return currentOrderDetails;
         }
@@ -408,11 +415,17 @@ namespace YMClothsStore
         /**
          * 16.通过员工id获取所在shop的id
          * 参数：员工Id
-         * 返回值：员工所在shop的id
+         * 返回值：员工所在shop的id（未测）
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
             string targetShopId = "";
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                staff targetStaff = db.staff.Where(p => p.staffId == targetShopId).FirstOrDefault();
+                targetShopId = targetStaff.shopId;
+            }
 
             return targetShopId;
         }
@@ -420,26 +433,53 @@ namespace YMClothsStore
         /**
          * 17.员工增加订单记录
          * 参数：staffId, 这次订单的详细信息数组
-         * 返回值：本次订单
+         * 返回值：本次订单（未测）
          */
         public order addOrderInfo(string staffId)
         {
-            order targetOrderId = null;
+            string newId = createNewId("order");
 
-            //不太清楚如何得到订单信息，问小宇
-
-            return targetOrderId;
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                staff staff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
+                order targetOrder = new order
+                {
+                    orderId = newId,
+                    shopId =staff.shopId,
+                    totalPrice = 0,
+                    orderTime = DateTime.Now,
+                };
+                db.order.Add(targetOrder);
+                return targetOrder;
+            }
+            return null;
         }
 
         /**
          * 18.员工在订单中添加一条订单详细信息
          * 参数：订单Id,货物Id,货物数量
          * 返回：成功返回true,失败返回false
-         * 注意：不要重复添加某一条商品的信息
+         * 注意：不要重复添加某一条商品的信息（未测）
          */
-        public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string orderId, string itemId, int itemAmount)
+        public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string newOrderId, string newItemId, int newItemAmount)
         {
             bool isSucceed = false;
+
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                order currentOrder = db.order.Where(p => p.orderId == newOrderId).FirstOrDefault();
+                orderDetail currentOrderDetail = new orderDetail
+                {
+                    orderId = newOrderId,
+                    itemId = newItemId,
+                    itemAmount = newItemAmount,
+                };
+                db.orderDetail.Add(currentOrderDetail);
+                item currentItem = db.item.Where(p => p.itemId == newItemId).FirstOrDefault();
+                currentOrder.totalPrice = currentOrder.totalPrice + currentItem.itemPrice * newItemAmount;
+                db.SaveChanges();
+                
+            }
 
             return isSucceed;
         }
@@ -447,23 +487,35 @@ namespace YMClothsStore
         /**
          * 19.员工查看本店库存
          * 参数：员工Id
-         * 返回值：员工所在商店的所有库存信息
+         * 返回值：员工所在商店的所有库存信息(未测)
          */
-        public stock getShopStockInfoByStaffId(string staffId)
+        public stock[] getShopStockInfoByStaffId(string staffId)
         {
-            stock targetStock = null;
+            stock[] targetStock = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string shopId = getShopIdByStaffId(staffId);
+                targetStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+            }
 
             return targetStock;
         }
 
         /**
          * 20.员工查看某商品在本店的库存
-         * 参数：员工Id, 商品名
-         * 返回：员工所在商店的某件商品的库存
+         * 参数：员工Id, 商品Id
+         * 返回：员工所在商店的某件商品的库存(未测)
          */
-        public stock getItemStockInThisShop(string staffId, string itemName)
+        public stock getItemStockInThisShop(string staffId, string itemId)
         {
             stock currentStock = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string shopId = getShopIdByStaffId(staffId);
+                currentStock = db.stock.Where(p => p.shopId == shopId & p.itemId == itemId).FirstOrDefault();
+            }
 
             return currentStock;
         }
@@ -471,22 +523,33 @@ namespace YMClothsStore
         /**
          * 21.员工查看某商品在系统的库存
          * 参数：货物Id
-         * 返回值：系统中的某件商品的所有库存
+         * 返回值：系统中的某件商品的所有库存(未测)
          */
-        public stock getItemStockInSystem(string itemId)
+        public stock[] getItemStockInSystem(string itemId)
         {
-            stock currentAllStock = null;
+            stock[] currentAllStock = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                currentAllStock = db.stock.Where(p => p.itemId == itemId).ToArray();
+            }
 
             return currentAllStock;              
         }
 
         /**
          * 22.员工查看总库库存
-         * 返回值：原木衣橱总库库存信息数组
+         * 返回值：原木衣橱总库库存信息数组(未测)
          */
         public stock[] getSystemStockInfo()
         {
             stock[] currentSystemStock = null;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string sql = "select * from \"stock\"";
+                currentSystemStock = db.Database.SqlQuery<stock>(sql).ToArray();
+            }
 
             return currentSystemStock;
         }
@@ -494,22 +557,49 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表
+         * 返回：一个新添加的入库登记表(未测)
          */
-        public inBase addNewIn(string staffId){
+        public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
+            string currentShopId = getShopIdByStaffId(inStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string newId = createNewId("inBase");
+                newInBase = new inBase
+                {
+                    inId = newId,
+                    shopId = currentShopId,
+                    staffId = inStaffId,
+                    inTime = DateTime.Now,
+                };
+                db.inBase.Add(newInBase);
+                db.SaveChanges();
+            }
 
             return newInBase;
         }
 
         /**
          * 24.员工为新建的入库登记表填写详细信息
-         * 参数：商品Id,商品数量Amount
-         * 返回：是否成功入库
+         * 参数：入库Id,商品Id,商品数量Amount
+         * 返回：是否成功入库(未测)
          */
-        public bool addInDetailToInWithItemIdAndItemAmount(string itemId, int itemAmount)
+        public bool addInDetailToInWithItemIdAndItemAmount(string currentInId, string currentItemId, int currentItemAmount)
         {
             bool isSucceed = false;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inDetail currentInDetail = new inDetail
+                {
+                    inId = currentInId,
+                    itemId = currentItemId,
+                    inAmount = currentItemAmount,
+                };
+                db.inDetail.Add(currentInDetail);
+                db.SaveChanges();
+            }
 
             return isSucceed;
         }
@@ -517,11 +607,27 @@ namespace YMClothsStore
         /**
          * 25.员工新建出库登记表
          * 参数：员工Id,出库类型
-         * 返回：员工新建一个出库登记表
+         * 返回：员工新建一个出库登记表(未测)
          */
-        public outBase addNewOut(string staffId,string outType)
+        public outBase addNewOut(string outStaffId,string currentOutType)
         {
             outBase newOutBase = null;
+            string currentShopId = getShopIdByStaffId(outStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                string newId = createNewId("outBase");
+                newOutBase = new outBase
+                {
+                    outId = newId,
+                    shopId = currentShopId,
+                    staffId = outStaffId,
+                    outType = currentOutType,
+                    outTime = DateTime.Now,
+                };
+                db.outBase.Add(newOutBase);
+                db.SaveChanges();
+            }
 
             return newOutBase;
         }
@@ -529,11 +635,23 @@ namespace YMClothsStore
         /**
          * 26.员工为新建的出库登记表添加详细信息
          * 参数：货物Id，货物数量
-         * 返回：是否成功出库
+         * 返回：是否成功出库(未测)
          */
-        public bool addOutDetailToOutWithItemIdAndItemAmount(string itemId, int itemAmount)
+        public bool addOutDetailToOutWithItemIdAndItemAmount(string currentOutId, string currentItemId, int currentItemAmount)
         {
             bool isSucceed = false;
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outDetail currentOutDetail = new outDetail
+                {
+                    outId = currentOutId,
+                    itemId = currentItemId,
+                    outAmount = currentItemAmount,
+                };
+                db.outDetail.Add(currentOutDetail);
+                db.SaveChanges();
+            }
 
             return isSucceed;
         }
@@ -750,6 +868,7 @@ namespace YMClothsStore
          * 44.Boss新增地址信息
          * 参数：地址名称，详细地址
          * 返回：新的地址的实例
+         * 完成测试
          */
         public address addNewAddress(string addressName, string addressDetail)
         {

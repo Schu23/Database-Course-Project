@@ -64,7 +64,7 @@
 * 参数：userName，password
 * 返回值：bool
 
-####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[未完成]
+####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[删除]
 * 添加新的地址以供选择
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例
@@ -84,7 +84,7 @@
 * 参数：员工Id
 * 返回：所有的订单的数组
 
-####14.public order getOrderInfoByOrderId(string orderId)[未完成]
+####14.public order getOrderInfoByOrderId(string orderId)[已完成]
 * 员工查看某个订单普通信息
 * 参数：订单Id
 * 返回：订单实例
