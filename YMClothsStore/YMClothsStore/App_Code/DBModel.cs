@@ -133,10 +133,10 @@ namespace YMClothsStore
 
 
         /**
-         * 4.更改员工信息
-         * 参数：员工id，姓名，电话，密码
-         * 返回值：成功返回true，失败返回false
-         */
+          * 4.更改员工信息
+          * 参数：员工id，姓名，电话，密码
+          * 返回值：成功返回true，失败返回false
+          */
         public bool modifyPersonalInformation(staff currentInfo)
         {
 
@@ -150,8 +150,11 @@ namespace YMClothsStore
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
                     db.SaveChanges();
+<<<<<<< HEAD
                     oldStaff = this.findStaffById(currentInfo.staffId);
                     db.Database.SqlQuery<staff>("update staff set \"staffName\" = " + currentInfo.staffName + ", \"staffPhone\" = " + currentInfo.staffPhone + ", \"password\" = " + currentInfo.password + "where \"staffId\" = " + currentInfo.staffId);
+=======
+>>>>>>> bc02d8be0e7b5ee23797c5f0942e063d62f0ac38
                     return true;
                 }
                 catch (Exception ex)
@@ -184,6 +187,7 @@ namespace YMClothsStore
                 {
                     db.shop.Add(newShop);
                     db.SaveChanges();
+                    System.Diagnostics.Debug.WriteLine("添加门店成功！");
                 }
                 catch (Exception ex)
                 {
@@ -203,23 +207,38 @@ namespace YMClothsStore
         public bool deletdShop(string shopId)
         {
             bool isSucceed = false;
-
-            /*
-             * 根据shopId删除门店
-             */
-
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                //根据门店ID来查询并删除数据库中的门店
+                db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
+                db.SaveChanges();
+                isSucceed = true;
+                System.Diagnostics.Debug.WriteLine("删除门店成功！");
+            }
             return isSucceed;
         }
 
         /*
          * 7.修改门店信息
          * 参数：门店id，新地址，新电话，不修改的值为null
-         * 返回值：bool
+         * 返回值：bool,成功返回true，失败返回false
          */
         public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
         {
             bool isSucceed = false;
-
+            using(YMDBEntities db = new YMDBEntities())
+            {
+                 try
+                 {
+                     shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
+                     System.Diagnostics.Debug.WriteLine("修改门店信息成功!");
+                  }
+                catch(Exception ex)
+                 {
+                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                 }
+            }
+           
             return isSucceed;
         }
 
@@ -236,7 +255,7 @@ namespace YMClothsStore
             {
                 try
                 {
-                    wantStaff = db.Database.SqlQuery<staff>("select * from \"staff\" where \"staffId\" = " + id).FirstOrDefault();
+                    wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
                     return wantStaff;
                 }
                 catch (Exception ex)
@@ -249,10 +268,10 @@ namespace YMClothsStore
         }
 
         /**
-         * 9.员工登陆接口
-         * 参数：userName，password
-         * 返回值：bool
-         */
+          * 9.员工登陆接口
+          * 参数：userName，password
+          * 返回值：bool
+          */
         public staff loginWithStaffLoginNameAndPassword(string userName, string pass)
         {
             staff loginStaff = null;
@@ -279,6 +298,14 @@ namespace YMClothsStore
             }
 
         }
+        /**
+         * 10.增加地址接口
+         * 参数：
+         */
+        //public address addAddressInfo(string newAddressName, string newAddressDetail)
+        //{
+        //    address newAddressInfo = 
+        //}
 
     }
 }
