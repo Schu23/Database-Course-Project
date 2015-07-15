@@ -116,6 +116,7 @@ namespace YMClothsStore
         public bool deleteStaffById(string deletedStaffId)
         {
             bool deletdSucceed = false;
+            System.Diagnostics.Debug.WriteLine("get worker id :" + deletedStaffId);
 
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())

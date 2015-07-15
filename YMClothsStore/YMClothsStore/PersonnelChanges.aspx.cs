@@ -15,7 +15,7 @@ namespace YMClothsStore
         {
           //获取当前店里的员工列表
           //now it is hard code ！！！！！
-          staffs = DBModel.sharedDBModel().findStaffInformationById("1423");
+          staffs = DBModel.sharedDBModel().findStaffInformationById("121");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
         }
 

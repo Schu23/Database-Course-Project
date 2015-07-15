@@ -157,7 +157,7 @@
               <td><%: staff.staffGender %></td>
               <td><%: staff.staffPhone %></td>
               <td>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="<%:staff.staffId %>">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#<%:staff.staffId %>">
                   移除
                 </button>
                 <!-- Modal -->
@@ -173,7 +173,6 @@
                         你确定要移除员工<%: staff.staffName %>吗？
                       </div>
                       <div class="modal-footer">  
-                       
                          <input type="hidden" name="fireEmployeeId" value="<%:staff.staffId %>" />
                          <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee" />
                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>          
