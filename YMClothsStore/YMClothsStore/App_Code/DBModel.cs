@@ -135,6 +135,7 @@ namespace YMClothsStore
                 //int temp = db.Database.ExecuteSqlCommand("delete from \"staff\" where staffId = @p0", deletedStaffId);
                 //db.Database.SqlQuery<staff>("delete from \"staff\" where \"staffId\" = '" + deletedStaffId + "'");
                 db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
+                db.SaveChanges();
                 deletdSucceed = true;
             }
 

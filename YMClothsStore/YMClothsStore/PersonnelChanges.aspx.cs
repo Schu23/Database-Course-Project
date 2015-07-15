@@ -22,7 +22,7 @@ namespace YMClothsStore
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-            if(DBModel.sharedDBModel().addNewStaff(freshmanName) != "0")
+            /*if(DBModel.sharedDBModel().addNewStaff(freshmanName) != "0")
             {
                 System.Diagnostics.Debug.WriteLine("add new staff success");
             }
@@ -32,7 +32,7 @@ namespace YMClothsStore
                 Session["errorMessage"] = "添加新员工失败";
                 Session["returnURL"] = "PersonnelChanges.aspx";
                 Response.Redirect("Error.aspx");
-            }
+            }*/
         }
 
         // 开除员工
