@@ -155,7 +155,7 @@ namespace YMClothsStore
                 {
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
                     System.Diagnostics.Debug.WriteLine(oldStaff.password);
-                    oldStaff.staffName = currentInfo.staffName;
+                    oldStaff.staffLoginName = currentInfo.staffLoginName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
                     db.SaveChanges();
@@ -398,7 +398,7 @@ namespace YMClothsStore
         /**
          * 15.员工查看订单的详细信息
          * 参数：订单Id
-         * 返回值：员工所在商店的某件商品的订单详情数组（未测）
+         * 返回值：员工所在商店的某件商品的订单详情数组（通过测试）
          */
         public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
         {
@@ -415,7 +415,7 @@ namespace YMClothsStore
         /**
          * 16.通过员工id获取所在shop的id
          * 参数：员工Id
-         * 返回值：员工所在shop的id（未测）
+         * 返回值：员工所在shop的id（通过测试）
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
@@ -423,8 +423,7 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                staff targetStaff = db.staff.Where(p => p.staffId == targetShopId).FirstOrDefault();
-                targetShopId = targetStaff.shopId;
+                targetShopId = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault().shopId;
             }
 
             return targetShopId;
@@ -433,7 +432,7 @@ namespace YMClothsStore
         /**
          * 17.员工增加订单记录
          * 参数：staffId, 这次订单的详细信息数组
-         * 返回值：本次订单（未测）
+         * 返回值：本次订单（需要修改stock）
          */
         public order addOrderInfo(string staffId)
         {
@@ -459,7 +458,7 @@ namespace YMClothsStore
          * 18.员工在订单中添加一条订单详细信息
          * 参数：订单Id,货物Id,货物数量
          * 返回：成功返回true,失败返回false
-         * 注意：不要重复添加某一条商品的信息（未测）
+         * 注意：不要重复添加某一条商品的信息（需要修改stock）
          */
         public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string newOrderId, string newItemId, int newItemAmount)
         {

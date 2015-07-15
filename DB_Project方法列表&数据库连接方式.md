@@ -89,12 +89,12 @@
 * 参数：订单Id
 * 返回：订单实例
 
-####15.public orderDetail[] getOrderDetailInfoByOrderId(string orderId)[未完成]
+####15.public orderDetail[] getOrderDetailInfoByOrderId(string orderId)[通过测试]
 * 查看订单的详细信息
 * 参数：订单Id
 * 返回：员工所在商店的某件商品的详情数组
 
-####16.public string getShopIdByStaffId(string staffId)[未完成]
+####16.public string getShopIdByStaffId(string staffId)[通过测试]
 * 通过员工Id获取所在Shop的Id(供其他方法调用)
 * 参数：员工Id
 * 返回：员工所在商店的Id
