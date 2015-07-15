@@ -123,6 +123,7 @@ namespace YMClothsStore
                 
                 //数据库删除员工
                 //成功后将deletedSucceed赋值为true
+                System.Diagnostics.Debug.WriteLine("getId:" + deletedStaffId);
                 db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).SingleOrDefault());
                 db.SaveChanges();
                 deletdSucceed = true;
