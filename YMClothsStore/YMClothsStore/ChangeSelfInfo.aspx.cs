@@ -11,7 +11,7 @@ namespace YMClothsStore
     {
         // TODO
         //  找到该员工 
-        protected staff theStaff = DBModel.sharedDBModel().findStaffById("dd");
+        protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -21,6 +21,7 @@ namespace YMClothsStore
         {
             string employeePhone = Request.Form["newphone"];
             string conPhone = Request.Form["conPhone"];
+            System.Diagnostics.Debug.WriteLine("phone :" + employeePhone);
             if (employeePhone.Equals(conPhone))
             {
                 theStaff.staffPhone = employeePhone;
