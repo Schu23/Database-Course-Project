@@ -12,21 +12,20 @@ namespace YMClothsStore
     using System;
     using System.Collections.Generic;
     
-    public partial class @out
+    public partial class inBase
     {
-        public @out()
+        public inBase()
         {
-            this.outDetail = new HashSet<outDetail>();
+            this.inDetail = new HashSet<inDetail>();
         }
     
-        public string outId { get; set; }
+        public string inId { get; set; }
         public string shopId { get; set; }
-        public string outType { get; set; }
         public string staffId { get; set; }
-        public Nullable<System.DateTime> outTime { get; set; }
+        public Nullable<System.DateTime> inTime { get; set; }
     
         public virtual shop shop { get; set; }
         public virtual staff staff { get; set; }
-        public virtual ICollection<outDetail> outDetail { get; set; }
+        public virtual ICollection<inDetail> inDetail { get; set; }
     }
 }

@@ -60,7 +60,7 @@
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="imagePath" Type="varchar2" MaxLength="45" Nullable="false" />
         </EntityType>
-        <EntityType Name="in">
+        <EntityType Name="inBase">
           <Key>
             <PropertyRef Name="inId" />
           </Key>
@@ -108,7 +108,7 @@
           <Property Name="itemId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="itemAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="out">
+        <EntityType Name="outBase">
           <Key>
             <PropertyRef Name="outId" />
           </Key>
@@ -271,33 +271,33 @@
         </Association>
         <Association Name="in_ibfk_1">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
-          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
               <PropertyRef Name="shopId" />
             </Principal>
-            <Dependent Role="in">
+            <Dependent Role="inBase">
               <PropertyRef Name="shopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="in_ibfk_2">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
-          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="staff">
               <PropertyRef Name="staffId" />
             </Principal>
-            <Dependent Role="in">
+            <Dependent Role="inBase">
               <PropertyRef Name="staffId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="inDetail_ibfk_1">
-          <End Role="in" Type="Self.in" Multiplicity="1" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="in">
+            <Principal Role="inBase">
               <PropertyRef Name="inId" />
             </Principal>
             <Dependent Role="inDetail">
@@ -355,24 +355,24 @@
         </Association>
         <Association Name="out_ibfk_1">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
-          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
               <PropertyRef Name="shopId" />
             </Principal>
-            <Dependent Role="out">
+            <Dependent Role="outBase">
               <PropertyRef Name="shopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="out_ibfk_2">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
-          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="staff">
               <PropertyRef Name="staffId" />
             </Principal>
-            <Dependent Role="out">
+            <Dependent Role="outBase">
               <PropertyRef Name="staffId" />
             </Dependent>
           </ReferentialConstraint>
@@ -390,10 +390,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="outDetail_ibfk_2">
-          <End Role="out" Type="Self.out" Multiplicity="1" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="out">
+            <Principal Role="outBase">
               <PropertyRef Name="outId" />
             </Principal>
             <Dependent Role="outDetail">
@@ -456,12 +456,12 @@
           <EntitySet Name="check" EntityType="Self.check" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="checkDetail" EntityType="Self.checkDetail" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="image" EntityType="Self.image" Schema="YUANMU" store:Type="Tables" />
-          <EntitySet Name="in" EntityType="Self.in" Schema="YUANMU" store:Type="Tables" />
+          <EntitySet Name="inBase" EntityType="Self.inBase" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="inDetail" EntityType="Self.inDetail" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="item" EntityType="Self.item" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="orderDetail" EntityType="Self.orderDetail" Schema="YUANMU" store:Type="Tables" />
-          <EntitySet Name="out" EntityType="Self.out" Schema="YUANMU" store:Type="Tables" />
+          <EntitySet Name="outBase" EntityType="Self.outBase" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="outDetail" EntityType="Self.outDetail" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="shop" EntityType="Self.shop" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="staff" EntityType="Self.staff" Schema="YUANMU" store:Type="Tables" />
@@ -504,14 +504,14 @@
           </AssociationSet>
           <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
             <End Role="shop" EntitySet="shop" />
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
           <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
             <End Role="staff" EntitySet="staff" />
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
           <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
           <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
@@ -532,18 +532,18 @@
           </AssociationSet>
           <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
             <End Role="shop" EntitySet="shop" />
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
           <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
             <End Role="staff" EntitySet="staff" />
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
           <AssociationSet Name="outDetail_ibfk_1" Association="Self.outDetail_ibfk_1">
             <End Role="item" EntitySet="item" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
           <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
           <AssociationSet Name="shop_ibfk_1" Association="Self.shop_ibfk_1">
@@ -635,7 +635,7 @@
           <Property Name="imagePath" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="item" Relationship="Self.image_ibfk_1" FromRole="image" ToRole="item" />
         </EntityType>
-        <EntityType Name="in">
+        <EntityType Name="inBase">
           <Key>
             <PropertyRef Name="inId" />
           </Key>
@@ -643,9 +643,9 @@
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="inTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.in_ibfk_1" FromRole="in" ToRole="shop" />
-          <NavigationProperty Name="staff" Relationship="Self.in_ibfk_2" FromRole="in" ToRole="staff" />
-          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_1" FromRole="in" ToRole="inDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.in_ibfk_1" FromRole="inBase" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.in_ibfk_2" FromRole="inBase" ToRole="staff" />
+          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_1" FromRole="inBase" ToRole="inDetail" />
         </EntityType>
         <EntityType Name="inDetail">
           <Key>
@@ -655,7 +655,7 @@
           <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="inAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="in" Relationship="Self.inDetail_ibfk_1" FromRole="inDetail" ToRole="in" />
+          <NavigationProperty Name="inBase" Relationship="Self.inDetail_ibfk_1" FromRole="inDetail" ToRole="inBase" />
           <NavigationProperty Name="item" Relationship="Self.inDetail_ibfk_2" FromRole="inDetail" ToRole="item" />
         </EntityType>
         <EntityType Name="item">
@@ -699,7 +699,7 @@
           <NavigationProperty Name="item" Relationship="Self.orderDetail_ibfk_2" FromRole="orderDetail" ToRole="item" />
           <NavigationProperty Name="order" Relationship="Self.orderDetail_ibfk_1" FromRole="orderDetail" ToRole="order" />
         </EntityType>
-        <EntityType Name="out">
+        <EntityType Name="outBase">
           <Key>
             <PropertyRef Name="outId" />
           </Key>
@@ -708,9 +708,9 @@
           <Property Name="outType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="outTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.out_ibfk_1" FromRole="out" ToRole="shop" />
-          <NavigationProperty Name="staff" Relationship="Self.out_ibfk_2" FromRole="out" ToRole="staff" />
-          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_2" FromRole="out" ToRole="outDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.out_ibfk_1" FromRole="outBase" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.out_ibfk_2" FromRole="outBase" ToRole="staff" />
+          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_2" FromRole="outBase" ToRole="outDetail" />
         </EntityType>
         <EntityType Name="outDetail">
           <Key>
@@ -721,7 +721,7 @@
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="outAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="item" Relationship="Self.outDetail_ibfk_1" FromRole="outDetail" ToRole="item" />
-          <NavigationProperty Name="out" Relationship="Self.outDetail_ibfk_2" FromRole="outDetail" ToRole="out" />
+          <NavigationProperty Name="outBase" Relationship="Self.outDetail_ibfk_2" FromRole="outDetail" ToRole="outBase" />
         </EntityType>
         <EntityType Name="shop">
           <Key>
@@ -735,9 +735,9 @@
           <NavigationProperty Name="apply" Relationship="Self.apply_ibfk_1" FromRole="shop" ToRole="apply" />
           <NavigationProperty Name="apply1" Relationship="Self.apply_ibfk_2" FromRole="shop" ToRole="apply" />
           <NavigationProperty Name="check" Relationship="Self.check_ibfk_1" FromRole="shop" ToRole="check" />
-          <NavigationProperty Name="in" Relationship="Self.in_ibfk_1" FromRole="shop" ToRole="in" />
+          <NavigationProperty Name="inBase" Relationship="Self.in_ibfk_1" FromRole="shop" ToRole="inBase" />
           <NavigationProperty Name="order" Relationship="Self.order_ibfk_1" FromRole="shop" ToRole="order" />
-          <NavigationProperty Name="out" Relationship="Self.out_ibfk_1" FromRole="shop" ToRole="out" />
+          <NavigationProperty Name="outBase" Relationship="Self.out_ibfk_1" FromRole="shop" ToRole="outBase" />
           <NavigationProperty Name="staff" Relationship="Self.staff_ibfk_1" FromRole="shop" ToRole="staff" />
           <NavigationProperty Name="stock" Relationship="Self.stock_ibfk_2" FromRole="shop" ToRole="stock" />
         </EntityType>
@@ -754,8 +754,8 @@
           <Property Name="staffLoginName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="check" Relationship="Self.check_ibfk_2" FromRole="staff" ToRole="check" />
-          <NavigationProperty Name="in" Relationship="Self.in_ibfk_2" FromRole="staff" ToRole="in" />
-          <NavigationProperty Name="out" Relationship="Self.out_ibfk_2" FromRole="staff" ToRole="out" />
+          <NavigationProperty Name="inBase" Relationship="Self.in_ibfk_2" FromRole="staff" ToRole="inBase" />
+          <NavigationProperty Name="outBase" Relationship="Self.out_ibfk_2" FromRole="staff" ToRole="outBase" />
           <NavigationProperty Name="shop" Relationship="Self.staff_ibfk_1" FromRole="staff" ToRole="shop" />
         </EntityType>
         <EntityType Name="stock">
@@ -894,33 +894,33 @@
         </Association>
         <Association Name="in_ibfk_1">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
-          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
               <PropertyRef Name="shopId" />
             </Principal>
-            <Dependent Role="in">
+            <Dependent Role="inBase">
               <PropertyRef Name="shopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="in_ibfk_2">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
-          <End Role="in" Type="Self.in" Multiplicity="*" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="staff">
               <PropertyRef Name="staffId" />
             </Principal>
-            <Dependent Role="in">
+            <Dependent Role="inBase">
               <PropertyRef Name="staffId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="inDetail_ibfk_1">
-          <End Role="in" Type="Self.in" Multiplicity="1" />
+          <End Role="inBase" Type="Self.inBase" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="in">
+            <Principal Role="inBase">
               <PropertyRef Name="inId" />
             </Principal>
             <Dependent Role="inDetail">
@@ -1002,33 +1002,33 @@
         </Association>
         <Association Name="out_ibfk_1">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
-          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shop">
               <PropertyRef Name="shopId" />
             </Principal>
-            <Dependent Role="out">
+            <Dependent Role="outBase">
               <PropertyRef Name="shopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="out_ibfk_2">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
-          <End Role="out" Type="Self.out" Multiplicity="*" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="staff">
               <PropertyRef Name="staffId" />
             </Principal>
-            <Dependent Role="out">
+            <Dependent Role="outBase">
               <PropertyRef Name="staffId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="outDetail_ibfk_2">
-          <End Role="out" Type="Self.out" Multiplicity="1" />
+          <End Role="outBase" Type="Self.outBase" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="out">
+            <Principal Role="outBase">
               <PropertyRef Name="outId" />
             </Principal>
             <Dependent Role="outDetail">
@@ -1067,12 +1067,12 @@
           <EntitySet Name="check" EntityType="Self.check" />
           <EntitySet Name="checkDetail" EntityType="Self.checkDetail" />
           <EntitySet Name="image" EntityType="Self.image" />
-          <EntitySet Name="in" EntityType="Self.in" />
+          <EntitySet Name="inBase" EntityType="Self.inBase" />
           <EntitySet Name="inDetail" EntityType="Self.inDetail" />
           <EntitySet Name="item" EntityType="Self.item" />
           <EntitySet Name="order" EntityType="Self.order" />
           <EntitySet Name="orderDetail" EntityType="Self.orderDetail" />
-          <EntitySet Name="out" EntityType="Self.out" />
+          <EntitySet Name="outBase" EntityType="Self.outBase" />
           <EntitySet Name="outDetail" EntityType="Self.outDetail" />
           <EntitySet Name="shop" EntityType="Self.shop" />
           <EntitySet Name="staff" EntityType="Self.staff" />
@@ -1119,14 +1119,14 @@
           </AssociationSet>
           <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
             <End Role="shop" EntitySet="shop" />
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
           <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
             <End Role="staff" EntitySet="staff" />
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
           <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
-            <End Role="in" EntitySet="in" />
+            <End Role="inBase" EntitySet="inBase" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
           <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
@@ -1155,14 +1155,14 @@
           </AssociationSet>
           <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
             <End Role="shop" EntitySet="shop" />
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
           <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
             <End Role="staff" EntitySet="staff" />
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
           <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
-            <End Role="out" EntitySet="out" />
+            <End Role="outBase" EntitySet="outBase" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
           <AssociationSet Name="staff_ibfk_1" Association="Self.staff_ibfk_1">
@@ -1238,9 +1238,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="in">
-            <EntityTypeMapping TypeName="YMStore.in">
-              <MappingFragment StoreEntitySet="in">
+          <EntitySetMapping Name="inBase">
+            <EntityTypeMapping TypeName="YMStore.inBase">
+              <MappingFragment StoreEntitySet="inBase">
                 <ScalarProperty Name="inId" ColumnName="inId" />
                 <ScalarProperty Name="shopId" ColumnName="shopId" />
                 <ScalarProperty Name="staffId" ColumnName="staffId" />
@@ -1289,9 +1289,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="out">
-            <EntityTypeMapping TypeName="YMStore.out">
-              <MappingFragment StoreEntitySet="out">
+          <EntitySetMapping Name="outBase">
+            <EntityTypeMapping TypeName="YMStore.outBase">
+              <MappingFragment StoreEntitySet="outBase">
                 <ScalarProperty Name="outId" ColumnName="outId" />
                 <ScalarProperty Name="shopId" ColumnName="shopId" />
                 <ScalarProperty Name="outType" ColumnName="outType" />

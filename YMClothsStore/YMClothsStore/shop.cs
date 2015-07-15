@@ -19,9 +19,9 @@ namespace YMClothsStore
             this.apply = new HashSet<apply>();
             this.apply1 = new HashSet<apply>();
             this.check = new HashSet<check>();
-            this.@in = new HashSet<@in>();
+            this.inBase = new HashSet<inBase>();
             this.order = new HashSet<order>();
-            this.@out = new HashSet<@out>();
+            this.outBase = new HashSet<outBase>();
             this.staff = new HashSet<staff>();
             this.stock = new HashSet<stock>();
         }
@@ -35,9 +35,9 @@ namespace YMClothsStore
         public virtual ICollection<apply> apply { get; set; }
         public virtual ICollection<apply> apply1 { get; set; }
         public virtual ICollection<check> check { get; set; }
-        public virtual ICollection<@in> @in { get; set; }
+        public virtual ICollection<inBase> inBase { get; set; }
         public virtual ICollection<order> order { get; set; }
-        public virtual ICollection<@out> @out { get; set; }
+        public virtual ICollection<outBase> outBase { get; set; }
         public virtual ICollection<staff> staff { get; set; }
         public virtual ICollection<stock> stock { get; set; }
     }

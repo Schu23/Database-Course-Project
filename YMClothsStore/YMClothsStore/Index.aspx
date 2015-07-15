@@ -96,8 +96,6 @@
                     <th>订单编号</th>
                     <th>订单时间</th>
                     <th>总价</th>
-                    <th>修改</th>
-                    <th>删除</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,29 +136,25 @@
                     <th>订单编号</th>
                     <th>订单时间</th>
                     <th>总价</th>
-                    <th>修改</th>
-                    <th>删除</th>
+                   
                   </tr>
                   <tr>
                     <th>订单编号</th>
                     <th>订单时间</th>
                     <th>总价</th>
-                    <th>修改</th>
-                    <th>删除</th>
+                  
                   </tr>
                   <tr>
                     <th>订单编号</th>
                     <th>订单时间</th>
                     <th>总价</th>
-                    <th>修改</th>
-                    <th>删除</th>
+                    
                   </tr>
                   <tr>
                     <th>订单编号</th>
                     <th>订单时间</th>
                     <th>总价</th>
-                    <th>修改</th>
-                    <th>删除</th>
+                  
                   </tr>
                 </tbody>
               </table>
