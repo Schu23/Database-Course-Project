@@ -68,6 +68,8 @@
     <Content Include="amcharts\funnel.js" />
     <Content Include="amcharts\gantt.js" />
     <Content Include="amcharts\gauge.js" />
+    <Content Include="amcharts\images\dragIconRoundBig.png" />
+    <Content Include="amcharts\images\lens.png" />
     <Content Include="amcharts\pie.js" />
     <Content Include="amcharts\radar.js" />
     <Content Include="amcharts\serial.js" />
@@ -84,8 +86,10 @@
     <Content Include="images\404.png" />
     <Content Include="images\avatar.jpg" />
     <Content Include="images\back-1.jpg" />
+    <Content Include="images\logo-2.png" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\title.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
     <Content Include="ManagerIndex.aspx" />
     <Content Include="packages.config" />
@@ -101,6 +105,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\staffInfo.css" />

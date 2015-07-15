@@ -302,7 +302,7 @@ namespace YMClothsStore
 
         }
         /**
-         * 10.增加地址接口
+         * 10.添加新的地址以供选择
          * 参数：新地址名称或代号，新地址详细信息（街道等）
          * 返回值：address实例
          */
@@ -328,5 +328,144 @@ namespace YMClothsStore
 
         }
 
+        /**
+         * 12.使用模糊查询，通过员工姓名查找员工
+         * 参数：员工名字的全部或是一部分
+         * 返回值：符合条件的staff[]
+         */
+        public staff[] getStaffWithStaffName(string staffName)
+        {
+
+            staff[] staffs = { };
+
+
+
+
+            return staffs;
+        }
+
+        /**
+         * 13.员工查看自己店铺的订单信息
+         * 参数：员工id
+         * 返回值：order[]
+         */
+        public order[] getAllOrderInfo(string staffId)
+        {
+            order[] orders = { };
+
+            //员工只可以查看自己店铺的订单
+
+            return orders;
+        }
+
+        /**
+         * 14.员工查看某个订单的普通信息
+         * 参数：订单id
+         * 返回值：订单实例
+         */
+        public order getOrderInfoByOrderId(string orderId)
+        {
+            order targetOrder = null;
+
+            return targetOrder;
+        }
+
+        /**
+         * 15.员工查看订单的详细信息
+         * 参数：订单Id
+         * 返回值：员工所在商店的某件商品的订单详情数组
+         */
+        public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
+        {
+            orderDetail[] currentOrderDetails = { };
+
+            return currentOrderDetails;
+        }
+
+        /**
+         * 16.通过员工id获取所在shop的id
+         * 参数：员工Id
+         * 返回值：员工所在shop的id
+         */
+        public string getShopIdByStaffId(string targetStaffId)
+        {
+            string targetShopId = "";
+
+            return targetShopId;
+        }
+
+        /**
+         * 17.员工增加订单记录
+         * 参数：staffId, 这次订单的详细信息数组
+         * 返回值：本次订单
+         */
+        public order addOrderInfo(string staffId)
+        {
+            order targetOrderId = null;
+
+            //不太清楚如何得到订单信息，问小宇
+
+            return targetOrderId;
+        }
+
+        /**
+         * 18.员工在订单中添加一条订单详细信息
+         * 参数：订单Id,货物Id,货物数量
+         * 返回：成功返回true,失败返回false
+         * 注意：不要重复添加某一条商品的信息
+         */
+        public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string orderId, string itemId, int itemAmount)
+        {
+            bool isSucceed = false;
+
+            return isSucceed;
+        }
+
+        /**
+         * 19.员工查看本店库存
+         * 参数：员工Id
+         * 返回值：员工所在商店的所有库存信息
+         */
+        public stock getShopStockInfoByStaffId(string staffId)
+        {
+            stock targetStock = null;
+
+            return targetStock;
+        }
+
+        /**
+         * 20.员工查看某商品在本店的库存
+         * 参数：员工Id, 商品名
+         * 返回：员工所在商店的某件商品的库存
+         */
+        public stock getItemStockInThisShop(string staffId, string itemName)
+        {
+            stock currentStock = null;
+
+            return currentStock;
+        }
+
+        /**
+         * 21.员工查看某商品在系统的库存
+         * 参数：货物Id
+         * 返回值：系统中的某件商品的所有库存
+         */
+        public stock getItemStockInSystem(string itemId)
+        {
+            stock currentAllStock = null;
+
+            return currentAllStock;              
+        }
+
+        /**
+         * 22.员工查看总库库存
+         * 返回值：原木衣橱总库库存信息数组
+         */
+        public stock[] getSystemStockInfo()
+        {
+            stock[] currentSystemStock = null;
+
+            return currentSystemStock;
+        }
     }
 }

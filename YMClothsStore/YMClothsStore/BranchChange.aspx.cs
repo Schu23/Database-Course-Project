@@ -13,6 +13,7 @@ namespace YMClothsStore
         {
 
         }
+        
         // 新增分店 
         protected void addNewBrach (object sender, EventArgs e)
         {
@@ -20,7 +21,11 @@ namespace YMClothsStore
             string managerID = Request.Form["managerId"];
             string branchAddress = Request.Form["BrachAddress"];
             string shopPhone = Request.Form["ShopPhone"];
+<<<<<<< HEAD
             if (DBModel.sharedDBModel().addNewShop(branchAddress, shopPhone).Equals("false"))
+=======
+            if(DBModel.sharedDBModel().addNewShopWithManagerIdAndAddressIdAndShopPhone(managerID,branchAddress,shopPhone) ==null)
+>>>>>>> 5dcf28f59d72f86f27342a644230bc04b0375f9c
             {
                 System.Diagnostics.Debug.WriteLine("新建分店失败");
                 Session["errorMessage"] = "新建分店失败";

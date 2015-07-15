@@ -64,18 +64,75 @@
 * 参数：userName，password
 * 返回值：bool
 
-####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)
+####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[未完成]
 * 添加新的地址以供选择
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例
 
-####11.public shop getShopWithShopId(string shopId)[未完成]
+####11.public shop findShopByShopId(string shopId)
 * 根据shopId获取shop，返回shop实例或空
 * 参数：店铺的ID
 * 返回：获取到的shop
 
-####12.public staff[] getStaffWithStaffName(string staffName)[未添加]
+####12.public staff[] getStaffWithStaffName(string staffName)[未完成]
 * 使用模糊查询,通过员工姓名查找员工
 * 参数：员工名字的全部或一部分
 * 符合条件的员工数组
+
+####13.public order[] getAllOrderInfo(string staffId)[未完成]
+* 员工查看订单信息
+* 参数：员工Id
+* 返回：所有的订单的数组
+
+####14.public order getOrderInfoByOrderId(string orderId)[未完成]
+* 员工查看某个订单普通信息
+* 参数：订单Id
+* 返回：订单实例
+
+####15.public orderDetail[] getOrderDetailInfoByOrderId(string orderId)[未完成]
+* 查看订单的详细信息
+* 参数：订单Id
+* 返回：员工所在商店的某件商品的详情数组
+
+####16.public string getShopIdByStaffId(string staffId)[未完成]
+* 通过员工Id获取所在Shop的Id(供其他方法调用)
+* 参数：员工Id
+* 返回：员工所在商店的Id
+
+####17.public order addOrderInfo(string staffId)[未完成]
+* 员工增加订单记录
+* 参数：员工staffId,
+* 返回：本次订单
+
+####18.public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string orderId, string itemId , int itemAmount)[未完成]
+* 员工在订单中添加一条订单详细信息
+* 参数：订单Id,货物Id,货物数量
+* 返回：成功或者失败：成功返回true,失败返回false
+* 注意：不要重复添加某一条商品的信息
+
+####19.public stock getShopStockInfoByStaffId(string staffId)[未完成]
+* 员工查看本店库存
+* 参数：员工Id
+* 返回：员工所在商店的所有库存信息
+
+####20.public stock getItemStockInThisShop(string staffId,string itemId)[未完成]
+* 员工查看某商品在本店的库存
+* 参数：员工Id,商品Id
+* 返回：员工所在商店的某件商品的库存
+
+####21.public stock getItemStockInSystem(string itemId)[未完成]
+* 员工查看某商品在系统的库存
+* 参数：货物Id
+* 返回：系统中的某件商品的库存
+
+####22.public stock[] getSystemStockInfo()[未完成]
+* 员工查看总库库存
+* 参数：无
+* 返回：原木衣橱所有的库存信息
+
+
+
+
+
+
 
