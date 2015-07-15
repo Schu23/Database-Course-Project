@@ -99,56 +99,14 @@
                   </tr>
                 </thead>
                 <tbody>
+                    <%if (getStaffOrder != null) { %>
+                    <%foreach (var  order in getStaffOrder) { %>
                   <tr>
-                    <td id="staffId">23980012398001</td>
-                    <td>2015-07-14 21:58</td>
-                    <td>666.66元</td>
-                 
-
-                      <!-- Modal -->
-                      <div class="modal fade" id="delete_orderId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title" id="myModalLabel">删除订单</h4>
-                            </div>
-                            <div class="modal-body">
-                              你确定要删除订单2398001吗？
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" onclick="delete(this)">确定</button>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!--modal-->
-                    </td>
+                    <td id="staffId"><%: order.orderId %></td>
+                    <td><%: order.orderTime %></td>
+                    <td><%: order.totalPrice %></td>
                   </tr>
-                  <tr>
-                    <th>订单编号</th>
-                    <th>订单时间</th>
-                    <th>总价</th>
-                   
-                  </tr>
-                  <tr>
-                    <th>订单编号</th>
-                    <th>订单时间</th>
-                    <th>总价</th>
-                  
-                  </tr>
-                  <tr>
-                    <th>订单编号</th>
-                    <th>订单时间</th>
-                    <th>总价</th>
-                    
-                  </tr>
-                  <tr>
-                    <th>订单编号</th>
-                    <th>订单时间</th>
-                    <th>总价</th>
-                  
-                  </tr>
+                    <% } } %>
                 </tbody>
               </table>
             <!-- </div> -->
@@ -157,13 +115,17 @@
         <div class="col-md-6 text-center">
           <br/><h2>最热卖五件商品</h2><br/><br/>
           <div class="row" id="clothes">
+
+
             <!-- 第一个需要offset 后面格式相同 -->
+              <%foreach (var items in showItems) { %>
             <div class="col-md-2 col-sm-2 col-xs-4 col-sm-offset-1">
               <img class="img-responsive" src="images/logo.png">
-              <br/><h4>衣服1</h4>
+              <br/><h4><%:items[1] %></h4>
               <button type="button" class="btn btn-info">查看信息</button>
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-4">
+              <%} %>
+      <!--      <div class="col-md-2 col-sm-2 col-xs-4">
               <img class="img-responsive" src="images/logo.png">
               <br/><h4>衣服1</h4>
               <button type="button" class="btn btn-info">查看信息</button>
@@ -182,7 +144,8 @@
               <img class="img-responsive" src="images/logo.png">
               <br/><h4>衣服1</h4>
               <button type="button" class="btn btn-info">查看信息</button>
-            </div>
+            </div>-->
+           
           </div>
         </div>
       </div>
