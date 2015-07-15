@@ -17,6 +17,7 @@ namespace YMClothsStore
           //now it is hard code ！！！！！
           staffs = DBModel.sharedDBModel().findStaffsByShopId("121");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
+             
         }
 
         // 添加新员工
