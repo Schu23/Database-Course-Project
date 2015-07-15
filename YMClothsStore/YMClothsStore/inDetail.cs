@@ -18,7 +18,7 @@ namespace YMClothsStore
         public string itemId { get; set; }
         public decimal inAmount { get; set; }
     
-        public virtual @in @in { get; set; }
+        public virtual inBase inBase { get; set; }
         public virtual item item { get; set; }
     }
 }

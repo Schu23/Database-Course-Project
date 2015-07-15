@@ -31,12 +31,12 @@ namespace YMClothsStore
         public DbSet<check> check { get; set; }
         public DbSet<checkDetail> checkDetail { get; set; }
         public DbSet<image> image { get; set; }
-        public DbSet<@in> @in { get; set; }
+        public DbSet<inBase> inBase { get; set; }
         public DbSet<inDetail> inDetail { get; set; }
         public DbSet<item> item { get; set; }
         public DbSet<order> order { get; set; }
         public DbSet<orderDetail> orderDetail { get; set; }
-        public DbSet<@out> @out { get; set; }
+        public DbSet<outBase> outBase { get; set; }
         public DbSet<outDetail> outDetail { get; set; }
         public DbSet<shop> shop { get; set; }
         public DbSet<staff> staff { get; set; }

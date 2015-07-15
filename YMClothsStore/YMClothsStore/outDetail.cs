@@ -19,6 +19,6 @@ namespace YMClothsStore
         public decimal outAmount { get; set; }
     
         public virtual item item { get; set; }
-        public virtual @out @out { get; set; }
+        public virtual outBase outBase { get; set; }
     }
 }

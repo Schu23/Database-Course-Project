@@ -17,8 +17,8 @@ namespace YMClothsStore
         public staff()
         {
             this.check = new HashSet<check>();
-            this.@in = new HashSet<@in>();
-            this.@out = new HashSet<@out>();
+            this.inBase = new HashSet<inBase>();
+            this.outBase = new HashSet<outBase>();
         }
     
         public string staffId { get; set; }
@@ -31,8 +31,8 @@ namespace YMClothsStore
         public string password { get; set; }
     
         public virtual ICollection<check> check { get; set; }
-        public virtual ICollection<@in> @in { get; set; }
-        public virtual ICollection<@out> @out { get; set; }
+        public virtual ICollection<inBase> inBase { get; set; }
+        public virtual ICollection<outBase> outBase { get; set; }
         public virtual shop shop { get; set; }
     }
 }
