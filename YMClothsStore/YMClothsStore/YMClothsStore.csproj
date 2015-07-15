@@ -93,12 +93,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="stylesheets\404page.css" />
+    <Content Include="stylesheets\staffInfo.css" />
     <EntityDeploy Include="YMEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YMEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="stylesheets\404page.css" />
-    <Content Include="stylesheets\staffInfo.css" />
     <Content Include="YMEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>YMEntities.edmx</DependentUpon>

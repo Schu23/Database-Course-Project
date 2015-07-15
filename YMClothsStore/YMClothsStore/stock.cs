@@ -16,10 +16,10 @@ namespace YMClothsStore
     {
         public string itemId { get; set; }
         public string shopId { get; set; }
-        public Nullable<decimal> stockAmount { get; set; }
-        public Nullable<decimal> saleAmount { get; set; }
-        public Nullable<decimal> stockLimit { get; set; }
-        public Nullable<decimal> purchaseAmount { get; set; }
+        public decimal stockAmount { get; set; }
+        public decimal saleAmount { get; set; }
+        public decimal stockLimit { get; set; }
+        public decimal purchaseAmount { get; set; }
     
         public virtual item item { get; set; }
         public virtual shop shop { get; set; }
