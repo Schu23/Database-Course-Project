@@ -39,6 +39,11 @@ namespace YMClothsStore
             DBModel.sharedDBModel().deletdShop("ddd");
 
         }
+        //修改分店信息
+        protected void modifyBranch (object sender, EventArgs e)
+        {
+            
+        }
      // protected void m
     }
 }
