@@ -522,7 +522,7 @@ namespace YMClothsStore
         /**
          * 21.员工查看某商品在系统的库存
          * 参数：货物Id
-         * 返回值：系统中的某件商品的所有库存(未测)
+         * 返回值：系统中的某件商品的所有库存(通过测试)
          */
         public stock[] getItemStockInSystem(string itemId)
         {
@@ -538,7 +538,7 @@ namespace YMClothsStore
 
         /**
          * 22.员工查看总库库存
-         * 返回值：原木衣橱总库库存信息数组(未测)
+         * 返回值：原木衣橱总库库存信息数组(通过测试)
          */
         public stock[] getSystemStockInfo()
         {
@@ -556,7 +556,7 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表(未测)
+         * 返回：一个新添加的入库登记表(通过测试)
          */
         public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
