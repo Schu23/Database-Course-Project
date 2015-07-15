@@ -137,6 +137,7 @@
     <!-- 信息表格 -->
     <div class="container table-container">
       <div class="table-responsive">
+        <form runat="server" method="get" >
         <table class="table table-striped">
           <thead>
             <tr>
@@ -147,7 +148,7 @@
               <th>移除员工</th>
             </tr>
           </thead>
-             <form runat="server">
+
           <tbody>
               <%foreach (var staff in staffs){%>
             <tr>
@@ -171,9 +172,11 @@
                       <div class="modal-body">
                         你确定要移除员工<%: staff.staffName %>吗？
                       </div>
-                      <div class="modal-footer">                    
-                        <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee?fireEmployeeId=<%:staff.staffId %>" />
-                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>                   
+                      <div class="modal-footer">  
+                       
+                         <input type="hidden" name="fireEmployeeId" value="<%:staff.staffId %>" />
+                         <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee" />
+                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>          
                       </div>
                     </div>
                   </div>
@@ -183,8 +186,9 @@
             </tr>
               <% } %>
           </tbody>
-        </form>
+ 
         </table>
+          </form>   
       </div>
     </div>
     

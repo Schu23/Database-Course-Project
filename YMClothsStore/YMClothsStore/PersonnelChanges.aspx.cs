@@ -14,14 +14,16 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
-          staffs = DBModel.sharedDBModel().findStaffInformationById("shopid");
+          //now it is hard code ！！！！！
+          staffs = DBModel.sharedDBModel().findStaffInformationById("1423");
+          System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
         }
 
         // 添加新员工
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-            if(DBModel.sharedDBModel().addNewStaff(freshmanName) != "0")
+            if (!DBModel.sharedDBModel().addNewStaff(freshmanName).Equals("0"))
             {
                 System.Diagnostics.Debug.WriteLine("add new staff success");
             }

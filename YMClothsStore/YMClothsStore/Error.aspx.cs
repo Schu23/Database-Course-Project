@@ -13,5 +13,13 @@ namespace YMClothsStore
         {
 
         }
+        protected void returnBack (object sender , EventArgs e)
+        {
+            string returnURL = Session["returnURL"].ToString();
+            Session.Remove("returnURL");
+            Session.Remove("errorMessage");
+
+            Response.Redirect(returnURL);
+        }
     }
 }
