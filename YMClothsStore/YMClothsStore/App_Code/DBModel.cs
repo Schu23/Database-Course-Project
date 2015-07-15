@@ -36,7 +36,20 @@ namespace YMClothsStore
             string newId = tableName + "_";
             using (YMDBEntities db = new YMDBEntities())
             {
-                int countNum = db.Database.ExecuteSqlCommand("select count(*) from \"" + tableName + "\"");
+                int countNum;
+                switch (tableName)
+                {
+                    case "staff":
+                        countNum = db.staff.Count();
+                        break;
+                    case "shop":
+                        countNum = db.shop.Count();
+                        break;
+                    default:
+                        countNum = -2;
+                        break;
+                }
+                countNum++;
                 newId += countNum;
                 newId = newId + "_";
             }
@@ -51,12 +64,12 @@ namespace YMClothsStore
         }
 
         /**
-         * 1.查询店铺员工信息
+         * 1.根据shopId查询店铺员工信息
          * 参数：店铺id：shopId
-         * 返回值：成功返回该店铺员工信息Array，失败返回null
+         * 返回值：成功返回该店铺员工信息Array，失败返回空数组
          * 需要测试
          */
-        public staff[] findStaffInformationById(string shopId)
+        public staff[] findStaffsByShopId(string shopId)
         {
             staff[] staffs = { };
             using (YMDBEntities db = new YMDBEntities())
@@ -66,28 +79,27 @@ namespace YMClothsStore
 
             return staffs;
         }
+
         /**
          * 2.添加新员工
          * 参数：新员工名字
          * 返回值：成功返回员工id，失败返回0
-         * 需要测试
          */
-        public staff addNewStaff(string newStaffName)
+        public staff addNewStaff(string newStaffName, string newStaffPassword, string newShopId, int newStaffJob, string newGender)
         {
-            string newId = "1234567890";// createNewId("staff");//根据一个算法产生ID
-            const string defaultPassword = "12345678";//初始密码12345678,需要设为全局
+            string newId = createNewId("staff");//根据一个算法产生ID
 
             staff newStaff = new staff
             {
                 staffId = newId,
                 staffName = newStaffName,
-                password = defaultPassword,
+                password = newStaffPassword,
                 staffLoginName = newStaffName,
-                shopId = "121",
-                staffJob = 1,
-                staffGender = "male",
+                shopId = newShopId,
+                staffJob = newStaffJob,
+                staffGender = newGender,
             };
-            
+
             //写入数据库
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -98,12 +110,10 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加员工异常:");
+                    System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
-
-
             return newStaff;
         }
 
@@ -111,9 +121,8 @@ namespace YMClothsStore
          * 3.删除员工
          * 参数：员工id
          * 返回值：成功返回true，失败或员工不存在返回false
-         * 需要测试
          */
-        public bool deleteStaffById(string deletedStaffId)
+        public bool deleteStaffByStaffId(string deletedStaffId)
         {
             bool deletdSucceed = false;
 
@@ -164,11 +173,10 @@ namespace YMClothsStore
         /*
          * 5.增加新门店
          * 参数：店长id，新门店地址，新门店电话
-         * 返回值：门店id，失败返回"false"
+         * 返回值：门店实例，失败返回null
          */
-        public string addNewShop(string newShopAddress, string newShopPhone) 
+        public shop addNewShopWithManagerIdAndAddressIdAndShopPhone(string newShopManagerId, string newShopAddress, string newShopPhone)
         {
-            string isSecceed = "新建门店失败";
             shop newShop = new shop
             {
                 shopAddress = newShopAddress,
@@ -191,7 +199,7 @@ namespace YMClothsStore
                 }
             }
 
-            return isSecceed;
+            return newShop;
         }
 
         /*
@@ -199,7 +207,7 @@ namespace YMClothsStore
          * 参数：门店id
          * 返回值：bool
          */
-        public bool deletdShop(string shopId)
+        public bool deletdShopByShopId(string shopId)
         {
             bool isSucceed = false;
             using (YMDBEntities db = new YMDBEntities())
@@ -242,7 +250,7 @@ namespace YMClothsStore
          * 参数：员工id
          * 返回值：员工类
          */
-        public staff findStaffById(string id)
+        public staff findStaffByStaffId(string id)
         {
             staff wantStaff = null;
 
@@ -295,12 +303,30 @@ namespace YMClothsStore
         }
         /**
          * 10.增加地址接口
-         * 参数：
+         * 参数：新地址名称或代号，新地址详细信息（街道等）
+         * 返回值：address实例
          */
-        //public address addAddressInfo(string newAddressName, string newAddressDetail)
-        //{
-        //    address newAddressInfo = 
-        //}
+        public address addAddressInfo(string newAddressName, string newAddressDetail)
+        {
+            address newAddress = null;
+
+            return newAddress;
+        }
+
+        /**
+         * 11.根据shopId查找shop
+         * 参数：shopId
+         * 返回值：staff
+         */
+        public shop findShopByShopId(string targetShopId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                shop targetShop = db.shop.Where(p => p.shopId == targetShopId).FirstOrDefault();
+                return targetShop;
+            }
+
+        }
 
     }
 }

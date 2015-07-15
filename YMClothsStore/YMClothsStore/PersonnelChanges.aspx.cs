@@ -15,7 +15,7 @@ namespace YMClothsStore
         {
           //获取当前店里的员工列表
           //now it is hard code ！！！！！
-          staffs = DBModel.sharedDBModel().findStaffInformationById("121");
+          staffs = DBModel.sharedDBModel().findStaffsByShopId("121");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
         }
 
@@ -41,7 +41,7 @@ namespace YMClothsStore
         {
            string fireId = Request.Form["fireEmployeeId"];
 
-           if( DBModel.sharedDBModel().deleteStaffById(fireId))
+           if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
            {
                System.Diagnostics.Debug.WriteLine("Fire employee success");
            }
