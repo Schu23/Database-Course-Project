@@ -14,6 +14,7 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
+          //now it is hard code ！！！！！
           staffs = DBModel.sharedDBModel().findStaffInformationById("1423");
           System.Diagnostics.Debug.WriteLine(staffs[0].staffName);
         }
@@ -22,7 +23,7 @@ namespace YMClothsStore
         protected void addEmployee(object sender , EventArgs e)
         {
             string freshmanName = Request.Form["freshmanName"];
-            /*if(DBModel.sharedDBModel().addNewStaff(freshmanName) != "0")
+            if (!DBModel.sharedDBModel().addNewStaff(freshmanName).Equals("0"))
             {
                 System.Diagnostics.Debug.WriteLine("add new staff success");
             }
@@ -32,7 +33,7 @@ namespace YMClothsStore
                 Session["errorMessage"] = "添加新员工失败";
                 Session["returnURL"] = "PersonnelChanges.aspx";
                 Response.Redirect("Error.aspx");
-            }*/
+            }
         }
 
         // 开除员工

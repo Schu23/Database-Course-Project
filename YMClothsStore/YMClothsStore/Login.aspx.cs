@@ -22,21 +22,23 @@ namespace YMClothsStore
             {
                 System.Diagnostics.Debug.WriteLine("kong");
                 Session["errorMessage"] = "用户名和密码不能为空";
+                Session["returnURL"] = "Login.aspx";
                 Response.Redirect("Error.aspx");
             }
             else
             {
-                // 小宇
               staff theStaff =  DBModel.sharedDBModel().loginWithStaffLoginNameAndPassword(username, pwd);
               if(theStaff == null)
               {
                   System.Diagnostics.Debug.WriteLine("用户名密码错误");
                   Session["errorMessage"] = "用户名和密码错误";
+                  Session["returnURL"] = "Login.aspx";
                   Response.Redirect("Error.aspx");
               }
                 else
               {
                   Session["Staff"] = theStaff;
+                  System.Diagnostics.Debug.WriteLine("success !" + "usr job :" + theStaff.staffJob);
                   if(theStaff.staffJob.Equals("Manager")) 
                       Response.Redirect("ManagerIndex.aspx");
                   if (theStaff.staffJob.Equals("Boss"))
