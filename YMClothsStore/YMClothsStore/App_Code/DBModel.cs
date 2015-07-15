@@ -339,7 +339,7 @@ namespace YMClothsStore
             staff[] staffs = { };
             using (YMDBEntities db = new YMDBEntities())
             {
-                string sql = "select * from \"staff\" where \"staffName\" like '%" + name + "%'";
+                string sql = "select * from \"staff\" where \"staffName\" like '%" + staffName + "%'";
                 staffs = db.Database.SqlQuery<staff>(sql).ToArray();
             }
 
@@ -356,6 +356,12 @@ namespace YMClothsStore
             order[] orders = { };
 
             //员工只可以查看自己店铺的订单
+            using (YMDBEntities db = new YMDBEntities()) 
+            {
+                //先根据staffId查到员工所属店铺
+                staff currentShopStaff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
+                
+            }
 
             return orders;
         }
