@@ -150,11 +150,6 @@ namespace YMClothsStore
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
                     db.SaveChanges();
-<<<<<<< HEAD
-                    oldStaff = this.findStaffById(currentInfo.staffId);
-                    db.Database.SqlQuery<staff>("update staff set \"staffName\" = " + currentInfo.staffName + ", \"staffPhone\" = " + currentInfo.staffPhone + ", \"password\" = " + currentInfo.password + "where \"staffId\" = " + currentInfo.staffId);
-=======
->>>>>>> bc02d8be0e7b5ee23797c5f0942e063d62f0ac38
                     return true;
                 }
                 catch (Exception ex)
