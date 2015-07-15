@@ -144,17 +144,14 @@ namespace YMClothsStore
             {
                 try
                 {
-<<<<<<< HEAD
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
                     System.Diagnostics.Debug.WriteLine(oldStaff.password);
                     oldStaff.staffName = currentInfo.staffName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
                     db.SaveChanges();
-=======
-                    staff oldStaff = this.findStaffById(currentInfo.staffId);
+                    oldStaff = this.findStaffById(currentInfo.staffId);
                     db.Database.SqlQuery<staff>("update staff set \"staffName\" = " + currentInfo.staffName + ", \"staffPhone\" = " + currentInfo.staffPhone + ", \"password\" = " + currentInfo.password + "where \"staffId\" = " + currentInfo.staffId);
->>>>>>> 24faf4332b9037b94450a95382b3eb10cf168990
                     return true;
                 }
                 catch (Exception ex)
