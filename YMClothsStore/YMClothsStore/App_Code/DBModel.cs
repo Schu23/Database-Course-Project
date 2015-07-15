@@ -110,7 +110,7 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加新员工异常");
+                 //   System.Diagnostics.Debug.WriteLine("添加新员工异常");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }

@@ -22,18 +22,63 @@
 
   <body>
 
+        <!-- navbar container -->
     <div class="container">
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">
-              <img class="logo-responsive" alt="Brand" src="images/logo.jpg">
+              <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
             <a class="navbar-brand" href="#">原木衣橱连锁</a>
-          </div>
+          </div><!-- navbar header -->
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- 服装有关 -->
+            <ul class="nav navbar-nav navbar-left">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">查询服装信息</a></li>
+                  <li><a href="#">查询服装库存</a></li>
+                </ul>
+              </li>
+              <!-- 订单有关 -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">查询订单</a></li>
+                  <li><a href="#">增加订单</a></li>
+                  <li><a href="#">删除订单</a></li>
+                  <li><a href="#">修改订单</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
+                    刘旭东
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="text-center"><a href="#">修改个人信息</a></li>
+                  <li class="text-center"><a href="#">退出</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
         </div>
       </nav>
     </div>
+
      <form  runat="server"  class="col-sm-12" accept-charset="UTF-8" novalidate>
     <div class="container">
       <legend>账号设置</legend>
@@ -42,6 +87,7 @@
           <ul class="nav nav-pills nav-stacked">
             <li role="presentation" class="active"><a href="#personal-info" data-toggle="pill">个人信息</a></li>
             <li role="presentation"><a href="#phone-setting" data-toggle="pill">修改手机号</a></li>
+            <li role="presentation"><a href="#email-setting" data-toggle="pill">修改用户名</a></li>
             <li role="presentation"><a href="#pwd-setting" data-toggle="pill">修改密码</a></li>
           </ul>
         </div>
@@ -107,6 +153,42 @@
                 </div>  
               </div>
             </div>
+
+
+                    <div role="tabpanel" class="tab-pane fade" id="email-setting">
+              <div class="thumbnail">
+                <div class="caption">
+                  <div class="container">
+                      <div class="form-group">
+                        <label for="id-newemail" class="control-label">新的用户名</label>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" name="newemail" id="id-newemail" oninput="isEmail(event)" required>
+                          </div>
+                          <div class="col-sm-4">
+                            <label class="check-wrong" id="newemail-check"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="id-conemail" class="control-label">确认用户名</label>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" name="conemail" id="id-conemail" oninput="confirmEmail(event)" required>
+                          </div>
+                          <div class="col-sm-4">
+                            <label class="check-wrong" id="conemail-check"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <!--TODO HERE  staff login name -->
+                      <asp:Button Text="提交" CssClass="btn btn-primary" runat="server"  />
+                  </div>
+                </div>  
+              </div>
+            </div>
+
+
             <div role="tabpanel" class="tab-pane fade active" id="pwd-setting">
               <div class="thumbnail">
                 <div class="caption">

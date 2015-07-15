@@ -21,7 +21,7 @@ namespace YMClothsStore
             string managerID = Request.Form["managerId"];
             string branchAddress = Request.Form["BrachAddress"];
             string shopPhone = Request.Form["ShopPhone"];
-            if(DBModel.sharedDBModel().addNewShop(branchAddress, shopPhone).Equals("false"))
+            if(DBModel.sharedDBModel().addNewShopWithManagerIdAndAddressIdAndShopPhone(managerID,branchAddress,shopPhone) ==null)
             {
                 System.Diagnostics.Debug.WriteLine("新建分店失败");
                 Session["errorMessage"] = "新建分店失败";

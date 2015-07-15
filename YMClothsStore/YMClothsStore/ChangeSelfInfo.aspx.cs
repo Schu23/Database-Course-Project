@@ -87,5 +87,14 @@ namespace YMClothsStore
                 Response.Redirect("Error.aspx");
             }           
         }
+        // 更改邮箱
+        protected void modifyEmployeeEmail(object sender , EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("debug:LL start it !");
+            string newEmail = Request.Form["newmail"];
+            string conEmial = Request.Form["conmail"];
+            System.Diagnostics.Debug.WriteLine("debug here :" + newEmail + conEmial);
+
+        }
     }
 }

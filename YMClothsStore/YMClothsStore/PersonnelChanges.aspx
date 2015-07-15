@@ -20,7 +20,7 @@
 
     <!-- jquery & ajax -->
     <script src="JQuery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="js/staffInfo.js"></script>
+    <script type="text/javascript" src="scripts/staffInfo.js"></script>
 
   </head>
 
@@ -127,11 +127,16 @@
       </form>
     </div>
     <div class="container text-center main-sort">
-      <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
-        <button type="button" class="btn btn-info">按编号</button>
-        <button type="button" class="btn btn-primary">按姓名</button>
-        <!-- <button type="button" class="btn btn-info">按职位</button>
-        <button type="button" class="btn btn-primary">按所在门店</button> -->
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
+            <button type="button" class="btn btn-info">按编号</button>
+            <button type="button" class="btn btn-primary">按姓名</button>
+          </div>
+        </div>
+        <div class="col-md-6 text-left">
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加员工</button>
+        </div>
       </div>
     </div>
     <!-- 信息表格 -->
