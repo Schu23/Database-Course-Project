@@ -161,7 +161,7 @@
 * 返回：本月每日销售总价的集合
 * 备注：不太确定返回值类型是float[]还是decimal[]，有待测试
 
-####29.public item[] getAllItemsOfThisShop(string staffId)[未完成]
+####29.public item[] getAllItemsOfThisShop(string staffId)[通过测试]
 * 员工查询商品信息
 * 参数：员工Id
 * 返回：本店所有商品信息的集合

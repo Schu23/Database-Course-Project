@@ -785,23 +785,22 @@ namespace YMClothsStore
         /**
          * 29.员工查询商品信息
          * 参数：员工Id
-         * 返回：本店所有商品信息的集合(未测)
+         * 返回：本店所有商品信息的集合(通过测试)
          */
         public item[] getAllItemsOfThisShop(string staffId) {
-            item[] items = { };
-
             string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
                 stock[] currentStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                item[] items = new item[currentStock.Length];
                 for (int i = 0; i < currentStock.Length; i++)
                 {
-                    items[i] = db.item.Where(p => p.itemId == currentStock[i].itemId).FirstOrDefault();
+                    string currentItemId = currentStock[i].itemId;
+                    items[i] = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
                 }
+                return items;
             }
-
-            return items;
         }
 
         /**
