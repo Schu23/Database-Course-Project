@@ -448,7 +448,7 @@ namespace YMClothsStore
 
                     stock currentStock = db.stock.Where(p => p.shopId == currentOrder.shopId & p.itemId == newItemId).FirstOrDefault();
                     currentStock.stockAmount = currentStock.stockAmount - newItemAmount;
-                    currentStock.saleAmount = newItemAmount;
+                    currentStock.saleAmount = currentStock.saleAmount + newItemAmount;
 
                     db.SaveChanges();
                     return true;
