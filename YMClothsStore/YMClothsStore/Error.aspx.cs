@@ -12,11 +12,12 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            item[] test = DBModel.sharedDBModel().getAllItems();
-           
+            bool test = DBModel.sharedDBModel().addInDetailToInWithItemIdAndItemAmount("inBase_9118795447", "item_875412", 2);
+            	
+            //for(int i = 0; i < test.Length; i++) {
+                System.Diagnostics.Debug.WriteLine("test:" + test);
 
-            System.Diagnostics.Debug.WriteLine("Succeed:" + test.Length);
-
+            //}
             
         }
         protected void returnBack (object sender , EventArgs e)
