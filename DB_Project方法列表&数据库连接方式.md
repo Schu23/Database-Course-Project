@@ -74,17 +74,17 @@
 * 参数：店铺的ID
 * 返回：获取到的shop
 
-####12.public staff[] getStaffWithStaffName(string staffName)[未测试]
+####12.public staff[] getStaffWithStaffName(string staffName)[通过测试]
 * 使用模糊查询,通过员工姓名查找员工
 * 参数：员工名字的全部或一部分
 * 符合条件的员工数组
 
-####13.public order[] getAllOrderInfo(string staffId)[未完成]
+####13.public order[] getAllOrderInfo(string staffId)[通过测试]
 * 员工查看订单信息
 * 参数：员工Id
 * 返回：所有的订单的数组
 
-####14.public order getOrderInfoByOrderId(string orderId)[已完成]
+####14.public order getOrderInfoByOrderId(string orderId)[通过测试]
 * 员工查看某个订单普通信息
 * 参数：订单Id
 * 返回：订单实例
