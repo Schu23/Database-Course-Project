@@ -366,16 +366,14 @@ namespace YMClothsStore
          * 参数：订单id
          * 返回值：订单实例(测试通过)
          */
-        public order getOrderInfoByOrderId(string orderId)
+        public order[] getOrderInfoByOrderId(string orderId)
         {
-            order targetOrder = null;
-
-
             using (YMDBEntities db = new YMDBEntities())
             {
-                targetOrder = db.order.Where(p => p.orderId == orderId).FirstOrDefault();
+                order[] targetOrder = db.order.Where(p => p.orderId == orderId).ToArray();
+                return targetOrder;
             }
-            return targetOrder;
+            
         }
 
         /**
