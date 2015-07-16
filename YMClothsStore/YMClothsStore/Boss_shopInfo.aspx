@@ -104,7 +104,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddressClothes.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -145,21 +145,10 @@
     </div>
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form role="search">
-        <div class="row">
-          <div class="col-md-7 col-sm-7 col-sm-offset-2">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="关键字" name="searchKey">
-            </div>
-          </div>
-          <div class="col-md-1 col-sm-1 search-padding">
-            <button type="submit" class="btn btn-default">搜索</button>
-          </div>
-        </div>
-      </form>
+      
     </div>
     <div class="container text-center main-sort">
-      <button type="button" class="btn btn-default" onclick="window.location.href='boss_addShop.html'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加门店</button>
+      <a runat="server" type="button" class="btn btn-default" href="~/Boss_AddShop.aspx"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加门店</a>
     </div>
     <!-- 信息表格 -->
     <div class="container table-container">
