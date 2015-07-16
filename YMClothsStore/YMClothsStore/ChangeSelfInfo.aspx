@@ -46,18 +46,15 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询服装信息</a></li>
-                  <li><a href="#">查询服装库存</a></li>
+                  <li><a runat="server" href="~/Staff_clothesInfo.aspx">查询服装信息</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询订单</a></li>
-                  <li><a href="#">增加订单</a></li>
-                  <li><a href="#">删除订单</a></li>
-                  <li><a href="#">修改订单</a></li>
+                  <li><a href="/Staff_OrderInfo.aspx" runat="server">查询订单</a></li>
+                  <li><a href="staff_addorder.html">增加订单</a></li>
                 </ul>
               </li>
             </ul>
