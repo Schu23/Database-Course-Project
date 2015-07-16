@@ -18,7 +18,7 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff =(staff)Session["Staff"];
-            string [,] showItems = DBModel.sharedDBModel().topFiveItems();
+            string [,] showItems = DBModel.sharedDBModel().topFiveItems("");
             /*       for(int i = 0 ; i<5 ; i ++)
                    {
                        topFiveItemId[i] = showItems[i, 0];

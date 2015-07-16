@@ -660,7 +660,7 @@ namespace YMClothsStore
          * 参数：无（根据当前月查询）
          * 返回：商品数组（数量5）
          */
-        public string[,] topFiveItems()
+        public string[,] topFiveItems(string staffId)
         {
             string[,] returnItems = new string[5, 3];
             stock[] allItems = { };
@@ -669,37 +669,28 @@ namespace YMClothsStore
                 //string sql = "select * from \"orderDetail\"";
                 //allItems = db.Database.SqlQuery<stock>(sql).ToArray();
 
+                string shopId = getShopIdByStaffId(staffId);
+
                 //默认为升序
-                allItems = db.stock.OrderBy(p => p.saleAmount).ToArray();
-                item[] nameItem = { };
-                foreach (var i in allItems)
+                allItems = db.stock.OrderBy(p => p.saleAmount).Where(p => p.shopId == shopId).ToArray();
+
+                string[] nameItem = { };
+                string[] imageItem = { };
+                string[] itemId = { };
+
+                for (int i = allItems.Length - 1; i > 0; i--)
                 {
-                    nameItem = db.item.Where(p => p.itemId == i.itemId).ToArray();
+                    item currenItem = db.item.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
+                    image currentItemImage = db.image.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
+                    itemId[i] = allItems[i].itemId;
+                    nameItem[i] = currenItem.itemName;
+                    imageItem[i] = currentItemImage.imagePath;
+                    returnItems[i, 0] = itemId[i];
+                    returnItems[i, 1] = nameItem[i];
+                    returnItems[i, 2] = imageItem[i];
                 }
 
-                image[] imageItem = { };
-                foreach (var j in allItems)
-                {
-                    imageItem = db.image.Where(p => p.itemId == j.itemId).ToArray();
-                }
-                if (allItems.Length < 6)
-                {
-                    for (int i = 0; i < allItems.Length; i++)
-                    {
-                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
-                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
-                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        returnItems[i, 0] = allItems[allItems.Length - 1].itemId;
-                        returnItems[i, 1] = nameItem[allItems.Length - 1].itemName;
-                        returnItems[i, 2] = imageItem[allItems.Length - 1].imagePath;
-                    }
-                }
+                   
             }
             return returnItems;
         }
@@ -710,7 +701,7 @@ namespace YMClothsStore
          * 返回：本月每日销售总价的集合
          * 备注：不太确定返回值类型是float还是decimal
          */
-        public decimal[] getEverySumOfThisMonth()
+        public decimal[] getEverySumOfThisMonth(string staffId)
         {
             //dictionary<datetime,float> returnorders = new dictionary<datetime,float>();
             //datetime now = datetime.now;
@@ -759,6 +750,8 @@ namespace YMClothsStore
                 
             //}
 
+            string shopId = getShopIdByStaffId(staffId);
+
             decimal[] returnOrders = new decimal[30];
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -766,7 +759,9 @@ namespace YMClothsStore
                 {
                     DateTime d = DateTime.Now;
                     DateTime tempDate = d.AddDays(0 - i);
-                    order[] tempOrderArray = db.order.Where(p => p.orderTime == tempDate).ToArray();
+                    order[] tempOrderArray = db.order.Where(p => p.orderTime == tempDate & p.shopId == shopId).ToArray();
+                    System.Diagnostics.Debug.WriteLine("tempOrderArraySize:"+tempOrderArray.Length);
+                    System.Diagnostics.Debug.WriteLine(tempDate);
                     if (tempOrderArray.Length == 0)
                     {
                         returnOrders[i] = 0;
