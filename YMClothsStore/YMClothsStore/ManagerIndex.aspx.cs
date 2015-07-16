@@ -9,9 +9,16 @@ namespace YMClothsStore
 {
     public partial class ManagerIndex : System.Web.UI.Page
     {
+        protected staff theStaff;
+        protected order[] getStaffOrder = null;
+        protected decimal[] orderMonthChart = null;
+        protected string[,] hotItems = null; 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            theStaff = (staff)Session["Staff"];
+            getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
+            orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth();
+            hotItems = DBModel.sharedDBModel().topFiveItems();
         }
     }
 }

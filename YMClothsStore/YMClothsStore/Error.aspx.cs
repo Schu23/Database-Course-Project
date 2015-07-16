@@ -12,8 +12,6 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            
             //32
             checkDetail[] ckecks = DBModel.sharedDBModel().getCheckDetailInfoWithStaffId("staff_1436923452");
             foreach (var i in ckecks)

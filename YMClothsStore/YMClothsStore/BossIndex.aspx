@@ -76,12 +76,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    刘旭东
+                    <%:theStaff.staffName %>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="text-center"><a href="#">修改个人信息</a></li>
-                  <li class="text-center"><a href="#">退出</a></li>
+                  <li class="text-center"><a runat ="server" href="~/ChangeSelfInfo.aspx">修改个人信息</a></li>
+                  <li class="text-center"><a runat ="server" href="~/Login.apsx">退出</a></li>
                 </ul>
               </li>
             </ul>

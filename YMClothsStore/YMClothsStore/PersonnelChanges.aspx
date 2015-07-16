@@ -20,7 +20,60 @@
 
     <!-- jquery & ajax -->
     <script src="JQuery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="scripts/staffInfo.js"></script>
+   <!-- <script type="text/javascript" src="scripts/staffInfo.js"></script>-->
+
+      <script>
+          $(function () {
+
+              var pageArray = [];
+
+              var liCount = $('tr').length;//获取获取记录条数
+              var PageSize  = 10;//设置每页，你准备显示几条
+              var PageCount  = Math.ceil(liCount/PageSize);//计算出总共页数
+    
+              var i=0;
+              for(i=1; i<=PageCount; i++){
+                  $('<li id="page-li"><a class="page-a" href="#" pageNum="'+(i-1)+'" >第'+i+'页</a></li>').appendTo('.pagination');//显示分页按钮
+              }
+              // 获取整个table中的所有行值并存入pagearray
+              var $tr = $('tr');
+              $tr.each(function(){
+                  if ($(this).attr('id')=="table-title") {}
+                  else{
+                      pageArray.push(this);
+                  }
+              });
+              // 清空table 只显示第一页数据
+              $('#table-body').html('');
+              for(i=0;i<PageSize;i++){
+                  $('#table-body').append(pageArray[i]);
+              }
+              // 显示分页内容的方法
+              function showPage(whichPage){
+                  $('#table-body').html('');
+                  var page = whichPage;
+                  var initial = (page)*PageSize;
+                  var end = (++page)*PageSize;
+                  for(i = initial; i < end ; i++){
+                      $('#table-body').append(pageArray[i]);
+                  }
+              }
+              // 当分页符号被点击时的效果
+              $('.page-a').click(function(){
+                  showPage($(this).attr('pagenum'));
+              })
+
+              // 模态框设置
+              $('.btn-danger').click(function () {
+                  var staffName = $(this).parent().prev().prev().prev().html();
+                  var staffId = $(this).parent().prev().prev().prev().prev().html();
+                  $('#delete_modal').html('你确定要移除员工' + staffName + '（编号' + staffId + '）吗？');
+                  $("#fire").val(staffId);
+              })
+
+          });
+      </script>
+
 
   </head>
 
@@ -169,7 +222,6 @@
               </td>
             </tr>
               <% } %>
-
           </tbody>
  
         </table>
@@ -182,12 +234,8 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">移除员工</h4>
                       </div>
-                      <div class="modal-body">
-                        你确定要移除员工<label id="staff_name"></label>吗？
-                      </div>
+                      <div class="modal-body" id="delete_modal"></div><input runat="server" type="hidden" name="fire" id="fire" />
                       <div class="modal-footer">  
-                          <a runat="server" href="http://localhost:51682/PersonnelChanges.aspx?fire=<%:staff.staffId%>">content</a>
-                 
                          <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="fireEmployee" />
                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>          
                       </div>

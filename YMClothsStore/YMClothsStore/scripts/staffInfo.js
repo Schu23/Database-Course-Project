@@ -36,10 +36,12 @@ $(function(){
     $('.page-a').click(function(){
         showPage($(this).attr('pagenum'));
     })
-});
 
-$('#my_modal').on('show.bs.modal', function (e) {
-    var btn = $(e.relatedTarget);
-    var id = btn.data('id');
-    $("#staff_name").html(id);
-})
+    // 模态框设置
+//    $('.btn-danger').click(function () {
+ //       var staffName = $(this).parent().prev().prev().prev().html();
+  //      var staffId = $(this).parent().prev().prev().prev().prev().html();
+  //      $('#delete_modal').html('你确定要移除员工' + staffName + '（编号' + staffId + '）吗？');
+   // })
+
+});

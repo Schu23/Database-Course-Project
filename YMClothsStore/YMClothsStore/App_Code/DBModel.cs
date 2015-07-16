@@ -407,7 +407,8 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                targetShopId = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault().shopId;
+                staff currentStaff = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault();
+                targetShopId = currentStaff.shopId;
             }
 
             return targetShopId;
@@ -760,7 +761,14 @@ namespace YMClothsStore
                 {
                     DateTime d = DateTime.Now;
                     DateTime tempDate = d.AddDays(0 - i);
-                    order[] tempOrderArray = db.order.Where(p => p.orderTime == tempDate & p.shopId == shopId).ToArray();
+                    int tempYear = tempDate.Year;
+                    int tempMonth = tempDate.Month;
+                    int tempDay = tempDate.Day;
+                    string tempDate0 = tempYear + "-" + tempMonth + "-" + tempDay + " 00:00:00";
+                    string tempDate24 = tempYear + "-" + tempMonth + "-" + tempDay + " 23:59:59";
+                    DateTime tempDateTime0 = DateTime.ParseExact(tempDate0, "yyyy-MM-dd HH:mm:ss", null);
+                    DateTime tempDateTime24 = DateTime.ParseExact(tempDate24, "yyyy-MM-dd HH:mm:ss", null);
+                    order[] tempOrderArray = db.order.Where(p => p.orderTime >= tempDateTime0 & p.orderTime <= tempDateTime24 & p.shopId == shopId).ToArray();
                     System.Diagnostics.Debug.WriteLine("tempOrderArraySize:"+tempOrderArray.Length);
                     System.Diagnostics.Debug.WriteLine(tempDate);
                     if (tempOrderArray.Length == 0)
