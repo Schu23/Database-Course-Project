@@ -1558,7 +1558,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 62.增加商店出库记录(测试通过)
+         * 63.增加商店出库记录(测试通过)
          * 参数：无
          * 返回值：shop[]
          */
@@ -1568,6 +1568,22 @@ namespace YMClothsStore
             {
                 shop[] allShops = db.shop.Where(p => p.shopId == p.shopId).ToArray();
                 return allShops;
+            }
+        }
+        
+        /*
+        * 64.根据员工Id查询此店发出的申请数组
+        * 参数：员工Id
+        * 返回值：申请数组
+        */
+        public apply[] getAllApllyFromThisShop(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply[] allApply = db.apply.Where(p => p.inShop == shopId).ToArray();
+                return allApply;
             }
         }
 
