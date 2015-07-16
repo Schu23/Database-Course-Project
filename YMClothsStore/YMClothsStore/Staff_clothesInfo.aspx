@@ -65,7 +65,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    刘旭东
+                    <%:theStaff.staffName %>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -99,6 +99,8 @@
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
+
+              <asp:Button Text="搜索" runat="server" CssClass="btn btn-default"  />
             <button type="submit" class="btn btn-default">搜索</button>
           </div>
         </div>
