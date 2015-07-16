@@ -49,7 +49,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddressClothes.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -91,7 +91,7 @@
 
     <div class="container addstaff-form">
       <!-- form在这里！ -->
-      <form class="">
+      <form class="" runat="server">
         <!-- 选择地址 name:shopAddress -->
         <div class="form-group">
           <div class="row">
@@ -100,12 +100,13 @@
             </div>
             <div class="col-md-3 col-sm-3">
               <select class="form-control" name="shopAddress">
-                <option value ="address0">纽约 address_001</option>
-                <option value ="address1">巴黎 address_002</option>
-                <option value ="address2">悉尼 address_003</option>
+                  <%for (int i = 0 ; i< addresses.Length ; i++){%>
+                <option value ="<%:i%>"><%:addresses[i].addressName %></option>
+                 <%} %>
               </select>
             </div>
-            <button class="btn btn-default col-md-1 col-sm-1" onclick="window.location.href='boss_addAddress.html'">新增</button>
+
+            <a runat="server" class="btn btn-default col-md-1 col-sm-1" href="~/Boss_AddAddress.aspx">新增</a>
           </div>
         </div>
         <!-- 指定分店店长 name:staffId -->
@@ -133,7 +134,8 @@
         <!-- 提交按钮 -->
         <div class="text-center">
           <br/>
-          <button type="submit" class="btn btn-primary submit-btn">提交</button>
+            <asp:Button Text="提交" CssClass="btn btn-primary submit-btn" runat="server" OnClick="Submit_Click" />
+       
         </div>
         
       </form>

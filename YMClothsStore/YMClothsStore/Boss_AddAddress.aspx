@@ -49,7 +49,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddressClothes.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -92,7 +92,7 @@
 
     <div class="container addstaff-form">
       <!-- form在这里！ -->
-      <form class="">
+      <form class="" runat="server">
         <!-- 输入地址名称 name:addressName -->
         <div class="form-group">
           <div class="row">
@@ -118,7 +118,8 @@
         <!-- 提交按钮 -->
         <div class="text-center">
           <br/>
-          <button type="submit" class="btn btn-primary sxubmit-btn">提交</button>
+            <asp:Button Text="提交" runat="server" CssClass="btn btn-primary submit-btn" OnClick="addNewAddress" />
+         
         </div>
         
       </form>

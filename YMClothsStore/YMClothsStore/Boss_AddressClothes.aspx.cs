@@ -14,7 +14,12 @@ namespace YMClothsStore
         string newColor;
         float newPrice;
         string newImagePath;
+        staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
+        {
+            theStaff =(staff)Session["Staff"];
+        }
+       protected void addNewAddress(object sender, EventArgs e)
         {
 
         }

@@ -69,7 +69,8 @@
         $('.btn-danger').click(function(){
             var staffName = $(this).parent().prev().prev().prev().html();
             var staffId = $(this).parent().prev().prev().prev().prev().html();
-            $('#delete_modal').html('你确定要关闭门店'+staffName+'（编号'+staffId+'）吗？');
+            $('#delete_modal').html('你确定要关闭门店' + staffName + '（编号' + staffId + '）吗？');
+            $("#close").val(staffId);
         })
     });
     </script>
@@ -104,7 +105,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddressClothes.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -145,21 +146,10 @@
     </div>
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form role="search">
-        <div class="row">
-          <div class="col-md-7 col-sm-7 col-sm-offset-2">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="关键字" name="searchKey">
-            </div>
-          </div>
-          <div class="col-md-1 col-sm-1 search-padding">
-            <button type="submit" class="btn btn-default">搜索</button>
-          </div>
-        </div>
-      </form>
+      
     </div>
     <div class="container text-center main-sort">
-      <button type="button" class="btn btn-default" onclick="window.location.href='boss_addShop.html'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加门店</button>
+      <a runat="server" type="button" class="btn btn-default" href="~/Boss_AddShop.aspx"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加门店</a>
     </div>
     <!-- 信息表格 -->
     <div class="container table-container">
@@ -175,28 +165,27 @@
             </tr>
           </thead>
           <tbody id="table-body">
+              <% foreach( var shop in allShop) { %>
             <tr>
-              <td>address_001</td>
-              <td>纽约</td>
-              <td>已关闭</td>
-              <td>68736273</td>
+              <td><%: shop.shopId %></td>
+              <td><%:shop.shopAddress %></td>
+              <td><%: shop.shopStatus %></td>
+              <td><%: shop.shopPhone %></td>
               <td>
+                  <% if(shop.shopStatus != 1) {%>
                 <button type="button" class="btn btn-default btn-sm disabled">已关闭</button>
+                  <%} else {%>
+                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_shop">关店</button>
+                  <%} %>
               </td>
             </tr>
-            <tr>
-              <td>address_002</td>
-              <td>巴黎</td>
-              <td>运营中</td>
-              <td>68736273</td>
-              <td>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_shop">关店</button>
-              </td>
-            </tr>
+       <%} %>
+              
             
           </tbody>
         </table>
         <!-- Modal -->
+          <form runat="server">
         <div class="modal fade" id="delete_shop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -207,13 +196,14 @@
               <div class="modal-body" id="delete_modal">
                 你确定要关闭门店吗？
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确定</button>
+              <div class="modal-footer"><input runat="server" type="hidden" name="close" id="close" />
+                 <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="closeShop" />
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
               </div>
             </div>
           </div>
         </div><!--modal-->
+         </form>
       </div>
     </div>
     <!-- 分页导航 -->
