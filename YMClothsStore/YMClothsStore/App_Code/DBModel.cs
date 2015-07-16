@@ -431,6 +431,7 @@ namespace YMClothsStore
                     orderTime = DateTime.Now,
                 };
                 db.order.Add(targetOrder);
+                db.SaveChanges();
                 return targetOrder;
             }
             return null;
