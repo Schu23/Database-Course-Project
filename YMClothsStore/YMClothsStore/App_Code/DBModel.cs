@@ -1410,5 +1410,38 @@ namespace YMClothsStore
             }
         }
 
+        /**
+        * 59.店长通过员工号查询入库报表
+        * 参数：员工Id
+        * 返回值：入库表实例（未测试）
+        */
+        public inBase[] getInBaseInfoByInBaseId(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inBase[] targetOrder = db.inBase.Where(p => p.shopId == shopId).ToArray();
+                return targetOrder;
+            }
+
+        }
+        /**
+        * 60.店长通过员工号查询出库报表
+        * 参数：员工Id
+        * 返回值：出库表实例（未测试）
+        */
+        public outBase[] getOutBaseInfoByOutBaseId(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outBase[] targetOrder = db.outBase.Where(p => p.shopId == shopId).ToArray();
+                return targetOrder;
+            }
+
+        }
+
     }
 }
