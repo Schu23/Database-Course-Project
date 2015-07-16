@@ -727,10 +727,8 @@ namespace YMClothsStore
                     int tempDay = tempDate.Day;
                     string tempDate0 = tempYear + "-" + tempMonth + "-" + tempDay + " 00:00:00";
                     string tempDate24 = tempYear + "-" + tempMonth + "-" + tempDay + " 23:59:59";
-                    //DateTime tempDateTime0 = DateTime.ParseExact(tempDate0, "yyyy-MM-dd HH:mm:ss", null);
-                    //DateTime tempDateTime24 = DateTime.ParseExact(tempDate24, "yyyy-MM-dd HH:mm:ss", null);
-                    DateTime tempDateTime0 = tempDate;
-                    DateTime tempDateTime24 = tempDate;
+                    DateTime tempDateTime0 = DateTime.ParseExact(tempDate0, "yyyy-MM-dd HH:mm:ss", null);
+                    DateTime tempDateTime24 = DateTime.ParseExact(tempDate24, "yyyy-MM-dd HH:mm:ss", null);
                     order[] tempOrderArray = db.order.Where(p => p.orderTime >= tempDateTime0 & p.orderTime <= tempDateTime24 & p.shopId == shopId).ToArray();
                     System.Diagnostics.Debug.WriteLine("tempOrderArraySize:"+tempOrderArray.Length);
                     System.Diagnostics.Debug.WriteLine(tempDate);
@@ -779,16 +777,16 @@ namespace YMClothsStore
          * 参数：商品Id
          * 返回：本店某一个商品(未测)
          */
-        public item getItemByItemId(string itemId)
+        public item[] getItemByItemId(string itemId)
         {
-            item newItem = null;
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                newItem = db.item.Where(p => p.itemId == itemId).FirstOrDefault();
+                item[] newItem = db.item.Where(p => p.itemId == itemId).ToArray();
+                return newItem;
             }
 
-            return newItem;
+            
         }
 
         /**
