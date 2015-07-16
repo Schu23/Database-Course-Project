@@ -44,7 +44,11 @@ namespace YMClothsStore
                              Response.Redirect("Staff_addOrder.aspx");
                          }
                          else
+                         {
+                             Session["errorMessage"] = "您的货物不存在或者已经大于库存了( ▼-▼ )";
+                             Session["returnURL"] = "Staff_addOrder.aspx";
                              Response.Redirect("Error.aspx");
+                         }
                      }
                  }
              }

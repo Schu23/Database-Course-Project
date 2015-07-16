@@ -100,61 +100,41 @@
                     <div class="form-group">
                       <label>服装编号：</label>
                       <input type="text" class="form-control" name="clothes_id_1" placeholder="服装编号:" required>
-                    </div>
-                    <div class="form-group" style="margin-left:10px;">
-                      <label>数量：</label>
+                        <label>数量：</label>
                       <input type="text" class="form-control" name="clothes_amount_1" placeholder="数量" required>
                     </div>
-                    <button type="button" class="btn btn-success" id="addClothes">添加</button>
-                    <button type="button" class="btn btn-danger" id="deleteClothes" style="display:none;">删除</button>
-                  </div>
-                  <div class="form-inline text-center" id="inline-2" style="display:none;">
+                  </div><br />
+                  <div class="form-inline text-center" id="inline-2">
                     <div class="form-group">
                       <label>服装编号：</label>
-                   <input type="text" class="form-control" name="clothes_id_2" placeholder="服装编号:" >
-                    </div>
-                    <div class="form-group" style="margin-left:10px;">
-                      <label>数量：</label>
+                        <input type="text" class="form-control" name="clothes_id_2" placeholder="服装编号:" >
+                        <label>数量：</label>
                       <input type="text" class="form-control" name="clothes_amount_2" placeholder="数量">
                     </div>
-                    <button type="button" class="btn btn-success" id="addClothes-2">添加</button>
-                    <button type="button" class="btn btn-danger" id="deleteClothes-2" style="display:none;">删除</button>
-                  </div>
-                  <div class="form-inline text-center" id="inline-3" style="display:none;">
+                  </div><br />
+                  <div class="form-inline text-center" id="inline-3">
                     <div class="form-group">
                       <label>服装编号：</label>
                       <input type="text" class="form-control" name="clothes_id_3" placeholder="服装编号:" >
-                    </div>
-                    <div class="form-group" style="margin-left:10px;">
                       <label>数量：</label>
                       <input type="text" class="form-control" name="clothes_amount_3" placeholder="数量" >
                     </div>
-                    <button type="button" class="btn btn-success" id="addClothes-3">添加</button>
-                    <button type="button" class="btn btn-danger" id="deleteClothes-3" style="display:none;">删除</button>
-                  </div>
-                  <div class="form-inline text-center" id="inline-4" style="display:none;">
+                  </div><br />
+                  <div class="form-inline text-center" id="inline-4">
                     <div class="form-group">
                       <label>服装编号：</label>
-                     <input type="text" class="form-control" name="clothes_id_4" placeholder="服装编号:" >
-                    </div>
-                    <div class="form-group" style="margin-left:10px;">
+                      <input type="text" class="form-control" name="clothes_id_4" placeholder="服装编号:" >
                       <label>数量：</label>
                       <input type="text" class="form-control" name="clothes_amount_4" placeholder="数量" />
                     </div>
-                    <button type="button" class="btn btn-success" id="addClothes-4">添加</button>
-                    <button type="button" class="btn btn-danger" id="deleteClothes-4" style="display:none;">删除</button>
-                  </div>
-                  <div class="form-inline text-center" id="inline-5" style="display:none;">
+                  </div><br />
+                  <div class="form-inline text-center" id="inline-5">
                     <div class="form-group">
                       <label>服装编号：</label>
                      <input type="text" class="form-control" name="clothes_id_5" placeholder="服装编号:" >
-                    </div>
-                    <div class="form-group" style="margin-left:10px;">
                       <label>数量：</label>
                       <input type="text" class="form-control" name="clothes_amount_5" placeholder="数量" >
                     </div>
-                    <button type="button" class="btn btn-success" id="addClothes-5">添加</button>
-                    <button type="button" class="btn btn-danger" id="deleteClothes-5" style="display:none;">删除</button>
                   </div>
                 </div>  
               </div>
@@ -163,7 +143,7 @@
         <!-- 提交按钮 -->
         <div class="text-center">
           <br/>
-            <asp:Button Text="提交" runat="server" OnClick="Add_NewOrder" />
+            <asp:Button Text="提交" runat="server" OnClick="Add_NewOrder"  CssClass="btn btn-primary btn-lg"/>
         </div>
         
       </form>
