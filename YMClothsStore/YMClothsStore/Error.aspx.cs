@@ -13,13 +13,13 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //29
-            item[] allItems = DBModel.sharedDBModel().getAllItemsOfThisShop("staff_1436923452");
-            foreach (var i in allItems)
+            
+            //32
+            checkDetail[] ckecks = DBModel.sharedDBModel().getCheckDetailInfoWithStaffId("staff_1436923452");
+            foreach (var i in ckecks)
             {
-                System.Diagnostics.Debug.WriteLine("29item:" + i.itemDate);
+                System.Diagnostics.Debug.WriteLine("29item:" + i.itemId);
             }
-
         }
         protected void returnBack (object sender , EventArgs e)
         {

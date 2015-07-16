@@ -166,18 +166,18 @@
 * 参数：员工Id
 * 返回：本店所有商品信息的集合
 
-####30.public item getItemByItemId(string itemId)[未完成]
+####30.public item getItemByItemId(string itemId)[通过测试]
 * 通过商品Id查询商品详细信息(查完库存调用此接口显示某商品详细信息)
 * 参数：商品Id
 * 返回：本店某一个商品
 
-####31.public item getItemByItemName(string itemName)[未完成]
+####31.public item getItemByItemName(string itemName)[通过测试]
 * 通过商品名查找商品
 * 参数：商品Name
 * 返回：本店某一个商品
 * 备注：模糊搜索
 
-####32.public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)[未完成]
+####32.public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)[通过测试]
 * 店长进行盘点(最终目的是检查是否有人偷东西)
 * 参数：员工Id
 * 返回：最近现在各个商品集合（包括名称和）

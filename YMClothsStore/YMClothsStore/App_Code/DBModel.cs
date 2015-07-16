@@ -806,7 +806,7 @@ namespace YMClothsStore
         /**
          * 30.通过商品Id查询商品详细信息(查完库存调用此接口显示某商品详细信息)
          * 参数：商品Id
-         * 返回：本店某一个商品(未测)
+         * 返回：本店某一个商品(通过测试)
          */
         public item getItemByItemId(string itemId)
         {
@@ -843,34 +843,46 @@ namespace YMClothsStore
          * 32.店长进行盘点(最终目的是检查是否有人偷东西)
          * 参数：员工Id
          * 返回：最近现在各个商品集合（包括名称和）
-         * 备注：其实可以通过库存方法来获取(未测)
+         * 备注：其实可以通过库存方法来获取(通过测试)
          */
-        public checkDetail[] getCheckDetailInfoWithStaffId(string currentCheckId, string staffId)
+        public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)
         {
-            checkDetail[] checks = { };
+            string currentCheckId = createNewId("checkDetail");
 
-            currentCheckId = createNewId("checkDetail");
-
-            string shopId = getShopIdByStaffId(staffId);
+            string currentShopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                stock[] itemStock = db.stock.Where(p => p.shopId == shopId).ToArray();
-                checkDetail[] currentCheckDetail = { };
+                DateTime time = DateTime.Now;
+                //先往check里加记录
+                check newCheck = new check
+                {
+                    checkId = currentCheckId,
+                    shopId = currentShopId,
+                    checkerId = staffId,
+                    checkTime = time
+                };
+                db.check.Add(newCheck);
+                db.SaveChanges();
+
+                //再往chechDetail中添加纪录
+                stock[] itemStock = db.stock.Where(p => p.shopId == currentShopId).ToArray();
+                checkDetail[] currentCheckDetail = new checkDetail[itemStock.Length];
                 for (int i = 0; i < itemStock.Length; i++)
                 {
-                    currentCheckDetail[i] = new checkDetail
+                    checkDetail detail = new checkDetail
                     {
                         itemId = itemStock[i].itemId,
                         checkId = currentCheckId,
                         currentAmount = itemStock[i].stockAmount,
                     };
-                    db.checkDetail.Add(currentCheckDetail[i]);
+                    currentCheckDetail[i] = detail;
+                    db.checkDetail.Add(detail);
                 }
                 db.SaveChanges();
-            }
 
-            return checks;
+                return currentCheckDetail;
+            }
         }
 
         /**
