@@ -256,9 +256,9 @@
 * 返回值：该物品对应的某一个图片的路径
 
 ####47.public apply[] getAllApllyToThisShop(string staffId)[未完成]
-* 根据员工Id查询向此店申请信息数组* 参数：员工Id* 返回值：申请书组
-####48.public stock changeStockByStaffIdAndItemId(string staffId, string itemId, int currentAmount)[未测试]* 如果盘点后商品数量不一致，进行更改，修改库存* 参数：店长Id，货物Id，现有数量* 返回值：库存信息
-####public address[] getAllAddressInfo()[未测试]* 返回所有地点信息* 参数：无* 返回值：地点信息数组
+* 根据员工Id查询向此店申请信息数组
+* 参数：员工Id
+* 返回值：申请书组
 
 ####50.public inBase[] getAllinBaseInfoByStaffId(string targetStaffId)[未完成]
 * 拿到该员工商店所有的入库信息
@@ -285,7 +285,15 @@
 * 参数：申请id
 * 返回值：详细信息[]
 
+####55.public inBase[] getInBaseInfoByOrderId(string inBaseId)[未测试]
+* 店长通过入库表Id找入库表
+* 参数：入库表Id
+* 返回：入库表实例
 
+####55.public outBase[] getOutBaseInfoByOrderId(string outBaseId)[未测试]
+* 店长通过出库表Id找出库表
+* 参数：出库表Id
+* 返回：出库表实例
 
 
 

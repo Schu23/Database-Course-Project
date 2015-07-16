@@ -191,7 +191,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Manager_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a href="#">查询服装库存</a></li>
+                  <li><a href="~/Manager_StockInfo.aspx" runat="server">查询服装库存</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
@@ -205,17 +205,17 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">报表管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查看订单报表</a></li>
-                  <li><a href="#">查看入库报表</a></li>
-                  <li><a href="#">查看出库报表</a></li>
-                  <li><a href="#">查看调货报表</a></li>
+                  <li><a href="/ManagerOrderInfoTable.aspx">查看订单报表</a></li>
+                  <li><a href="/ManagerInBaseTable.aspx">查看入库报表</a></li>
+                  <li><a href="/ManagerOutBaseTable.aspx">查看出库报表</a></li>
+                  <li><a href="/ManagerStockInfoTable.aspx">查看调货报表</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="manager_staffInfo.html">查看员工信息</a></li>
-                  <li><a href="manager_addStaff.html">添加员工</a></li>
+                  <li><a href="/ManagerAddStaff.aspx">添加员工</a></li>
                 </ul>
               </li>
             </ul>

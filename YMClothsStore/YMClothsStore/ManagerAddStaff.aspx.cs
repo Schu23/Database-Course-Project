@@ -16,7 +16,7 @@ namespace YMClothsStore
         protected void confirmAddStaff(object sender, EventArgs e)
         {
             string staffName = Request.Form["staffName"];
-            string staffGender = Request.Form["staffGender"];
+            string staffGender = Request.Form["gender"];
             string staffPhone = Request.Form["staffPhone"];
             string defaultPassword = "123456";
             staff manager = (staff)Session["staff"];
@@ -31,7 +31,7 @@ namespace YMClothsStore
             }
            
             System.Diagnostics.Debug.WriteLine(staffPhone);
-
+            System.Diagnostics.Debug.WriteLine("gender:  " + staffGender);
             staff newStaff = DBModel.sharedDBModel().addNewStaff(staffName, defaultPassword, managerShopId, 2, staffGender);
             Response.Redirect("PersonnelChanges.aspx");
         }

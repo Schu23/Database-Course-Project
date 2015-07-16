@@ -108,10 +108,19 @@
     <Content Include="images\title.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
     <Content Include="ManagerAddStaff.aspx" />
+    <Content Include="ManagerInBaseTable.aspx" />
     <Content Include="ManagerIndex.aspx" />
+    <Content Include="ManagerOrderInfoTable.aspx" />
+    <Content Include="ManagerOutBaseTable.aspx" />
+    <Content Include="ManagerStockInfoTable.aspx" />
     <Content Include="Manager_AddOrder.aspx" />
+    <Content Include="Manager_AddStockPage.aspx" />
+    <Content Include="Manager_ApplyPage.aspx" />
+    <Content Include="Manager_CheckDetail.aspx" />
+    <Content Include="Manager_CheckInfoTable.aspx" />
     <Content Include="Manager_ClothesInfo.aspx" />
     <Content Include="Manager_OrderInfo.aspx" />
+    <Content Include="Manager_StockInfo.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -134,6 +143,7 @@
     <Content Include="Staff_OrderInfo.aspx" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\addOrder.css" />
+    <Content Include="stylesheets\addStaff.css" />
     <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
     <Content Include="stylesheets\staff_index.css" />
@@ -247,6 +257,13 @@
     <Compile Include="ManagerAddStaff.aspx.designer.cs">
       <DependentUpon>ManagerAddStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerInBaseTable.aspx.cs">
+      <DependentUpon>ManagerInBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerInBaseTable.aspx.designer.cs">
+      <DependentUpon>ManagerInBaseTable.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManagerIndex.aspx.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,12 +271,61 @@
     <Compile Include="ManagerIndex.aspx.designer.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerOrderInfoTable.aspx.cs">
+      <DependentUpon>ManagerOrderInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOrderInfoTable.aspx.designer.cs">
+      <DependentUpon>ManagerOrderInfoTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOutBaseTable.aspx.cs">
+      <DependentUpon>ManagerOutBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOutBaseTable.aspx.designer.cs">
+      <DependentUpon>ManagerOutBaseTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerStockInfoTable.aspx.cs">
+      <DependentUpon>ManagerStockInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerStockInfoTable.aspx.designer.cs">
+      <DependentUpon>ManagerStockInfoTable.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Manager_AddOrder.aspx.cs">
       <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager_AddOrder.aspx.designer.cs">
       <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_AddStockPage.aspx.cs">
+      <DependentUpon>Manager_AddStockPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_AddStockPage.aspx.designer.cs">
+      <DependentUpon>Manager_AddStockPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_ApplyPage.aspx.cs">
+      <DependentUpon>Manager_ApplyPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_ApplyPage.aspx.designer.cs">
+      <DependentUpon>Manager_ApplyPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_CheckDetail.aspx.cs">
+      <DependentUpon>Manager_CheckDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_CheckDetail.aspx.designer.cs">
+      <DependentUpon>Manager_CheckDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_CheckInfoTable.aspx.cs">
+      <DependentUpon>Manager_CheckInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_CheckInfoTable.aspx.designer.cs">
+      <DependentUpon>Manager_CheckInfoTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager_ClothesInfo.aspx.cs">
       <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
@@ -274,6 +340,13 @@
     </Compile>
     <Compile Include="Manager_OrderInfo.aspx.designer.cs">
       <DependentUpon>Manager_OrderInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_StockInfo.aspx.cs">
+      <DependentUpon>Manager_StockInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_StockInfo.aspx.designer.cs">
+      <DependentUpon>Manager_StockInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="order.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
