@@ -461,7 +461,9 @@ namespace YMClothsStore
                 item currentItem = db.item.Where(p => p.itemId == newItemId).FirstOrDefault();
                 currentOrder.totalPrice = currentOrder.totalPrice + currentItem.itemPrice * newItemAmount;
 
-
+                stock currentStock = db.stock.Where(p => p.shopId == currentOrder.shopId & p.itemId == newItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount - newItemAmount;
+                currentStock.saleAmount = newItemAmount;
 
                 db.SaveChanges();
                 
@@ -543,7 +545,7 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表(通过测试)
+         * 返回：一个新添加的入库登记表(通过测试)                      //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
@@ -569,7 +571,7 @@ namespace YMClothsStore
         /**
          * 24.员工为新建的入库登记表填写详细信息
          * 参数：入库Id,商品Id,商品数量Amount
-         * 返回：是否成功入库(未测)
+         * 返回：是否成功入库(未测)                          //增加修改库存信息
          */
         public bool addInDetailToInWithItemIdAndItemAmount(string currentInId, string currentItemId, int currentItemAmount)
         {
@@ -584,6 +586,12 @@ namespace YMClothsStore
                     inAmount = currentItemAmount,
                 };
                 db.inDetail.Add(currentInDetail);
+
+                inBase currentInBase = db.inBase.Where(p => p.inId == currentInId).FirstOrDefault();
+
+                stock currentStock = db.stock.Where(p => p.shopId == currentInBase.shopId & p.itemId == currentItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount + currentItemAmount;
+
                 db.SaveChanges();
             }
 
@@ -593,7 +601,7 @@ namespace YMClothsStore
         /**
          * 25.员工新建出库登记表
          * 参数：员工Id,出库类型
-         * 返回：员工新建一个出库登记表(未测)
+         * 返回：员工新建一个出库登记表(未测)                              //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public outBase addNewOut(string outStaffId,string currentOutType)
         {
@@ -621,7 +629,7 @@ namespace YMClothsStore
         /**
          * 26.员工为新建的出库登记表添加详细信息
          * 参数：货物Id，货物数量
-         * 返回：是否成功出库(未测)
+         * 返回：是否成功出库(未测)                                   //增加修改库存信息
          */
         public bool addOutDetailToOutWithItemIdAndItemAmount(string currentOutId, string currentItemId, int currentItemAmount)
         {
@@ -636,6 +644,12 @@ namespace YMClothsStore
                     outAmount = currentItemAmount,
                 };
                 db.outDetail.Add(currentOutDetail);
+
+                outBase currentOutBase = db.outBase.Where(p => p.outId == currentOutId).FirstOrDefault();
+
+                stock currentStock = db.stock.Where(p => p.shopId == currentOutBase.shopId & p.itemId == currentItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount - currentItemAmount;
+
                 db.SaveChanges();
             }
 
