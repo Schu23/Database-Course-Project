@@ -39,7 +39,12 @@ namespace YMClothsStore
                      System.Diagnostics.Debug.WriteLine("debug get the item id :" + itemId[i] + "and amount :" + itemAmount[i]);
                      if (itemId[i] != null && itemAmount[i]!=null)
                      {
-                         DBModel.sharedDBModel().addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(newOrder.orderId, itemId[i], int.Parse(itemAmount[i]));
+                         if (DBModel.sharedDBModel().addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(newOrder.orderId, itemId[i], int.Parse(itemAmount[i])))
+                         {
+                             Response.Redirect("Staff_addOrder.aspx");
+                         }
+                         else
+                             Response.Redirect("Error.aspx");
                      }
                  }
              }
