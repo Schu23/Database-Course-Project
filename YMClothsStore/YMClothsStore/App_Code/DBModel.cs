@@ -390,6 +390,12 @@ namespace YMClothsStore
         public order addOrderInfo(string staffId)
         {
             string newId = createNewId("order");
+            string newId2 = "outBase_";
+            for (int i = 6; i < newId.Length; i++)
+            {
+                newId2 = newId2 + newId[i];
+            }
+            string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -404,6 +410,17 @@ namespace YMClothsStore
                         orderTime = DateTime.Now,
                     };
                     db.order.Add(targetOrder);
+
+                    outBase newOutBase = new outBase
+                    {
+                        outId = newId2,
+                        shopId = shopId,
+                        staffId = staffId,
+                        outTime = DateTime.Now,
+                        outType = "sell",
+                    };
+                    db.outBase.Add(newOutBase);
+
                     db.SaveChanges();
                     return targetOrder;
                 }
@@ -428,6 +445,12 @@ namespace YMClothsStore
             {
                 try
                 {
+                    string newId2 = "outBase_";
+                    for (int i = 6; i < newOrderId.Length; i++)
+                    {
+                        newId2 = newId2 + newOrderId[i];
+                    }
+
                     order currentOrder = db.order.Where(p => p.orderId == newOrderId).FirstOrDefault();
                     orderDetail currentOrderDetail = new orderDetail
                     {
@@ -442,6 +465,14 @@ namespace YMClothsStore
                     stock currentStock = db.stock.Where(p => p.shopId == currentOrder.shopId & p.itemId == newItemId).FirstOrDefault();
                     currentStock.stockAmount = currentStock.stockAmount - newItemAmount;
                     currentStock.saleAmount = currentStock.saleAmount + newItemAmount;
+
+                    outDetail newOutBase = new outDetail
+                    {
+                        outId = newId2,
+                        itemId = newItemId,
+                        outAmount = newItemAmount,
+                    };
+                    db.outDetail.Add(newOutBase);
 
                     db.SaveChanges();
                     return true;
@@ -1383,6 +1414,114 @@ namespace YMClothsStore
                 return allCheckInfo;
             }
         } 
+
+        /**
+         * 58.新增盘点记录
+         * 参数：员工Id
+         * 返回值：盘点记录
+         */
+        public check addNewCheckRecord(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+            string newCheckId = createNewId("check");
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                check newCheck = new check
+                {
+                    checkerId = staffId,
+                    shopId = shopId,
+                    checkTime = DateTime.Now,
+                    checkId = newCheckId,
+                };
+                db.check.Add(newCheck);
+                db.SaveChanges();
+
+                return newCheck;
+                
+            }
+        }
+
+        /**
+        * 59.店长通过员工号查询入库报表
+        * 参数：员工Id
+        * 返回值：入库表实例（未测试）
+        */
+        public inBase[] getInBaseInfoByInBaseId(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inBase[] targetOrder = db.inBase.Where(p => p.shopId == shopId).ToArray();
+                return targetOrder;
+            }
+
+        }
+        /**
+        * 60.店长通过员工号查询出库报表
+        * 参数：员工Id
+        * 返回值：出库表实例（未测试）
+        */
+        public outBase[] getOutBaseInfoByOutBaseId(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outBase[] targetOrder = db.outBase.Where(p => p.shopId == shopId).ToArray();
+                return targetOrder;
+            }
+
+        }
+
+        /**
+         * 61.增加商店入库记录
+         * 参数：员工Id
+         * 返回值：入库记录
+         */
+        public inBase addNewInBaseRecord(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+            string newId = createNewId("inBase");
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inBase newInBase = new inBase
+                {
+                    inId = newId,
+                    shopId = shopId,
+                    staffId = staffId,
+                    inTime = DateTime.Now,
+                };
+                db.inBase.Add(newInBase);
+                db.SaveChanges();
+                return newInBase;
+            }
+        }
+
+        /**
+         * 62增加商店出库记录
+         * 参数：员工Id
+         * 返回值：出库记录
+         */
+        public outBase addNewOutBaseRecord(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+            string newId = createNewId("outBase");
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outBase newOutBase = new outBase
+                {
+                    outId = newId,
+                    shopId = shopId,
+                    staffId = staffId,
+                    outTime = DateTime.Now,
+                    outType = "export",
+                };
+                db.outBase.Add(newOutBase);
+                db.SaveChanges();
+                return newOutBase;
+            }
+        }
 
     }
 }

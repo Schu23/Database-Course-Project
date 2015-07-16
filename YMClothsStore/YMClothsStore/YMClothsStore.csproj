@@ -116,6 +116,8 @@
     <Content Include="Manager_AddOrder.aspx" />
     <Content Include="Manager_AddStockPage.aspx" />
     <Content Include="Manager_ApplyPage.aspx" />
+    <Content Include="Manager_CheckDetail.aspx" />
+    <Content Include="Manager_CheckInfoTable.aspx" />
     <Content Include="Manager_ClothesInfo.aspx" />
     <Content Include="Manager_OrderInfo.aspx" />
     <Content Include="Manager_StockInfo.aspx" />
@@ -310,6 +312,20 @@
     </Compile>
     <Compile Include="Manager_ApplyPage.aspx.designer.cs">
       <DependentUpon>Manager_ApplyPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_CheckDetail.aspx.cs">
+      <DependentUpon>Manager_CheckDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_CheckDetail.aspx.designer.cs">
+      <DependentUpon>Manager_CheckDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_CheckInfoTable.aspx.cs">
+      <DependentUpon>Manager_CheckInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_CheckInfoTable.aspx.designer.cs">
+      <DependentUpon>Manager_CheckInfoTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager_ClothesInfo.aspx.cs">
       <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
