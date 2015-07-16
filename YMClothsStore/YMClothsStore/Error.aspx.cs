@@ -12,7 +12,7 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            apply[] test = DBModel.sharedDBModel().getAllApllyToThisShop("567890");
+            item[] test = DBModel.sharedDBModel().getAllItems();
            
 
             System.Diagnostics.Debug.WriteLine("Succeed:" + test.Length);

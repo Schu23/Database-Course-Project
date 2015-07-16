@@ -1049,8 +1049,7 @@ namespace YMClothsStore
         /**
          * 38.店长对其他店的申请进行审批
          * 参数：店长Id，是否同意bool值
-         * 返回：审批是否成功的bool值(需要优化)
-         * 注意：如果staffId不是店长会有空指针错误，或者currentApplyId不存在也会有空指针，Debug监视会打印异常
+         * 返回：审批是否成功的bool值(通过测试)
          */
         public bool dealWithApplyFromOtherShop(string currentApplyId, string staffId, bool dealFlag)
         {
@@ -1088,10 +1087,13 @@ namespace YMClothsStore
          * 39.Boss增加商品
          * 参数：新增商品的名字、尺寸、颜色、价格
          * 返回：商品实例(测试通过)
-         * size不可大于5个字符
          */
         public item addItemByBoss(string currentItemName, string currentItemSize, string currenttemColor, double currentItemPrice)
         {
+            if (currentItemSize.Length > 5)
+            {
+                return null;
+            }
             string newId = createNewId("item");
 
             using (YMDBEntities db = new YMDBEntities())
@@ -1120,24 +1122,32 @@ namespace YMClothsStore
          * 40.Boss增加商品的图片信息
          * 参数：需要增加的商品的Id，图片的地址（或者编号）
          * 返回：图片实例(通过测试)
-         * currentItemId必须存在
          */
         public image addImageToItem(string currentItemId, string currentImagePath)
         {
-            image newImage = null;
-
             using (YMDBEntities db = new YMDBEntities())
             {
-                newImage = new image
+                try
                 {
-                    imagePath = currentImagePath,
-                    itemId = currentItemId,
-                };
-                db.image.Add(newImage);
-                db.SaveChanges();
+                    image newImage = new image
+                    {
+                        imagePath = currentImagePath,
+                        itemId = currentItemId,
+                    };
+                    db.image.Add(newImage);
+                    db.SaveChanges();
+                    return newImage;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("haha~保存不了吧，好好看看参数是不输错了.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
+
+                
             }
 
-            return newImage;
         }
 
         /**
@@ -1147,19 +1157,30 @@ namespace YMClothsStore
          */
         public item modifyItemByBoss(string currentItemId, string currentItemName, string currentItemSize, string currentItemColor, double currentItemPrice)
         {
-            item newItem = null;
+            if (currentItemSize.Length > 5)
+            {
+                return null;
+            }
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                newItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
-                newItem.itemName = currentItemName;
-                newItem.itemSize = currentItemSize;
-                newItem.itemColor = currentItemColor;
-                newItem.itemPrice = (decimal)currentItemPrice;
-                db.SaveChanges();
+                try
+                {
+                    item newItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
+                    newItem.itemName = currentItemName;
+                    newItem.itemSize = currentItemSize;
+                    newItem.itemColor = currentItemColor;
+                    newItem.itemPrice = (decimal)currentItemPrice;
+                    db.SaveChanges();
+                    return newItem;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("参数输错了，回去再看一遍，仔细看!!!!!!!");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
             }
-
-            return newItem;
         }
 
         /**
@@ -1599,6 +1620,20 @@ namespace YMClothsStore
             {
                 apply[] allApply = db.apply.Where(p => p.inShop == shopId).ToArray();
                 return allApply;
+            }
+        }
+
+        /**
+         * 65.得到所有item
+         * 参数：无
+         * 返回值: 全部item[]
+         */
+        public item[] getAllItems()
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                item[] allItems = db.item.Where(p => p.itemId == p.itemId).ToArray();
+                return allItems;
             }
         }
     }
