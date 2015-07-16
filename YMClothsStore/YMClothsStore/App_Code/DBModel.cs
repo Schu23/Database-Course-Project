@@ -1291,6 +1291,56 @@ namespace YMClothsStore
                 return allAdress;
             }
         }
+
+        /**
+         * 50.拿到该员工商店所有的入库信息
+         * 参数：staffId
+         * 返回值：inBase[]
+         */
+        public inBase[] getAllinBaseInfoByStaffId(string targetStaffId)
+        {
+            string shopId = getShopIdByStaffId(targetStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inBase[] currentInBase = db.inBase.Where(p => p.shopId == shopId).ToArray();
+                return currentInBase;
+            }
+        }
+
+        /** 
+         * 51.拿到该员工商店所有的出库信息
+         * 参数：staffId
+         * 返回值：outBase[]
+         */
+        public outBase[] getAllOutBaseInfoByStaffId(string targetStaffId)
+        {
+            string shopId = getShopIdByStaffId(targetStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outBase[] currentOutBase = db.outBase.Where(p => p.shopId == shopId).ToArray();
+                return currentOutBase;
+            }
+        }
         
+        /**
+         * 54.根据申请id拿到详细信息表
+         * 参数：申请id
+         * 返回值：详细信息[]
+         */
+        public applyDetail[] getAllApplyDetailByApplyId(string targetApplyId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                applyDetail[] currentApplyDetail = db.applyDetail.Where(p => p.applyId == targetApplyId).ToArray();
+                return currentApplyDetail;
+            }
+        }
+
+
+
+
+
     }
 }
