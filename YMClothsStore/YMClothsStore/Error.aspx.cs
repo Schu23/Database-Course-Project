@@ -12,10 +12,10 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            stock applys = DBModel.sharedDBModel().getItemStockInThisShop("staff_1437054668", "qwer");
+            checkDetail[] applys = DBModel.sharedDBModel().getCheckDetailInfoWithStaffId("x123", "543");
+            
 
-            	
-                System.Diagnostics.Debug.WriteLine("Succeed:" + applys);
+            System.Diagnostics.Debug.WriteLine("Succeed:" + applys.Length);
 
             //}
         }
