@@ -1281,7 +1281,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 47.根据员工Id查询向此店申请信息数组
+         * 47.根据员工Id查询向此店申请信息数组(通过测试)
          * 参数：员工Id
          * 返回值：申请书组
          */
@@ -1297,19 +1297,34 @@ namespace YMClothsStore
         }
 
         /**
-         * 48.如果盘点后商品数量不一致，进行更改，修改库存
+         * 48.如果盘点后商品数量不一致，进行更改，修改库存(通过测试)
          * 参数：店长Id，货物Id，现有数量
          * 返回值：库存信息
          */
         public stock changeStockByStaffIdAndItemId(string staffId, string itemId, int currentAmount)
         {
-            string shopId = getShopIdByStaffId(staffId);
-            using (YMDBEntities db = new YMDBEntities()){
-                stock currentItem = db.stock.Where(p => p.itemId == itemId & p.shopId == shopId).FirstOrDefault();
-                currentItem.stockAmount = currentAmount;
-                db.SaveChanges();
-                return currentItem;
+            try
+            {
+                if (currentAmount < 0)
+                {
+                    return null;
+                }
+                string shopId = getShopIdByStaffId(staffId);
+                using (YMDBEntities db = new YMDBEntities())
+                {
+                    stock currentItem = db.stock.Where(p => p.itemId == itemId & p.shopId == shopId).FirstOrDefault();
+                    currentItem.stockAmount = currentAmount;
+                    db.SaveChanges();
+                    return currentItem;
+                }
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("输入有误，总之我不给你修改数据库，自己看着办.");
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                return null;
+            }
+            
             
         }
 
@@ -1586,6 +1601,5 @@ namespace YMClothsStore
                 return allApply;
             }
         }
-
     }
 }
