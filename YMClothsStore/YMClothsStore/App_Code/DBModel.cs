@@ -777,16 +777,16 @@ namespace YMClothsStore
          * 参数：商品Id
          * 返回：本店某一个商品(未测)
          */
-        public item getItemByItemId(string itemId)
+        public item[] getItemByItemId(string itemId)
         {
-            item newItem = null;
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                newItem = db.item.Where(p => p.itemId == itemId).FirstOrDefault();
+                item[] newItem = db.item.Where(p => p.itemId == itemId).ToArray();
+                return newItem;
             }
 
-            return newItem;
+            
         }
 
         /**
