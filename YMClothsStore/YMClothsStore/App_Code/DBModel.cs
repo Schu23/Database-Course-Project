@@ -1557,5 +1557,19 @@ namespace YMClothsStore
             }
         }
 
+        /**
+         * 62.增加商店出库记录(测试通过)
+         * 参数：无
+         * 返回值：shop[]
+         */
+        public shop[] getAllShop()
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                shop[] allShops = db.shop.Where(p => p.shopId == p.shopId).ToArray();
+                return allShops;
+            }
+        }
+
     }
 }
