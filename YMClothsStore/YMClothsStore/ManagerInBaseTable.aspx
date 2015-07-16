@@ -137,42 +137,13 @@
             </tr>
           </thead>
           <tbody id="table-body">
+              <%foreach(var inBase in searchResult){ %>
             <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
+                <td><%:inBase.inId%></td>
+                <td><%:inBase.staffId %></td>
+                <td><%:inBase.inTime %></td>
             </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>322dfb</td>
-              <td>9:25:28</td>
-            </tr>
-            
+              <%} %>
           </tbody>
         </table>
       </div>
