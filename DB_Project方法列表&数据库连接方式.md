@@ -104,7 +104,7 @@
 * 参数：员工staffId,
 * 返回：本次订单
 
-####18.public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string orderId, string itemId , int itemAmount)[未完成]
+####18.public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string orderId, string itemId , int itemAmount)[通过测试]
 * 员工在订单中添加一条订单详细信息
 * 参数：订单Id,货物Id,货物数量
 * 返回：成功或者失败：成功返回true,失败返回false
@@ -215,17 +215,17 @@
 * 参数：店长Id，是否同意bool值
 * 返回：审批是否成功的bool值
 
-####39.public item addItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)[未完成]
+####39.public item addItemByBoss(string itemName, string itemSize, string itemColor, double itemPrice)[通过测试]
 * Boss增加商品
 * 参数：新增商品的名字、尺寸、颜色、价格
 * 返回：商品实例
 
-####40.public image addImageToItem(string itemId, string imagePath)[未完成]
+####40.public image addImageToItem(string itemId, string imagePath)[通过测试]
 * Boss增加商品的图片信息
 * 参数：需要增加的商品的Id，图片的地址（或者编号）
 * 返回：图片实例
 
-####41.public item modifyItemByBoss(string itemName, string itemSize, string itemColor, float itemPrice)[未完成]
+####41.public item modifyItemByBoss(string itemName, string itemSize, string itemColor, double itemPrice)[未完成]
 * Boss修改商品信息
 * 参数：修改后的商品的名字、尺寸、颜色、价格
 * 返回：商品实例
@@ -235,7 +235,7 @@
 * 参数：商品Id，商品的新状态
 * 返回：是否修改成功
 
-####43.public staff assignManagerToShop(string shopId, string managerId)[未完成]
+####43.public staff assignManagerToShop(string shopId, string managerId)[通过测试]
 * Boss指派店长
 * 参数：商店Id，新店长的Id
 * 返回：新店长的实例
@@ -245,12 +245,12 @@
 * 参数：地址名称，详细地址
 * 返回：新的地址的实例
 
-####45.public apply[] checkAllApplyByStaffId(string staffId)[未完成]
+####45.public apply[] checkAllApplyByStaffId(string staffId)[通过测试]
 * 查看调货记录
 * 参数：staffId
 * 返回值：调货记录数组
 
-####46.public string getImagePathWithItemId(string itemId)
+####46.public string getImagePathWithItemId(string itemId)[通过测试]
 * 根据物品id得到图片路径
 * 参数：物品Id
 * 返回值：该物品对应的某一个图片的路径

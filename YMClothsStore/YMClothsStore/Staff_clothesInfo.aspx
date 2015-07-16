@@ -52,7 +52,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a class="navbar-brand" href="staff_index.html">原木衣橱连锁</a>
+            <a class="navbar-brand" href="Index.aspx" runat="server">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

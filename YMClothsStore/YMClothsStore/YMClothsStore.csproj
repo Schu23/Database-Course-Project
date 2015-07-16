@@ -122,12 +122,15 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="scripts\addOrder.js" />
     <Content Include="scripts\boss_index.js" />
     <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
+    <Content Include="Staff_addOrder.aspx" />
     <Content Include="Staff_clothesInfo.aspx" />
     <Content Include="Staff_OrderInfo.aspx" />
     <Content Include="stylesheets\404page.css" />
+    <Content Include="stylesheets\addOrder.css" />
     <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
     <Content Include="stylesheets\staff_index.css" />
@@ -274,6 +277,13 @@
     <Compile Include="staff.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Staff_addOrder.aspx.cs">
+      <DependentUpon>Staff_addOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff_addOrder.aspx.designer.cs">
+      <DependentUpon>Staff_addOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff_clothesInfo.aspx.cs">
       <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,7 +317,9 @@
       <DependentUpon>YMEntities.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UploadImage\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
