@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace YMClothsStore
 {
-    public partial class SelectOrders : System.Web.UI.Page
+    public partial class Staff_clothesInfo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

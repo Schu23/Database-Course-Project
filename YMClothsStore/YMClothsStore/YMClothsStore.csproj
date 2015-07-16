@@ -124,8 +124,7 @@
     <Content Include="scripts\boss_index.js" />
     <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
-    <Content Include="SelectClothesInfo.aspx" />
-    <Content Include="SelectOrders.aspx" />
+    <Content Include="Staff_clothesInfo.aspx" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
@@ -260,25 +259,18 @@
       <DependentUpon>PersonnelChanges.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectClothesInfo.aspx.cs">
-      <DependentUpon>SelectClothesInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SelectClothesInfo.aspx.designer.cs">
-      <DependentUpon>SelectClothesInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SelectOrders.aspx.cs">
-      <DependentUpon>SelectOrders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SelectOrders.aspx.designer.cs">
-      <DependentUpon>SelectOrders.aspx</DependentUpon>
-    </Compile>
     <Compile Include="shop.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="staff.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Staff_clothesInfo.aspx.cs">
+      <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff_clothesInfo.aspx.designer.cs">
+      <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="stock.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>

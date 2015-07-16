@@ -11,7 +11,7 @@ namespace YMClothsStore
     {
         protected staff theStaff;
         protected order[] getStaffOrder = null;
-        protected string[,] showItems = null;
+        protected string[,] hotItems = null;
         protected decimal[] orderMonthChart = null;
      //   protected string[] topFiveItemId;
      //   protected string[] topFiveItemName;
@@ -22,8 +22,7 @@ namespace YMClothsStore
            // 为空返回什么数值?
            //  string [,] showItems = DBModel.sharedDBModel().topFiveItems();
             getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
-            
-
+            hotItems = DBModel.sharedDBModel().topFiveItems(theStaff.staffId);
             // 前端 no problems 
            orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth(theStaff.staffId);
            System.Diagnostics.Debug.WriteLine("month order debug :"+ orderMonthChart.Length);

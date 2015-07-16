@@ -190,7 +190,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Staff_clothesInfo.aspx">查询服装信息</a></li>
                   <li><a href="#">查询服装库存</a></li>
                 </ul>
               </li>
@@ -280,7 +280,7 @@
               <button type="button" class="btn btn-info">补货</button>
             </div>
             <% if (hotItems.Length >1){ %>
-           <% for (int i = 1 ;i< hotItems.Length ; i++) { %>
+           <% for (int i = 1 ;i< hotItems.GetLength(0) ; i++) { %>
             <div class="col-md-2 col-sm-2 col-xs-4">
               <img class="img-responsive" src="<%: hotItems[i,2] %>">
               <br/><h4><%: hotItems[i,1] %></h4>
