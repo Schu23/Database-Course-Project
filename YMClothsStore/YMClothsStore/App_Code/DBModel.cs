@@ -895,14 +895,10 @@ namespace YMClothsStore
                 order currentOrder = db.order.Where(p => p.orderId == originOrderId).FirstOrDefault();
                 db.order.Remove(currentOrder);
                 newOrder = db.orderDetail.Where(p => p.itemId == currentItemId & p.orderId == originOrderId).FirstOrDefault();
-<<<<<<< HEAD
                 db.orderDetail.Remove(newOrder);
                 db.SaveChanges();
                 item currentItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
                 
-=======
-                item currentItem = db.item.Where(p => p.itemId == newOrder.itemId).FirstOrDefault();
->>>>>>> b92bfd47249db8d540258daa37a07d61fcbb3d0f
                 decimal itemPrice = currentItem.itemPrice;
                 decimal oldItemAmount = newOrder.itemAmount;
                 newOrder.itemAmount = currentItemAmount;
