@@ -31,7 +31,7 @@ namespace YMClothsStore
             string freshmanShop = Request.Form["freshmanShop"];
             int freshmanJob = int.Parse(Request.Form["freshmanJob"]);
             string freshmanGender = Request.Form["freshmanGender"];
-           if (DBModel.sharedDBModel().addNewStaff(freshmanName,freshmanPassword,freshmanShop,freshmanJob,freshmanGender) !=null)
+           if (DBModel.sharedDBModel().addNewStaff(freshmanName,freshmanPassword,freshmanShop,freshmanJob,freshmanGender,"13333333") !=null)
             {
                 System.Diagnostics.Debug.WriteLine("add new staff success");
                 //调回到当前界面

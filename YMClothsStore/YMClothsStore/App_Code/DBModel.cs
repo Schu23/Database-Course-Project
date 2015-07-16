@@ -312,17 +312,15 @@ namespace YMClothsStore
          */
         public order[] getAllOrderInfo(string staffId)
         {
-            order[] orders = { };
-
             string shopId = getShopIdByStaffId(staffId);
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
-                orders = db.order.Where(p => p.shopId == shopId).ToArray();
+                order[] orders = db.order.Where(p => p.shopId == shopId).ToArray();
+                return orders;
             }
 
-            return orders;
         }
 
         /**

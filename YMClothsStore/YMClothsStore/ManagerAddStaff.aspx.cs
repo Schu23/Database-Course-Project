@@ -34,7 +34,7 @@ namespace YMClothsStore
            
             System.Diagnostics.Debug.WriteLine(staffPhone);
             System.Diagnostics.Debug.WriteLine("gender:  " + staffGender);
-            staff newStaff = DBModel.sharedDBModel().addNewStaff(staffName, defaultPassword, managerShopId, 2, staffGender);
+            staff newStaff = DBModel.sharedDBModel().addNewStaff(staffName, defaultPassword, managerShopId, 2, staffGender,staffPhone);
             Response.Redirect("PersonnelChanges.aspx");
         }
     }

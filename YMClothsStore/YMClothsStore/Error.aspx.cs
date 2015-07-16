@@ -12,10 +12,10 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool test = DBModel.sharedDBModel().addInDetailToInWithItemIdAndItemAmount("inBase_9118795447", "item_875412", 2);
+            //bool test = DBModel.sharedDBModel().addInDetailToInWithItemIdAndItemAmount("inBase_9118795447", "item_875412", 2);
             	
             //for(int i = 0; i < test.Length; i++) {
-                System.Diagnostics.Debug.WriteLine("test:" + test);
+              //  System.Diagnostics.Debug.WriteLine("test:" + test);
 
             //}
             

@@ -10,7 +10,7 @@ namespace YMClothsStore
     public partial class Index : System.Web.UI.Page
     {
         protected staff theStaff;
-        protected order[] getStaffOrder = new order[5];
+        protected order[] getStaffOrder;
         protected string[,] hotItems = null;
         protected decimal[] orderMonthChart = null;
      //   protected string[] topFiveItemId;
@@ -22,7 +22,12 @@ namespace YMClothsStore
            // 为空返回什么数值?
            //  string [,] showItems = DBModel.sharedDBModel().topFiveItems();
            order[] getAllStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
-           for (int i = 0; i < 5;  i++)
+            int temp = getAllStaffOrder.Length;
+            if ( temp > 5) {
+                temp = 5;
+            }
+            getStaffOrder = new order[temp];
+           for (int i = 0; i < temp;  i++)
            {
                getStaffOrder[i] = getAllStaffOrder[i];
            }
