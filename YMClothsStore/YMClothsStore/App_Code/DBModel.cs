@@ -1353,7 +1353,7 @@ namespace YMClothsStore
             }
 
         }
-        /**
+       /**
        * 56.店长通过出库ID查找出库表
        * 参数：出库表id
        * 返回值：出库表实例（未测试）
@@ -1368,6 +1368,21 @@ namespace YMClothsStore
 
         }
 
+        /**
+         * 57.返回所有的盘点信息
+         * 参数：员工Id
+         * 返回值：盘点心虚数组
+         */
+        public check[] getAllCheckInfo(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                check[] allCheckInfo = db.check.Where(p => p.shopId == shopId).ToArray();
+                return allCheckInfo;
+            }
+        } 
 
     }
 }
