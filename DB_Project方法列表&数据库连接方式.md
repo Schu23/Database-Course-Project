@@ -150,16 +150,16 @@
 * 参数：货物Id，货物数量
 * 返回：是否成功出库
 
-####27.public string[,] topFiveItems(string staffId)[通过测试]
+####27.public string[,] topFiveItems()[未完成]
 * 员工页面显示最近五件最热商品
-* 参数：员工Id
-* 返回：商品数组（数量5）列：itemId,itemName,imageId第一个
+* 参数：无（根据当前月查询）
+* 返回：商品数组（数量5）
 
-####28.public decimal[] getEverySumOfThisMonth(string staffId)[通过测试]
+####28.public decimal[] getEverySumOfThisMonth()[未完成]
 * 员工页面显示这个月每日销售总价（？需要每个月都传么？No）
-* 参数：员工Id
+* 参数：无
 * 返回：本月每日销售总价的集合
-* 备注：decimal[]存放30天内的每日订单总价
+* 备注：不太确定返回值类型是float[]还是decimal[]，有待测试
 
 ####29.public item[] getAllItemsOfThisShop(string staffId)[通过测试]
 * 员工查询商品信息
