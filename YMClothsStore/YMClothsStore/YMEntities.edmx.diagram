@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5da0d9c42ead4f2181d46cf2ee0f1814" Name="Diagram1">
+      <Diagram DiagramId="0c23934319a84026b6a929a0a86c4720" Name="Diagram1">
         <EntityTypeShape EntityType="YMStore.address" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YMStore.apply" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="YMStore.applyDetail" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
@@ -21,30 +21,30 @@
         <EntityTypeShape EntityType="YMStore.shop" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="YMStore.staff" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="YMStore.stock" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
-        <AssociationConnector Association="YMStore.shop_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.apply_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.apply_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.applyDetail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.applyDetail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.check_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.check_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.checkDetail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.checkDetail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.image_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.in_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.in_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.inDetail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.inDetail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.orderDetail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.outDetail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.stock_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.order_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.orderDetail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.out_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.out_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.outDetail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.staff_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="YMStore.stock_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011863" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011843" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011844" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011845" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011846" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011847" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011848" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011849" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011850" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011851" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011852" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011853" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011854" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011855" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011858" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011861" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011865" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011856" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011857" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011859" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011860" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011862" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011864" ManuallyRouted="false" />
+        <AssociationConnector Association="YMStore.SYS_C0011866" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

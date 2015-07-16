@@ -96,7 +96,7 @@
           </Key>
           <Property Name="orderId" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="shopId" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="totalPrice" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="totalPrice" Type="float" Precision="40" Scale="0" Nullable="false" />
           <Property Name="orderTime" Type="date" />
         </EntityType>
         <EntityType Name="orderDetail">
@@ -161,7 +161,7 @@
           <Property Name="stockLimit" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="purchaseAmount" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
-        <Association Name="apply_ibfk_1">
+        <Association Name="SYS_C0011843">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,7 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="apply_ibfk_2">
+        <Association Name="SYS_C0011844">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,7 +185,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="applyDetail_ibfk_1">
+        <Association Name="SYS_C0011845">
           <End Role="apply" Type="Self.apply" Multiplicity="1" />
           <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,7 +197,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="applyDetail_ibfk_2">
+        <Association Name="SYS_C0011846">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,7 +209,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="check_ibfk_1">
+        <Association Name="SYS_C0011847">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,7 +221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="check_ibfk_2">
+        <Association Name="SYS_C0011848">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
@@ -233,7 +233,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="checkDetail_ibfk_1">
+        <Association Name="SYS_C0011849">
           <End Role="check" Type="Self.check" Multiplicity="1" />
           <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,7 +245,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="checkDetail_ibfk_2">
+        <Association Name="SYS_C0011850">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -257,7 +257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="image_ibfk_1">
+        <Association Name="SYS_C0011851">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="image" Type="Self.image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,7 +269,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="in_ibfk_1">
+        <Association Name="SYS_C0011852">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +281,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="in_ibfk_2">
+        <Association Name="SYS_C0011853">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -293,7 +293,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="inDetail_ibfk_1">
+        <Association Name="SYS_C0011854">
           <End Role="inBase" Type="Self.inBase" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,7 +305,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="inDetail_ibfk_2">
+        <Association Name="SYS_C0011855">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -317,7 +317,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="order_ibfk_1">
+        <Association Name="SYS_C0011856">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -329,7 +329,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="orderDetail_ibfk_1">
+        <Association Name="SYS_C0011857">
           <End Role="order" Type="Self.order" Multiplicity="1" />
           <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +341,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="orderDetail_ibfk_2">
+        <Association Name="SYS_C0011858">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="out_ibfk_1">
+        <Association Name="SYS_C0011859">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,7 +365,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="out_ibfk_2">
+        <Association Name="SYS_C0011860">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -377,7 +377,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="outDetail_ibfk_1">
+        <Association Name="SYS_C0011861">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,7 +389,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="outDetail_ibfk_2">
+        <Association Name="SYS_C0011862">
           <End Role="outBase" Type="Self.outBase" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -401,7 +401,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="shop_ibfk_1">
+        <Association Name="SYS_C0011863">
           <End Role="address" Type="Self.address" Multiplicity="1" />
           <End Role="shop" Type="Self.shop" Multiplicity="*" />
           <ReferentialConstraint>
@@ -413,7 +413,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="staff_ibfk_1">
+        <Association Name="SYS_C0011864">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="staff" Type="Self.staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -425,7 +425,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="stock_ibfk_1">
+        <Association Name="SYS_C0011865">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="stock" Type="Self.stock" Multiplicity="*" />
           <ReferentialConstraint>
@@ -437,7 +437,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="stock_ibfk_2">
+        <Association Name="SYS_C0011866">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="stock" Type="Self.stock" Multiplicity="*" />
           <ReferentialConstraint>
@@ -466,99 +466,99 @@
           <EntitySet Name="shop" EntityType="Self.shop" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="staff" EntityType="Self.staff" Schema="YUANMU" store:Type="Tables" />
           <EntitySet Name="stock" EntityType="Self.stock" Schema="YUANMU" store:Type="Tables" />
-          <AssociationSet Name="apply_ibfk_1" Association="Self.apply_ibfk_1">
+          <AssociationSet Name="SYS_C0011843" Association="Self.SYS_C0011843">
             <End Role="shop" EntitySet="shop" />
             <End Role="apply" EntitySet="apply" />
           </AssociationSet>
-          <AssociationSet Name="apply_ibfk_2" Association="Self.apply_ibfk_2">
+          <AssociationSet Name="SYS_C0011844" Association="Self.SYS_C0011844">
             <End Role="shop" EntitySet="shop" />
             <End Role="apply" EntitySet="apply" />
           </AssociationSet>
-          <AssociationSet Name="applyDetail_ibfk_1" Association="Self.applyDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011845" Association="Self.SYS_C0011845">
             <End Role="apply" EntitySet="apply" />
             <End Role="applyDetail" EntitySet="applyDetail" />
           </AssociationSet>
-          <AssociationSet Name="applyDetail_ibfk_2" Association="Self.applyDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011846" Association="Self.SYS_C0011846">
             <End Role="item" EntitySet="item" />
             <End Role="applyDetail" EntitySet="applyDetail" />
           </AssociationSet>
-          <AssociationSet Name="check_ibfk_1" Association="Self.check_ibfk_1">
+          <AssociationSet Name="SYS_C0011847" Association="Self.SYS_C0011847">
             <End Role="shop" EntitySet="shop" />
             <End Role="check" EntitySet="check" />
           </AssociationSet>
-          <AssociationSet Name="check_ibfk_2" Association="Self.check_ibfk_2">
+          <AssociationSet Name="SYS_C0011848" Association="Self.SYS_C0011848">
             <End Role="staff" EntitySet="staff" />
             <End Role="check" EntitySet="check" />
           </AssociationSet>
-          <AssociationSet Name="checkDetail_ibfk_1" Association="Self.checkDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011849" Association="Self.SYS_C0011849">
             <End Role="check" EntitySet="check" />
             <End Role="checkDetail" EntitySet="checkDetail" />
           </AssociationSet>
-          <AssociationSet Name="checkDetail_ibfk_2" Association="Self.checkDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011850" Association="Self.SYS_C0011850">
             <End Role="item" EntitySet="item" />
             <End Role="checkDetail" EntitySet="checkDetail" />
           </AssociationSet>
-          <AssociationSet Name="image_ibfk_1" Association="Self.image_ibfk_1">
+          <AssociationSet Name="SYS_C0011851" Association="Self.SYS_C0011851">
             <End Role="item" EntitySet="item" />
             <End Role="image" EntitySet="image" />
           </AssociationSet>
-          <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
+          <AssociationSet Name="SYS_C0011852" Association="Self.SYS_C0011852">
             <End Role="shop" EntitySet="shop" />
             <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
-          <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
+          <AssociationSet Name="SYS_C0011853" Association="Self.SYS_C0011853">
             <End Role="staff" EntitySet="staff" />
             <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
-          <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011854" Association="Self.SYS_C0011854">
             <End Role="inBase" EntitySet="inBase" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
-          <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011855" Association="Self.SYS_C0011855">
             <End Role="item" EntitySet="item" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
-          <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
+          <AssociationSet Name="SYS_C0011856" Association="Self.SYS_C0011856">
             <End Role="shop" EntitySet="shop" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
-          <AssociationSet Name="orderDetail_ibfk_1" Association="Self.orderDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011857" Association="Self.SYS_C0011857">
             <End Role="order" EntitySet="order" />
             <End Role="orderDetail" EntitySet="orderDetail" />
           </AssociationSet>
-          <AssociationSet Name="orderDetail_ibfk_2" Association="Self.orderDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011858" Association="Self.SYS_C0011858">
             <End Role="item" EntitySet="item" />
             <End Role="orderDetail" EntitySet="orderDetail" />
           </AssociationSet>
-          <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
+          <AssociationSet Name="SYS_C0011859" Association="Self.SYS_C0011859">
             <End Role="shop" EntitySet="shop" />
             <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
-          <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
+          <AssociationSet Name="SYS_C0011860" Association="Self.SYS_C0011860">
             <End Role="staff" EntitySet="staff" />
             <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
-          <AssociationSet Name="outDetail_ibfk_1" Association="Self.outDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011861" Association="Self.SYS_C0011861">
             <End Role="item" EntitySet="item" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
-          <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011862" Association="Self.SYS_C0011862">
             <End Role="outBase" EntitySet="outBase" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
-          <AssociationSet Name="shop_ibfk_1" Association="Self.shop_ibfk_1">
+          <AssociationSet Name="SYS_C0011863" Association="Self.SYS_C0011863">
             <End Role="address" EntitySet="address" />
             <End Role="shop" EntitySet="shop" />
           </AssociationSet>
-          <AssociationSet Name="staff_ibfk_1" Association="Self.staff_ibfk_1">
+          <AssociationSet Name="SYS_C0011864" Association="Self.SYS_C0011864">
             <End Role="shop" EntitySet="shop" />
             <End Role="staff" EntitySet="staff" />
           </AssociationSet>
-          <AssociationSet Name="stock_ibfk_1" Association="Self.stock_ibfk_1">
+          <AssociationSet Name="SYS_C0011865" Association="Self.SYS_C0011865">
             <End Role="item" EntitySet="item" />
             <End Role="stock" EntitySet="stock" />
           </AssociationSet>
-          <AssociationSet Name="stock_ibfk_2" Association="Self.stock_ibfk_2">
+          <AssociationSet Name="SYS_C0011866" Association="Self.SYS_C0011866">
             <End Role="shop" EntitySet="shop" />
             <End Role="stock" EntitySet="stock" />
           </AssociationSet>
@@ -577,7 +577,7 @@
           <Property Name="addressDetail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="addressX" Type="Decimal" Precision="13" Scale="0" />
           <Property Name="addressY" Type="Decimal" Precision="13" Scale="0" />
-          <NavigationProperty Name="shop" Relationship="Self.shop_ibfk_1" FromRole="address" ToRole="shop" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011863" FromRole="address" ToRole="shop" />
         </EntityType>
         <EntityType Name="apply">
           <Key>
@@ -588,9 +588,9 @@
           <Property Name="inShop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="applyTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.apply_ibfk_1" FromRole="apply" ToRole="shop" />
-          <NavigationProperty Name="shop1" Relationship="Self.apply_ibfk_2" FromRole="apply" ToRole="shop" />
-          <NavigationProperty Name="applyDetail" Relationship="Self.applyDetail_ibfk_1" FromRole="apply" ToRole="applyDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011843" FromRole="apply" ToRole="shop" />
+          <NavigationProperty Name="shop1" Relationship="Self.SYS_C0011844" FromRole="apply" ToRole="shop" />
+          <NavigationProperty Name="applyDetail" Relationship="Self.SYS_C0011845" FromRole="apply" ToRole="applyDetail" />
         </EntityType>
         <EntityType Name="applyDetail">
           <Key>
@@ -600,8 +600,8 @@
           <Property Name="applyId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="applyAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="apply" Relationship="Self.applyDetail_ibfk_1" FromRole="applyDetail" ToRole="apply" />
-          <NavigationProperty Name="item" Relationship="Self.applyDetail_ibfk_2" FromRole="applyDetail" ToRole="item" />
+          <NavigationProperty Name="apply" Relationship="Self.SYS_C0011845" FromRole="applyDetail" ToRole="apply" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011846" FromRole="applyDetail" ToRole="item" />
         </EntityType>
         <EntityType Name="check">
           <Key>
@@ -611,9 +611,9 @@
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="checkerId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="checkTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.check_ibfk_1" FromRole="check" ToRole="shop" />
-          <NavigationProperty Name="staff" Relationship="Self.check_ibfk_2" FromRole="check" ToRole="staff" />
-          <NavigationProperty Name="checkDetail" Relationship="Self.checkDetail_ibfk_1" FromRole="check" ToRole="checkDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011847" FromRole="check" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.SYS_C0011848" FromRole="check" ToRole="staff" />
+          <NavigationProperty Name="checkDetail" Relationship="Self.SYS_C0011849" FromRole="check" ToRole="checkDetail" />
         </EntityType>
         <EntityType Name="checkDetail">
           <Key>
@@ -623,8 +623,8 @@
           <Property Name="checkId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="currentAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="check" Relationship="Self.checkDetail_ibfk_1" FromRole="checkDetail" ToRole="check" />
-          <NavigationProperty Name="item" Relationship="Self.checkDetail_ibfk_2" FromRole="checkDetail" ToRole="item" />
+          <NavigationProperty Name="check" Relationship="Self.SYS_C0011849" FromRole="checkDetail" ToRole="check" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011850" FromRole="checkDetail" ToRole="item" />
         </EntityType>
         <EntityType Name="image">
           <Key>
@@ -633,7 +633,7 @@
           </Key>
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="imagePath" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="item" Relationship="Self.image_ibfk_1" FromRole="image" ToRole="item" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011851" FromRole="image" ToRole="item" />
         </EntityType>
         <EntityType Name="inBase">
           <Key>
@@ -643,9 +643,9 @@
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="inTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.in_ibfk_1" FromRole="inBase" ToRole="shop" />
-          <NavigationProperty Name="staff" Relationship="Self.in_ibfk_2" FromRole="inBase" ToRole="staff" />
-          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_1" FromRole="inBase" ToRole="inDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011852" FromRole="inBase" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.SYS_C0011853" FromRole="inBase" ToRole="staff" />
+          <NavigationProperty Name="inDetail" Relationship="Self.SYS_C0011854" FromRole="inBase" ToRole="inDetail" />
         </EntityType>
         <EntityType Name="inDetail">
           <Key>
@@ -655,8 +655,8 @@
           <Property Name="inId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="inAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="inBase" Relationship="Self.inDetail_ibfk_1" FromRole="inDetail" ToRole="inBase" />
-          <NavigationProperty Name="item" Relationship="Self.inDetail_ibfk_2" FromRole="inDetail" ToRole="item" />
+          <NavigationProperty Name="inBase" Relationship="Self.SYS_C0011854" FromRole="inDetail" ToRole="inBase" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011855" FromRole="inDetail" ToRole="item" />
         </EntityType>
         <EntityType Name="item">
           <Key>
@@ -669,13 +669,13 @@
           <Property Name="itemStatus" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="itemPrice" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
           <Property Name="itemDate" Type="DateTime" />
-          <NavigationProperty Name="applyDetail" Relationship="Self.applyDetail_ibfk_2" FromRole="item" ToRole="applyDetail" />
-          <NavigationProperty Name="checkDetail" Relationship="Self.checkDetail_ibfk_2" FromRole="item" ToRole="checkDetail" />
-          <NavigationProperty Name="image" Relationship="Self.image_ibfk_1" FromRole="item" ToRole="image" />
-          <NavigationProperty Name="inDetail" Relationship="Self.inDetail_ibfk_2" FromRole="item" ToRole="inDetail" />
-          <NavigationProperty Name="orderDetail" Relationship="Self.orderDetail_ibfk_2" FromRole="item" ToRole="orderDetail" />
-          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_1" FromRole="item" ToRole="outDetail" />
-          <NavigationProperty Name="stock" Relationship="Self.stock_ibfk_1" FromRole="item" ToRole="stock" />
+          <NavigationProperty Name="applyDetail" Relationship="Self.SYS_C0011846" FromRole="item" ToRole="applyDetail" />
+          <NavigationProperty Name="checkDetail" Relationship="Self.SYS_C0011850" FromRole="item" ToRole="checkDetail" />
+          <NavigationProperty Name="image" Relationship="Self.SYS_C0011851" FromRole="item" ToRole="image" />
+          <NavigationProperty Name="inDetail" Relationship="Self.SYS_C0011855" FromRole="item" ToRole="inDetail" />
+          <NavigationProperty Name="orderDetail" Relationship="Self.SYS_C0011858" FromRole="item" ToRole="orderDetail" />
+          <NavigationProperty Name="outDetail" Relationship="Self.SYS_C0011861" FromRole="item" ToRole="outDetail" />
+          <NavigationProperty Name="stock" Relationship="Self.SYS_C0011865" FromRole="item" ToRole="stock" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -683,10 +683,10 @@
           </Key>
           <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="totalPrice" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
           <Property Name="orderTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="shop" />
-          <NavigationProperty Name="orderDetail" Relationship="Self.orderDetail_ibfk_1" FromRole="order" ToRole="orderDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011856" FromRole="order" ToRole="shop" />
+          <NavigationProperty Name="orderDetail" Relationship="Self.SYS_C0011857" FromRole="order" ToRole="orderDetail" />
         </EntityType>
         <EntityType Name="orderDetail">
           <Key>
@@ -696,8 +696,8 @@
           <Property Name="orderId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="item" Relationship="Self.orderDetail_ibfk_2" FromRole="orderDetail" ToRole="item" />
-          <NavigationProperty Name="order" Relationship="Self.orderDetail_ibfk_1" FromRole="orderDetail" ToRole="order" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011858" FromRole="orderDetail" ToRole="item" />
+          <NavigationProperty Name="order" Relationship="Self.SYS_C0011857" FromRole="orderDetail" ToRole="order" />
         </EntityType>
         <EntityType Name="outBase">
           <Key>
@@ -708,9 +708,9 @@
           <Property Name="outType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="outTime" Type="DateTime" />
-          <NavigationProperty Name="shop" Relationship="Self.out_ibfk_1" FromRole="outBase" ToRole="shop" />
-          <NavigationProperty Name="staff" Relationship="Self.out_ibfk_2" FromRole="outBase" ToRole="staff" />
-          <NavigationProperty Name="outDetail" Relationship="Self.outDetail_ibfk_2" FromRole="outBase" ToRole="outDetail" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011859" FromRole="outBase" ToRole="shop" />
+          <NavigationProperty Name="staff" Relationship="Self.SYS_C0011860" FromRole="outBase" ToRole="staff" />
+          <NavigationProperty Name="outDetail" Relationship="Self.SYS_C0011862" FromRole="outBase" ToRole="outDetail" />
         </EntityType>
         <EntityType Name="outDetail">
           <Key>
@@ -720,8 +720,8 @@
           <Property Name="outId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="itemId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="outAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="item" Relationship="Self.outDetail_ibfk_1" FromRole="outDetail" ToRole="item" />
-          <NavigationProperty Name="outBase" Relationship="Self.outDetail_ibfk_2" FromRole="outDetail" ToRole="outBase" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011861" FromRole="outDetail" ToRole="item" />
+          <NavigationProperty Name="outBase" Relationship="Self.SYS_C0011862" FromRole="outDetail" ToRole="outBase" />
         </EntityType>
         <EntityType Name="shop">
           <Key>
@@ -731,15 +731,15 @@
           <Property Name="shopAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="shopStatus" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="shopPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="address" Relationship="Self.shop_ibfk_1" FromRole="shop" ToRole="address" />
-          <NavigationProperty Name="apply" Relationship="Self.apply_ibfk_1" FromRole="shop" ToRole="apply" />
-          <NavigationProperty Name="apply1" Relationship="Self.apply_ibfk_2" FromRole="shop" ToRole="apply" />
-          <NavigationProperty Name="check" Relationship="Self.check_ibfk_1" FromRole="shop" ToRole="check" />
-          <NavigationProperty Name="inBase" Relationship="Self.in_ibfk_1" FromRole="shop" ToRole="inBase" />
-          <NavigationProperty Name="order" Relationship="Self.order_ibfk_1" FromRole="shop" ToRole="order" />
-          <NavigationProperty Name="outBase" Relationship="Self.out_ibfk_1" FromRole="shop" ToRole="outBase" />
-          <NavigationProperty Name="staff" Relationship="Self.staff_ibfk_1" FromRole="shop" ToRole="staff" />
-          <NavigationProperty Name="stock" Relationship="Self.stock_ibfk_2" FromRole="shop" ToRole="stock" />
+          <NavigationProperty Name="address" Relationship="Self.SYS_C0011863" FromRole="shop" ToRole="address" />
+          <NavigationProperty Name="apply" Relationship="Self.SYS_C0011843" FromRole="shop" ToRole="apply" />
+          <NavigationProperty Name="apply1" Relationship="Self.SYS_C0011844" FromRole="shop" ToRole="apply" />
+          <NavigationProperty Name="check" Relationship="Self.SYS_C0011847" FromRole="shop" ToRole="check" />
+          <NavigationProperty Name="inBase" Relationship="Self.SYS_C0011852" FromRole="shop" ToRole="inBase" />
+          <NavigationProperty Name="order" Relationship="Self.SYS_C0011856" FromRole="shop" ToRole="order" />
+          <NavigationProperty Name="outBase" Relationship="Self.SYS_C0011859" FromRole="shop" ToRole="outBase" />
+          <NavigationProperty Name="staff" Relationship="Self.SYS_C0011864" FromRole="shop" ToRole="staff" />
+          <NavigationProperty Name="stock" Relationship="Self.SYS_C0011866" FromRole="shop" ToRole="stock" />
         </EntityType>
         <EntityType Name="staff">
           <Key>
@@ -753,10 +753,10 @@
           <Property Name="shopId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="staffLoginName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="check" Relationship="Self.check_ibfk_2" FromRole="staff" ToRole="check" />
-          <NavigationProperty Name="inBase" Relationship="Self.in_ibfk_2" FromRole="staff" ToRole="inBase" />
-          <NavigationProperty Name="outBase" Relationship="Self.out_ibfk_2" FromRole="staff" ToRole="outBase" />
-          <NavigationProperty Name="shop" Relationship="Self.staff_ibfk_1" FromRole="staff" ToRole="shop" />
+          <NavigationProperty Name="check" Relationship="Self.SYS_C0011848" FromRole="staff" ToRole="check" />
+          <NavigationProperty Name="inBase" Relationship="Self.SYS_C0011853" FromRole="staff" ToRole="inBase" />
+          <NavigationProperty Name="outBase" Relationship="Self.SYS_C0011860" FromRole="staff" ToRole="outBase" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011864" FromRole="staff" ToRole="shop" />
         </EntityType>
         <EntityType Name="stock">
           <Key>
@@ -769,10 +769,10 @@
           <Property Name="saleAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="stockLimit" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="purchaseAmount" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="item" Relationship="Self.stock_ibfk_1" FromRole="stock" ToRole="item" />
-          <NavigationProperty Name="shop" Relationship="Self.stock_ibfk_2" FromRole="stock" ToRole="shop" />
+          <NavigationProperty Name="item" Relationship="Self.SYS_C0011865" FromRole="stock" ToRole="item" />
+          <NavigationProperty Name="shop" Relationship="Self.SYS_C0011866" FromRole="stock" ToRole="shop" />
         </EntityType>
-        <Association Name="shop_ibfk_1">
+        <Association Name="SYS_C0011863">
           <End Role="address" Type="Self.address" Multiplicity="1" />
           <End Role="shop" Type="Self.shop" Multiplicity="*" />
           <ReferentialConstraint>
@@ -784,7 +784,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="apply_ibfk_1">
+        <Association Name="SYS_C0011843">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -796,7 +796,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="apply_ibfk_2">
+        <Association Name="SYS_C0011844">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="apply" Type="Self.apply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -808,7 +808,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="applyDetail_ibfk_1">
+        <Association Name="SYS_C0011845">
           <End Role="apply" Type="Self.apply" Multiplicity="1" />
           <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -820,7 +820,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="applyDetail_ibfk_2">
+        <Association Name="SYS_C0011846">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="applyDetail" Type="Self.applyDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -832,7 +832,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="check_ibfk_1">
+        <Association Name="SYS_C0011847">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
@@ -844,7 +844,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="check_ibfk_2">
+        <Association Name="SYS_C0011848">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="check" Type="Self.check" Multiplicity="*" />
           <ReferentialConstraint>
@@ -856,7 +856,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="checkDetail_ibfk_1">
+        <Association Name="SYS_C0011849">
           <End Role="check" Type="Self.check" Multiplicity="1" />
           <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -868,7 +868,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="checkDetail_ibfk_2">
+        <Association Name="SYS_C0011850">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="checkDetail" Type="Self.checkDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -880,7 +880,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="image_ibfk_1">
+        <Association Name="SYS_C0011851">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="image" Type="Self.image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -892,7 +892,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="in_ibfk_1">
+        <Association Name="SYS_C0011852">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -904,7 +904,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="in_ibfk_2">
+        <Association Name="SYS_C0011853">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="inBase" Type="Self.inBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -916,7 +916,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="inDetail_ibfk_1">
+        <Association Name="SYS_C0011854">
           <End Role="inBase" Type="Self.inBase" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -928,7 +928,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="inDetail_ibfk_2">
+        <Association Name="SYS_C0011855">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="inDetail" Type="Self.inDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -940,7 +940,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="orderDetail_ibfk_2">
+        <Association Name="SYS_C0011858">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -952,7 +952,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="outDetail_ibfk_1">
+        <Association Name="SYS_C0011861">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -964,7 +964,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="stock_ibfk_1">
+        <Association Name="SYS_C0011865">
           <End Role="item" Type="Self.item" Multiplicity="1" />
           <End Role="stock" Type="Self.stock" Multiplicity="*" />
           <ReferentialConstraint>
@@ -976,7 +976,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="order_ibfk_1">
+        <Association Name="SYS_C0011856">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -988,7 +988,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="orderDetail_ibfk_1">
+        <Association Name="SYS_C0011857">
           <End Role="order" Type="Self.order" Multiplicity="1" />
           <End Role="orderDetail" Type="Self.orderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1000,7 +1000,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="out_ibfk_1">
+        <Association Name="SYS_C0011859">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1012,7 +1012,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="out_ibfk_2">
+        <Association Name="SYS_C0011860">
           <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
           <End Role="outBase" Type="Self.outBase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1024,7 +1024,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="outDetail_ibfk_2">
+        <Association Name="SYS_C0011862">
           <End Role="outBase" Type="Self.outBase" Multiplicity="1" />
           <End Role="outDetail" Type="Self.outDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1036,7 +1036,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="staff_ibfk_1">
+        <Association Name="SYS_C0011864">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="staff" Type="Self.staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1048,7 +1048,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="stock_ibfk_2">
+        <Association Name="SYS_C0011866">
           <End Role="shop" Type="Self.shop" Multiplicity="1" />
           <End Role="stock" Type="Self.stock" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1077,99 +1077,99 @@
           <EntitySet Name="shop" EntityType="Self.shop" />
           <EntitySet Name="staff" EntityType="Self.staff" />
           <EntitySet Name="stock" EntityType="Self.stock" />
-          <AssociationSet Name="shop_ibfk_1" Association="Self.shop_ibfk_1">
+          <AssociationSet Name="SYS_C0011863" Association="Self.SYS_C0011863">
             <End Role="address" EntitySet="address" />
             <End Role="shop" EntitySet="shop" />
           </AssociationSet>
-          <AssociationSet Name="apply_ibfk_1" Association="Self.apply_ibfk_1">
+          <AssociationSet Name="SYS_C0011843" Association="Self.SYS_C0011843">
             <End Role="shop" EntitySet="shop" />
             <End Role="apply" EntitySet="apply" />
           </AssociationSet>
-          <AssociationSet Name="apply_ibfk_2" Association="Self.apply_ibfk_2">
+          <AssociationSet Name="SYS_C0011844" Association="Self.SYS_C0011844">
             <End Role="shop" EntitySet="shop" />
             <End Role="apply" EntitySet="apply" />
           </AssociationSet>
-          <AssociationSet Name="applyDetail_ibfk_1" Association="Self.applyDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011845" Association="Self.SYS_C0011845">
             <End Role="apply" EntitySet="apply" />
             <End Role="applyDetail" EntitySet="applyDetail" />
           </AssociationSet>
-          <AssociationSet Name="applyDetail_ibfk_2" Association="Self.applyDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011846" Association="Self.SYS_C0011846">
             <End Role="item" EntitySet="item" />
             <End Role="applyDetail" EntitySet="applyDetail" />
           </AssociationSet>
-          <AssociationSet Name="check_ibfk_1" Association="Self.check_ibfk_1">
+          <AssociationSet Name="SYS_C0011847" Association="Self.SYS_C0011847">
             <End Role="shop" EntitySet="shop" />
             <End Role="check" EntitySet="check" />
           </AssociationSet>
-          <AssociationSet Name="check_ibfk_2" Association="Self.check_ibfk_2">
+          <AssociationSet Name="SYS_C0011848" Association="Self.SYS_C0011848">
             <End Role="staff" EntitySet="staff" />
             <End Role="check" EntitySet="check" />
           </AssociationSet>
-          <AssociationSet Name="checkDetail_ibfk_1" Association="Self.checkDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011849" Association="Self.SYS_C0011849">
             <End Role="check" EntitySet="check" />
             <End Role="checkDetail" EntitySet="checkDetail" />
           </AssociationSet>
-          <AssociationSet Name="checkDetail_ibfk_2" Association="Self.checkDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011850" Association="Self.SYS_C0011850">
             <End Role="item" EntitySet="item" />
             <End Role="checkDetail" EntitySet="checkDetail" />
           </AssociationSet>
-          <AssociationSet Name="image_ibfk_1" Association="Self.image_ibfk_1">
+          <AssociationSet Name="SYS_C0011851" Association="Self.SYS_C0011851">
             <End Role="item" EntitySet="item" />
             <End Role="image" EntitySet="image" />
           </AssociationSet>
-          <AssociationSet Name="in_ibfk_1" Association="Self.in_ibfk_1">
+          <AssociationSet Name="SYS_C0011852" Association="Self.SYS_C0011852">
             <End Role="shop" EntitySet="shop" />
             <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
-          <AssociationSet Name="in_ibfk_2" Association="Self.in_ibfk_2">
+          <AssociationSet Name="SYS_C0011853" Association="Self.SYS_C0011853">
             <End Role="staff" EntitySet="staff" />
             <End Role="inBase" EntitySet="inBase" />
           </AssociationSet>
-          <AssociationSet Name="inDetail_ibfk_1" Association="Self.inDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011854" Association="Self.SYS_C0011854">
             <End Role="inBase" EntitySet="inBase" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
-          <AssociationSet Name="inDetail_ibfk_2" Association="Self.inDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011855" Association="Self.SYS_C0011855">
             <End Role="item" EntitySet="item" />
             <End Role="inDetail" EntitySet="inDetail" />
           </AssociationSet>
-          <AssociationSet Name="orderDetail_ibfk_2" Association="Self.orderDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011858" Association="Self.SYS_C0011858">
             <End Role="item" EntitySet="item" />
             <End Role="orderDetail" EntitySet="orderDetail" />
           </AssociationSet>
-          <AssociationSet Name="outDetail_ibfk_1" Association="Self.outDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011861" Association="Self.SYS_C0011861">
             <End Role="item" EntitySet="item" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
-          <AssociationSet Name="stock_ibfk_1" Association="Self.stock_ibfk_1">
+          <AssociationSet Name="SYS_C0011865" Association="Self.SYS_C0011865">
             <End Role="item" EntitySet="item" />
             <End Role="stock" EntitySet="stock" />
           </AssociationSet>
-          <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
+          <AssociationSet Name="SYS_C0011856" Association="Self.SYS_C0011856">
             <End Role="shop" EntitySet="shop" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
-          <AssociationSet Name="orderDetail_ibfk_1" Association="Self.orderDetail_ibfk_1">
+          <AssociationSet Name="SYS_C0011857" Association="Self.SYS_C0011857">
             <End Role="order" EntitySet="order" />
             <End Role="orderDetail" EntitySet="orderDetail" />
           </AssociationSet>
-          <AssociationSet Name="out_ibfk_1" Association="Self.out_ibfk_1">
+          <AssociationSet Name="SYS_C0011859" Association="Self.SYS_C0011859">
             <End Role="shop" EntitySet="shop" />
             <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
-          <AssociationSet Name="out_ibfk_2" Association="Self.out_ibfk_2">
+          <AssociationSet Name="SYS_C0011860" Association="Self.SYS_C0011860">
             <End Role="staff" EntitySet="staff" />
             <End Role="outBase" EntitySet="outBase" />
           </AssociationSet>
-          <AssociationSet Name="outDetail_ibfk_2" Association="Self.outDetail_ibfk_2">
+          <AssociationSet Name="SYS_C0011862" Association="Self.SYS_C0011862">
             <End Role="outBase" EntitySet="outBase" />
             <End Role="outDetail" EntitySet="outDetail" />
           </AssociationSet>
-          <AssociationSet Name="staff_ibfk_1" Association="Self.staff_ibfk_1">
+          <AssociationSet Name="SYS_C0011864" Association="Self.SYS_C0011864">
             <End Role="shop" EntitySet="shop" />
             <End Role="staff" EntitySet="staff" />
           </AssociationSet>
-          <AssociationSet Name="stock_ibfk_2" Association="Self.stock_ibfk_2">
+          <AssociationSet Name="SYS_C0011866" Association="Self.SYS_C0011866">
             <End Role="shop" EntitySet="shop" />
             <End Role="stock" EntitySet="stock" />
           </AssociationSet>
