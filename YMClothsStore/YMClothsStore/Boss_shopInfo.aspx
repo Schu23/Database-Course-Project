@@ -69,7 +69,8 @@
         $('.btn-danger').click(function(){
             var staffName = $(this).parent().prev().prev().prev().html();
             var staffId = $(this).parent().prev().prev().prev().prev().html();
-            $('#delete_modal').html('你确定要关闭门店'+staffName+'（编号'+staffId+'）吗？');
+            $('#delete_modal').html('你确定要关闭门店' + staffName + '（编号' + staffId + '）吗？');
+            $("#close").val(staffId);
         })
     });
     </script>
@@ -164,28 +165,27 @@
             </tr>
           </thead>
           <tbody id="table-body">
+              <% foreach( var shop in allShop) { %>
             <tr>
-              <td>address_001</td>
-              <td>纽约</td>
-              <td>已关闭</td>
-              <td>68736273</td>
+              <td><%: shop.shopId %></td>
+              <td><%:shop.shopAddress %></td>
+              <td><%: shop.shopStatus %></td>
+              <td><%: shop.shopPhone %></td>
               <td>
+                  <% if(shop.shopStatus != 1) {%>
                 <button type="button" class="btn btn-default btn-sm disabled">已关闭</button>
+                  <%} else {%>
+                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_shop">关店</button>
+                  <%} %>
               </td>
             </tr>
-            <tr>
-              <td>address_002</td>
-              <td>巴黎</td>
-              <td>运营中</td>
-              <td>68736273</td>
-              <td>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_shop">关店</button>
-              </td>
-            </tr>
+       <%} %>
+              
             
           </tbody>
         </table>
         <!-- Modal -->
+          <form runat="server">
         <div class="modal fade" id="delete_shop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -196,13 +196,14 @@
               <div class="modal-body" id="delete_modal">
                 你确定要关闭门店吗？
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确定</button>
+              <div class="modal-footer"><input runat="server" type="hidden" name="close" id="close" />
+                 <asp:Button Text="确定" CssClass="btn btn-primary" runat="server" OnClick="closeShop" />
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
               </div>
             </div>
           </div>
         </div><!--modal-->
+         </form>
       </div>
     </div>
     <!-- 分页导航 -->

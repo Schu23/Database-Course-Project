@@ -31,7 +31,7 @@ namespace YMClothsStore
             {
                 System.Diagnostics.Debug.WriteLine("address  failed");
                 Session["errorMessage"] = "添加分店失败，请检查你的权限和网络";
-                Session["returnURL"] = "Boss_AddAddres.aspx";
+                Session["returnURL"] = "Boss_AddAddress.aspx";
                 Response.Redirect("Error.aspx");
             }
         }

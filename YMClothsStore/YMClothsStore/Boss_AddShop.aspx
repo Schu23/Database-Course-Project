@@ -106,7 +106,7 @@
               </select>
             </div>
 
-            <a runat="server" class="btn btn-default col-md-1 col-sm-1" onclick="~/Boss_AddAddress.aspx">新增</a>
+            <a runat="server" class="btn btn-default col-md-1 col-sm-1" href="~/Boss_AddAddress.aspx">新增</a>
           </div>
         </div>
         <!-- 指定分店店长 name:staffId -->
@@ -134,7 +134,7 @@
         <!-- 提交按钮 -->
         <div class="text-center">
           <br/>
-            <asp:Button Text="提交" CssClass="btn btn-primary submit-btn" runat="server" />
+            <asp:Button Text="提交" CssClass="btn btn-primary submit-btn" runat="server" OnClick="Submit_Click" />
        
         </div>
         
