@@ -385,14 +385,12 @@ namespace YMClothsStore
          */
         public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
         {
-            orderDetail[] currentOrderDetails = { };
-
+        
             using (YMDBEntities db = new YMDBEntities())
             {
-                currentOrderDetails = db.orderDetail.Where(p => p.orderId == orderId).ToArray();
-            }
-
-            return currentOrderDetails;
+                 orderDetail[] currentOrderDetails = db.orderDetail.Where(p => p.orderId == orderId).ToArray();
+                 return currentOrderDetails;
+            }     
         }
 
         /**

@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Staff_clothesInfo.aspx.cs" Inherits="YMClothsStore.Staff_clothesInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Staff_OrderInfo.aspx.cs" Inherits="YMClothsStore.Staff_OrderInfo" %>
 
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>查看服装信息|原木衣橱</title>
+    <title>查询订单信息 |原木衣橱</title>
 
     <!-- Bootstrap core CSS -->
     <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -19,17 +18,16 @@
 
     <!-- jquery & ajax -->
     <script src="jQuery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="scripts/staffInfo.js"></script>
-    <script>
-        $(function () {
-             //模态框设置
-             $('.btn-success').click(function () {
-                  var pictureUrl = $(this).parent().prev().html();
-                  //var staffId = $(this).parent().prev().prev().prev().prev().html();
-                  $('#clothes_pic').replaceWith('<img class="text-center img-responsive" id="clothes_pic" src="' + pictureUrl + '">');
-                  $('#pic_url').html(pictureUrl);
-             })
-
+    <script type="text/javascript" src="scripts/orderInfo.js"></script>
+    <!-- 模态框js -->
+    <script type="text/javascript">
+        $(function(){
+            // 模态框设置
+            $('.btn-success').click(function(){
+                var orderId = $(this).parent().prev().prev().prev().html();
+                $('#myModalLabel').html('订单编号：' + orderId);
+                $("#order").val(orderId);
+            })
         });
     </script>
 
@@ -61,14 +59,14 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询服装信息</a></li>
+                  <li><a href="staff_clothesinfo.html">查询服装信息</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="staff_orderinfo.html">查询订单</a></li>
+                  <li><a href="#">查询订单</a></li>
                   <li><a href="staff_addorder.html">增加订单</a></li>
                 </ul>
               </li>
@@ -82,7 +80,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li class="text-center"><a runat="server" href="~/ChangeSelfInfo.aspx">修改个人信息</a></li>
-                  <li class="text-center"><a runat="server" href="Login.aspx">退出</a></li>
+                  <li class="text-center"><a runat="server" href="~/Login.aspx">退出</a></li>
                 </ul>
               </li>
             </ul>
@@ -92,17 +90,17 @@
     </div>
     <!-- 标题 -->
     <div class="container">
-      <h2 class="sub-header">服装信息查询</h2>
+      <h2 class="sub-header">订单查询</h2>
     </div>
     <!-- 搜索框 -->
+       <form role="search" runat="server">
     <div class="container text-center main-search">
-      <form role="search" runat="server">
+     
         <div class="row">
           <div class="col-md-3 col-sm-3">
             <select class="form-control" name="searchCondition">
               <option value ="unknown">请选择</option>
-              <option value ="staffId">服装编号</option>
-              <option value ="staffName">服装名称</option>
+              <option value ="staffId">订单编号</option>
             </select>
           </div>
           <div class="col-md-8 col-sm-8 search-key-padding">
@@ -111,72 +109,91 @@
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
-              <asp:Button Text="搜索" runat="server" CssClass="btn btn-default" OnClick="SerachSubmit"  />
+            <asp:Button Text="搜索" runat="server" CssClass="btn btn-default" OnClick="Search_Order"  />
           </div>
         </div>
-      </form>
+    
     </div>
-    <div class="container text-center main-sort">
-      <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
-        <button type="button" class="btn btn-info">按编号</button>
-        <button type="button" class="btn btn-primary">按名称</button>
+    <!--div class="container text-center main-sort">
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
+            <button type="button" class="btn btn-info">按编号</button>
+            <button type="button" class="btn btn-primary">按时间</button>
+          </div>
+        </div>
+        <div class="col-md-6 text-left">
+          <button type="button" class="btn btn-default" onclick="window.location.href='staff_addorder.html'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加订单</button>
+        </div>
       </div>
-    </div>
+    </div-->
     <!-- 信息表格 -->
     <div class="container table-container">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr id="table-title">
-              <th>服装编号</th>
-              <th>服装名称</th>
-              <th>尺寸</th>
-              <th>颜色</th>
-              <th>单价</th>
-              <th>上市日期</th>
-              <th>图片</th>
+              <th>订单编号</th>
+              <th>订单总价</th>
+              <th>订单时间</th>
+              <th>订单明细</th>
             </tr>
           </thead>
           <tbody id="table-body">
-              <% if (searchResult != null)
-                 { %>
-            <% foreach (var item in searchResult)
-               { %>
+              <% foreach (var order in searchResult) { %>
             <tr>
-              <td id="itemId"><%: item.itemId%></td>
-              <td><%: item.itemName%></td>
-              <td><%: item.itemSize%></td>
-              <td><%: item.itemColor%></td>
-              <td><%: item.itemPrice%></td>
-              <td><%: item.itemDate%></td>
-             
+              <td id="orderId"><%:order.orderId %></td>
+              <td><%: order.totalPrice %></td>
+              <td><%: order.orderTime %></td>
               <td>
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">查看图片</button>
+                  <asp:Button Text="查看明细" runat="server" CssClass="btn btn-success btn-sm"  data-toggle="modal" data-target="#detail_modal" OnClick="SearhDetailOrder" />
+           
               </td>
             </tr>
-              <%}   } %>
+              <% } %>
           </tbody>
         </table>
         <!-- Modal -->
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-sm">
+        <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">图片详情</h4>
+                <!-- 订单编号 -->
+                <h4 class="modal-title" id="myModalLabel">订单编号：</h4>
+                  <input type="hidden" name="orderId" id="order" runat="server" />
               </div>
               <div class="modal-body">
-                  <label id="pic_url"></label>
-                  <img class="text-center img-responsive" id="clothes_pic" src="">
+                <!-- 订单明细表格 -->
+                <table class="table table-striped">
+                  <thead>
+                    <tr id="modal">
+                      <th>服装编号</th>
+              
+                      <th>服装数量</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <% if (getOrderDetail != null) {%>
+                    <% foreach (var orderDetail in getOrderDetail) { %>
+                    <tr id="modal">
+                      <th><%: orderDetail.itemId %></th>
+                   
+                      <th><%: orderDetail.itemAmount %></th>
+                    </tr>
+                     <% } }%>
+                  </tbody>
+                </table>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
               </div>
             </div>
           </div>
-        </div><!-- Modal -->
+        </div><!--modal-->
       </div>
     </div>
+             </form>
     <!-- 分页导航 -->
     <nav class="text-center">
       <ul class="pagination">

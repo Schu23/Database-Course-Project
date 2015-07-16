@@ -17,6 +17,7 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
+            searchResult = DBModel.sharedDBModel().getAllItemsOfThisShop(theStaff.staffId);
         }
 
         protected void SerachSubmit(object sender , EventArgs e)

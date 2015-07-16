@@ -125,6 +125,7 @@
     <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
     <Content Include="Staff_clothesInfo.aspx" />
+    <Content Include="Staff_OrderInfo.aspx" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
@@ -271,6 +272,13 @@
     </Compile>
     <Compile Include="Staff_clothesInfo.aspx.designer.cs">
       <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff_OrderInfo.aspx.cs">
+      <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff_OrderInfo.aspx.designer.cs">
+      <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="stock.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
