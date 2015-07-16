@@ -193,7 +193,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Staff_clothesInfo.aspx">查询服装信息</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
@@ -256,37 +256,21 @@
         <div class="col-md-6 text-center">
           <br/><h2>最热卖五件商品</h2><br/><br/>
           <div class="row" id="clothes">
-
             <!-- 第一个需要offset 后面格式相同 -->
-              <% if (showItems != null) {%>
-              <%foreach (var items in showItems) { %>
+      <% if (hotItems !=null) { %>
             <div class="col-md-2 col-sm-2 col-xs-4 col-sm-offset-1">
-              <img class="img-responsive" src="images/logo.png">
-              <br/><h4><%:items[1] %></h4>
-              <button type="button" class="btn btn-info">查看信息</button>
+              <img class="img-responsive" src="<%: hotItems[0,2] %>">
+              <br/><h4><%:hotItems[0,1] %></h4>
+              <button type="button" class="btn btn-info">补货</button>
             </div>
-              <%} }%>
-      <!--      <div class="col-md-2 col-sm-2 col-xs-4">
-              <img class="img-responsive" src="images/logo.png">
-              <br/><h4>衣服1</h4>
-              <button type="button" class="btn btn-info">查看信息</button>
-            </div>
+            <% if (hotItems.Length >1){ %>
+           <% for (int i = 1 ;i< hotItems.GetLength(0) ; i++) { %>
             <div class="col-md-2 col-sm-2 col-xs-4">
-              <img class="img-responsive" src="images/logo.png">
-              <br/><h4>衣服1</h4>
-              <button type="button" class="btn btn-info">查看信息</button>
+              <img class="img-responsive" src="<%: hotItems[i,2] %>">
+              <br/><h4><%: hotItems[i,1] %></h4>
+              <button type="button" class="btn btn-info">补货</button>
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-4">
-              <img class="img-responsive" src="images/logo.png">
-              <br/><h4>衣服1</h4>
-              <button type="button" class="btn btn-info">查看信息</button>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-4">
-              <img class="img-responsive" src="images/logo.png">
-              <br/><h4>衣服1</h4>
-              <button type="button" class="btn btn-info">查看信息</button>
-            </div>-->
-           
+            <% } } } %>
           </div>
         </div>
       </div>

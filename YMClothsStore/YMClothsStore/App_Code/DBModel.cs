@@ -661,6 +661,11 @@ namespace YMClothsStore
          * 参数：无（根据当前月查询）
          * 返回：商品数组（数量5）(通过测试)
          */
+        /**
+         * 27.员工页面显示最近五件最热商品
+         * 参数：无（根据当前月查询）
+         * 返回：商品数组（数量5）(未测试)
+         */
         public string[,] topFiveItems(string staffId)
         {
             string[,] returnItems = new string[5, 3];
@@ -675,26 +680,30 @@ namespace YMClothsStore
                 //默认为升序
                 allItems = db.stock.OrderBy(p => p.saleAmount).Where(p => p.shopId == shopId).ToArray();
 
-                string[] nameItem = { };
-                string[] imageItem = { };
-                string[] itemId = { };
+                string[] nameItem = new string[5];
+                string[] imageItem = new string[5];
+                string[] itemId = new string[5];
+                int j = 0;
 
-                for (int i = allItems.Length - 1; i > 0; i--)
+                for (int i = allItems.Length - 1; i >= 0; i--)
                 {
-                    item currenItem = db.item.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
-                    image currentItemImage = db.image.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
-                    itemId[i] = allItems[i].itemId;
-                    nameItem[i] = currenItem.itemName;
-                    imageItem[i] = currentItemImage.imagePath;
-                    returnItems[i, 0] = itemId[i];
-                    returnItems[i, 1] = nameItem[i];
-                    returnItems[i, 2] = imageItem[i];
+                    string id = allItems[i].itemId;
+                    item currenItem = db.item.Where(p => p.itemId == id).FirstOrDefault();
+                    image currentItemImage = db.image.Where(p => p.itemId == id).FirstOrDefault();
+                    itemId[j] = allItems[i].itemId;
+                    nameItem[j] = currenItem.itemName;
+                    imageItem[j] = currentItemImage.imagePath;
+                    returnItems[j, 0] = itemId[j];
+                    returnItems[j, 1] = nameItem[j];
+                    returnItems[j, 2] = imageItem[j];
+                    j++;
                 }
 
-                   
+
             }
             return returnItems;
         }
+
 
         /**
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
