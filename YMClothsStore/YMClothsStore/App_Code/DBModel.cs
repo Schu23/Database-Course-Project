@@ -75,7 +75,7 @@ namespace YMClothsStore
                 staffId = newId,
                 staffName = newStaffName,
                 password = newStaffPassword,
-                staffLoginName = newStaffName,
+                staffLoginName = newId,
                 shopId = newShopId,
                 staffJob = newStaffJob,
                 staffGender = newGender,
@@ -382,7 +382,7 @@ namespace YMClothsStore
         /**
          * 16.通过员工id获取所在shop的id
          * 参数：员工Id
-         * 返回值：员工所在shop的id（通过测试）
+         * 返回值：员工所在shop的id,失败返回null（通过测试）
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
@@ -390,8 +390,18 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                staff currentStaff = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault();
-                targetShopId = currentStaff.shopId;
+                try
+                {
+                    staff currentStaff = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault();
+                    targetShopId = currentStaff.shopId;
+                }
+                catch (NullReferenceException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("该员工不存在或者该员工还不属于任何一个店.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return "";
+                }
+                
             }
 
             return targetShopId;
@@ -1202,6 +1212,7 @@ namespace YMClothsStore
                 catch(Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
                 }
             }
 
@@ -1211,17 +1222,15 @@ namespace YMClothsStore
         /**
          * 45.根据员工查看该店调货纪录
          * 参数：staffId
-         * 返回值：调货记录数组(未测)
+         * 返回值：调货记录数组(通过测试)
          */
         public apply[] checkAllApplyByStaffId(string staffId)
         {
-            apply[] applys;
-
             string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                applys = db.apply.Where(p => p.outShop == shopId | p.inShop == shopId).ToArray();
+                apply[] applys = db.apply.Where(p => p.outShop == shopId | p.inShop == shopId).ToArray();
 
                 return applys;
             }
@@ -1230,14 +1239,24 @@ namespace YMClothsStore
         /**
          * 46.根据商品Id获取图片路径
          * 参数：商品Id
-         * 返回值：图片路径string(未测)
+         * 返回值：图片路径string(通过测试)
          */
         public string getImagePathWithItemId(string itemId)
         {
             using (YMDBEntities db = new YMDBEntities())
             {
-                image currentImage = db.image.Where(p => p.itemId == itemId).FirstOrDefault();
-                return currentImage.imagePath;
+                try
+                {
+                    image currentImage = db.image.Where(p => p.itemId == itemId).FirstOrDefault();
+                    return currentImage.imagePath;
+                }
+                catch (NullReferenceException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("未找到image路径，可能是imageId错误.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return "";
+                }
+                
             }
         }
         
