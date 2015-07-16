@@ -20,6 +20,7 @@ namespace YMClothsStore
             getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
             orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth(theStaff.staffId);
             hotItems = DBModel.sharedDBModel().topFiveItems(theStaff.staffId);
+            System.Diagnostics.Debug.WriteLine("size of the hotItems:" + hotItems.GetLength(0));
         }
     }
 }
