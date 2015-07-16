@@ -11,6 +11,8 @@ namespace YMClothsStore
     {
 
         protected staff theStaff;
+        protected item[] searchResult;
+        protected item searchRe;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,8 +22,15 @@ namespace YMClothsStore
         protected void SerachSubmit(object sender , EventArgs e)
         {
             string condition = Request.Form["searchCondition"];
-            string serachKey = Request.Form["serachKey"];
+            string serachKey = Request.Form["searchKey"];
             System.Diagnostics.Debug.WriteLine("serach key and serach condition test :" + serachKey + condition);
+
+            if(condition.Equals("staffName"))
+            {
+               searchResult = DBModel.sharedDBModel().getItemByItemName(serachKey);
+            }
+            else
+                searchRe = DBModel.sharedDBModel().getItemByItemId(serachKey);
         }
     }
 }
