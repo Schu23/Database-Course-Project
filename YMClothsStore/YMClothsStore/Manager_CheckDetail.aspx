@@ -107,7 +107,7 @@
     </div>
 
     <!-- form -->
-    <form class="">
+    <form class="" runat="server">
     <div class="container table-container">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -119,26 +119,13 @@
             </tr>
           </thead>
           <tbody id="table-body">
-            <tr>
-              <td>123733</td>
-              <td>234</td>
-              <td><input type="text" class="form-control" name="check_id_1" placeholder="实际库存"></td>
+            <% for (int i = 0; i< checkDetailTable.Length ; i++ ){ %>
+              <tr>
+              <td><%:checkDetailTable[i].itemId  %></td>
+              <td><%:checkDetailTable[i].currentAmount %></td>
+              <td><input type="text" class="form-control" name="check_id" placeholder="实际库存"></td>
             </tr>
-             <tr>
-              <td>123733</td>
-              <td>234</td>
-              <td><input type="text" class="form-control" name="check_id_2" placeholder="实际库存"></td>
-            </tr>
-            <tr>
-              <td>123733</td>
-              <td>234</td>
-              <td><input type="text" class="form-control" name="check_id_3" placeholder="实际库存"></td>
-            </tr>
-            <tr>
-              <td>123733</td>
-              <td>234</td>
-              <td><input type="text" class="form-control" name="check_id_4" placeholder="实际库存"></td>
-            </tr>
+             <% } %>
           </tbody>
         </table>
       </div>
@@ -147,6 +134,7 @@
     <!--提交按钮-->
      <div class="text-center">
           <br/>
+         <asp:Button Text="提交" runat="server" CssClass="btn btn-primary btn-lg" OnClick="" />
           <button type="submit" class="btn btn-primary submit-btn">提交</button>
         </div>
     <footer class="footer">
