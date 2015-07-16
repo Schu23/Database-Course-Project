@@ -154,7 +154,6 @@ namespace YMClothsStore
                 try
                 {
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
-                    System.Diagnostics.Debug.WriteLine(oldStaff.password);
                     oldStaff.staffLoginName = currentInfo.staffLoginName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
@@ -658,10 +657,10 @@ namespace YMClothsStore
         }
 
         /**
-                 * 27.员工页面显示最近五件最热商品
-                 * 参数：无（根据当前月查询）
-                 * 返回：商品数组（数量5）(未测试)
-                 */
+         * 27.员工页面显示最近五件最热商品
+         * 参数：无（根据当前月查询）
+         * 返回：商品数组（数量5）(通过测试)
+         */
         public string[,] topFiveItems(string staffId)
         {
             string[,] returnItems = new string[5, 3];
@@ -676,26 +675,23 @@ namespace YMClothsStore
                 //默认为升序
                 allItems = db.stock.OrderBy(p => p.saleAmount).Where(p => p.shopId == shopId).ToArray();
 
-                string[] nameItem = new string[5];
-                string[] imageItem = new string[5];
-                string[] itemId = new string[5];
-                int j = 0;
+                string[] nameItem = { };
+                string[] imageItem = { };
+                string[] itemId = { };
 
-                for (int i = allItems.Length - 1; i >= 0; i--)
+                for (int i = allItems.Length - 1; i > 0; i--)
                 {
-                    string id = allItems[i].itemId;
-                    item currenItem = db.item.Where(p => p.itemId == id).FirstOrDefault();
-                    image currentItemImage = db.image.Where(p => p.itemId == id).FirstOrDefault();
-                    itemId[j] = allItems[i].itemId;
-                    nameItem[j] = currenItem.itemName;
-                    imageItem[j] = currentItemImage.imagePath;
-                    returnItems[j, 0] = itemId[j];
-                    returnItems[j, 1] = nameItem[j];
-                    returnItems[j, 2] = imageItem[j];
-                    j++;
+                    item currenItem = db.item.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
+                    image currentItemImage = db.image.Where(p => p.itemId == allItems[i].itemId).FirstOrDefault();
+                    itemId[i] = allItems[i].itemId;
+                    nameItem[i] = currenItem.itemName;
+                    imageItem[i] = currentItemImage.imagePath;
+                    returnItems[i, 0] = itemId[i];
+                    returnItems[i, 1] = nameItem[i];
+                    returnItems[i, 2] = imageItem[i];
                 }
 
-
+                   
             }
             return returnItems;
         }
@@ -708,53 +704,6 @@ namespace YMClothsStore
          */
         public decimal[] getEverySumOfThisMonth(string staffId)
         {
-            //dictionary<datetime,float> returnorders = new dictionary<datetime,float>();
-            //datetime now = datetime.now;
-            //int currentmonth = now.month;
-            //int currentyear = now.year;
-            //datetime currentdate =  now.date;
-            //string currentdatestr = currentyear.tostring() + currentmonth.tostring() + currentdate.tostring();
-            //datetime currentdatetime = convert.todatetime(currentdatestr);
-            //order[] allorders = { };
-            //using(ymdbentities db = new ymdbentities())
-            //{
-            //    allorders = db.order.where(p => p.ordertime >= currentdatetime).toarray();
-            //    for (int i = 0; i < allorders.length; i++)
-            //{
-            //    if (currentmonth == 1 || currentmonth == 3 || currentmonth == 5 || currentmonth == 7 || currentmonth == 8 || currentmonth == 10 || currentmonth == 12)
-            //    {
-            //        for (int i = 0; i < 31; i++)
-            //        {
-            //            if(db.order.where(p=>p.ordertime == allorders[i].ordertime))
-            //        }
-            //    }
-            //    else if (currentmonth == 4 || currentmonth == 6 || currentmonth == 9 || currentmonth == 11)
-            //    {
-            //        for (int i = 0; i < 30; i++)
-            //        {
-
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if ((currentyear % 4 == 0 && currentyear %100 != 0)||currentyear%400 == 0)
-            //        {
-            //            for (int i = 0; i < 29; i++)
-            //            {
-
-            //            }
-            //        }else
-            //        {
-            //            for (int i = 0; i < 28; i++)
-            //            {
-
-            //            }
-            //        }
-            //    }
-            //}
-
-            //}
-
             string shopId = getShopIdByStaffId(staffId);
 
             decimal[] returnOrders = new decimal[30];
@@ -769,12 +718,10 @@ namespace YMClothsStore
                     int tempDay = tempDate.Day;
                     string tempDate0 = tempYear + "-" + tempMonth + "-" + tempDay + " 00:00:00";
                     string tempDate24 = tempYear + "-" + tempMonth + "-" + tempDay + " 23:59:59";
-                    //   DateTime tempDateTime0 = DateTime.ParseExact(tempDate0, "yyyy-MM-dd HH:mm:ss", null);
-                    //  DateTime tempDateTime24 = DateTime.ParseExact(tempDate24, "yyyy-MM-dd HH:mm:ss", null);
-                    DateTime tempDateTime0 = tempDate;
-                    DateTime tempDateTime24 = tempDate;
+                    DateTime tempDateTime0 = DateTime.ParseExact(tempDate0, "yyyy-MM-dd HH:mm:ss", null);
+                    DateTime tempDateTime24 = DateTime.ParseExact(tempDate24, "yyyy-MM-dd HH:mm:ss", null);
                     order[] tempOrderArray = db.order.Where(p => p.orderTime >= tempDateTime0 & p.orderTime <= tempDateTime24 & p.shopId == shopId).ToArray();
-                    System.Diagnostics.Debug.WriteLine("tempOrderArraySize:" + tempOrderArray.Length);
+                    System.Diagnostics.Debug.WriteLine("tempOrderArraySize:"+tempOrderArray.Length);
                     System.Diagnostics.Debug.WriteLine(tempDate);
                     if (tempOrderArray.Length == 0)
                     {
@@ -819,7 +766,7 @@ namespace YMClothsStore
         /**
          * 30.通过商品Id查询商品详细信息(查完库存调用此接口显示某商品详细信息)
          * 参数：商品Id
-         * 返回：本店某一个商品(通过测试)
+         * 返回：本店某一个商品(未测)
          */
         public item getItemByItemId(string itemId)
         {
@@ -837,7 +784,7 @@ namespace YMClothsStore
          * 31.通过商品名查找商品
          * 参数：商品Name
          * 返回：本店某一个商品
-         * 备注：模糊搜索(未测)
+         * 备注：模糊搜索(通过测试)
          */
         public item[] getItemByItemName(string itemName)
         {
@@ -856,52 +803,40 @@ namespace YMClothsStore
          * 32.店长进行盘点(最终目的是检查是否有人偷东西)
          * 参数：员工Id
          * 返回：最近现在各个商品集合（包括名称和）
-         * 备注：其实可以通过库存方法来获取(通过测试)
+         * 备注：其实可以通过库存方法来获取(未测)
          */
-        public checkDetail[] getCheckDetailInfoWithStaffId(string staffId)
+        public checkDetail[] getCheckDetailInfoWithStaffId(string currentCheckId, string staffId)
         {
-            string currentCheckId = createNewId("checkDetail");
+            checkDetail[] checks = { };
 
-            string currentShopId = getShopIdByStaffId(staffId);
+            currentCheckId = createNewId("checkDetail");
+
+            string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                DateTime time = DateTime.Now;
-                //先往check里加记录
-                check newCheck = new check
-                {
-                    checkId = currentCheckId,
-                    shopId = currentShopId,
-                    checkerId = staffId,
-                    checkTime = time
-                };
-                db.check.Add(newCheck);
-                db.SaveChanges();
-
-                //再往chechDetail中添加纪录
-                stock[] itemStock = db.stock.Where(p => p.shopId == currentShopId).ToArray();
-                checkDetail[] currentCheckDetail = new checkDetail[itemStock.Length];
+                stock[] itemStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                checkDetail[] currentCheckDetail = { };
                 for (int i = 0; i < itemStock.Length; i++)
                 {
-                    checkDetail detail = new checkDetail
+                    currentCheckDetail[i] = new checkDetail
                     {
                         itemId = itemStock[i].itemId,
                         checkId = currentCheckId,
                         currentAmount = itemStock[i].stockAmount,
                     };
-                    currentCheckDetail[i] = detail;
-                    db.checkDetail.Add(detail);
+                    db.checkDetail.Add(currentCheckDetail[i]);
                 }
                 db.SaveChanges();
-
-                return currentCheckDetail;
             }
+
+            return checks;
         }
 
         /**
          * 33.店长更改订单信息
-         * 参数：要修改的Order的Id,店长的Id,修改为的itemId,数量
-         * 返回：返回修改过的Order实例(未测)
+         * 参数：要修改的Order的Id,店长的Id
+         * 返回：返回修改过的Order实例(通过测试)
          */
         public orderDetail modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId, string currentItemId, int currentItemAmount)
         {
@@ -912,6 +847,7 @@ namespace YMClothsStore
                 order currentOrder = db.order.Where(p => p.orderId == originOrderId).FirstOrDefault();
                 newOrder = db.orderDetail.Where(p => p.itemId == currentItemId & p.orderId == originOrderId).FirstOrDefault();
                 item currentItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
+                
                 decimal itemPrice = currentItem.itemPrice;
                 decimal oldItemAmount = newOrder.itemAmount;
                 newOrder.itemAmount = currentItemAmount;
@@ -925,7 +861,7 @@ namespace YMClothsStore
          * 34.店长申请从总库补货
          * 参数：店长的Id
          * 返回：新建的补货申请表
-         * 备注：申请表的状态默认同意状态(未测)
+         * 备注：申请表的状态默认同意状态(通过测试)
          */
         public apply addApplyFromSystem(string staffId)
         {
@@ -954,7 +890,7 @@ namespace YMClothsStore
         /**
          * 35.店长为申请添加条目(补货)
          * 参数：申请表Id，货物Id和货物数量
-         * 返回：是否成功添加了申请表细节(未测)
+         * 返回：是否成功添加了申请表细节(通过测试，需要先增加apply条目然后再增加applyDetail)
          */
         public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
         {
@@ -978,6 +914,7 @@ namespace YMClothsStore
                     tem.applyAmount = tem.applyAmount + currentItemAmount;
                 }
                 db.SaveChanges();
+                isSucceed = true;
             }
 
             return isSucceed;

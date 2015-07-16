@@ -183,18 +183,18 @@
 * 返回：最近现在各个商品集合（包括名称和）
 * 备注：其实可以通过库存方法来获取
 
-####33.public order modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId)[未完成]
+####33.modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId, string currentItemId, int currentItemAmount)[通过测试]
 * 店长更改订单信息
 * 参数：要修改的Order的Id,店长的Id
 * 返回：返回修改过的Order实例
 
-####34.public apply addApplyFromSystem(string staffId)[未完成]
+####34.public apply addApplyFromSystem(string staffId)[通过测试]
 * 店长申请从总库补货
 * 参数：店长的Id
 * 返回：新建的补货申请表
 * 备注：申请表的状态默认同意状态
 
-####35.public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string applyId，string itemId, int itemAmount)[未完成]
+####35.public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string applyId，string itemId, int itemAmount)[通过测试]
 * 店长为申请添加条目(补货)
 * 参数：申请表Id，货物Id和货物数量
 * 返回：是否成功添加了申请表细节
