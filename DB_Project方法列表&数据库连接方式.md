@@ -17,54 +17,54 @@
 * 返回值：主键
 
 ##DBModel类
-####1.public staff[] findStaffsByShopId(string shopId)
+####1.public staff[] findStaffsByShopId(string shopId)[通过测试]
 * 查找店铺员工信息
 * 参数：店铺id：shopId
 * 返回值：成功返回该店铺所有员工数组，失败返回空数组
  
-####2.public staff addNewStaff(string newStaffName, string newStaffPassword, string newShopId, int newStaffJob, string newGender)
+####2.public staff addNewStaff(string newStaffName, string newStaffPassword, string newShopId, int newStaffJob, string newGender)[通过测试]
 * 添加新员工
 * 参数：新员工名字
 * 返回值：成功返回员工实例，失败返回null
 
-####3.public bool deleteStaffByStaffId(string deletedStaffId)
+####3.public bool deleteStaffByStaffId(string deletedStaffId)[通过测试]
 * 删除员工
 * 参数：员工id
 * 返回值：成功返回true，失败或员工不存在返回false
   
-####4.public staff modifyPersonalInformation(string staffId , string staffPhone , string newPassword)
+####4.public staff modifyPersonalInformation(string staffId , string staffPhone , string newPassword)[通过测试]
 * 更改员工信息
 * 参数：员工id，姓名(存疑)，电话，密码
 * 返回值：成功返回staff实例以便立刻放入session，失败返回null
 * 原来的参数是(staff currentInfo)，与上文不符，且姓名不应该允许自行修改
 
-####5.public shop addNewShopWithManagerIdAndAddressIdAndShopPhone(string newShopManagerId, string newShopAddress, string newShopPhone)
+####5.public shop addNewShopWithManagerIdAndAddressIdAndShopPhone(string newShopManagerId, string newShopAddress, string newShopPhone)[通过测试]
 * 增加新门店
 * 参数：店长ID，新门店地址ID，新门店电话
 * 返回值：门店实例，失败返回null
 * 接口和实现方式已经过讨论更改
 
-####6.public shop deletdShopByShopId(string shopId)
+####6.public shop deletdShopByShopId(string shopId)[已删除接口]
 * 删除门店，实际上是把shopStatus置为0
 * 参数：门店id
 * 返回值：shop实例
 
-####7.public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
+####7.public bool modifyShopInfo(string shopId, string newAddress, string newPhone)[通过测试]
 * 修改门店信息
 * 参数：门店id，新地址，新电话，不修改的值为null
 * 返回值：bool
 
-####8.public staff findStaffByStaffId(string id)
+####8.public staff findStaffByStaffId(string id)[通过测试]
 * 根据ID查找员工
 * 参数：员工id
 * 返回值：staff实例
 
-####9.public staff loginWithStaffLoginNameAndPassword(string userName, string password)
+####9.public staff loginWithStaffLoginNameAndPassword(string userName, string password)[通过测试]
 * 9.员工登陆接口
 * 参数：userName，password
 * 返回值：bool
 
-####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[删除]
+####10.public address addAddressInfo(string newAddressName , srting newAddressDetail)[已删除接口]
 * 添加新的地址以供选择
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例

@@ -105,20 +105,24 @@ namespace YMClothsStore
          */
         public bool deleteStaffByStaffId(string deletedStaffId)
         {
-            bool deletdSucceed = false;
-
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())
             {
-                
-                //数据库删除员工
-                //成功后将deletedSucceed赋值为true
-                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
-                db.SaveChanges();
-                deletdSucceed = true;
+                try
+                {                
+                    //数据库删除员工
+                    //成功后将deletedSucceed赋值为true
+                    db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (ArgumentNullException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("输入的staffId有问题.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return false;
+                }
             }
-
-            return deletdSucceed;
         }
 
 
@@ -143,11 +147,11 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("修改失败，没有这员工.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
                 }
             }
-
-            return false;
         }
 
         /*
@@ -161,7 +165,7 @@ namespace YMClothsStore
             {
                 shopAddress = newShopAddress,
                 shopPhone = newShopPhone,
-                shopId = createNewId("shop"),   //需要设计一个算法给出shop的id
+                shopId = createNewId("shop"), 
             };
             //写入数据库
             using (YMDBEntities db = new YMDBEntities())
@@ -173,30 +177,15 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("Address输入有误.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
                 }
             }
 
             return newShop;
         }
 
-        /*
-         * 6.删除门店
-         * 参数：门店id
-         * 返回值：bool
-         */
-        //public bool deletdShopByShopId(string shopId)
-        //{
-        //    bool isSucceed = false;
-        //    using (YMDBEntities db = new YMDBEntities())
-        //    {
-        //        //根据门店ID来查询并删除数据库中的门店
-        //        db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
-        //        db.SaveChanges();
-        //        isSucceed = true;
-        //    }
-        //    return isSucceed;
-        //}
 
         /*
          * 7.修改门店信息
@@ -219,7 +208,9 @@ namespace YMClothsStore
                   }
                 catch(Exception ex)
                  {
+                     System.Diagnostics.Debug.WriteLine("没找到shop或者输入参数绝对有问题，仔细查外键约束!!!!");
                      System.Diagnostics.Debug.WriteLine(ex.Message);
+                     return false;
                  }
             }
            
@@ -244,11 +235,11 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("没找到这员工，输入有问题.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
                 }
             }
-
-            return null;
         }
 
         /**

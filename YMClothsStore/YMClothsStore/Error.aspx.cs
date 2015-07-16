@@ -12,7 +12,7 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string applys = DBModel.sharedDBModel().getImagePathWithItemId("item_1472517");
+            staff applys = DBModel.sharedDBModel().findStaffByStaffId("");
             
             //foreach (var i in applys) 
             //{
