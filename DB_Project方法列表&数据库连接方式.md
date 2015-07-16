@@ -245,12 +245,12 @@
 * 参数：地址名称，详细地址
 * 返回：新的地址的实例
 
-####45.public apply[] checkAllApplyByStaffId(string staffId)[未完成]
+####45.public apply[] checkAllApplyByStaffId(string staffId)[通过测试]
 * 查看调货记录
 * 参数：staffId
 * 返回值：调货记录数组
 
-####46.public string getImagePathWithItemId(string itemId)
+####46.public string getImagePathWithItemId(string itemId)[通过测试]
 * 根据物品id得到图片路径
 * 参数：物品Id
 * 返回值：该物品对应的某一个图片的路径
