@@ -257,6 +257,8 @@
 
 ####47.public apply[] getAllApllyToThisShop(string staffId)[未完成]
 * 根据员工Id查询向此店申请信息数组* 参数：员工Id* 返回值：申请书组
+####48.public stock changeStockByStaffIdAndItemId(string staffId, string itemId, int currentAmount)[未测试]* 如果盘点后商品数量不一致，进行更改，修改库存* 参数：店长Id，货物Id，现有数量* 返回值：库存信息
+####public address[] getAllAddressInfo()[未测试]* 返回所有地点信息* 参数：无* 返回值：地点信息数组
 
 ####50.public inBase[] getAllinBaseInfoByStaffId(string targetStaffId)[未完成]
 * 拿到该员工商店所有的入库信息
