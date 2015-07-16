@@ -154,7 +154,6 @@ namespace YMClothsStore
                 try
                 {
                     staff oldStaff = db.staff.Where(p => p.staffId == currentInfo.staffId).FirstOrDefault();
-                    System.Diagnostics.Debug.WriteLine(oldStaff.password);
                     oldStaff.staffLoginName = currentInfo.staffLoginName;
                     oldStaff.password = currentInfo.password;
                     oldStaff.staffPhone = currentInfo.staffPhone;
@@ -705,53 +704,6 @@ namespace YMClothsStore
          */
         public decimal[] getEverySumOfThisMonth(string staffId)
         {
-            //dictionary<datetime,float> returnorders = new dictionary<datetime,float>();
-            //datetime now = datetime.now;
-            //int currentmonth = now.month;
-            //int currentyear = now.year;
-            //datetime currentdate =  now.date;
-            //string currentdatestr = currentyear.tostring() + currentmonth.tostring() + currentdate.tostring();
-            //datetime currentdatetime = convert.todatetime(currentdatestr);
-            //order[] allorders = { };
-            //using(ymdbentities db = new ymdbentities())
-            //{
-            //    allorders = db.order.where(p => p.ordertime >= currentdatetime).toarray();
-            //    for (int i = 0; i < allorders.length; i++)
-            //{
-            //    if (currentmonth == 1 || currentmonth == 3 || currentmonth == 5 || currentmonth == 7 || currentmonth == 8 || currentmonth == 10 || currentmonth == 12)
-            //    {
-            //        for (int i = 0; i < 31; i++)
-            //        {
-            //            if(db.order.where(p=>p.ordertime == allorders[i].ordertime))
-            //        }
-            //    }
-            //    else if (currentmonth == 4 || currentmonth == 6 || currentmonth == 9 || currentmonth == 11)
-            //    {
-            //        for (int i = 0; i < 30; i++)
-            //        {
-
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if ((currentyear % 4 == 0 && currentyear %100 != 0)||currentyear%400 == 0)
-            //        {
-            //            for (int i = 0; i < 29; i++)
-            //            {
-
-            //            }
-            //        }else
-            //        {
-            //            for (int i = 0; i < 28; i++)
-            //            {
-
-            //            }
-            //        }
-            //    }
-            //}
-                
-            //}
-
             string shopId = getShopIdByStaffId(staffId);
 
             decimal[] returnOrders = new decimal[30];
@@ -884,7 +836,7 @@ namespace YMClothsStore
         /**
          * 33.店长更改订单信息
          * 参数：要修改的Order的Id,店长的Id
-         * 返回：返回修改过的Order实例(未测)
+         * 返回：返回修改过的Order实例(通过测试)
          */
         public orderDetail modifyOrderInfoWithOrderIdByShopManager(string originOrderId, string staffId, string currentItemId, int currentItemAmount)
         {
@@ -893,18 +845,13 @@ namespace YMClothsStore
             using(YMDBEntities db = new YMDBEntities())
             {
                 order currentOrder = db.order.Where(p => p.orderId == originOrderId).FirstOrDefault();
-                db.order.Remove(currentOrder);
                 newOrder = db.orderDetail.Where(p => p.itemId == currentItemId & p.orderId == originOrderId).FirstOrDefault();
-                db.orderDetail.Remove(newOrder);
-                db.SaveChanges();
                 item currentItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
                 
                 decimal itemPrice = currentItem.itemPrice;
                 decimal oldItemAmount = newOrder.itemAmount;
                 newOrder.itemAmount = currentItemAmount;
                 currentOrder.totalPrice = currentOrder.totalPrice - itemPrice * oldItemAmount + itemPrice * currentItemAmount;
-                db.order.Add(currentOrder);
-                db.orderDetail.Add(newOrder);
                 db.SaveChanges();
             }
             return newOrder;
@@ -914,7 +861,7 @@ namespace YMClothsStore
          * 34.店长申请从总库补货
          * 参数：店长的Id
          * 返回：新建的补货申请表
-         * 备注：申请表的状态默认同意状态(未测)
+         * 备注：申请表的状态默认同意状态(通过测试)
          */
         public apply addApplyFromSystem(string staffId)
         {
@@ -943,7 +890,7 @@ namespace YMClothsStore
         /**
          * 35.店长为申请添加条目(补货)
          * 参数：申请表Id，货物Id和货物数量
-         * 返回：是否成功添加了申请表细节(未测)
+         * 返回：是否成功添加了申请表细节(通过测试，需要先增加apply条目然后再增加applyDetail)
          */
         public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
         {
@@ -967,6 +914,7 @@ namespace YMClothsStore
                     tem.applyAmount = tem.applyAmount + currentItemAmount;
                 }
                 db.SaveChanges();
+                isSucceed = true;
             }
 
             return isSucceed;
