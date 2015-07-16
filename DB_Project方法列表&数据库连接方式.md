@@ -150,12 +150,12 @@
 * 参数：货物Id，货物数量
 * 返回：是否成功出库
 
-####27.public string[,] topFiveItems()[未完成]
+####27.public string[,] topFiveItems()[通过测试]
 * 员工页面显示最近五件最热商品
 * 参数：无（根据当前月查询）
 * 返回：商品数组（数量5）
 
-####28.public decimal[] getEverySumOfThisMonth()[未完成]
+####28.public decimal[] getEverySumOfThisMonth()[通过测试]
 * 员工页面显示这个月每日销售总价（？需要每个月都传么？No）
 * 参数：无
 * 返回：本月每日销售总价的集合
@@ -240,15 +240,20 @@
 * 参数：商店Id，新店长的Id
 * 返回：新店长的实例
 
-####44.public address addNewAddress(string addressName, string addressDetail)[未完成]
+####44.public address addNewAddress(string addressName, string addressDetail)[通过测试]
 * Boss新增地址信息
 * 参数：地址名称，详细地址
 * 返回：新的地址的实例
 
 ####45.public apply[] checkAllApplyByStaffId(string staffId)[未完成]
-* 查看调货纪录
+* 查看调货记录
 * 参数：staffId
 * 返回值：调货记录数组
+
+####46.public string getImagePathWithItemId(string itemId)
+* 根据物品id得到图片路径
+* 参数：物品Id
+* 返回值：该物品对应的某一个图片的路径
 
 
 

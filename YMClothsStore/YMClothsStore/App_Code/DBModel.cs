@@ -366,16 +366,14 @@ namespace YMClothsStore
          * 参数：订单id
          * 返回值：订单实例(测试通过)
          */
-        public order getOrderInfoByOrderId(string orderId)
+        public order[] getOrderInfoByOrderId(string orderId)
         {
-            order targetOrder = null;
-
-
             using (YMDBEntities db = new YMDBEntities())
             {
-                targetOrder = db.order.Where(p => p.orderId == orderId).FirstOrDefault();
+                order[] targetOrder = db.order.Where(p => p.orderId == orderId).ToArray();
+                return targetOrder;
             }
-            return targetOrder;
+            
         }
 
         /**
@@ -385,12 +383,14 @@ namespace YMClothsStore
          */
         public orderDetail[] getOrderDetailInfoByOrderId(string orderId)
         {
-        
+            orderDetail[] currentOrderDetails = { };
+
             using (YMDBEntities db = new YMDBEntities())
             {
-                 orderDetail[] currentOrderDetails = db.orderDetail.Where(p => p.orderId == orderId).ToArray();
-                 return currentOrderDetails;
-            }     
+                currentOrderDetails = db.orderDetail.Where(p => p.orderId == orderId).ToArray();
+            }
+
+            return currentOrderDetails;
         }
 
         /**
@@ -707,7 +707,7 @@ namespace YMClothsStore
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
          * 返回：本月每日销售总价的集合
-         * 备注：不太确定返回值类型是float还是decimal(未测试)
+         * 备注：不太确定返回值类型是float还是decimal(测试通过)
          */
         public decimal[] getEverySumOfThisMonth(string staffId)
         {
@@ -812,7 +812,7 @@ namespace YMClothsStore
          * 32.店长进行盘点(最终目的是检查是否有人偷东西)
          * 参数：员工Id
          * 返回：最近现在各个商品集合（包括名称和）
-         * 备注：其实可以通过库存方法来获取(未测)
+         * 备注：其实可以通过库存方法来获取(通过测试)
          */
         public checkDetail[] getCheckDetailInfoWithStaffId(string currentCheckId, string staffId)
         {
@@ -1210,16 +1210,30 @@ namespace YMClothsStore
          */
         public apply[] checkAllApplyByStaffId(string staffId)
         {
-            apply[] applys = { };
+            apply[] applys;
 
             string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
                 applys = db.apply.Where(p => p.outShop == shopId | p.inShop == shopId).ToArray();
-            }
 
-            return applys;
+                return applys;
+            }
+        }
+
+        /**
+         * 46.根据商品Id获取图片路径
+         * 参数：商品Id
+         * 返回值：图片路径string(未测)
+         */
+        public string getImagePathWithItemId(string itemId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                image currentImage = db.image.Where(p => p.itemId == itemId).FirstOrDefault();
+                return currentImage.imagePath;
+            }
         }
         
     }
