@@ -350,29 +350,13 @@ namespace YMClothsStore
         public order[] getAllOrderInfo(string staffId)
         {
             order[] orders = { };
-            System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
+
+            string shopId = getShopIdByStaffId(staffId);
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
-                ArrayList orderList = new ArrayList();
-                //先根据staffId查到员工所属店铺
-                string targetShopId = db.staff.Where(p => p.staffId == staffId).FirstOrDefault().shopId;
-
-                foreach (var i in db.order.Where(p => p.shopId == targetShopId))
-                {
-                    order newTargetOrder = new order
-                    {
-                        orderId = i.orderId,
-                        shopId = i.shopId,
-                        totalPrice = i.totalPrice,
-                        orderTime = i.orderTime
-                    };
-
-                    orderList.Add(newTargetOrder);
-                }
-
-                orders = (order[])orderList.ToArray();                
+                orders = db.order.Where(p => p.shopId == shopId).ToArray();
             }
 
             return orders;
@@ -432,7 +416,7 @@ namespace YMClothsStore
         /**
          * 17.员工增加订单记录
          * 参数：staffId, 这次订单的详细信息数组
-         * 返回值：本次订单（需要修改stock）
+         * 返回值：本次订单（需要修改stock）             //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public order addOrderInfo(string staffId)
         {
@@ -458,7 +442,7 @@ namespace YMClothsStore
          * 18.员工在订单中添加一条订单详细信息
          * 参数：订单Id,货物Id,货物数量
          * 返回：成功返回true,失败返回false
-         * 注意：不要重复添加某一条商品的信息（需要修改stock）
+         * 注意：不要重复添加某一条商品的信息（需要修改stock）(未测)
          */
         public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string newOrderId, string newItemId, int newItemAmount)
         {
@@ -476,6 +460,11 @@ namespace YMClothsStore
                 db.orderDetail.Add(currentOrderDetail);
                 item currentItem = db.item.Where(p => p.itemId == newItemId).FirstOrDefault();
                 currentOrder.totalPrice = currentOrder.totalPrice + currentItem.itemPrice * newItemAmount;
+
+                stock currentStock = db.stock.Where(p => p.shopId == currentOrder.shopId & p.itemId == newItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount - newItemAmount;
+                currentStock.saleAmount = newItemAmount;
+
                 db.SaveChanges();
                 
             }
@@ -556,7 +545,7 @@ namespace YMClothsStore
         /**
          * 23.员工新建入库登记表
          * 参数：员工Id
-         * 返回：一个新添加的入库登记表(通过测试)
+         * 返回：一个新添加的入库登记表(通过测试)                      //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public inBase addNewIn(string inStaffId){
             inBase newInBase = null;
@@ -582,7 +571,7 @@ namespace YMClothsStore
         /**
          * 24.员工为新建的入库登记表填写详细信息
          * 参数：入库Id,商品Id,商品数量Amount
-         * 返回：是否成功入库(未测)
+         * 返回：是否成功入库(未测)                          //增加修改库存信息
          */
         public bool addInDetailToInWithItemIdAndItemAmount(string currentInId, string currentItemId, int currentItemAmount)
         {
@@ -597,6 +586,12 @@ namespace YMClothsStore
                     inAmount = currentItemAmount,
                 };
                 db.inDetail.Add(currentInDetail);
+
+                inBase currentInBase = db.inBase.Where(p => p.inId == currentInId).FirstOrDefault();
+
+                stock currentStock = db.stock.Where(p => p.shopId == currentInBase.shopId & p.itemId == currentItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount + currentItemAmount;
+
                 db.SaveChanges();
             }
 
@@ -606,7 +601,7 @@ namespace YMClothsStore
         /**
          * 25.员工新建出库登记表
          * 参数：员工Id,出库类型
-         * 返回：员工新建一个出库登记表(未测)
+         * 返回：员工新建一个出库登记表(未测)                              //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public outBase addNewOut(string outStaffId,string currentOutType)
         {
@@ -634,7 +629,7 @@ namespace YMClothsStore
         /**
          * 26.员工为新建的出库登记表添加详细信息
          * 参数：货物Id，货物数量
-         * 返回：是否成功出库(未测)
+         * 返回：是否成功出库(未测)                                   //增加修改库存信息
          */
         public bool addOutDetailToOutWithItemIdAndItemAmount(string currentOutId, string currentItemId, int currentItemAmount)
         {
@@ -649,6 +644,12 @@ namespace YMClothsStore
                     outAmount = currentItemAmount,
                 };
                 db.outDetail.Add(currentOutDetail);
+
+                outBase currentOutBase = db.outBase.Where(p => p.outId == currentOutId).FirstOrDefault();
+
+                stock currentStock = db.stock.Where(p => p.shopId == currentOutBase.shopId & p.itemId == currentItemId).FirstOrDefault();
+                currentStock.stockAmount = currentStock.stockAmount - currentItemAmount;
+
                 db.SaveChanges();
             }
 
@@ -658,7 +659,7 @@ namespace YMClothsStore
         /**
          * 27.员工页面显示最近五件最热商品
          * 参数：无（根据当前月查询）
-         * 返回：商品数组（数量5）
+         * 返回：商品数组（数量5）(未测试)
          */
         public string[,] topFiveItems(string staffId)
         {
@@ -699,7 +700,7 @@ namespace YMClothsStore
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
          * 返回：本月每日销售总价的集合
-         * 备注：不太确定返回值类型是float还是decimal
+         * 备注：不太确定返回值类型是float还是decimal(未测试)
          */
         public decimal[] getEverySumOfThisMonth(string staffId)
         {

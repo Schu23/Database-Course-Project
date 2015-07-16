@@ -3,7 +3,6 @@ var chartData = [];
 var chartCursor;
 
 
-
 AmCharts.ready(function () {
     // generate some data first
     generateChartData();
@@ -107,7 +106,6 @@ function generateChartData() {
         newDate.setDate(newDate.getDate() + i);
 
         var visits = Math.round(Math.random() * 500);
-
         chartData.push({
             date: newDate,
             visits: visits
