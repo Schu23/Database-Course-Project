@@ -1223,6 +1223,20 @@ namespace YMClothsStore
 
             return applys;
         }
+
+        /**
+         * 46.根据商品Id获取图片路径
+         * 参数：商品Id
+         * 返回值：图片路径string(未测)
+         */
+        public string getImagePathWithItemId(string itemId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                image currentImage = db.image.Where(p => p.itemId == itemId).FirstOrDefault();
+                return currentImage.imagePath;
+            }
+        }
         
     }
 }
