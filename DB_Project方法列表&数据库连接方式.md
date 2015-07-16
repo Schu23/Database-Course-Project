@@ -250,6 +250,11 @@
 * 参数：staffId
 * 返回值：调货记录数组
 
+####46.public string getImagePathWithItemId(string itemId)
+* 根据物品id得到图片路径
+* 参数：物品Id
+* 返回值：该物品对应的某一个图片的路径
+
 
 
 
