@@ -53,8 +53,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/Staff_OrderInfo.aspx" runat="server">查询订单</a></li>
-                  <li><a href="staff_addorder.html">增加订单</a></li>
+                  <li><a href="~/Staff_OrderInfo.aspx" runat="server">查询订单</a></li>
+                  <li><a href="~/Staff_addOrder.aspx" runat="server">增加订单</a></li>
                 </ul>
               </li>
             </ul>

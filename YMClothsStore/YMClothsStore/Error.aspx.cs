@@ -12,9 +12,13 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool succeed = DBModel.sharedDBModel().addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount("order_677740", "item_1436972475", 2);
-                        	
-            System.Diagnostics.Debug.WriteLine("Succeed:" + succeed);
+            string applys = DBModel.sharedDBModel().getImagePathWithItemId("item_1472517");
+            
+            //foreach (var i in applys) 
+            //{
+                System.Diagnostics.Debug.WriteLine("Succeed:" + applys);
+
+            //}
         }
         protected void returnBack (object sender , EventArgs e)
         {

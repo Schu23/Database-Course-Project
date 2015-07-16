@@ -107,6 +107,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\title.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
+    <Content Include="ManagerAddStaff.aspx" />
     <Content Include="ManagerIndex.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -235,6 +236,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerAddStaff.aspx.cs">
+      <DependentUpon>ManagerAddStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerAddStaff.aspx.designer.cs">
+      <DependentUpon>ManagerAddStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerIndex.aspx.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
