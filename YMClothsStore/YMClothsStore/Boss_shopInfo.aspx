@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manager_ClothesInfo.aspx.cs" Inherits="YMClothsStore.Manager_ClothesInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Boss_shopInfo.aspx.cs" Inherits="YMClothsStore.Boss_shopInfo" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>查看服装信息|原木衣橱</title>
+    <title>查询分店信息 |原木衣橱</title>
 
     <!-- Bootstrap core CSS -->
     <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -18,25 +18,68 @@
 
     <!-- jquery & ajax -->
     <script src="jQuery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="scripts/staffInfo.js"></script>
-       <script>
-        $(function () {
-             //模态框设置
-             $('.btn-success').click(function () {
-                  var pictureUrl = $(this).parent().prev().html();
-                  //var staffId = $(this).parent().prev().prev().prev().prev().html();
-                  $('#clothes_pic').replaceWith('<img class="text-center img-responsive" id="clothes_pic" src="' + pictureUrl + '">');
-                  $('#pic_url').html(pictureUrl);
-             })
+    <script type="text/javascript">
+    $(function(){
+        var pageArray = [];
 
+        //获取记录条数
+        var liCount = 0;
+        var $tr = $('tr');
+        $tr.each(function(){
+            if ($(this).attr('id')=="table-title") {}
+            else{
+                liCount++;
+            }
         });
+        var PageSize  = 10;//设置每页，你准备显示几条
+        var PageCount  = Math.ceil(liCount/PageSize);//计算出总共页数
+        
+        var i=0;
+        for(i=1; i<=PageCount; i++){
+            $('<li id="page-li"><a class="page-a" href="#" pageNum="'+(i-1)+'" >第'+i+'页</a></li>').appendTo('.pagination');//显示分页按钮
+        }
+        // 获取整个table中的所有行值并存入pagearray
+        var $tr = $('tr');
+        $tr.each(function(){
+            if ($(this).attr('id')=="table-title") {}
+            else{
+                pageArray.push(this);
+            }
+        });
+        // 清空table 只显示第一页数据
+        $('#table-body').html('');
+        for(i=0;i<PageSize;i++){
+            $('#table-body').append(pageArray[i]);
+        }
+        // 显示分页内容的方法
+        function showPage(whichPage){
+            $('#table-body').html('');
+            var page = whichPage;
+            var initial = (page)*PageSize;
+            var end = (++page)*PageSize;
+            for(i = initial; i < end ; i++){
+                $('#table-body').append(pageArray[i]);
+            }
+        }
+        // 当分页符号被点击时的效果
+        $('.page-a').click(function(){
+            showPage($(this).attr('pagenum'));
+        })
+        // 模态框设置
+        $('.btn-danger').click(function(){
+            var staffName = $(this).parent().prev().prev().prev().html();
+            var staffId = $(this).parent().prev().prev().prev().prev().html();
+            $('#delete_modal').html('你确定要关闭门店'+staffName+'（编号'+staffId+'）吗？');
+        })
+    });
     </script>
-
 
   </head>
 
   <body>
- <!-- navbar container -->
+
+    <!-- navbar container -->
+   <!-- navbar container -->
     <div class="container">
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -51,7 +94,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a runat="server" class="navbar-brand" href="~/ManagerIndex.aspx">原木衣橱连锁</a>
+            <a runat="server" class="navbar-brand" href="~/Boss_Index.aspx">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,39 +103,22 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Manager_StockInfo.aspx">查询服装库存</a></li>
-                </ul>
-              </li>
-              <!-- 订单有关 -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单管理<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_OrderInfo.aspx">查询订单</a></li>
-                  <li><a runat="server" href="~/Manager_AddOrder.aspx">增加订单</a></li>
+                  <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">报表管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/ManagerOrderInfoTable.aspx">查看订单报表</a></li>
-                  <li><a runat="server" href="~/ManagerInBaseTable.aspx">查看入库报表</a></li>
-                  <li><a runat="server" href="~/ManagerOutBaseTable.aspx">查看出库报表</a></li>
-                  <li><a runat="server" href="~/ManagerStockInfoTable.aspx">查看调货报表</a></li>
+                  <li><a runat="server" href="~/Boss_OutBaseTable.aspx">查看出库报表</a></li>
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工管理<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分店管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/PersonnelChanges.aspx">查看员工信息</a></li>
-                  <li><a runat="server" href="~/ManagerAddStaff.aspx">添加员工</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">盘点<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_CheckDetail.aspx">盘点</a></li>
-                  <li><a runat="server" href="~/Manager_CheckInfoTable.aspx">查看盘点记录</a></li>
+                  <li><a runat="server" href="~/Boss_ShopInfo.aspx">查看分店信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">添加分店</a></li>
+                  <li><a runat="server" href="~/Boss_AddAddress.aspx">添加地址</a></li>
                 </ul>
               </li>
             </ul>
@@ -100,7 +126,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                     <%:theStaff.staffName %>
+                    刘旭东
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -114,36 +140,26 @@
       </nav>
     </div>
     <!-- 标题 -->
-     <div class="container">
-      <h2 class="sub-header">服装信息查询</h2>
+    <div class="container">
+      <h2 class="sub-header">门店信息查询</h2>
     </div>
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form role="search" runat="server">
+      <form role="search">
         <div class="row">
-          <div class="col-md-3 col-sm-3">
-            <select class="form-control" name="searchCondition">
-              <option value ="unknown">请选择</option>
-              <option value ="staffId">服装编号</option>
-              <option value ="staffName">服装名称</option>
-            </select>
-          </div>
-          <div class="col-md-8 col-sm-8 search-key-padding">
+          <div class="col-md-7 col-sm-7 col-sm-offset-2">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="关键字" name="searchKey">
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
-              <asp:Button Text="搜索" runat="server" CssClass="btn btn-default" OnClick="SerachSubmit"  />
+            <button type="submit" class="btn btn-default">搜索</button>
           </div>
         </div>
       </form>
     </div>
     <div class="container text-center main-sort">
-      <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
-        <button type="button" class="btn btn-info">按编号</button>
-        <button type="button" class="btn btn-primary">按名称</button>
-      </div>
+      <button type="button" class="btn btn-default" onclick="window.location.href='boss_addShop.html'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加门店</button>
     </div>
     <!-- 信息表格 -->
     <div class="container table-container">
@@ -151,53 +167,53 @@
         <table class="table table-striped">
           <thead>
             <tr id="table-title">
-              <th>服装编号</th>
-              <th>服装名称</th>
-              <th>尺寸</th>
-              <th>颜色</th>
-              <th>单价</th>
-              <th>上市日期</th>
-              <th>图片</th>
+              <th>门店编号</th>
+              <th>门店地址</th>
+              <th>门店状态</th>
+              <th>联系方式</th>
+              <th>门店操作</th>
             </tr>
           </thead>
           <tbody id="table-body">
-              <% if (searchResult != null)
-                 { %>
-            <% foreach (var item in searchResult)
-               { %>
             <tr>
-              <td id="itemId"><%: item.itemId%></td>
-              <td><%: item.itemName%></td>
-              <td><%: item.itemSize%></td>
-              <td><%: item.itemColor%></td>
-              <td><%: item.itemPrice%></td>
-              <td><%: item.itemDate%></td>
-             
+              <td>address_001</td>
+              <td>纽约</td>
+              <td>已关闭</td>
+              <td>68736273</td>
               <td>
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">查看图片</button>
+                <button type="button" class="btn btn-default btn-sm disabled">已关闭</button>
               </td>
             </tr>
-              <%}   } %>
+            <tr>
+              <td>address_002</td>
+              <td>巴黎</td>
+              <td>运营中</td>
+              <td>68736273</td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_shop">关店</button>
+              </td>
+            </tr>
+            
           </tbody>
         </table>
         <!-- Modal -->
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-sm">
+        <div class="modal fade" id="delete_shop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">图片详情</h4>
+                <h4 class="modal-title" id="myModalLabel">关闭门店</h4>
               </div>
-              <div class="modal-body">
-                  <label id="pic_url"></label>
-                  <img class="text-center img-responsive" id="clothes_pic" src="">
+              <div class="modal-body" id="delete_modal">
+                你确定要关闭门店吗？
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
               </div>
             </div>
           </div>
-        </div><!-- Modal -->
+        </div><!--modal-->
       </div>
     </div>
     <!-- 分页导航 -->

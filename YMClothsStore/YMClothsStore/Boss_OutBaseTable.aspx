@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manager_CheckDetail.aspx.cs" Inherits="YMClothsStore.Manager_CheckDetail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Boss_OutBaseTable.aspx.cs" Inherits="YMClothsStore.Boss_OutBaseTable" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>首页|原木衣橱连锁管理</title>
+    <title>出库报表|原木衣橱</title>
 
     <!-- Bootstrap core CSS -->
     <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a runat="server" class="navbar-brand" href="~/ManagerIndex.aspx">原木衣橱连锁</a>
+            <a runat="server" class="navbar-brand" href="~/Boss_Index.aspx">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,39 +48,22 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Manager_StockInfo.aspx">查询服装库存</a></li>
-                </ul>
-              </li>
-              <!-- 订单有关 -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单管理<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_OrderInfo.aspx">查询订单</a></li>
-                  <li><a runat="server" href="~/Manager_AddOrder.aspx">增加订单</a></li>
+                  <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">报表管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/ManagerOrderInfoTable.aspx">查看订单报表</a></li>
-                  <li><a runat="server" href="~/ManagerInBaseTable.aspx">查看入库报表</a></li>
-                  <li><a runat="server" href="~/ManagerOutBaseTable.aspx">查看出库报表</a></li>
-                  <li><a runat="server" href="~/ManagerStockInfoTable.aspx">查看调货报表</a></li>
+                  <li><a runat="server" href="~/Boss_OutBaseTable.aspx">查看出库报表</a></li>
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工管理<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分店管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/PersonnelChanges.aspx">查看员工信息</a></li>
-                  <li><a runat="server" href="~/ManagerAddStaff.aspx">添加员工</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">盘点<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Manager_CheckDetail.aspx">盘点</a></li>
-                  <li><a runat="server" href="~/Manager_CheckInfoTable.aspx">查看盘点记录</a></li>
+                  <li><a runat="server" href="~/Boss_ShopInfo.aspx">查看分店信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">添加分店</a></li>
+                  <li><a runat="server" href="~/Boss_AddAddress.aspx">添加地址</a></li>
                 </ul>
               </li>
             </ul>
@@ -88,7 +71,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    <%:theStaff.staffName %>
+                    刘旭东
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -103,39 +86,106 @@
     </div>
     <!-- 标题 -->
     <div class="container">
-      <h2 class="sub-header">库存盘点</h2>
+      <h2 class="sub-header">出库报表信息查询</h2>
     </div>
-
-    <!-- form -->
-    <form class="" runat="server">
+    <!-- 搜索框 -->
+    <div class="container text-center main-search">
+      <form role="search">
+        <div class="row">
+          <div class="col-md-7 col-sm-7 col-sm-offset-2">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="关键字" name="searchKey">
+            </div>
+          </div>
+          <div class="col-md-1 col-sm-1 search-padding">
+            <button type="submit" class="btn btn-default">搜索</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<!--     <div class="container text-center main-sort">
+      <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
+        <button type="button" class="btn btn-info">按出库单号</button>
+        <button type="button" class="btn btn-primary">按出库类型</button>
+        <button type="button" class="btn btn-info">按审核员编号</button>
+        <button type="button" class="btn btn-info">按出库时间</button>
+      </div>
+    </div> -->
+    <!-- 信息表格 -->
     <div class="container table-container">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr id="table-title">
-              <th>货物编号</th>
-              <th>理论库存</th>
-              <th>实际库存</th>
+              <th>出库单号</th>
+              <th>出库类型</th>
+              <th>审核员编号</th>
+              <th>出库时间</th>
             </tr>
           </thead>
           <tbody id="table-body">
-            <% for (int i = 0; i< checkDetailTable.Length ; i++ ){ %>
-              <tr>
-              <td><%:checkDetailTable[i].itemId  %></td>
-              <td><%:checkDetailTable[i].currentAmount %></td>
-              <td><input type="text" class="form-control" name="check_id<%:i%>" placeholder="实际库存"></td>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
             </tr>
-             <% } %>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
+            <tr>
+              <td>2536svs</td>
+              <td>调货</td>
+              <td>322dfb</td>
+              <td>19:37:17</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
-  </form>
-    <!--提交按钮-->
-     <div class="text-center">
-          <br/>
-         <asp:Button Text="提交" runat="server" CssClass="btn btn-primary btn-lg" OnClick="sumbitCheck" />     
-        </div>
+    <!-- 分页导航 -->
+    <nav class="text-center">
+      <ul class="pagination">
+        <!-- <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li> -->
+      </ul>
+    </nav>
     <footer class="footer">
       <div class="container">
         <hr/>
@@ -148,5 +198,3 @@
     
   </body>
 </html>
-
-

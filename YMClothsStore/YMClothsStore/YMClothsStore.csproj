@@ -98,6 +98,12 @@
     <Content Include="Bootstrap\bootstrap.min.js" />
     <Content Include="Bootstrap\npm.js" />
     <Content Include="BossIndex.aspx" />
+    <Content Include="Boss_AddAddress.aspx" />
+    <Content Include="Boss_AddressClothes.aspx" />
+    <Content Include="Boss_AddShop.aspx" />
+    <Content Include="Boss_ClothesInfo.aspx" />
+    <Content Include="Boss_OutBaseTable.aspx" />
+    <Content Include="Boss_shopInfo.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\404.png" />
     <Content Include="images\avatar.jpg" />
@@ -195,6 +201,48 @@
     </Compile>
     <Compile Include="BossIndex.aspx.designer.cs">
       <DependentUpon>BossIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_AddAddress.aspx.cs">
+      <DependentUpon>Boss_AddAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_AddAddress.aspx.designer.cs">
+      <DependentUpon>Boss_AddAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_AddressClothes.aspx.cs">
+      <DependentUpon>Boss_AddressClothes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_AddressClothes.aspx.designer.cs">
+      <DependentUpon>Boss_AddressClothes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_AddShop.aspx.cs">
+      <DependentUpon>Boss_AddShop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_AddShop.aspx.designer.cs">
+      <DependentUpon>Boss_AddShop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_ClothesInfo.aspx.cs">
+      <DependentUpon>Boss_ClothesInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_ClothesInfo.aspx.designer.cs">
+      <DependentUpon>Boss_ClothesInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_OutBaseTable.aspx.cs">
+      <DependentUpon>Boss_OutBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_OutBaseTable.aspx.designer.cs">
+      <DependentUpon>Boss_OutBaseTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss_shopInfo.aspx.cs">
+      <DependentUpon>Boss_shopInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss_shopInfo.aspx.designer.cs">
+      <DependentUpon>Boss_shopInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="BranchChange.aspx.cs">
       <DependentUpon>BranchChange.aspx</DependentUpon>
