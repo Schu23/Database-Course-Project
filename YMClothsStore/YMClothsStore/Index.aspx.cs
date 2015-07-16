@@ -25,14 +25,8 @@ namespace YMClothsStore
             
 
             // 前端 no problems 
-           orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth();
+           orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth(theStaff.staffId);
            System.Diagnostics.Debug.WriteLine("month order debug :"+ orderMonthChart.Length);
-            for ( int i = 0  ;i< 30 ; i++)
-            {
-                orderMonthChart[i] = 50;
-                System.Diagnostics.Debug.WriteLine("month order dayily :" + orderMonthChart[i]);
-            }
-         
         }
     }
 }

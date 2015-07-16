@@ -271,7 +271,8 @@
           <br/><h2>最热卖五件商品</h2><br/><br/>
           <div class="row" id="clothes">
             <!-- 第一个需要offset 后面格式相同 -->
-                  
+          
+          
          <% if (hotItems !=null) { %>
             <div class="col-md-2 col-sm-2 col-xs-4 col-sm-offset-1">
               <img class="img-responsive" src="<%: hotItems[0,2] %>">
