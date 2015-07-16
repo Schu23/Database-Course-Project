@@ -12,13 +12,12 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //29
-            item[] allItems = DBModel.sharedDBModel().getAllItemsOfThisShop("staff_1436923452");
-            foreach (var i in allItems)
-            {
-                System.Diagnostics.Debug.WriteLine("29item:" + i.itemDate);
-            }
-
+            //33
+            orderDetail orders = DBModel.sharedDBModel().modifyOrderInfoWithOrderIdByShopManager("order_1436972441", "staff_1436923452", "item_1437018410", 5);
+            //foreach (var i in ckecks)
+            //{
+                System.Diagnostics.Debug.WriteLine("29item:" + orders.itemAmount);
+            //}
         }
         protected void returnBack (object sender , EventArgs e)
         {
