@@ -1240,6 +1240,22 @@ namespace YMClothsStore
                 return currentImage.imagePath;
             }
         }
+
+        /**
+         * 47.根据员工Id查询向此店申请信息数组
+         * 参数：员工Id
+         * 返回值：申请书组
+         */
+        public apply[] getAllApllyToThisShop(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply[] allApply = db.apply.Where(p => p.outShop == shopId).ToArray();
+                return allApply;
+            }
+        }
         
     }
 }
