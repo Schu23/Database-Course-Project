@@ -658,7 +658,7 @@ namespace YMClothsStore
         /**
          * 27.员工页面显示最近五件最热商品
          * 参数：无（根据当前月查询）
-         * 返回：商品数组（数量5）
+         * 返回：商品数组（数量5）(未测试)
          */
         public string[,] topFiveItems()
         {
@@ -708,7 +708,7 @@ namespace YMClothsStore
          * 28.员工页面显示这个月每日销售总价（？需要每个月都传么？No）
          * 参数：无
          * 返回：本月每日销售总价的集合
-         * 备注：不太确定返回值类型是float还是decimal
+         * 备注：不太确定返回值类型是float还是decimal(未测试)
          */
         public decimal[] getEverySumOfThisMonth()
         {
