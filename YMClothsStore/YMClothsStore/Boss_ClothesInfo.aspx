@@ -49,7 +49,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
-                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddressClothes.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">

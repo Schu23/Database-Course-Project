@@ -9,7 +9,12 @@ namespace YMClothsStore
 {
     public partial class Boss_AddressClothes : System.Web.UI.Page
     {
+        staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
+        {
+            theStaff =(staff)Session["Staff"];
+        }
+       protected void addNewAddress(object sender, EventArgs e)
         {
 
         }
