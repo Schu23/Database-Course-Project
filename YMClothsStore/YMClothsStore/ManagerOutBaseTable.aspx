@@ -81,7 +81,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    刘旭东
+                    <%:theStaff.staffId %>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -137,49 +137,13 @@
             </tr>
           </thead>
           <tbody id="table-body">
+              <%foreach(var outBase in searchResult){ %>
             <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
+                <td><%:outBase.outId%></td>
+                <td><%:outBase.staffId %></td>
+                <td><%:outBase.outTime %></td>
             </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-            <tr>
-              <td>2536svs</td>
-              <td>调货</td>
-              <td>322dfb</td>
-              <td>19:37:17</td>
-            </tr>
-
+              <%} %>
           </tbody>
         </table>
       </div>
