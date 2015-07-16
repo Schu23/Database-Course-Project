@@ -28,8 +28,7 @@
   </head>
 
   <body>
-
-    <!-- navbar container -->
+<!-- navbar container -->
     <div class="container">
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -44,7 +43,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a class="navbar-brand" href="#">原木衣橱连锁</a>
+            <a runat="server" class="navbar-brand" href="~/Boss_Index.aspx">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,22 +52,22 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="~/Staff_clothesInfo.aspx">查询服装信息</a></li>
-                  <!-- <li><a href="#">查询服装库存</a></li> -->
-                  <li><a href="#">增加服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_ClothesInfo.aspx">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">增加服装信息</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">报表管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查看出库报表</a></li>
+                  <li><a runat="server" href="~/Boss_OutBaseTable.aspx">查看出库报表</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分店管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查看分店信息</a></li>
-                  <li><a href="#">添加分店</a></li>
+                  <li><a runat="server" href="~/Boss_ShopInfo.aspx">查看分店信息</a></li>
+                  <li><a runat="server" href="~/Boss_AddShop.aspx">添加分店</a></li>
+                  <li><a runat="server" href="~/Boss_AddAddress.aspx">添加地址</a></li>
                 </ul>
               </li>
             </ul>
@@ -76,12 +75,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    <%:theStaff.staffName %>
+                    刘旭东
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="text-center"><a runat ="server" href="~/ChangeSelfInfo.aspx">修改个人信息</a></li>
-                  <li class="text-center"><a runat ="server" href="~/Login.apsx">退出</a></li>
+                  <li class="text-center"><a runat="server" href="~/ChangeSelfInfo.aspx">修改个人信息</a></li>
+                  <li class="text-center"><a runat="server" href="~/Login.aspx">退出</a></li>
                 </ul>
               </li>
             </ul>
