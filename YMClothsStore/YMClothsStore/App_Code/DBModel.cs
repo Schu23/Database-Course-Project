@@ -660,7 +660,7 @@ namespace YMClothsStore
         /**
                  * 27.员工页面显示最近五件最热商品
                  * 参数：无（根据当前月查询）
-                 * 返回：商品数组（数量5）(未测试)
+                 * 返回：商品数组（数量5）(通过测试)
                  */
         public string[,] topFiveItems(string staffId)
         {
@@ -837,7 +837,7 @@ namespace YMClothsStore
          * 31.通过商品名查找商品
          * 参数：商品Name
          * 返回：本店某一个商品
-         * 备注：模糊搜索(未测)
+         * 备注：模糊搜索(通过测试)
          */
         public item[] getItemByItemName(string itemName)
         {
@@ -910,12 +910,18 @@ namespace YMClothsStore
             using(YMDBEntities db = new YMDBEntities())
             {
                 order currentOrder = db.order.Where(p => p.orderId == originOrderId).FirstOrDefault();
+                db.order.Remove(currentOrder);
                 newOrder = db.orderDetail.Where(p => p.itemId == currentItemId & p.orderId == originOrderId).FirstOrDefault();
+                db.orderDetail.Remove(newOrder);
+                db.SaveChanges();
                 item currentItem = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
+                
                 decimal itemPrice = currentItem.itemPrice;
                 decimal oldItemAmount = newOrder.itemAmount;
                 newOrder.itemAmount = currentItemAmount;
                 currentOrder.totalPrice = currentOrder.totalPrice - itemPrice * oldItemAmount + itemPrice * currentItemAmount;
+                db.order.Add(currentOrder);
+                db.orderDetail.Add(newOrder);
                 db.SaveChanges();
             }
             return newOrder;
