@@ -325,7 +325,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 12.使用模糊查询，通过员工姓名查找员工
+         * 12.使用模糊查询，通过员工姓名查找员工(测试通过)
          * 参数：员工名字的全部或是一部分
          * 返回值：符合条件的staff[]
          */
@@ -343,7 +343,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 13.员工查看自己店铺的订单信息(未测)
+         * 13.员工查看自己店铺的订单信息(测试通过)
          * 参数：员工id
          * 返回值：order[]
          */
@@ -793,23 +793,22 @@ namespace YMClothsStore
         /**
          * 29.员工查询商品信息
          * 参数：员工Id
-         * 返回：本店所有商品信息的集合(未测)
+         * 返回：本店所有商品信息的集合(通过测试)
          */
         public item[] getAllItemsOfThisShop(string staffId) {
-            item[] items = { };
-
             string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
                 stock[] currentStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                item[] items = new item[currentStock.Length];
                 for (int i = 0; i < currentStock.Length; i++)
                 {
-                    items[i] = db.item.Where(p => p.itemId == currentStock[i].itemId).FirstOrDefault();
+                    string currentItemId = currentStock[i].itemId;
+                    items[i] = db.item.Where(p => p.itemId == currentItemId).FirstOrDefault();
                 }
+                return items;
             }
-
-            return items;
         }
 
         /**
