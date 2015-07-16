@@ -21,7 +21,7 @@ namespace YMClothsStore
             theStaff =(staff)Session["Staff"];
            // 为空返回什么数值?
            //  string [,] showItems = DBModel.sharedDBModel().topFiveItems();
-           // getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
+            getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
             
 
             // 前端 no problems 

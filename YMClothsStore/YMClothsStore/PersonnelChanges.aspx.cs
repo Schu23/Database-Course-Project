@@ -11,7 +11,6 @@ namespace YMClothsStore
     public partial class PersonnelChanges : System.Web.UI.Page
     {
         protected staff[]  staffs;
-        protected string fireId;
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
@@ -50,11 +49,9 @@ namespace YMClothsStore
         protected void fireEmployee(object sender , EventArgs e)
         {
         
-           //string fireId = (string)Session["fire"];  
-            string fireId = Request.QueryString["fire"];
+            string fireId = Request.Params["fire"];
            System.Diagnostics.Debug.WriteLine("debug: fire the man id :"+fireId);
-           Session.Remove("fire");
-  /*         if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
+           if( DBModel.sharedDBModel().deleteStaffByStaffId(fireId))
            {
                System.Diagnostics.Debug.WriteLine("Fire employee success");
                //重定向到当前页面
@@ -67,9 +64,6 @@ namespace YMClothsStore
                Session["returnURL"] = "PersonnelChanges.aspx";
                Response.Redirect("Error.aspx");
            }
-
-*/
-           Response.Redirect("PersonnelChanges.aspx");
         }
     }
 }
