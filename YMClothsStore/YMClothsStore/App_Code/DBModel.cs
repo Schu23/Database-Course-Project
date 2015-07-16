@@ -34,25 +34,6 @@ namespace YMClothsStore
             //id格式：数据库表名 + "_" + 日期后六位
             //例如：staff_000000
             string newId = tableName + "_";
-            /*using (YMDBEntities db = new YMDBEntities())
-            {
-                int countNum;
-                switch (tableName)
-                {
-                    case "staff":
-                        countNum = db.staff.Count();
-                        break;
-                    case "shop":
-                        countNum = db.shop.Count();
-                        break;
-                    default:
-                        countNum = -2;
-                        break;
-                }
-                countNum++;
-                newId += countNum;
-                newId = newId + "_";
-            }*/
 
             DateTime currentTime = DateTime.Now;
             string timeStr = currentTime.Ticks.ToString();
@@ -204,25 +185,25 @@ namespace YMClothsStore
          * 参数：门店id
          * 返回值：bool
          */
-        public bool deletdShopByShopId(string shopId)
-        {
-            bool isSucceed = false;
-            using (YMDBEntities db = new YMDBEntities())
-            {
-                //根据门店ID来查询并删除数据库中的门店
-                db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
-                db.SaveChanges();
-                isSucceed = true;
-            }
-            return isSucceed;
-        }
+        //public bool deletdShopByShopId(string shopId)
+        //{
+        //    bool isSucceed = false;
+        //    using (YMDBEntities db = new YMDBEntities())
+        //    {
+        //        //根据门店ID来查询并删除数据库中的门店
+        //        db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
+        //        db.SaveChanges();
+        //        isSucceed = true;
+        //    }
+        //    return isSucceed;
+        //}
 
         /*
          * 7.修改门店信息
-         * 参数：门店id，新地址，新电话，不修改的值为null
+         * 参数：门店id，新地址，新电话,新的门店状态，不修改的值为null
          * 返回值：bool,成功返回true，失败返回false
          */
-        public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
+        public bool modifyShopInfo(string shopId, string newAddress,int newStatus, string newPhone)
         {
             bool isSucceed = false;
             using(YMDBEntities db = new YMDBEntities())
@@ -230,6 +211,11 @@ namespace YMClothsStore
                  try
                  {
                      shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
+                     shopToChangeInfo.shopAddress = newAddress;
+                     shopToChangeInfo.shopStatus = newStatus;
+                     shopToChangeInfo.shopPhone = newPhone;
+                     db.SaveChanges();
+                     isSucceed = true;
                   }
                 catch(Exception ex)
                  {
@@ -936,7 +922,7 @@ namespace YMClothsStore
          * 36.店长申请从其他店面调货
          * 参数：店长的Id，对方店面的Id
          * 返回：新建的调货申请表
-         * 备注：申请表的状态需要设置为申请状态(未测)
+         * 备注：申请表的状态需要设置为申请状态(通过测试)
          */
         public apply addApplyFromOtherShop(string staffId, string otherShopId)
         {
@@ -965,7 +951,8 @@ namespace YMClothsStore
         /**
          * 37.店长为申请添加条目(调货)
          * 参数：申请表Id，货物Id和货物数量
-         * 返回：是否成功添加了申请表细节(未测)
+         * 返回：是否成功添加了申请表细节(需要优化)
+         * 注意：如果申请调货的店没有对应的货会报空指针错误
          */
         public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
         {
@@ -973,49 +960,60 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                apply outShop = db.apply.Where(p => p.applyId == currentApplyId).FirstOrDefault();
-                stock itemStock = db.stock.Where(p => p.shopId == outShop.outShop & p.itemId == currentItemId).FirstOrDefault();
-                decimal realAmount = itemStock.stockAmount;
-                if (currentItemAmount > realAmount)
+                try
                 {
-                    return false;
-                }
-                else
-                {
-                    applyDetail tem = db.applyDetail.Where(p => p.applyId == currentApplyId & p.itemId == currentApplyId).FirstOrDefault();
-
-                    if (tem == null)
+                    apply outShop = db.apply.Where(p => p.applyId == currentApplyId).FirstOrDefault();
+                    stock itemStock = db.stock.Where(p => p.shopId == outShop.outShop & p.itemId == currentItemId).FirstOrDefault();
+                    decimal realAmount = itemStock.stockAmount;
+                    if (currentItemAmount > realAmount)
                     {
-                        applyDetail newApplyDetail = new applyDetail
-                        {
-                            applyId = currentApplyId,
-                            itemId = currentItemId,
-                            applyAmount = currentItemAmount,
-                        };
-                        db.applyDetail.Add(newApplyDetail);
+                        return false;
                     }
                     else
                     {
-                        if (tem.applyAmount + currentItemAmount > realAmount)
+                        applyDetail tem = db.applyDetail.Where(p => p.applyId == currentApplyId & p.itemId == currentApplyId).FirstOrDefault();
+
+                        if (tem == null)
                         {
-                            return false;
+                            applyDetail newApplyDetail = new applyDetail
+                            {
+                                applyId = currentApplyId,
+                                itemId = currentItemId,
+                                applyAmount = currentItemAmount,
+                            };
+                            db.applyDetail.Add(newApplyDetail);
                         }
                         else
                         {
-                            tem.applyAmount = tem.applyAmount + currentItemAmount;
+                            if (tem.applyAmount + currentItemAmount > realAmount)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                tem.applyAmount = tem.applyAmount + currentItemAmount;
+                            }
                         }
-                    }
-                    db.SaveChanges();
+                        db.SaveChanges();
+                        isSucceed = true;
+                        return isSucceed;
+                    } 
+                }
+                catch(NullReferenceException ex) 
+                {
+                    System.Diagnostics.Debug.WriteLine("店长申请增加条目失败，对应的店没有相应货物或是applyId不存在.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return false;
                 }
             }
-
-            return isSucceed;
         }
+            
 
         /**
          * 38.店长对其他店的申请进行审批
          * 参数：店长Id，是否同意bool值
-         * 返回：审批是否成功的bool值(未测)
+         * 返回：审批是否成功的bool值(需要优化)
+         * 注意：如果staffId不是店长会有空指针错误，或者currentApplyId不存在也会有空指针，Debug监视会打印异常
          */
         public bool dealWithApplyFromOtherShop(string currentApplyId, string staffId, bool dealFlag)
         {
@@ -1025,20 +1023,28 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                apply currentApply = db.apply.Where(p => p.applyId == currentApplyId & p.outShop == shopId).FirstOrDefault();
-                if(dealFlag == true)
+                try
                 {
-                    currentApply.state = "pass";
+                    apply currentApply = db.apply.Where(p => p.applyId == currentApplyId & p.outShop == shopId).FirstOrDefault();
+                    if (dealFlag == true)
+                    {
+                        currentApply.state = "pass";
+                    }
+                    else
+                    {
+                        currentApply.state = "not_pass";//Null point
+                        isAgree = false;
+                    }
+                    db.SaveChanges();
+                    return isAgree;
                 }
-                else
+                catch (NullReferenceException ex)
                 {
-                    currentApply.state = "not_pass";
-                    isAgree = false;
+                    System.Diagnostics.Debug.WriteLine("店长审批调货申请失败，空指针异常，未输入正确的参数.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return false;
                 }
-                db.SaveChanges();
             }
-
-            return isAgree;
         }
 
         /**
@@ -1048,13 +1054,12 @@ namespace YMClothsStore
          */
         public item addItemByBoss(string currentItemName, string currentItemSize, string currenttemColor, float currentItemPrice)
         {
-            item newItem = null;
-
             string newId = createNewId("item");
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                newItem = new item
+                //decimal newItem = new item().itemPrice;
+                item newItem = new item
                 {
                     itemName = currentItemName,
                     itemSize = currentItemSize,
@@ -1066,9 +1071,10 @@ namespace YMClothsStore
                 };
                 db.item.Add(newItem);
                 db.SaveChanges();
+
+                return newItem;
             }
 
-            return newItem;
         }
 
 

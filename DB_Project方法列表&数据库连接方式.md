@@ -199,18 +199,18 @@
 * 参数：申请表Id，货物Id和货物数量
 * 返回：是否成功添加了申请表细节
 
-####36.public apply addApplyFromOtherShop(string staffId,string otherShopId)[未完成]
+####36.public apply addApplyFromOtherShop(string staffId,string otherShopId)[通过测试]
 * 店长申请从其他店面调货
 * 参数：店长的Id，对方店面的Id
 * 返回：新建的调货申请表
 * 备注：申请表的状态需要设置为申请状态
 
-####37.public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string applyId，string itemId, int itemAmount)[未完成]
+####37.public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string applyId，string itemId, int itemAmount)[需要优化]
 * 店长为申请添加条目(调货)
 * 参数：申请表Id，货物Id和货物数量
 * 返回：是否成功添加了申请表细节
 
-####38.public bool dealWithApplyFromOtherShop(string staffId,bool dealFlag)[未完成]
+####38.public bool dealWithApplyFromOtherShop(string staffId,bool dealFlag)[需要优化]
 * 店长对其他店的申请进行审批
 * 参数：店长Id，是否同意bool值
 * 返回：审批是否成功的bool值

@@ -12,7 +12,11 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            item aItem = DBModel.sharedDBModel().addItemByBoss("学霸", "xlxlxlx", "hihihihi", (float)0.2);
+            //bool succeed = DBModel.sharedDBModel().deletdShopByShopId("shop_1436970733");
+            	
+            System.Diagnostics.Debug.WriteLine("Succeed:" + aItem.itemDate);
+
         }
         protected void returnBack (object sender , EventArgs e)
         {
