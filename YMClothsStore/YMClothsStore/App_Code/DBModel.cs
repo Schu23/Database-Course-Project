@@ -224,13 +224,11 @@ namespace YMClothsStore
          */
         public staff findStaffByStaffId(string id)
         {
-            staff wantStaff = null;
-
             using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
-                    wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
+                    staff wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
                     return wantStaff;
                 }
                 catch (Exception ex)
@@ -273,17 +271,6 @@ namespace YMClothsStore
             }
 
         }
-        /**
-         * 10.添加新的地址以供选择
-         * 参数：新地址名称或代号，新地址详细信息（街道等）
-         * 返回值：address实例
-         */
-        /*public address addAddressInfo(string newAddressName, string newAddressDetail)
-        {
-            address newAddress = null;
-
-            return newAddress;
-        }*/
 
         /**
          * 11.根据shopId查找shop
@@ -297,7 +284,6 @@ namespace YMClothsStore
                 shop targetShop = db.shop.Where(p => p.shopId == targetShopId).FirstOrDefault();
                 return targetShop;
             }
-
         }
 
         /**
@@ -377,14 +363,13 @@ namespace YMClothsStore
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
-            string targetShopId = "";
-
             using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
                     staff currentStaff = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault();
-                    targetShopId = currentStaff.shopId;
+                    string targetShopId = currentStaff.shopId;
+                    return targetShopId;
                 }
                 catch (NullReferenceException ex)
                 {
@@ -395,7 +380,6 @@ namespace YMClothsStore
                 
             }
 
-            return targetShopId;
         }
 
         /**
@@ -409,19 +393,27 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                staff staff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
-                order targetOrder = new order
+                try
                 {
-                    orderId = newId,
-                    shopId =staff.shopId,
-                    totalPrice = 0,
-                    orderTime = DateTime.Now,
-                };
-                db.order.Add(targetOrder);
-                db.SaveChanges();
-                return targetOrder;
+                    staff targetStaff = findStaffByStaffId(staffId);
+                    order targetOrder = new order
+                    {
+                        orderId = newId,
+                        shopId = targetStaff.shopId,
+                        totalPrice = 0,
+                        orderTime = DateTime.Now,
+                    };
+                    db.order.Add(targetOrder);
+                    db.SaveChanges();
+                    return targetOrder;
+                }
+                catch (NullReferenceException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("输入staffId的时候有问题，回去查!!!!!");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
             }
-            return null;
         }
 
         /**
@@ -456,7 +448,7 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加orderDetail错误");
+                    System.Diagnostics.Debug.WriteLine("添加orderDetail错误,可能是参数错误.");
                     System.Diagnostics.Debug.WriteLine(ex.StackTrace);
                     return false;
                 }
@@ -472,7 +464,7 @@ namespace YMClothsStore
          */
         public stock[] getShopStockInfoByStaffId(string staffId)
         {
-            stock[] targetStock = null;
+            stock[] targetStock = { };
 
             using (YMDBEntities db = new YMDBEntities())
             {

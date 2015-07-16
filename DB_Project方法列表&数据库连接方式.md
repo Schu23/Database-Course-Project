@@ -69,7 +69,7 @@
 * 参数：新地址名称或代号，新地址详细信息（街道等）
 * 返回值：address实例
 
-####11.public shop findShopByShopId(string shopId)
+####11.public shop findShopByShopId(string shopId)[通过测试]
 * 根据shopId获取shop，返回shop实例或空
 * 参数：店铺的ID
 * 返回：获取到的shop

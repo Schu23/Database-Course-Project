@@ -12,10 +12,9 @@ namespace YMClothsStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            staff applys = DBModel.sharedDBModel().findStaffByStaffId("");
-            
-            //foreach (var i in applys) 
-            //{
+            stock applys = DBModel.sharedDBModel().getItemStockInThisShop("staff_1437054668", "qwer");
+
+            	
                 System.Diagnostics.Debug.WriteLine("Succeed:" + applys);
 
             //}
