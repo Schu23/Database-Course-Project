@@ -16,17 +16,16 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
-            //searchResult = DBModel.sharedDBModel().geti
+            searchResult = DBModel.sharedDBModel().getAllinBaseInfoByStaffId(theStaff.staffId);
         }
         protected void Search_InBase(object sender, EventArgs e)
         {
-            string searchKey = Request.Form[""];
-            //searchResult = DBModel.sharedDBModel().
+            string searchKey = Request.Form["searchKey"];
+         //   searchResult = DBModel.sharedDBModel().geti
         }
         protected void SearchDetailOrder(object sender, EventArgs e)
         {
             inBaseId = Request.Form[""];
-            //
         }
     }
 }
