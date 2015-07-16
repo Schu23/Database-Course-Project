@@ -108,6 +108,9 @@
     <Content Include="images\title.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
     <Content Include="ManagerIndex.aspx" />
+    <Content Include="Manager_AddOrder.aspx" />
+    <Content Include="Manager_ClothesInfo.aspx" />
+    <Content Include="Manager_OrderInfo.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -242,6 +245,27 @@
     </Compile>
     <Compile Include="ManagerIndex.aspx.designer.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_AddOrder.aspx.cs">
+      <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_AddOrder.aspx.designer.cs">
+      <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_ClothesInfo.aspx.cs">
+      <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_ClothesInfo.aspx.designer.cs">
+      <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_OrderInfo.aspx.cs">
+      <DependentUpon>Manager_OrderInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_OrderInfo.aspx.designer.cs">
+      <DependentUpon>Manager_OrderInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="order.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
