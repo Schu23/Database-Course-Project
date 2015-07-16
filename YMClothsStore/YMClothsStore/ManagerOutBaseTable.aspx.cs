@@ -20,7 +20,7 @@ namespace YMClothsStore
         }
         protected void Search_OutBase(object sender, EventArgs e)
         {
-            string searchKey = Request.Form[""];
+            string searchKey = Request.Form["searchKey"];
             searchResult = DBModel.sharedDBModel().getOutBaseInfoByOutBaseId(searchKey);
         }
         protected void SearchDetailOrder(object sender, EventArgs e)

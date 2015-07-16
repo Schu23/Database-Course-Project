@@ -71,7 +71,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    刘旭东
+                    <%:theStaff.staffName %>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -90,7 +90,7 @@
     </div>
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form role="search">
+      <form runat ="server" role="search">
         <div class="row">
           <div class="col-md-3 col-sm-3 col-sm-offset-1">
             <select class="form-control" name="searchCondition">
@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
-            <button type="submit" class="btn btn-default">搜索</button>
+              <asp:Button runat="server" Text="搜索" OnClick="SearchItem" CssClass="btn btn-default" />
           </div>
         </div>
       </form>
@@ -127,7 +127,7 @@
             </tr>
           </thead>
           <tbody id="table-body">
-            <tr>
+            <%--<tr>
               <td id="itemId">001</td>
               <td>T恤</td>
               <td>XL</td>
@@ -135,7 +135,20 @@
               <td>88</td>
               <td>2015/4/24</td>
               <td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">查看图片</button></td>
-            </tr>
+            </tr>--%>
+
+              <%foreach (var item in searchResult){ %>
+                    <tr>
+                        <td><%:item.itemId %></td>
+                        <td><%:item.itemName %></td>
+                        <td><%:item.itemSize %></td>
+                        <td><%:item.itemColor %></td>
+                        <td><%:item.itemPrice %></td>
+                        <td><%:item.itemDate %></td>
+                        <td><asp:Button Text="查看图片" CssClass="btn btn-success btn-sm" runat="server" OnClick="showIamgeByItemId"/></td>
+                    </tr>
+              <%} %>
+
           </tbody>
         </table>
         <!--modal-->
