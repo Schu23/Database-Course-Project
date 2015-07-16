@@ -255,8 +255,33 @@
 * 参数：物品Id
 * 返回值：该物品对应的某一个图片的路径
 
+####47.public apply[] getAllApllyToThisShop(string staffId)[未完成]
+* 根据员工Id查询向此店申请信息数组* 参数：员工Id* 返回值：申请书组
 
+####50.public inBase[] getAllinBaseInfoByStaffId(string targetStaffId)[未完成]
+* 拿到该员工商店所有的入库信息
+* 参数：staffId
+* 返回值：inBase[]
 
+####51.public outBase[] getAllOutBaseInfoByStaffId(string targetStaffId)[未完成]
+* 拿到该员工商店所有的出库信息
+* 参数：staffId
+* 返回值：outBase[]
+
+####52.public outBaseDetail[] getAllOutBaseDetailInfoByOutBaseId(string targetOutBaseId)[未完成]
+* 根据出库id拿到详细信息表
+* 参数：出库id
+* 返回值：详细信息[]
+
+####53.public inBaseDetail[] getAllInBaseDetailInfoByInBaseId(string targetInBaseId)[未完成]
+* 根据出库id拿到详细信息表
+* 参数：入库id
+* 返回值：详细信息[]
+
+####54.public applyDetail[] getAllApplyDetailByApplyId(string targetApplyId)[未完成]
+* 根据申请id拿到详细信息表
+* 参数：申请id
+* 返回值：详细信息[]
 
 
 
