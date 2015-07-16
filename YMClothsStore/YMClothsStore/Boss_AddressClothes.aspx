@@ -92,7 +92,7 @@
 
     <div class="container addstaff-form">
       <!-- form在这里！ -->
-      <form class="">
+      <form runat="server" class="">
         <!-- 输入名称 name:clothesName -->
         <div class="form-group">
           <div class="row">
@@ -151,7 +151,7 @@
         <!-- 提交按钮 -->
         <div class="text-center">
           <br/>
-          <button type="submit" class="btn btn-primary submit-btn">提交</button>
+            <asp:Button Text="提交" CssClass="btn btn-primary submit-btn" runat="server" OnClick="confirmToAddItem"/>
         </div>
         
       </form>
