@@ -12,7 +12,7 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             //27
-            string[,] items = DBModel.sharedDBModel().topFiveItems();
+            string[,] items = DBModel.sharedDBModel().topFiveItems("staff_14369hahah");
 
             for(int i = 0; i < 5; i++ )
             {
@@ -22,7 +22,7 @@ namespace YMClothsStore
             }
 
             //28
-            decimal[] prices = DBModel.sharedDBModel().getEverySumOfThisMonth();
+            decimal[] prices = DBModel.sharedDBModel().getEverySumOfThisMonth("staff_14369hahah");
 
             foreach (var i in prices)
             {
