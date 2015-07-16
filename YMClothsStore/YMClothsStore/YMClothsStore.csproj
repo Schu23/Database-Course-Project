@@ -108,7 +108,11 @@
     <Content Include="images\title.png" />
     <Content Include="JQuery\jquery-1.10.2.js" />
     <Content Include="ManagerAddStaff.aspx" />
+    <Content Include="ManagerInBaseTable.aspx" />
     <Content Include="ManagerIndex.aspx" />
+    <Content Include="ManagerOrderInfoTable.aspx" />
+    <Content Include="ManagerOutBaseTable.aspx" />
+    <Content Include="ManagerStockInfoTable.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -244,12 +248,40 @@
     <Compile Include="ManagerAddStaff.aspx.designer.cs">
       <DependentUpon>ManagerAddStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerInBaseTable.aspx.cs">
+      <DependentUpon>ManagerInBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerInBaseTable.aspx.designer.cs">
+      <DependentUpon>ManagerInBaseTable.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManagerIndex.aspx.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ManagerIndex.aspx.designer.cs">
       <DependentUpon>ManagerIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOrderInfoTable.aspx.cs">
+      <DependentUpon>ManagerOrderInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOrderInfoTable.aspx.designer.cs">
+      <DependentUpon>ManagerOrderInfoTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerOutBaseTable.aspx.cs">
+      <DependentUpon>ManagerOutBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerOutBaseTable.aspx.designer.cs">
+      <DependentUpon>ManagerOutBaseTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerStockInfoTable.aspx.cs">
+      <DependentUpon>ManagerStockInfoTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerStockInfoTable.aspx.designer.cs">
+      <DependentUpon>ManagerStockInfoTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="order.cs">
       <DependentUpon>YMEntities.tt</DependentUpon>
