@@ -1028,11 +1028,11 @@ namespace YMClothsStore
                     apply currentApply = db.apply.Where(p => p.applyId == currentApplyId & p.outShop == shopId).FirstOrDefault();
                     if (dealFlag == true)
                     {
-                        currentApply.state = "pass";
+                        currentApply.state = "yes";
                     }
                     else
                     {
-                        currentApply.state = "not_pass";//Null point
+                        currentApply.state = "no";//Null point
                         isAgree = false;
                     }
                     db.SaveChanges();
