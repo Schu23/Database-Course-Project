@@ -21,7 +21,7 @@ namespace YMClothsStore
         protected void sumbitCheck(object sender, EventArgs e)
         {
             
-           string[] the =   Request.Form["check_id"].Count ;
+        //   string[] the =   Request.Form["check_id"].Count ;
            
         }
     }

@@ -18,11 +18,16 @@ namespace YMClothsStore
         {
             theStaff = (staff)Session["Staff"];
             applyOutResult = DBModel.sharedDBModel().getAllApllyToThisShop(theStaff.staffId);
-           // applyInResult = DBModel.sharedDBModel().
+            applyInResult = DBModel.sharedDBModel().getAllApllyFromThisShop(theStaff.staffId);
         }
-        protected void AgreeWithTheApply(object sender, EventArgs e)
+        protected void AgreeWithTheApply(object sender, CommandEventArgs e)
         {
-            string idOfApplyToAgreeWith = Request.Form["tempApplyId"];
+            //Console.WriteLine(((Button)sender).CommandArgument);
+            string toPassName = e.CommandName;
+            string toPass = e.CommandArgument.ToString();
+            System.Diagnostics.Debug.WriteLine(toPass);
+            string idOfApplyToAgreeWith = Request.Form[toPass];
+            bool isSucceed = DBModel.sharedDBModel().dealWithApplyFromOtherShop(idOfApplyToAgreeWith, theStaff.staffId, true);
         }
 
 

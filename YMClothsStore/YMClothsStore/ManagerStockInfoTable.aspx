@@ -143,8 +143,7 @@
                                 <td><button type="button" class="btn btn-success btn-sm" data-toggle="modal" disabled>已调货</button></td>
                                 <%} else {%>
                                  <%--<td><asp:Button runat="server" type="button" class="btn btn-danger btn-sm" data-toggle="modal" onclick="AgreeTo">同意调货</asp:Button></td>--%>
-                                <td><asp:Button runat="server" CssClass="btn btn-danger btn-sm" OnClick="AgreeWithTheApply" /></td>
-                               
+                                <td><asp:Button runat="server" CommandName="aId" CommandArgument="apply_619211" CssClass="btn btn-danger btn-sm" data-toggle="modal" OnCommand="AgreeWithTheApply" Text="同意调货"/></td>
                                 <%} %>
                                
                             </tr>

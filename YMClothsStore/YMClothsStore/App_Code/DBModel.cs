@@ -1523,5 +1523,21 @@ namespace YMClothsStore
             }
         }
 
+        /**
+        * 63.根据员工Id查询此店发出的申请数组
+        * 参数：员工Id
+        * 返回值：申请数组
+        */
+        public apply[] getAllApllyFromThisShop(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply[] allApply = db.apply.Where(p => p.inShop == shopId).ToArray();
+                return allApply;
+            }
+        }
+
     }
 }
