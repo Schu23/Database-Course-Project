@@ -74,6 +74,22 @@
     <Content Include="amcharts\radar.js" />
     <Content Include="amcharts\serial.js" />
     <Content Include="amcharts\xy.js" />
+    <Content Include="ammap\ammap.css" />
+    <Content Include="ammap\ammap.js" />
+    <Content Include="ammap\images\arrowDown.gif" />
+    <Content Include="ammap\images\arrowUp.gif" />
+    <Content Include="ammap\images\export.png" />
+    <Content Include="ammap\images\homeIcon.gif" />
+    <Content Include="ammap\images\homeIconWhite.gif" />
+    <Content Include="ammap\images\minus.gif" />
+    <Content Include="ammap\images\panDown.gif" />
+    <Content Include="ammap\images\panLeft.gif" />
+    <Content Include="ammap\images\panRight.gif" />
+    <Content Include="ammap\images\panUp.gif" />
+    <Content Include="ammap\images\plus.gif" />
+    <Content Include="ammap\images\xIcon.gif" />
+    <Content Include="ammap\images\xIconH.gif" />
+    <Content Include="ammap\worldLow.js" />
     <Content Include="Bootstrap\bootstrap-theme.css" />
     <Content Include="Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Bootstrap\bootstrap.css" />
@@ -105,11 +121,13 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="scripts\boss_index.js" />
     <Content Include="scripts\staffInfo.js" />
     <Content Include="scripts\staff_index.js" />
     <Content Include="SelectClothesInfo.aspx" />
     <Content Include="SelectOrders.aspx" />
     <Content Include="stylesheets\404page.css" />
+    <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
     <Content Include="stylesheets\staff_index.css" />
     <EntityDeploy Include="YMEntities.edmx">
