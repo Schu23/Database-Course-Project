@@ -350,29 +350,13 @@ namespace YMClothsStore
         public order[] getAllOrderInfo(string staffId)
         {
             order[] orders = { };
-            System.Diagnostics.Debug.WriteLine("staffId:" + staffId);
+
+            string shopId = getShopIdByStaffId(staffId);
 
             //员工只可以查看自己店铺的订单
             using (YMDBEntities db = new YMDBEntities()) 
             {
-                ArrayList orderList = new ArrayList();
-                //先根据staffId查到员工所属店铺
-                string targetShopId = db.staff.Where(p => p.staffId == staffId).FirstOrDefault().shopId;
-
-                foreach (var i in db.order.Where(p => p.shopId == targetShopId))
-                {
-                    order newTargetOrder = new order
-                    {
-                        orderId = i.orderId,
-                        shopId = i.shopId,
-                        totalPrice = i.totalPrice,
-                        orderTime = i.orderTime
-                    };
-
-                    orderList.Add(newTargetOrder);
-                }
-
-                orders = (order[])orderList.ToArray();                
+                orders = db.order.Where(p => p.shopId == shopId).ToArray();
             }
 
             return orders;
@@ -432,7 +416,7 @@ namespace YMClothsStore
         /**
          * 17.员工增加订单记录
          * 参数：staffId, 这次订单的详细信息数组
-         * 返回值：本次订单（需要修改stock）
+         * 返回值：本次订单（需要修改stock）             //个人感觉这个不需要修改库存，在添加细节的时候再修改库存------->请注意
          */
         public order addOrderInfo(string staffId)
         {
@@ -458,7 +442,7 @@ namespace YMClothsStore
          * 18.员工在订单中添加一条订单详细信息
          * 参数：订单Id,货物Id,货物数量
          * 返回：成功返回true,失败返回false
-         * 注意：不要重复添加某一条商品的信息（需要修改stock）
+         * 注意：不要重复添加某一条商品的信息（需要修改stock）(未测)
          */
         public bool addOrderDetailToOrderWithOrderIdAndItemIdAndItemAmount(string newOrderId, string newItemId, int newItemAmount)
         {
@@ -476,6 +460,9 @@ namespace YMClothsStore
                 db.orderDetail.Add(currentOrderDetail);
                 item currentItem = db.item.Where(p => p.itemId == newItemId).FirstOrDefault();
                 currentOrder.totalPrice = currentOrder.totalPrice + currentItem.itemPrice * newItemAmount;
+
+
+
                 db.SaveChanges();
                 
             }
