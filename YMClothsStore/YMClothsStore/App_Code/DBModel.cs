@@ -204,25 +204,25 @@ namespace YMClothsStore
          * 参数：门店id
          * 返回值：bool
          */
-        public bool deletdShopByShopId(string shopId)
-        {
-            bool isSucceed = false;
-            using (YMDBEntities db = new YMDBEntities())
-            {
-                //根据门店ID来查询并删除数据库中的门店
-                db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
-                db.SaveChanges();
-                isSucceed = true;
-            }
-            return isSucceed;
-        }
+        //public bool deletdShopByShopId(string shopId)
+        //{
+        //    bool isSucceed = false;
+        //    using (YMDBEntities db = new YMDBEntities())
+        //    {
+        //        //根据门店ID来查询并删除数据库中的门店
+        //        db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
+        //        db.SaveChanges();
+        //        isSucceed = true;
+        //    }
+        //    return isSucceed;
+        //}
 
         /*
          * 7.修改门店信息
-         * 参数：门店id，新地址，新电话，不修改的值为null
+         * 参数：门店id，新地址，新电话,新的门店状态，不修改的值为null
          * 返回值：bool,成功返回true，失败返回false
          */
-        public bool modifyShopInfo(string shopId, string newAddress, string newPhone)
+        public bool modifyShopInfo(string shopId, string newAddress,int newStatus, string newPhone)
         {
             bool isSucceed = false;
             using(YMDBEntities db = new YMDBEntities())
@@ -230,6 +230,11 @@ namespace YMClothsStore
                  try
                  {
                      shop shopToChangeInfo = db.shop.Where(p => p.shopId == shopId).FirstOrDefault();
+                     shopToChangeInfo.shopAddress = newAddress;
+                     shopToChangeInfo.shopStatus = newStatus;
+                     shopToChangeInfo.shopPhone = newPhone;
+                     db.SaveChanges();
+                     isSucceed = true;
                   }
                 catch(Exception ex)
                  {
