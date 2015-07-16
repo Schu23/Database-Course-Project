@@ -202,8 +202,6 @@
                 <ul class="dropdown-menu">
                   <li><a href="~/Staff_OrderInfo.aspx" runat="server">查询订单</a></li>
                   <li><a href="#">增加订单</a></li>
-                  <li><a href="#">删除订单</a></li>
-                  <li><a href="#">修改订单</a></li>
                 </ul>
               </li>
             </ul>

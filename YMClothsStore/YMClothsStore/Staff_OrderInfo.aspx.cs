@@ -23,7 +23,7 @@ namespace YMClothsStore
         {
             string serachKey = Request.Form["searchKey"];
             System.Diagnostics.Debug.WriteLine("serach key and serach condition test :" + serachKey );
-          //  searchResult = DBModel.sharedDBModel().getOrderInfoByOrderId(serachKey);
+            searchResult = DBModel.sharedDBModel().getOrderInfoByOrderId(serachKey);
             
         }
         protected void SearhDetailOrder(object sender, EventArgs e)
