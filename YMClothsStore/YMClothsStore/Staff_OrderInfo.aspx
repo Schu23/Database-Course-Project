@@ -50,7 +50,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a class="navbar-brand" href="staff_index.html">原木衣橱连锁</a>
+            <a class="navbar-brand" href="~/index.aspx" runat="server">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,15 +59,15 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/staff_clothesinfo.aspx">查询服装信息</a></li>
+                  <li><a href="~/staff_clothesinfo.aspx" runat="server">查询服装信息</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a runat="server" href="/Staff_OrderInfo.aspx">查询订单</a></li>
-                  <li><a href="staff_addorder.html">增加订单</a></li>
+                  <li><a runat="server" href="~/Staff_OrderInfo.aspx">查询订单</a></li>
+                  <li><a runat="server" href="~/Staff_addOrder.aspx">增加订单</a></li>
                 </ul>
               </li>
             </ul>
