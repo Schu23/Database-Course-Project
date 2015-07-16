@@ -139,12 +139,7 @@
         </div>
       </form>
     </div>
-    <div class="container text-center main-sort">
-      <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
-        <button type="button" class="btn btn-info">按编号</button>
-        <button type="button" class="btn btn-primary">按名称</button>
-      </div>
-    </div>
+    
     <!-- 信息表格 -->
     <div class="container table-container">
       <div class="table-responsive">

@@ -160,9 +160,10 @@
     <div class="container">
       <h2 class="sub-header">员工信息查询</h2>
     </div>
+      <form role="search" runat="server">
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form role="search">
+      
         <div class="row">
           <div class="col-md-3 col-sm-3">
             <select class="form-control" name="searchCondition">
@@ -179,10 +180,9 @@
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
-            <button type="submit" class="btn btn-default">搜索</button>
+              <asp:Button CssClass="btn btn-default" Text="搜索" runat="server" />
           </div>
         </div>
-      </form>
     </div>
     <div class="container text-center main-sort">
       <div class="row">
@@ -200,7 +200,6 @@
     <!-- 信息表格 -->
     <div class="container table-container">
       <div class="table-responsive">
-        <form runat="server" method="get" >
         <table class="table table-striped">
           <thead>
             <tr id="table-title">
@@ -248,10 +247,10 @@
                   </div>
                 </div>
              <!--modal-->
-          </form>   
+        
       </div>
     </div>
-    
+       </form>  
     <!-- 分页导航 -->
     <nav class="text-center">
       <ul class="pagination">

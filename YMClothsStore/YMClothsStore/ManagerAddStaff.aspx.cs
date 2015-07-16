@@ -9,15 +9,17 @@ namespace YMClothsStore
 {
     public partial class ManagerAddStaff : System.Web.UI.Page
     {
+        protected staff theStaff;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            theStaff = (staff)Session["Staff"];
         }
         protected void confirmAddStaff(object sender, EventArgs e)
         {
             string staffName = Request.Form["staffName"];
             string staffGender = Request.Form["gender"];
             string staffPhone = Request.Form["staffPhone"];
+            System.Diagnostics.Debug.WriteLine("staffPhone:"+staffPhone);
             string defaultPassword = "123456";
             staff manager = (staff)Session["staff"];
             string managerShopId;

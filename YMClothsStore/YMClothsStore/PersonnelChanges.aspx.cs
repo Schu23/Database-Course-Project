@@ -11,6 +11,7 @@ namespace YMClothsStore
     public partial class PersonnelChanges : System.Web.UI.Page
     {
         protected staff[]  staffs;
+        protected staff staffToFind;
         protected void Page_Load(object sender, EventArgs e)
         {
           //获取当前店里的员工列表
@@ -64,6 +65,31 @@ namespace YMClothsStore
                Session["returnURL"] = "PersonnelChanges.aspx";
                Response.Redirect("Error.aspx");
            }
+        }
+        //查找员工
+        protected void SearchByStaffId(string id)
+        {
+            staffToFind = DBModel.sharedDBModel().findStaffByStaffId(id);
+        }
+        protected void SearchByStaffName(string name)
+        {
+            staffToFind = DBModel.sharedDBModel().getStaffWithStaffName(name).FirstOrDefault();
+        }
+        protected void SearchStaff(object sender, EventArgs e)
+        {
+            string option = Request.Form["searchCondition"];
+            string value = Request.Form["searchKey"];
+            System.Diagnostics.Debug.WriteLine("option is:" + option);
+            if (option.Equals("staffId"))
+            {
+                SearchByStaffId(value);
+            }
+            else
+            {
+                SearchByStaffName(value);
+            }
+
+
         }
     }
 }

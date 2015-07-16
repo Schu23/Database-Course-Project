@@ -15,17 +15,15 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
-            searchResult = DBModel.sharedDBModel().getAllItemsOfThisShop(theStaff.staffId);
+            searchResult = DBModel.sharedDBModel().getAllItems();
         }
         protected void SearchByItemId(string id )
         {
-            string searchKey = Request.Form[""];
-            searchResult = DBModel.sharedDBModel().getItemByItemId(searchKey);
+            searchResult = DBModel.sharedDBModel().getItemByItemId(id);
         }
         protected void SearchByItemName(string name)
         {
-            string searchKey = Request.Form[""];
-            searchResult = DBModel.sharedDBModel().getItemByItemName(searchKey);
+            searchResult = DBModel.sharedDBModel().getItemByItemName(name);
         }
         protected void showIamgeByItemId(object sender, EventArgs e)
         {
@@ -37,7 +35,8 @@ namespace YMClothsStore
         {
             string option = Request.Form["searchCondition"];
             string value = Request.Form["searchKey"];
-            if (option.Equals("服装编号"))
+            System.Diagnostics.Debug.WriteLine("option is:" + option);
+            if (option.Equals("itemId"))
             {
                 SearchByItemId(value);
             }

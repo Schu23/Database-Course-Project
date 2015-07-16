@@ -148,6 +148,7 @@
               <%foreach(var outBase in searchResult){ %>
             <tr>
                 <td><%:outBase.outId%></td>
+                 <td><%:outBase.outType %></td>
                 <td><%:outBase.staffId %></td>
                 <td><%:outBase.outTime %></td>
             </tr>

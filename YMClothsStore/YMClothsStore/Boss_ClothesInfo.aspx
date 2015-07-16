@@ -88,15 +88,16 @@
     <div class="container">
       <h2 class="sub-header">服装信息查询</h2>
     </div>
+
+      <form runat ="server" role="search">
     <!-- 搜索框 -->
     <div class="container text-center main-search">
-      <form runat ="server" role="search">
         <div class="row">
           <div class="col-md-3 col-sm-3 col-sm-offset-1">
             <select class="form-control" name="searchCondition">
               <option value ="unknown">请选择</option>
-              <option value ="staffId">服装编号</option>
-              <option value ="staffName">服装名称</option>
+              <option value ="itemId">服装编号</option>
+              <option value ="itemName">服装名称</option>
             </select>
           </div>
           <div class="col-md-6 col-sm-6 search-key-padding">
@@ -108,8 +109,7 @@
               <asp:Button runat="server" Text="搜索" OnClick="SearchItem" CssClass="btn btn-default" />
           </div>
         </div>
-      </form>
-      <button type="button" class="btn btn-default" onclick="window.location.href='boss_addclothes.html'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加服装</button>
+      <button type="button" class="btn btn-default" onclick="window.location.href='/Boss_AddressClothes.aspx'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加服装</button>
     </div>
     <!-- 信息表格 -->
     <div class="container table-container">
@@ -171,6 +171,7 @@
         <!--modal-->   
       </div>
     </div>
+    </form>
     <!-- 分页导航 -->
     <nav class="text-center">
       <ul class="pagination">
