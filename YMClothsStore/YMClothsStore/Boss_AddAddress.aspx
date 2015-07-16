@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BossIndex.aspx.cs" Inherits="YMClothsStore.BossIndex" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Boss_AddAddress.aspx.cs" Inherits="YMClothsStore.Boss_AddAddress" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,27 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>首页|原木衣橱连锁管理系统</title>
+    <title>添加地址|原木衣橱</title>
 
     <!-- Bootstrap core CSS -->
     <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
 
-    <!-- index css -->
-    <link rel="stylesheet" type="text/css" href="stylesheets/boss_index.css">
+    <!-- settings css -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/addStaff.css">
 
-    <!-- map css and js -->
-    <link rel="stylesheet" href="ammap/ammap.css" type="text/css">
-    <script src="ammap/ammap.js" type="text/javascript"></script>
-    <!-- map file should be included after ammap.js -->
-    <script src="ammap/worldLow.js" type="text/javascript"></script>
+    <!-- jquery & ajax -->
     <script src="jQuery/jquery-1.10.2.js"></script>
-    <script src="scripts/boss_index.js"></script>
-    
+    <script type="text/javascript" src="scripts/addStaff.js"></script>
 
   </head>
 
   <body>
-<!-- navbar container -->
+
+    <!-- navbar container -->
     <div class="container">
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -88,11 +84,45 @@
         </div>
       </nav>
     </div>
+    <!-- 标题 -->
     <div class="container">
-      <br/><br/><h2 class="text-center">分店与总店分布图</h2><br/>
-      <div id="mapdiv" class="map-style"></div>
+      <h2 class="sub-header">添加地址</h2>
+      <br/>
     </div>
 
+    <div class="container addstaff-form">
+      <!-- form在这里！ -->
+      <form class="">
+        <!-- 输入地址名称 name:addressName -->
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-3 name-offset col-sm-offset-1">
+              <label for="disabledTextInput" class="control-label text-right">地址名称：</label>
+            </div>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" name="addressName" required>
+            </div>
+          </div>
+        </div>
+        <!-- 输入地址详情 name:addressDetail -->
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-3 name-offset col-sm-offset-1">
+              <label class="control-label text-right">地址详情：</label>
+            </div>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" name="addressDetail" id="addressDetail" required>
+            </div>
+          </div>
+        </div>
+        <!-- 提交按钮 -->
+        <div class="text-center">
+          <br/>
+          <button type="submit" class="btn btn-primary sxubmit-btn">提交</button>
+        </div>
+        
+      </form>
+    </div>
     
     <footer class="footer">
       <div class="container">
@@ -101,8 +131,8 @@
       </div>
     </footer>
     <!-- Bootstrap core JavaScript -->
+    
     <script src="Bootstrap/bootstrap.min.js"></script>
     
   </body>
 </html>
-

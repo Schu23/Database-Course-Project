@@ -94,7 +94,7 @@
             <a class="navbar-brand" href="#">
               <img class="logo-responsive" alt="Brand" src="images/logo.png">
             </a>
-            <a class="navbar-brand" href="#">原木衣橱连锁</a>
+            <a runat="server" class="navbar-brand" href="~/ManagerIndex.aspx">原木衣橱连锁</a>
           </div><!-- navbar header -->
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,34 +103,39 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服装管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询服装信息</a></li>
-                  <li><a href="#">查询服装库存</a></li>
+                  <li><a runat="server" href="~/Manager_ClothesInfo.aspx">查询服装信息</a></li>
+                  <li><a runat="server" href="~/Manager_StockInfo.aspx">查询服装库存</a></li>
                 </ul>
               </li>
               <!-- 订单有关 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查询订单</a></li>
-                  <li><a href="#">增加订单</a></li>
-                  <li><a href="#">删除订单</a></li>
-                  <li><a href="#">修改订单</a></li>
+                  <li><a runat="server" href="~/Manager_OrderInfo.aspx">查询订单</a></li>
+                  <li><a runat="server" href="~/Manager_AddOrder.aspx">增加订单</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">报表管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查看订单报表</a></li>
-                  <li><a href="#">查看入库报表</a></li>
-                  <li><a href="#">查看出库报表</a></li>
-                  <li><a href="#">查看调货报表</a></li>
+                  <li><a runat="server" href="~/ManagerOrderInfoTable.aspx">查看订单报表</a></li>
+                  <li><a runat="server" href="~/ManagerInBaseTable.aspx">查看入库报表</a></li>
+                  <li><a runat="server" href="~/ManagerOutBaseTable.aspx">查看出库报表</a></li>
+                  <li><a runat="server" href="~/ManagerStockInfoTable.aspx">查看调货报表</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">员工管理<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">查看/修改员工信息</a></li>
-                  <li><a href="#">添加员工</a></li>
+                  <li><a runat="server" href="~/PersonnelChanges.aspx">查看员工信息</a></li>
+                  <li><a runat="server" href="~/ManagerAddStaff.aspx">添加员工</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">盘点<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a runat="server" href="~/Manager_CheckDetail.aspx">盘点</a></li>
+                  <li><a runat="server" href="~/Manager_CheckInfoTable.aspx">查看盘点记录</a></li>
                 </ul>
               </li>
             </ul>
@@ -142,8 +147,8 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="text-center"><a href="#">修改个人信息</a></li>
-                  <li class="text-center"><a href="#">退出</a></li>
+                  <li class="text-center"><a runat="server" href="~/ChangeSelfInfo.aspx">修改个人信息</a></li>
+                  <li class="text-center"><a runat="server" href="~/Login.aspx">退出</a></li>
                 </ul>
               </li>
             </ul>
