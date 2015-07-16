@@ -99,9 +99,7 @@
             </div>
           </div>
           <div class="col-md-1 col-sm-1 search-padding">
-
-              <asp:Button Text="搜索" runat="server" CssClass="btn btn-default"  />
-            <button type="submit" class="btn btn-default">搜索</button>
+              <asp:Button Text="搜索" runat="server" CssClass="btn btn-default" OnClick="SerachSubmit"  />
           </div>
         </div>
       </form>
@@ -128,17 +126,19 @@
             </tr>
           </thead>
           <tbody id="table-body">
+            <% foreach (var item in searchResult) { %>
             <tr>
-              <td id="itemId">001</td>
-              <td>T恤</td>
-              <td>XL</td>
-              <td>黄色</td>
-              <td>88</td>
-              <td>2015/4/24</td>
+              <td id="itemId"><%: item.itemId %></td>
+              <td><%: item.itemName %></td>
+              <td><%: item.itemSize %></td>
+              <td><%: item.itemColor %></td>
+              <td><%: item.itemPrice %></td>
+              <td><%: item.itemDate %></td>
               <td>
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">查看图片</button>
               </td>
             </tr>
+              <%} %>
           </tbody>
         </table>
         <!-- Modal -->
