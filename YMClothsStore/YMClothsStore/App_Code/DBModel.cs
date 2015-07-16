@@ -38,7 +38,7 @@ namespace YMClothsStore
             DateTime currentTime = DateTime.Now;
             string timeStr = currentTime.Ticks.ToString();
             Console.WriteLine("time:" + timeStr);
-            timeStr = timeStr.Substring(timeStr.Length - 6, 6);
+            timeStr = timeStr.Substring(timeStr.Length - 10, 10);
             newId += timeStr;
 
             return newId;
@@ -836,30 +836,36 @@ namespace YMClothsStore
          */
         public checkDetail[] getCheckDetailInfoWithStaffId(string currentCheckId, string staffId)
         {
-            checkDetail[] checks = { };
-
-            currentCheckId = createNewId("checkDetail");
-
             string shopId = getShopIdByStaffId(staffId);
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                stock[] itemStock = db.stock.Where(p => p.shopId == shopId).ToArray();
-                checkDetail[] currentCheckDetail = { };
-                for (int i = 0; i < itemStock.Length; i++)
+                try
                 {
-                    currentCheckDetail[i] = new checkDetail
+                    stock[] itemStock = db.stock.Where(p => p.shopId == shopId).ToArray();
+                    checkDetail[] currentCheckDetail = new checkDetail[itemStock.Length];
+                    for (int i = 0; i < itemStock.Length; i++)
                     {
-                        itemId = itemStock[i].itemId,
-                        checkId = currentCheckId,
-                        currentAmount = itemStock[i].stockAmount,
-                    };
-                    db.checkDetail.Add(currentCheckDetail[i]);
+                        currentCheckDetail[i] = new checkDetail
+                        {
+                            itemId = itemStock[i].itemId,
+                            checkId = currentCheckId,
+                            currentAmount = itemStock[i].stockAmount,
+                        };
+                        db.checkDetail.Add(currentCheckDetail[i]);
+                    }
+                    db.SaveChanges();
+                    return currentCheckDetail;
                 }
-                db.SaveChanges();
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("检查checkId和staffId是否在checkDetail已经存在，或者两者输入错误.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    checkDetail[] emptyArray = { };
+                    return emptyArray;
+                }
+               
             }
-
-            return checks;
         }
 
         /**
@@ -1275,7 +1281,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 47.根据员工Id查询向此店申请信息数组
+         * 47.根据员工Id查询向此店申请信息数组(通过测试)
          * 参数：员工Id
          * 返回值：申请书组
          */
@@ -1291,40 +1297,53 @@ namespace YMClothsStore
         }
 
         /**
-         * 48.如果盘点后商品数量不一致，进行更改，修改库存
+         * 48.如果盘点后商品数量不一致，进行更改，修改库存(通过测试)
          * 参数：店长Id，货物Id，现有数量
          * 返回值：库存信息
          */
         public stock changeStockByStaffIdAndItemId(string staffId, string itemId, int currentAmount)
         {
-            string shopId = getShopIdByStaffId(staffId);
-            using (YMDBEntities db = new YMDBEntities()){
-                stock currentItem = db.stock.Where(p => p.itemId == itemId & p.shopId == shopId).FirstOrDefault();
-                currentItem.stockAmount = currentAmount;
-                db.SaveChanges();
-                return currentItem;
+            try
+            {
+                if (currentAmount < 0)
+                {
+                    return null;
+                }
+                string shopId = getShopIdByStaffId(staffId);
+                using (YMDBEntities db = new YMDBEntities())
+                {
+                    stock currentItem = db.stock.Where(p => p.itemId == itemId & p.shopId == shopId).FirstOrDefault();
+                    currentItem.stockAmount = currentAmount;
+                    db.SaveChanges();
+                    return currentItem;
+                }
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("输入有误，总之我不给你修改数据库，自己看着办.");
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                return null;
+            }
+            
             
         }
 
         /**
-         * 49.返回所有地点信息
+         * 49.返回所有地点信息(通过测试)
          * 参数：无
          * 返回值：地点信息数组
          */
         public address[] getAllAddressInfo()
         {
             using (YMDBEntities db = new YMDBEntities()){
-                string sql = "select * from \"addres\"";
+                address[] allAddress = db.address.Where(p => p.addressId == p.addressId).ToArray();
 
-                address[] allAdress = db.Database.SqlQuery<address>(sql).ToArray();
-
-                return allAdress;
+                return allAddress;
             }
         }
 
         /**
-         * 50.拿到该员工商店所有的入库信息
+         * 50.拿到该员工商店所有的入库信息(测试通过)
          * 参数：staffId
          * 返回值：inBase[]
          */
@@ -1341,7 +1360,7 @@ namespace YMClothsStore
         }
 
         /** 
-         * 51.拿到该员工商店所有的出库信息
+         * 51.拿到该员工商店所有的出库信息(通过测试)
          * 参数：staffId
          * 返回值：outBase[]
          */
@@ -1357,7 +1376,7 @@ namespace YMClothsStore
         }
         
         /**
-         * 54.根据申请id拿到详细信息表
+         * 54.根据申请id拿到详细信息表(测试通过)
          * 参数：申请id
          * 返回值：详细信息[]
          */
@@ -1373,7 +1392,7 @@ namespace YMClothsStore
         /**
         * 55.店长通过入库ID查找入库表
         * 参数：入库表id
-        * 返回值：入库表实例（未测试）
+        * 返回值：入库表实例（测试通过）
         */
         public inBase[] getInBaseInfoByInBaseId(string inBaseId)
         {
@@ -1387,7 +1406,7 @@ namespace YMClothsStore
        /**
        * 56.店长通过出库ID查找出库表
        * 参数：出库表id
-       * 返回值：出库表实例（未测试）
+       * 返回值：出库表实例（测试通过）
        */
         public outBase[] getOutBaseInfoByOutBaseId(string outBaseId)
         {
@@ -1400,9 +1419,9 @@ namespace YMClothsStore
         }
 
         /**
-         * 57.返回所有的盘点信息
+         * 57.返回员工所在店铺所有的盘点信息(通过测试)
          * 参数：员工Id
-         * 返回值：盘点心虚数组
+         * 返回值：盘点信息数组
          */
         public check[] getAllCheckInfo(string staffId)
         {
@@ -1416,7 +1435,7 @@ namespace YMClothsStore
         } 
 
         /**
-         * 58.新增盘点记录
+         * 58.新增盘点记录(测试通过)
          * 参数：员工Id
          * 返回值：盘点记录
          */
@@ -1426,17 +1445,28 @@ namespace YMClothsStore
             string newCheckId = createNewId("check");
             using (YMDBEntities db = new YMDBEntities())
             {
-                check newCheck = new check
+                try
                 {
-                    checkerId = staffId,
-                    shopId = shopId,
-                    checkTime = DateTime.Now,
-                    checkId = newCheckId,
-                };
-                db.check.Add(newCheck);
-                db.SaveChanges();
+                    check newCheck = new check
+                    {
+                        checkerId = staffId,
+                        shopId = shopId,
+                        checkTime = DateTime.Now,
+                        checkId = newCheckId,
+                    };
+                    db.check.Add(newCheck);
+                    db.SaveChanges();
 
-                return newCheck;
+                    return newCheck;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("没找到shopId导致完整性约束不满足，拒绝插入数据库，请检查staffId.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
+
+                
                 
             }
         }
@@ -1444,7 +1474,7 @@ namespace YMClothsStore
         /**
         * 59.店长通过员工号查询入库报表
         * 参数：员工Id
-        * 返回值：入库表实例（未测试）
+        * 返回值：入库表实例（测试通过）
         */
         public inBase[] getInBaseInfoByStaffId(string staffId)
         {
@@ -1460,7 +1490,7 @@ namespace YMClothsStore
         /**
         * 60.店长通过员工号查询出库报表
         * 参数：员工Id
-        * 返回值：出库表实例（未测试）
+        * 返回值：出库表实例（测试通过）
         */
         public outBase[] getOutBaseInfoByStaffId(string staffId)
         {
@@ -1475,7 +1505,7 @@ namespace YMClothsStore
         }
 
         /**
-         * 61.增加商店入库记录
+         * 61.增加商店入库记录(测试通过)
          * 参数：员工Id
          * 返回值：入库记录
          */
@@ -1485,21 +1515,30 @@ namespace YMClothsStore
             string newId = createNewId("inBase");
             using (YMDBEntities db = new YMDBEntities())
             {
-                inBase newInBase = new inBase
+                try
                 {
-                    inId = newId,
-                    shopId = shopId,
-                    staffId = staffId,
-                    inTime = DateTime.Now,
-                };
-                db.inBase.Add(newInBase);
-                db.SaveChanges();
-                return newInBase;
+                    inBase newInBase = new inBase
+                    {
+                        inId = newId,
+                        shopId = shopId,
+                        staffId = staffId,
+                        inTime = DateTime.Now,
+                    };
+                    db.inBase.Add(newInBase);
+                    db.SaveChanges();
+                    return newInBase;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("没找到shopId导致完整性约束不满足，拒绝插入数据库，请检查staffId.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
             }
         }
 
         /**
-         * 62增加商店出库记录
+         * 62.增加商店出库记录(测试通过)
          * 参数：员工Id
          * 返回值：出库记录
          */
@@ -1509,19 +1548,58 @@ namespace YMClothsStore
             string newId = createNewId("outBase");
             using (YMDBEntities db = new YMDBEntities())
             {
-                outBase newOutBase = new outBase
+                try
                 {
-                    outId = newId,
-                    shopId = shopId,
-                    staffId = staffId,
-                    outTime = DateTime.Now,
-                    outType = "export",
-                };
-                db.outBase.Add(newOutBase);
-                db.SaveChanges();
-                return newOutBase;
+                    outBase newOutBase = new outBase
+                    {
+                        outId = newId,
+                        shopId = shopId,
+                        staffId = staffId,
+                        outTime = DateTime.Now,
+                        outType = "export",
+                    };
+                    db.outBase.Add(newOutBase);
+                    db.SaveChanges();
+                    return newOutBase;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("没找到shopId导致完整性约束不满足，拒绝插入数据库，请检查staffId.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
+                
             }
         }
 
+        /**
+         * 63.增加商店出库记录(测试通过)
+         * 参数：无
+         * 返回值：shop[]
+         */
+        public shop[] getAllShop()
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                shop[] allShops = db.shop.Where(p => p.shopId == p.shopId).ToArray();
+                return allShops;
+            }
+        }
+        
+        /*
+        * 64.根据员工Id查询此店发出的申请数组
+        * 参数：员工Id
+        * 返回值：申请数组
+        */
+        public apply[] getAllApllyFromThisShop(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                apply[] allApply = db.apply.Where(p => p.inShop == shopId).ToArray();
+                return allApply;
+            }
+        }
     }
 }
