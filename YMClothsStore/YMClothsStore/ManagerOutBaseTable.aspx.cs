@@ -16,12 +16,12 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
-            //searchResult = DBModel.sharedDBModel().geti
+            searchResult = DBModel.sharedDBModel().getAllOutBaseInfoByStaffId(theStaff.staffId);
         }
         protected void Search_OutBase(object sender, EventArgs e)
         {
             string searchKey = Request.Form[""];
-            //searchResult = DBModel.sharedDBModel().
+            searchResult = DBModel.sharedDBModel().getOutBaseInfoByOutBaseId(searchKey);
         }
         protected void SearchDetailOrder(object sender, EventArgs e)
         {

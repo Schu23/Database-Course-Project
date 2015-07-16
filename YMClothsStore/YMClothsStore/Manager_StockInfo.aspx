@@ -124,8 +124,8 @@
     </div>
     <div class="container text-center main-sort">
           <div class="btn-group" role="group" aria-label="selectStaffBtnGroup">
-            <button type="button" class="btn btn-info" onclick="window.location.href='manager_applypage.html'">调货</button>
-            <button type="button" class="btn btn-primary" onclick="window.location.href='manager_addstockpage.html'">补货</button>
+              <a href="~/Manager_ApplyPage.aspx" runat="server" class="btn btn-info">调货</a>
+              <a href="~/Manager_AddStockPage.aspx" runat="server" class="btn btn-primary">补货</a>
           </div>
        <!--  <div class="col-md-6 text-left">
           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加服装</button>

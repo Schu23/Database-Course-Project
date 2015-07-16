@@ -17,11 +17,12 @@ namespace YMClothsStore
         {
             theStaff = (staff)Session["Staff"];
             searchResult = DBModel.sharedDBModel().getAllinBaseInfoByStaffId(theStaff.staffId);
+            System.Diagnostics.Debug.WriteLine("searchResult Length:" + searchResult.Length);
         }
         protected void Search_InBase(object sender, EventArgs e)
         {
             string searchKey = Request.Form["searchKey"];
-         //   searchResult = DBModel.sharedDBModel().geti
+            searchResult = DBModel.sharedDBModel().getInBaseInfoByInBaseId(searchKey);
         }
         protected void SearchDetailOrder(object sender, EventArgs e)
         {

@@ -1305,6 +1305,7 @@ namespace YMClothsStore
             {
                 inBase[] currentInBase = db.inBase.Where(p => p.shopId == shopId).ToArray();
                 return currentInBase;
+                System.Diagnostics.Debug.WriteLine(currentInBase.Length);
             }
         }
 
@@ -1343,7 +1344,7 @@ namespace YMClothsStore
         * 参数：入库表id
         * 返回值：入库表实例（未测试）
         */
-        public inBase[] getInBaseInfoByOrderId(string inBaseId)
+        public inBase[] getInBaseInfoByInBaseId(string inBaseId)
         {
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -1357,7 +1358,7 @@ namespace YMClothsStore
        * 参数：出库表id
        * 返回值：出库表实例（未测试）
        */
-        public outBase[] getOutBaseInfoByOrderId(string outBaseId)
+        public outBase[] getOutBaseInfoByOutBaseId(string outBaseId)
         {
             using (YMDBEntities db = new YMDBEntities())
             {

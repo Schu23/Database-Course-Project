@@ -141,6 +141,7 @@
     <Content Include="Staff_OrderInfo.aspx" />
     <Content Include="stylesheets\404page.css" />
     <Content Include="stylesheets\addOrder.css" />
+    <Content Include="stylesheets\addStaff.css" />
     <Content Include="stylesheets\boss_index.css" />
     <Content Include="stylesheets\staffInfo.css" />
     <Content Include="stylesheets\staff_index.css" />
