@@ -16,6 +16,7 @@ namespace YMClothsStore
         protected void Page_Load(object sender, EventArgs e)
         {
             theStaff = (staff)Session["Staff"];
+
             getStaffOrder = DBModel.sharedDBModel().getAllOrderInfo(theStaff.staffId);
             orderMonthChart = DBModel.sharedDBModel().getEverySumOfThisMonth(theStaff.staffId);
             hotItems = DBModel.sharedDBModel().topFiveItems(theStaff.staffId);
