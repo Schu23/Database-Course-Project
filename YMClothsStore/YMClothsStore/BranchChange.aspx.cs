@@ -37,7 +37,7 @@ namespace YMClothsStore
         protected void deleteBranch (object sender , EventArgs e)
         {
             string deleteShopId = Request.Form["DeleteId"];
-            DBModel.sharedDBModel().deletdShopByShopId("ddd");
+            //DBModel.sharedDBModel().deletdShopByShopId("ddd");
 
         }
         //修改分店信息
