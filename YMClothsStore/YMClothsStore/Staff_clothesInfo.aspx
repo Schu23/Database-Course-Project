@@ -20,6 +20,18 @@
     <!-- jquery & ajax -->
     <script src="jQuery/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="scripts/staffInfo.js"></script>
+    <script>
+        $(function () {
+             //模态框设置
+             $('.btn-success').click(function () {
+                  var pictureUrl = $(this).parent().prev().html();
+                  //var staffId = $(this).parent().prev().prev().prev().prev().html();
+                  $('#clothes_pic').replaceWith('<img class="text-center img-responsive" id="clothes_pic" src="' + pictureUrl + '">');
+                  $('#pic_url').html(pictureUrl);
+             })
+
+        });
+    </script>
 
   </head>
 
@@ -126,19 +138,23 @@
             </tr>
           </thead>
           <tbody id="table-body">
-            <% foreach (var item in searchResult) { %>
+              <% if (searchResult != null)
+                 { %>
+            <% foreach (var item in searchResult)
+               { %>
             <tr>
-              <td id="itemId"><%: item.itemId %></td>
-              <td><%: item.itemName %></td>
-              <td><%: item.itemSize %></td>
-              <td><%: item.itemColor %></td>
-              <td><%: item.itemPrice %></td>
-              <td><%: item.itemDate %></td>
+              <td id="itemId"><%: item.itemId%></td>
+              <td><%: item.itemName%></td>
+              <td><%: item.itemSize%></td>
+              <td><%: item.itemColor%></td>
+              <td><%: item.itemPrice%></td>
+              <td><%: item.itemDate%></td>
+              <td style="display:none"><%:item. %></td>
               <td>
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">查看图片</button>
               </td>
             </tr>
-              <%} %>
+              <%}   } %>
           </tbody>
         </table>
         <!-- Modal -->
@@ -150,7 +166,8 @@
                 <h4 class="modal-title" id="myModalLabel">图片详情</h4>
               </div>
               <div class="modal-body">
-                  <img class="text-center img-responsive" src="images/logo.jpg">
+                  <label id="pic_url"></label>
+                  <img class="text-center img-responsive" id="clothes_pic" src="">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

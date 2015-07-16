@@ -12,7 +12,7 @@ namespace YMClothsStore
 
         protected staff theStaff;
         protected item[] searchResult;
-        protected item searchRe;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace YMClothsStore
                searchResult = DBModel.sharedDBModel().getItemByItemName(serachKey);
             }
             else
-                searchRe = DBModel.sharedDBModel().getItemByItemId(serachKey);
+                searchResult = DBModel.sharedDBModel().getItemByItemId(serachKey);
         }
     }
 }
