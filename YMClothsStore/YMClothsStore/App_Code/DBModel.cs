@@ -1446,7 +1446,7 @@ namespace YMClothsStore
         * 参数：员工Id
         * 返回值：入库表实例（未测试）
         */
-        public inBase[] getInBaseInfoByInBaseId(string staffId)
+        public inBase[] getInBaseInfoByStaffId(string staffId)
         {
             string shopId = getShopIdByStaffId(staffId);
 
@@ -1462,7 +1462,7 @@ namespace YMClothsStore
         * 参数：员工Id
         * 返回值：出库表实例（未测试）
         */
-        public outBase[] getOutBaseInfoByOutBaseId(string staffId)
+        public outBase[] getOutBaseInfoByStaffId(string staffId)
         {
             string shopId = getShopIdByStaffId(staffId);
 
