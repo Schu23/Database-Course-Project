@@ -1,3 +1,5 @@
+
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,14 @@ namespace YMClothsStore
         protected checkDetail[] checkDetailTable;
         protected void Page_Load(object sender, EventArgs e)
         {
-           checkDetailTable =  getCheckDetailInfoWithStaffId(   ,theStaff.staffId);
+           check checker = DBModel.sharedDBModel().addNewCheckRecord(theStaff.staffId);
+           checkDetailTable = DBModel.sharedDBModel().getCheckDetailInfoWithStaffId(checker.checkId ,theStaff.staffId);
+        }
+        protected void sumbitCheck(object sender, EventArgs e)
+        {
+            
+           string[] the =   Request.Form["check_id"].Count ;
+           
         }
     }
 }
