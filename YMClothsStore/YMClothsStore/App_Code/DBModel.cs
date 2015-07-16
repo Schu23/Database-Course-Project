@@ -1383,5 +1383,31 @@ namespace YMClothsStore
             }
         } 
 
+        /**
+         * 58.新增盘点记录
+         * 参数：员工Id
+         * 返回值：盘点记录
+         */
+        public check addNewCheckRecord(string staffId)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+            string newCheckId = createNewId("check");
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                check newCheck = new check
+                {
+                    checkerId = staffId,
+                    shopId = shopId,
+                    checkTime = DateTime.Now,
+                    checkId = newCheckId,
+                };
+                db.check.Add(newCheck);
+                db.SaveChanges();
+
+                return newCheck;
+                
+            }
+        }
+
     }
 }
