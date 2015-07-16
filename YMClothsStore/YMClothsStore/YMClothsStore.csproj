@@ -113,6 +113,9 @@
     <Content Include="ManagerOrderInfoTable.aspx" />
     <Content Include="ManagerOutBaseTable.aspx" />
     <Content Include="ManagerStockInfoTable.aspx" />
+    <Content Include="Manager_AddOrder.aspx" />
+    <Content Include="Manager_ClothesInfo.aspx" />
+    <Content Include="Manager_OrderInfo.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -282,71 +285,92 @@
     </Compile>
     <Compile Include="ManagerStockInfoTable.aspx.designer.cs">
       <DependentUpon>ManagerStockInfoTable.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="order.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="orderDetail.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="outBase.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="outDetail.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PersonnelChanges.aspx.cs">
-      <DependentUpon>PersonnelChanges.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PersonnelChanges.aspx.designer.cs">
-      <DependentUpon>PersonnelChanges.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shop.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="staff.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Staff_addOrder.aspx.cs">
-      <DependentUpon>Staff_addOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff_addOrder.aspx.designer.cs">
-      <DependentUpon>Staff_addOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff_clothesInfo.aspx.cs">
-      <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff_clothesInfo.aspx.designer.cs">
-      <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff_OrderInfo.aspx.cs">
-      <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff_OrderInfo.aspx.designer.cs">
-      <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="stock.cs">
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="YMEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YMEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="YMEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YMEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="YMEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YMEntities.edmx</DependentUpon>
+      <Compile Include="Manager_AddOrder.aspx.cs">
+        <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Manager_AddOrder.aspx.designer.cs">
+        <DependentUpon>Manager_AddOrder.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="Manager_ClothesInfo.aspx.cs">
+        <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Manager_ClothesInfo.aspx.designer.cs">
+        <DependentUpon>Manager_ClothesInfo.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="Manager_OrderInfo.aspx.cs">
+        <DependentUpon>Manager_OrderInfo.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Manager_OrderInfo.aspx.designer.cs">
+        <DependentUpon>Manager_OrderInfo.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="order.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="orderDetail.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="outBase.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="outDetail.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="PersonnelChanges.aspx.cs">
+        <DependentUpon>PersonnelChanges.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="PersonnelChanges.aspx.designer.cs">
+        <DependentUpon>PersonnelChanges.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="Properties\AssemblyInfo.cs" />
+      <Compile Include="shop.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="staff.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="Staff_addOrder.aspx.cs">
+        <DependentUpon>Staff_addOrder.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Staff_addOrder.aspx.designer.cs">
+        <DependentUpon>Staff_addOrder.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="Staff_clothesInfo.aspx.cs">
+        <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Staff_clothesInfo.aspx.designer.cs">
+        <DependentUpon>Staff_clothesInfo.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="Staff_OrderInfo.aspx.cs">
+        <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+      </Compile>
+      <Compile Include="Staff_OrderInfo.aspx.designer.cs">
+        <DependentUpon>Staff_OrderInfo.aspx</DependentUpon>
+      </Compile>
+      <Compile Include="stock.cs">
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="YMEntities.Context.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>YMEntities.Context.tt</DependentUpon>
+      </Compile>
+      <Compile Include="YMEntities.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>YMEntities.tt</DependentUpon>
+      </Compile>
+      <Compile Include="YMEntities.Designer.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>YMEntities.edmx</DependentUpon>
+      </Compile>
     </Compile>
   </ItemGroup>
   <ItemGroup>

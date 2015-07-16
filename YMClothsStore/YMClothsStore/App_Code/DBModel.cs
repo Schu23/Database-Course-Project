@@ -105,20 +105,24 @@ namespace YMClothsStore
          */
         public bool deleteStaffByStaffId(string deletedStaffId)
         {
-            bool deletdSucceed = false;
-
             //从数据库中查询要删除的员工
             using (YMDBEntities db = new YMDBEntities())
             {
-                
-                //数据库删除员工
-                //成功后将deletedSucceed赋值为true
-                db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
-                db.SaveChanges();
-                deletdSucceed = true;
+                try
+                {                
+                    //数据库删除员工
+                    //成功后将deletedSucceed赋值为true
+                    db.staff.Remove(db.staff.Where(p => p.staffId == deletedStaffId).FirstOrDefault());
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (ArgumentNullException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("输入的staffId有问题.");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return false;
+                }
             }
-
-            return deletdSucceed;
         }
 
 
@@ -143,11 +147,11 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("修改失败，没有这员工.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
                 }
             }
-
-            return false;
         }
 
         /*
@@ -161,7 +165,7 @@ namespace YMClothsStore
             {
                 shopAddress = newShopAddress,
                 shopPhone = newShopPhone,
-                shopId = createNewId("shop"),   //需要设计一个算法给出shop的id
+                shopId = createNewId("shop"), 
             };
             //写入数据库
             using (YMDBEntities db = new YMDBEntities())
@@ -173,30 +177,15 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("Address输入有误.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
                 }
             }
 
             return newShop;
         }
 
-        /*
-         * 6.删除门店
-         * 参数：门店id
-         * 返回值：bool
-         */
-        //public bool deletdShopByShopId(string shopId)
-        //{
-        //    bool isSucceed = false;
-        //    using (YMDBEntities db = new YMDBEntities())
-        //    {
-        //        //根据门店ID来查询并删除数据库中的门店
-        //        db.shop.Remove(db.shop.Where(p => p.shopId == shopId).SingleOrDefault());
-        //        db.SaveChanges();
-        //        isSucceed = true;
-        //    }
-        //    return isSucceed;
-        //}
 
         /*
          * 7.修改门店信息
@@ -219,7 +208,9 @@ namespace YMClothsStore
                   }
                 catch(Exception ex)
                  {
+                     System.Diagnostics.Debug.WriteLine("没找到shop或者输入参数绝对有问题，仔细查外键约束!!!!");
                      System.Diagnostics.Debug.WriteLine(ex.Message);
+                     return false;
                  }
             }
            
@@ -233,22 +224,20 @@ namespace YMClothsStore
          */
         public staff findStaffByStaffId(string id)
         {
-            staff wantStaff = null;
-
             using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
-                    wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
+                    staff wantStaff = db.staff.Where(p => p.staffId == id).FirstOrDefault();
                     return wantStaff;
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine("没找到这员工，输入有问题.");
                     System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
                 }
             }
-
-            return null;
         }
 
         /**
@@ -282,17 +271,6 @@ namespace YMClothsStore
             }
 
         }
-        /**
-         * 10.添加新的地址以供选择
-         * 参数：新地址名称或代号，新地址详细信息（街道等）
-         * 返回值：address实例
-         */
-        /*public address addAddressInfo(string newAddressName, string newAddressDetail)
-        {
-            address newAddress = null;
-
-            return newAddress;
-        }*/
 
         /**
          * 11.根据shopId查找shop
@@ -306,7 +284,6 @@ namespace YMClothsStore
                 shop targetShop = db.shop.Where(p => p.shopId == targetShopId).FirstOrDefault();
                 return targetShop;
             }
-
         }
 
         /**
@@ -386,14 +363,13 @@ namespace YMClothsStore
          */
         public string getShopIdByStaffId(string targetStaffId)
         {
-            string targetShopId = "";
-
             using (YMDBEntities db = new YMDBEntities())
             {
                 try
                 {
                     staff currentStaff = db.staff.Where(p => p.staffId == targetStaffId).FirstOrDefault();
-                    targetShopId = currentStaff.shopId;
+                    string targetShopId = currentStaff.shopId;
+                    return targetShopId;
                 }
                 catch (NullReferenceException ex)
                 {
@@ -404,7 +380,6 @@ namespace YMClothsStore
                 
             }
 
-            return targetShopId;
         }
 
         /**
@@ -418,19 +393,27 @@ namespace YMClothsStore
 
             using (YMDBEntities db = new YMDBEntities())
             {
-                staff staff = db.staff.Where(p => p.staffId == staffId).FirstOrDefault();
-                order targetOrder = new order
+                try
                 {
-                    orderId = newId,
-                    shopId =staff.shopId,
-                    totalPrice = 0,
-                    orderTime = DateTime.Now,
-                };
-                db.order.Add(targetOrder);
-                db.SaveChanges();
-                return targetOrder;
+                    staff targetStaff = findStaffByStaffId(staffId);
+                    order targetOrder = new order
+                    {
+                        orderId = newId,
+                        shopId = targetStaff.shopId,
+                        totalPrice = 0,
+                        orderTime = DateTime.Now,
+                    };
+                    db.order.Add(targetOrder);
+                    db.SaveChanges();
+                    return targetOrder;
+                }
+                catch (NullReferenceException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("输入staffId的时候有问题，回去查!!!!!");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                    return null;
+                }
             }
-            return null;
         }
 
         /**
@@ -465,7 +448,7 @@ namespace YMClothsStore
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("添加orderDetail错误");
+                    System.Diagnostics.Debug.WriteLine("添加orderDetail错误,可能是参数错误.");
                     System.Diagnostics.Debug.WriteLine(ex.StackTrace);
                     return false;
                 }
@@ -481,7 +464,7 @@ namespace YMClothsStore
          */
         public stock[] getShopStockInfoByStaffId(string staffId)
         {
-            stock[] targetStock = null;
+            stock[] targetStock = { };
 
             using (YMDBEntities db = new YMDBEntities())
             {
@@ -1275,6 +1258,89 @@ namespace YMClothsStore
                 return allApply;
             }
         }
+
+        /**
+         * 48.如果盘点后商品数量不一致，进行更改，修改库存
+         * 参数：店长Id，货物Id，现有数量
+         * 返回值：库存信息
+         */
+        public stock changeStockByStaffIdAndItemId(string staffId, string itemId, int currentAmount)
+        {
+            string shopId = getShopIdByStaffId(staffId);
+            using (YMDBEntities db = new YMDBEntities()){
+                stock currentItem = db.stock.Where(p => p.itemId == itemId & p.shopId == shopId).FirstOrDefault();
+                currentItem.stockAmount = currentAmount;
+                db.SaveChanges();
+                return currentItem;
+            }
+            
+        }
+
+        /**
+         * 49.返回所有地点信息
+         * 参数：无
+         * 返回值：地点信息数组
+         */
+        public address[] getAllAddressInfo()
+        {
+            using (YMDBEntities db = new YMDBEntities()){
+                string sql = "select * from \"addres\"";
+
+                address[] allAdress = db.Database.SqlQuery<address>(sql).ToArray();
+
+                return allAdress;
+            }
+        }
+
+        /**
+         * 50.拿到该员工商店所有的入库信息
+         * 参数：staffId
+         * 返回值：inBase[]
+         */
+        public inBase[] getAllinBaseInfoByStaffId(string targetStaffId)
+        {
+            string shopId = getShopIdByStaffId(targetStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                inBase[] currentInBase = db.inBase.Where(p => p.shopId == shopId).ToArray();
+                return currentInBase;
+            }
+        }
+
+        /** 
+         * 51.拿到该员工商店所有的出库信息
+         * 参数：staffId
+         * 返回值：outBase[]
+         */
+        public outBase[] getAllOutBaseInfoByStaffId(string targetStaffId)
+        {
+            string shopId = getShopIdByStaffId(targetStaffId);
+
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                outBase[] currentOutBase = db.outBase.Where(p => p.shopId == shopId).ToArray();
+                return currentOutBase;
+            }
+        }
         
+        /**
+         * 54.根据申请id拿到详细信息表
+         * 参数：申请id
+         * 返回值：详细信息[]
+         */
+        public applyDetail[] getAllApplyDetailByApplyId(string targetApplyId)
+        {
+            using (YMDBEntities db = new YMDBEntities())
+            {
+                applyDetail[] currentApplyDetail = db.applyDetail.Where(p => p.applyId == targetApplyId).ToArray();
+                return currentApplyDetail;
+            }
+        }
+
+
+
+
+
     }
 }
