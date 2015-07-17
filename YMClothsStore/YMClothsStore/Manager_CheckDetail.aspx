@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" runat="server">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -87,7 +87,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
+                  <span class="glyphicon glyphicon-user" aria-hidden="true" runat="server"></span>  
                     <%:theStaff.staffName %>
                   <span class="caret"></span>
                 </a>
@@ -130,12 +130,13 @@
         </table>
       </div>
     </div>
-  </form>
+ 
     <!--提交按钮-->
      <div class="text-center">
           <br/>
          <asp:Button Text="提交" runat="server" CssClass="btn btn-primary btn-lg" OnClick="sumbitCheck" />     
         </div>
+   </form>
     <footer class="footer">
       <div class="container">
         <hr/>

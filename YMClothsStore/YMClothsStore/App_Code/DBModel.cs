@@ -162,17 +162,21 @@ namespace YMClothsStore
          */
         public shop addNewShopWithManagerIdAndAddressIdAndShopPhone(string newShopManagerId, string newShopAddress, string newShopPhone)
         {
-            shop newShop = new shop
-            {
-                shopAddress = newShopAddress,
-                shopPhone = newShopPhone,
-                shopId = createNewId("shop"), 
-            };
+            
             //写入数据库
             using (YMDBEntities db = new YMDBEntities())
             {
+                System.Diagnostics.Debug.WriteLine("lalalalalasdk:" + newShopAddress);
+                shop newShop = new shop
+                {
+                    shopAddress = newShopAddress,
+                    shopPhone = newShopPhone,
+                    shopId = createNewId("shop"),
+                    shopStatus = 1,
+                };
                 try
                 {
+                    System.Diagnostics.Debug.WriteLine("shop0Id:" + newShop.shopAddress);
                     db.shop.Add(newShop);
                     db.SaveChanges();
                 }
@@ -182,9 +186,10 @@ namespace YMClothsStore
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                     return null;
                 }
+                return newShop;
             }
 
-            return newShop;
+           
         }
 
 
@@ -955,10 +960,12 @@ namespace YMClothsStore
          * 参数：申请表Id，货物Id和货物数量
          * 返回：是否成功添加了申请表细节(通过测试，需要先增加apply条目然后再增加applyDetail)
          */
-        public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
+        public bool addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(string staffId, string currentApplyId,string currentItemId, int currentItemAmount) 
         {
             using (YMDBEntities db = new YMDBEntities())
             {
+
+                string shopId = getShopIdByStaffId(staffId);
                 try
                 {
                     applyDetail tem = db.applyDetail.Where(p => p.applyId == currentApplyId & p.itemId == currentApplyId).FirstOrDefault();
@@ -976,6 +983,22 @@ namespace YMClothsStore
                     {
                         tem.applyAmount = tem.applyAmount + currentItemAmount;
                     }
+
+                    stock newStock = new stock
+                    {
+                        itemId = currentItemId,
+                        shopId = shopId,
+                        stockAmount = currentItemAmount,
+                        saleAmount = 0,
+                        stockLimit = 1000,
+                        purchaseAmount = 0,
+                    };
+                    db.stock.Add(newStock);
+
+                    inBase newIn = addNewInBaseRecord(staffId);
+                    addInDetailToInWithItemIdAndItemAmount(newIn.inId, currentItemId, currentItemAmount);
+
+                    
                     db.SaveChanges();
                     return true;
                 }
@@ -1035,12 +1058,15 @@ namespace YMClothsStore
          * 返回：是否成功添加了申请表细节(需要优化)
          * 注意：如果申请调货的店没有对应的货会报空指针错误
          */
-        public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string currentApplyId,string currentItemId, int currentItemAmount) 
+        public bool addApplyDetailInfoFromOtherShopWithApplyIdItemIdAndItemAmount(string staffId ,string currentApplyId,string currentItemId, int currentItemAmount) 
         {
             bool isSucceed = false;
 
             using (YMDBEntities db = new YMDBEntities())
             {
+
+                string shopId = getShopIdByStaffId(staffId);
+
                 try
                 {
                     apply outShop = db.apply.Where(p => p.applyId == currentApplyId).FirstOrDefault();
@@ -1075,6 +1101,21 @@ namespace YMClothsStore
                                 tem.applyAmount = tem.applyAmount + currentItemAmount;
                             }
                         }
+
+                        stock newStock = new stock
+                        {
+                            itemId = currentItemId,
+                            shopId = shopId,
+                            stockAmount = currentItemAmount,
+                            saleAmount = 0,
+                            stockLimit = 1000,
+                            purchaseAmount = 0,
+                        };
+                        db.stock.Add(newStock);
+
+                        inBase newIn = addNewInBaseRecord(staffId);
+                        addInDetailToInWithItemIdAndItemAmount(newIn.inId, currentItemId, currentItemAmount);
+
                         db.SaveChanges();
                         isSucceed = true;
                         return isSucceed;
@@ -1115,6 +1156,7 @@ namespace YMClothsStore
                         currentApply.state = "no";
                         isAgree = false;
                     }
+
                     db.SaveChanges();
                     return isAgree;
                 }
@@ -1519,6 +1561,7 @@ namespace YMClothsStore
         public check addNewCheckRecord(string staffId)
         {
             string shopId = getShopIdByStaffId(staffId);
+            System.Diagnostics.Debug.WriteLine("shopIdhihif:" + shopId);
             string newCheckId = createNewId("check");
             using (YMDBEntities db = new YMDBEntities())
             {

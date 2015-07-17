@@ -27,10 +27,21 @@ namespace YMClothsStore
         protected void confirmToAddItem(object sender, EventArgs e)
         {
             newName = Request.Form["clothesName"];
-            newSize = Request.Form["sizes"];
+            newSize = Request.Form["size"];
             newColor = Request.Form["color"];
             string newPriceStr = Request.Form["price"];
             newPrice = float.Parse(newPriceStr);
+
+            DateTime now = DateTime.Now;
+            string strBaseLocation = Server.MapPath(System.Web.HttpContext.Current.Request.ApplicationPath.ToString());
+            if (file1.PostedFile.ContentLength != 0)
+            {
+                file1.PostedFile.SaveAs(strBaseLocation + now.DayOfYear.ToString() + file1.PostedFile.ContentLength.ToString() + ".jpg");
+            }
+
+            item newItem = DBModel.sharedDBModel().addItemByBoss(newName, newSize, newColor, newPrice);
+            image neImage = DBModel.sharedDBModel().addImageToItem(newItem.itemId, file1.PostedFile.ContentLength.ToString() + ".jpg");
+
 
         }
     }

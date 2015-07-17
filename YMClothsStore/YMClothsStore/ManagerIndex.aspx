@@ -282,7 +282,7 @@
           
          <% if (hotItems !=null) { %>
             <div class="col-md-2 col-sm-2 col-xs-4 col-sm-offset-1">
-              <img class="img-responsive" src="<%: hotItems[0,2] %>">
+              <img class="img-responsive" src="/<%: hotItems[0,2] %>">
               <br/><h4><%:hotItems[0,1] %></h4>
               <button type="button" class="btn btn-info">补货</button>
             </div>

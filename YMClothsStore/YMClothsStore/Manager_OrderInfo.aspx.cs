@@ -31,6 +31,7 @@ namespace YMClothsStore
             orderId = Request.Params["order"];
             System.Diagnostics.Debug.WriteLine("order id :" + orderId);
             getOrderDetail = DBModel.sharedDBModel().getOrderDetailInfoByOrderId(orderId);
+            //System.Diagnostics.Debug.WriteLine(getOrderDetail[1]);
         }
     }
 }

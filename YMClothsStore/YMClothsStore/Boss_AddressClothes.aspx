@@ -71,7 +71,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  
-                    刘旭东
+                    一个老总
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -92,7 +92,7 @@
 
     <div class="container addstaff-form">
       <!-- form在这里！ -->
-      <form runat="server" class="">
+      <form runat="server" class="" enctype="multipart/form-data">
         <!-- 输入名称 name:clothesName -->
         <div class="form-group">
           <div class="row">
@@ -144,7 +144,7 @@
               <label class="control-label text-right">上传图片：</label>
             </div>
             <div class="col-sm-7">
-              <input type="file" name="file1" id="file1" style="font-size: 15px;">
+              <input type="file" name="file1" id="file1" style="font-size: 15px;" runat="server">
             </div>
           </div>
         </div>

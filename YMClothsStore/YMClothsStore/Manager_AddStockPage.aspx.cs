@@ -24,7 +24,7 @@ namespace YMClothsStore
             applyResult = DBModel.sharedDBModel().addApplyFromSystem(theStaff.staffId);
             if (applyResult != null)
             {
-                if (DBModel.sharedDBModel().addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(applyResult.applyId, itemId, int.Parse(itemAmount)))
+                if (DBModel.sharedDBModel().addApplyDetailInfoFromSystemWithApplyIdItemIdAndItemAmount(theStaff.staffId ,applyResult.applyId, itemId, int.Parse(itemAmount)))
                 {
                     System.Diagnostics.Debug.WriteLine("diao huo chenggong ");
                     Response.Redirect("Manager_StockInfo.aspx");

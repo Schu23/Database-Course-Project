@@ -15,7 +15,9 @@ namespace YMClothsStore
         protected checkDetail[] checkDetailTable;
         protected void Page_Load(object sender, EventArgs e)
         {
-           check checker = DBModel.sharedDBModel().addNewCheckRecord(theStaff.staffId);
+            theStaff = (staff)Session["staff"];
+            System.Diagnostics.Debug.WriteLine("theStaff:" + theStaff.staffId); 
+            check checker = DBModel.sharedDBModel().addNewCheckRecord(theStaff.staffId);
            checkDetailTable = DBModel.sharedDBModel().getCheckDetailInfoWithStaffId(checker.checkId ,theStaff.staffId);
         }
         protected void sumbitCheck(object sender, EventArgs e)

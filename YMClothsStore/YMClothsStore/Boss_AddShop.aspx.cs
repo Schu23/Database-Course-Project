@@ -18,7 +18,8 @@ namespace YMClothsStore
         }
         protected void Submit_Click(object sender ,EventArgs e)
         {
-            string address = addresses[0].addressName;
+            string address = "address_1436970429";// addresses[0].addressName;
+            System.Diagnostics.Debug.WriteLine("adress test here :" + address);
             string manager = Request.Form["staffId"];
             string phone = Request.Form["shopPhone"];
             shop temp = DBModel.sharedDBModel().addNewShopWithManagerIdAndAddressIdAndShopPhone(manager,address,phone);

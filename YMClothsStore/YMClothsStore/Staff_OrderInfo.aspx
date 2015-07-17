@@ -17,8 +17,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/staffInfo.css">
 
     <!-- jquery & ajax -->
-    <script src="jQuery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="scripts/orderInfo.js"></script>
+    <script src="JQuery/jquery-1.10.2.js"></script>
+    
     <!-- 模态框js -->
     <script type="text/javascript">
         $(function(){
@@ -182,6 +182,7 @@
                       <th><%: orderDetail.itemAmount %></th>
                     </tr>
                      <% } }%>
+                      
                   </tbody>
                 </table>
               </div>
