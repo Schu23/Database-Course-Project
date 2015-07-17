@@ -6,7 +6,7 @@
 "原木衣橱"——服装连锁店仓库管理系统
 ==========
 ###Members:
-<strong><a href="https://github.com/anzhehong">Fowafolo</a>,<a href="https://github.com/AndyHT">Teng</a>,<a href="https://github.com/Jasminekiki">Cao Qi</a>,<a href="https://github.com/MandyXue">薛梦迪</a>,<a href="https://github.com/wzyddg">王泽宇</a>,<a href="https://github.com/BrunoQin">BrunoQin</a>,王倩,任诗韵and me.</strong>
+<strong><a href="https://github.com/anzhehong">Fowafolo</a>,<a href="https://github.com/AndyHT">Teng</a>,<a href="https://github.com/Jasminekiki">Cao Qi</a>,<a href="https://github.com/MandyXue">薛梦迪</a>,<a href="https://github.com/wzyddg">王泽宇</a>,<a href="https://github.com/BrunoQin">BrunoQin</a>,张挺然,王倩,任诗韵and me.</strong>
 
 
 ###开发环境：
